@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UISpinner > snapshot 1`] = `
+<div>
+  <div
+    class="ui-spinner"
+    data-testid="ui-spinner"
+    data-v-b21ab8b5=""
+    style="--width: 14px; --height: 14px; --border-width: 2px;"
+  >
+    <div
+      class="ui-spinner__item"
+      data-v-b21ab8b5=""
+    />
+  </div>
+</div>
+`;
