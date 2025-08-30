@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@nuxt/icon": "^1.15.0",
+    "@vueuse/nuxt": "^13.8.0",
     "async-validator": "^4.2.5",
     "nuxt": "^3.16.0",
     "vue": "^3.5.13",
