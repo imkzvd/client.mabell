@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UIForm > snapshot 1`] = `
+<div>
+  <form
+    class="ui-form"
+    role="form"
+  >
+    
+    <button
+      class="ui-button ui-button_appearance_primary ui-button_size_md"
+      data-v-ccbf2dd3=""
+      type="submit"
+    >
+      <!--v-if-->
+      <span
+        class="ui-button__content"
+        data-v-ccbf2dd3=""
+      >
+        
+        Submit
+        
+      </span>
+    </button>
+    
+  </form>
+</div>
+`;
