@@ -14,10 +14,12 @@
   "dependencies": {
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^1.15.0",
+    "@pinia/nuxt": "^0.11.2",
     "@vueuse/nuxt": "^13.8.0",
     "async-validator": "^4.2.5",
     "nuxt": "^3.16.0",
     "nuxt-viewport": "^2.3.1",
+    "pinia": "^3.0.3",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
