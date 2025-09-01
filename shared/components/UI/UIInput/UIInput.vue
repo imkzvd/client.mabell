@@ -57,8 +57,8 @@
 import { UIFormContextKey, UIFormItemContextKey } from '~/shared/components/UI/UIForm/constants';
 import { type UIInputProps, type UIInputEmits, UIInputTypes, UIInputSizes } from '~/shared/components/UI/UIInput/types';
 
-const UIFormContext = inject(UIFormContextKey, undefined);
-const UIFormItemContext = inject(UIFormItemContextKey, undefined);
+const UIFormContext = inject(UIFormContextKey);
+const UIFormItemContext = inject(UIFormItemContextKey);
 
 const props = withDefaults(defineProps<UIInputProps>(), {
   id: crypto.randomUUID(),
@@ -68,10 +68,6 @@ const props = withDefaults(defineProps<UIInputProps>(), {
 const emit = defineEmits<UIInputEmits>();
 
 const baseClass: string = 'ui-input';
-
-const isDisabled = computed<boolean>(() => {
-  return !!UIFormContext?.isDisabled || props.isDisabled;
-});
 const showLabel = computed<boolean>(() => !!props.label && !!props.modelValue);
 const isPasswordVisible = ref<boolean>(false);
 const cssInputClasses = computed(() => {
@@ -81,7 +77,7 @@ const cssInputClasses = computed(() => {
     [inputClass]: true,
     [`${inputClass}_size_${props.size}`]: props.size,
     [`${inputClass}_type_${props.type}`]: props.type,
-    [`${inputClass}_is-disabled`]: isDisabled.value,
+    [`${inputClass}_is-disabled`]: props.isDisabled,
     [`${inputClass}_is-clearable`]: props.isClearable,
     [`${inputClass}_is-not-valid`]: UIFormItemContext?.isInvalid,
   };
