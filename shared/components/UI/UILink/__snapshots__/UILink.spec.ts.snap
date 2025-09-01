@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UILink > snapshot 1`] = `
+<div>
+  <a
+    class="ui-link"
+    data-v-edb7310d=""
+    href="https://www.google.ru/"
+    rel="noopener noreferrer"
+  >
+    
+    Google.com
+    
+  </a>
+</div>
+`;
