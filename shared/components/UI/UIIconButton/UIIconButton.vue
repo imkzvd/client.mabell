@@ -30,13 +30,14 @@ const cssClasses = computed(() => ({
 <style lang="scss" scoped>
 .ui-icon-button {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 4px;
-  transition: color 0.25s;
-  cursor: pointer;
 
   &_appearance {
+    @include respond-to(xl) {
+      transition: color 0.25s;
+      cursor: pointer;
+    }
+
     &_primary {
       color: var(--ui-icon-button-color, #ffffff);
 
