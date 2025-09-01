@@ -12,7 +12,7 @@ function renderComponent() {
       name: "login",
     },
     slots: {
-      default: h(UIInput, <UIInputProps>{ modelValue: "" }),
+      default: h(UIInput, <UIInputProps>{ id: "some-id", modelValue: "" }),
     },
   });
 }
