@@ -20,7 +20,7 @@ exports[`UIFormItem > snapshot 1`] = `
           autocomplete="off"
           class="ui-input__input ui-input__input_size_md ui-input__input_type_text"
           data-v-e823b4c1=""
-          id="065afd78-605c-4f38-b7dc-65e185c38815"
+          id="some-id"
           type="text"
           value=""
         />
