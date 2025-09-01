@@ -197,9 +197,7 @@ describe('UIInput', () => {
 
       getByRole<HTMLInputElement>('textbox')
     });
-  });
 
-  describe('Emits:', () => {
     test('it will emit "update:modelValue"', async () => {
       const { getByRole, emitted } = renderComponent();
       const expectedEventName = 'update:modelValue';
