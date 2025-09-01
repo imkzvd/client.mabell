@@ -11,7 +11,7 @@ exports[`UIInput > snapshot 1`] = `
       autocomplete="off"
       class="ui-input__input ui-input__input_size_md ui-input__input_type_text"
       data-v-e823b4c1=""
-      id="d32fdd9b-a9bf-403c-9793-f263408b5f35"
+      id="some-id"
       type="text"
       value=""
     />

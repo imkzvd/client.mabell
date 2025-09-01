@@ -240,7 +240,7 @@ describe('UIInput', () => {
   });
 
   test('snapshot', () => {
-    const { container } = renderComponent(fakeProps);
+    const { container } = renderComponent({ id: 'some-id' });
 
     expect(container).toMatchSnapshot();
   });
