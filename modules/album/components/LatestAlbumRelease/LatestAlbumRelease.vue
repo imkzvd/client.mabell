@@ -14,7 +14,7 @@
       <div class="latest-album-release__details">
         <UIText is-bold class="latest-album-release__name">{{ album.name }}</UIText>
 
-        <UIText appearance="secondary" size="14px">
+        <UIText appearance="secondary" size="14px" class="latest-album-release__meta">
           <span>{{ album.type.label }}</span> -
           <span v-if="releaseDate">{{ releaseDate }}</span>
         </UIText>
@@ -67,6 +67,10 @@ const releaseDate = computed<string | null>(() => {
       margin-bottom: 8px;
       margin-right: 0;
     }
+  }
+
+  &__meta {
+    --size: 14px;
   }
 }
 </style>
