@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LatestRelease > snapshot 1`] = `
+<div>
+  <div
+    class="latest-album-release"
+    data-v-bcf89972=""
+  >
+    <a
+      aria-label="Go to Album name album page"
+      class="latest-album-release__link-container"
+      data-v-bcf89972=""
+      href="[object Object]"
+    >
+      
+      <div
+        class="album-cover latest-album-release__album-cover"
+        data-v-2c4e3231=""
+        data-v-bcf89972=""
+      >
+        <img
+          alt="Album name"
+          data-v-2c4e3231=""
+          src="https://fake-url.com"
+        />
+      </div>
+      <div
+        class="latest-album-release__details"
+        data-v-bcf89972=""
+      >
+        <p
+          class="ui-text ui-text_appearance_primary ui-text_is-bold latest-album-release__name"
+          data-v-7381037b=""
+          data-v-bcf89972=""
+        >
+          
+          Album name
+          
+        </p>
+        <p
+          class="ui-text ui-text_appearance_secondary"
+          data-v-7381037b=""
+          data-v-bcf89972=""
+        >
+          
+          <span
+            data-v-bcf89972=""
+          >
+            Label
+          </span>
+           - 
+          <span
+            data-v-bcf89972=""
+          >
+            1/1/2000
+          </span>
+          
+        </p>
+      </div>
+      
+    </a>
+  </div>
+</div>
+`;
