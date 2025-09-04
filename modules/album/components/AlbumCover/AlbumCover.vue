@@ -12,9 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import type { TrackCoverProps } from "~/modules/artist/components/TrackCover/types";
+import type { AlbumCoverProps } from "~/modules/album/components/AlbumCover/types";
 
-const props = defineProps<TrackCoverProps>();
+const props = withDefaults(defineProps<AlbumCoverProps>(), {
+  size: '80px',
+});
 
 const baseClass = 'album-cover';
 const rootCssClasses = computed<Record<string, boolean>>(() => ({
@@ -24,10 +26,10 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .album-cover {
-  --album-cover-size: 80px;
+  --size: v-bind(props.size);
 
-  height: var(--album-cover-size);
-  width: var(--album-cover-size);
+  height: var(--size);
+  width: var(--size);
   overflow: hidden;
   border-radius: var(--border-rounded, 4px);
 
@@ -41,8 +43,8 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
   }
 
   &__icon {
-    height: calc(var(--album-cover-size) / 4);
-    width: calc(var(--album-cover-size) / 4);
+    height: calc(var(--size) / 4);
+    width: calc(var(--size) / 4);
     color: var(--main-text, white);
   }
 }
