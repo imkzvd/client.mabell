@@ -12,7 +12,7 @@
       />
 
       <div class="latest-album-release__details">
-        <UIText is-bold>{{ album.name }}</UIText>
+        <UIText is-bold class="latest-album-release__name">{{ album.name }}</UIText>
 
         <UIText appearance="secondary" size="14px">
           <span>{{ album.type.label }}</span> -
@@ -37,6 +37,14 @@ const releaseDate = computed<string | null>(() => {
 
 <style scoped lang="scss">
 .latest-album-release {
+  @include respond-to(xl) {
+    &:hover & {
+      &__name {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &__link-container {
     display: flex;
     align-items: center;
