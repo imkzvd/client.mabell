@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { render } from "@testing-library/vue";
-import FakeArtistRO from "~/__tests__/ros/artist";
+import { FakeArtistRO } from "~/__tests__/ros/fake-artist.ro";
 import IconStub from "~/__tests__/stubs/icon.stub";
 import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
 import MobileArtistHeader from "~/modules/artist/components/MobileArtistHeader/MobileArtistHeader.vue";
@@ -27,7 +27,7 @@ describe("MobileArtistHeader", () => {
     test('it will render heading', () => {
       const { getByRole } = renderComponent();
 
-      const headingEl = getByRole('heading', { name: fakeArtist.name });
+      getByRole('heading', { name: fakeArtist.name });
     })
 
     test('it will render options button', () => {
