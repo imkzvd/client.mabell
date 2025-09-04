@@ -1,74 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ArtistHeader > Developer: > snapshot 1`] = `
-<div>
-  <header
-    class="artist-header"
-    data-v-49a44d80=""
-  >
-    <div
-      class="artist-header__line"
-      data-v-49a44d80=""
-    >
-      <div
-        class="container"
-        data-v-49a44d80=""
-      >
-        <div
-          class="artist-header__details"
-          data-v-49a44d80=""
-        >
-          <div
-            class="artist-header__details-top-line"
-            data-v-49a44d80=""
-          >
-            <h1
-              class="ui-heading ui-heading_level_1 ui-heading_leading_none artist-header__heading"
-              data-v-32430a7f=""
-              data-v-49a44d80=""
-            >
-              
-              Drake
-              
-            </h1>
-            <button
-              aria-label="Artist options"
-              class="ui-icon-button ui-icon-button_appearance_secondary"
-              data-v-36b0ea7c=""
-              data-v-49a44d80=""
-              type="button"
-            >
-              <svg
-                data-testid="icon"
-                data-v-36b0ea7c=""
-                mode="svg"
-                name="i-ph-dots-three-outline-fill"
-                role="img"
-                size="24"
-              />
-            </button>
-          </div>
-          <div
-            class="artist-header__details-bottom-line"
-            data-v-49a44d80=""
-          >
-            <p
-              class="ui-text ui-text_appearance_secondary artist-header__biography"
-              data-v-49a44d80=""
-              data-v-7381037b=""
-            >
-              
-              Some Text
-              
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-</div>
-`;
-
 exports[`ArtistHeader > snapshot 1`] = `
 <div>
   <header
@@ -97,7 +28,7 @@ exports[`ArtistHeader > snapshot 1`] = `
               data-v-49a44d80=""
             >
               
-              Drake
+              Artist name
               
             </h1>
             <button
@@ -127,7 +58,7 @@ exports[`ArtistHeader > snapshot 1`] = `
               data-v-7381037b=""
             >
               
-              Some Text
+              Artist biography
               
             </p>
           </div>

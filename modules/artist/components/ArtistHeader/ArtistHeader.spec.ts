@@ -1,7 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { render } from "@testing-library/vue";
-import { userEvent } from "@testing-library/user-event";
-import FakeArtistRO from "~/__tests__/ros/artist";
+import { FakeArtistRO } from "~/__tests__/ros/fake-artist.ro";
 import ArtistHeader from "~/modules/artist/components/ArtistHeader/ArtistHeader.vue";
 import type { ArtistHeaderProps } from "~/modules/artist/components/ArtistHeader/types";
 import IconStub from "~/__tests__/stubs/icon.stub";
