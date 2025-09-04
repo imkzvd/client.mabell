@@ -56,8 +56,6 @@ describe("LatestRelease", () => {
       getByText(prepDate);
     });
   })
-  describe('Reactive:', () => {})
-  describe('Actions:', () => {})
 
   test("snapshot", () => {
     const { container } = renderComponent();

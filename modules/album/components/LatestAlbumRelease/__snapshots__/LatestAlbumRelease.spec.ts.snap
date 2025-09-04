@@ -29,7 +29,7 @@ exports[`LatestRelease > snapshot 1`] = `
         data-v-bcf89972=""
       >
         <p
-          class="ui-text ui-text_appearance_primary ui-text_is-bold latest-album-release__name"
+          class="ui-text ui-text_appearance_primary ui-text_is-bold"
           data-v-7381037b=""
           data-v-bcf89972=""
         >

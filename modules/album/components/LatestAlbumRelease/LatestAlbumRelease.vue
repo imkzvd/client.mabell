@@ -12,9 +12,7 @@
       />
 
       <div class="latest-album-release__details">
-        <UIText is-bold class="latest-album-release__name">
-          {{ album.name }}
-        </UIText>
+        <UIText is-bold>{{ album.name }}</UIText>
 
         <UIText appearance="secondary" size="14px">
           <span>{{ album.type.label }}</span> -
@@ -50,15 +48,14 @@ const releaseDate = computed<string | null>(() => {
   }
 
   &__album-cover {
-    --album-cover-size: 80px;
     margin-right: 12px;
 
     @include respond-to(xs) {
-      --album-cover-size: 140px;
+      --size: 140px;
     }
 
     @include respond-to(xl) {
-      --album-cover-size: 200px;
+      --size: 200px;
       margin-bottom: 8px;
       margin-right: 0;
     }
