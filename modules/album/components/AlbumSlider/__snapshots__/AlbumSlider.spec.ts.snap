@@ -1,0 +1,56 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AlbumSliderList > snapshot 1`] = `
+<div>
+  <div
+    class="album-slider"
+    data-v-2e84e58a=""
+  >
+    
+    <a
+      class="album-slider-card"
+      data-v-2e84e58a=""
+      data-v-9b61a050=""
+      href="[object Object]"
+    >
+      
+      <div
+        class="album-cover album-slider-card__cover"
+        data-v-2c4e3231=""
+        data-v-9b61a050=""
+      >
+        <img
+          alt="Album name"
+          data-v-2c4e3231=""
+          src="https://fake-url.com"
+        />
+      </div>
+      <div
+        class="album-slider-card__details"
+        data-v-9b61a050=""
+      >
+        <p
+          class="ui-text ui-text_appearance_primary ui-text_ellipsis ui-text_is-bold album-slider-card__name"
+          data-v-7381037b=""
+          data-v-9b61a050=""
+        >
+          
+          Album name
+          
+        </p>
+        <p
+          class="ui-text ui-text_appearance_secondary album-slider-card__year"
+          data-v-7381037b=""
+          data-v-9b61a050=""
+        >
+          
+          2000
+          
+        </p>
+      </div>
+      
+    </a>
+    
+  </div>
+</div>
+`;
