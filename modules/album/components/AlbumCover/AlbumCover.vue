@@ -14,9 +14,7 @@
 <script setup lang="ts">
 import type { AlbumCoverProps } from "~/modules/album/components/AlbumCover/types";
 
-const props = withDefaults(defineProps<AlbumCoverProps>(), {
-  size: '80px',
-});
+const props = defineProps<AlbumCoverProps>();
 
 const baseClass = 'album-cover';
 const rootCssClasses = computed<Record<string, boolean>>(() => ({
@@ -26,10 +24,8 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .album-cover {
-  --size: v-bind(props.size);
-
-  height: var(--size);
-  width: var(--size);
+  height: var(--size, 80px);
+  width: var(--size, 80px);
   overflow: hidden;
   border-radius: var(--border-rounded, 4px);
 
@@ -43,8 +39,8 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
   }
 
   &__icon {
-    height: calc(var(--size) / 4);
-    width: calc(var(--size) / 4);
+    height: calc(var(--size, 80px) / 4);
+    width: calc(var(--size, 80px) / 4);
     color: var(--main-text, white);
   }
 }
