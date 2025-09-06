@@ -9,7 +9,7 @@
         <UIIconButton
           appearance="secondary"
           icon="i-ph-dots-three-outline-fill"
-          icon-size="24"
+          icon-size="20"
           aria-label="Artist options"
           @click="onOptionsButtonClick"
         >
@@ -41,13 +41,13 @@ function onOptionsButtonClick() {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 100dvw;
+  width: 100vw;
   aspect-ratio: 1;
   background-image: v-bind(cssArtistAvatarURL);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: saturate(150%);
+  filter: saturate(200%);
   z-index: 10;
 
   &::before {
@@ -59,12 +59,9 @@ function onOptionsButtonClick() {
   }
 
   &__heading {
-    @include text-ellipsis(1);
-    font-size: 24px;
+    line-height: 1.2;
 
-    @include respond-to(xs) {
-      font-size: 40px;
-    }
+    @include text-ellipsis(2);
   }
 
   &__details {
