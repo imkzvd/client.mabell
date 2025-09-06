@@ -19,11 +19,11 @@ exports[`ArtistHeader > snapshot 1`] = `
           data-v-49a44d80=""
         >
           <div
-            class="artist-header__details-top-line"
+            class="artist-header__heading-container"
             data-v-49a44d80=""
           >
             <h1
-              class="ui-heading ui-heading_level_1 ui-heading_leading_none artist-header__heading"
+              class="ui-heading ui-heading_level_1 artist-header__heading"
               data-v-32430a7f=""
               data-v-49a44d80=""
             >
@@ -48,20 +48,15 @@ exports[`ArtistHeader > snapshot 1`] = `
               />
             </button>
           </div>
-          <div
-            class="artist-header__details-bottom-line"
+          <p
+            class="ui-text ui-text_appearance_secondary artist-header__biography"
             data-v-49a44d80=""
+            data-v-7381037b=""
           >
-            <p
-              class="ui-text ui-text_appearance_secondary artist-header__biography"
-              data-v-49a44d80=""
-              data-v-7381037b=""
-            >
-              
-              Artist biography
-              
-            </p>
-          </div>
+            
+            Artist biography
+            
+          </p>
         </div>
       </div>
     </div>
