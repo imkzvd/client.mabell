@@ -36,7 +36,7 @@ exports[`MobileArtistHeader > snapshot 1`] = `
             mode="svg"
             name="i-ph-dots-three-outline-fill"
             role="img"
-            size="24"
+            size="20"
           />
         </button>
       </div>
