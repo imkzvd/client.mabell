@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TrackCover > snapshot 1`] = `
+<div>
+  <div
+    class="track-cover track-cover_no-cover"
+    data-v-8d689621=""
+  >
+    <svg
+      aria-hidden="true"
+      class="track-cover__icon"
+      data-testid="icon"
+      data-v-8d689621=""
+      name="ph:music-note-fill"
+      role="presentation"
+    />
+  </div>
+</div>
+`;
