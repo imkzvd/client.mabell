@@ -1,0 +1,34 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ArtistNames > snapshot 1`] = `
+<div>
+  <span
+    class="artist-names"
+    data-v-94bfccea=""
+  >
+    
+    
+    <span
+      data-v-94bfccea=""
+    >
+      Simplified artist name
+    </span>
+    <span
+      class="artist-names__item"
+      data-v-94bfccea=""
+    >
+      ,
+    </span>
+    
+    
+    <span
+      data-v-94bfccea=""
+    >
+      Simplified artist name
+    </span>
+    <!--v-if-->
+    
+    
+  </span>
+</div>
+`;
