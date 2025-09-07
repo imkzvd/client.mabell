@@ -48,6 +48,7 @@ function onOptionsButtonClick() {
   background-position: center;
   background-repeat: no-repeat;
   filter: saturate(200%);
+  padding-bottom: 16px;
   z-index: 10;
 
   &::before {
