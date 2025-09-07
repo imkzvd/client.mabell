@@ -47,14 +47,13 @@ function onOptionsButtonClick() {
   height: 50vh;
   background-image: v-bind(ccsArtistCoverUrl);
   background-size: cover;
-  background-position: top center;
+  background-position: center;
   background-repeat: no-repeat;
   filter: saturate(150%);
   padding-bottom: 16px;
 
-  @include respond-to('2xl') {
-    height: 60vh;
-    min-height: 400px;
+  @include respond-to(lg) {
+    height: 70vh;
   }
 
   &::before {
