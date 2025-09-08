@@ -1,7 +1,7 @@
 import { userEvent } from "@testing-library/user-event";
 import { describe, expect, test } from "vitest";
 import { render } from "@testing-library/vue";
-import TEST_TOKENS from "~/__tests__/TEST_TOKENS";
+import { TEST_TOKENS } from "~/__tests__/TEST_TOKENS";
 import UIButton from "~/shared/components/UI/UIButton/UIButton.vue";
 import type { UIButtonProps } from "~/shared/components/UI/UIButton/types";
 
@@ -19,7 +19,7 @@ function renderComponent(props?: Partial<UIButtonProps>) {
 }
 
 describe("UIButton", () => {
-  describe("Default:", () => {
+  describe("Reactive:", () => {
     test("it will render the button with default slot value", () => {
       const { getByRole } = renderComponent();
 
@@ -39,9 +39,7 @@ describe("UIButton", () => {
 
       expect(buttonEl.disabled).toBeFalsy();
     });
-  })
 
-  describe("Reactive:", () => {
     test("it will render the button with submit type", async () => {
       const expectedType = 'submit';
       const { getByRole, rerender } = renderComponent({

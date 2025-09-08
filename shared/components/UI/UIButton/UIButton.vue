@@ -46,6 +46,12 @@ $base-class: ui-button;
   position: relative;
   border: none;
   border-radius: var(--ui-button-rounded, 4px);
+  cursor: pointer;
+  padding-block: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:deep(svg) {
     fill: currentColor;
@@ -113,6 +119,13 @@ $base-class: ui-button;
     cursor: not-allowed;
     background-color: var(--ui-button-disabled-bg-color, #c6c6c6);
     color: var(--ui-button-disabled-text-color, #222222);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
   }
 
   &__spinner-wrapper {
