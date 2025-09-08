@@ -21,19 +21,17 @@ const cssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .ui-heading {
-  font-family: var(--title-font, sans-serif);
+  color: var(--ui-heading-color, white);
 
   &_level {
     &_1 {
-      font-size: 32px;
+      font-size: var(--size, 32px);
+      font-family: var(--title-font, sans-serif);
     }
 
     &_2 {
-      font-size: 20px;
-    }
-
-    &_3 {
-      font-size: 16px;
+      font-size: var(--size, 20px);
+      font-family: var(--bold-font, sans-serif);
     }
   }
 
