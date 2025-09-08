@@ -3,7 +3,7 @@
 exports[`UILink > snapshot 1`] = `
 <div>
   <a
-    class="ui-link"
+    class="ui-link ui-link_hover-underline"
     data-v-edb7310d=""
     href="https://www.google.ru/"
     rel="noopener noreferrer"
