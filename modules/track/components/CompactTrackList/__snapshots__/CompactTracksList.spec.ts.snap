@@ -103,7 +103,7 @@ exports[`CompactTrackList > snapshot 1`] = `
             data-v-c0da33d3=""
           >
             <a
-              class="ui-link ui-link_appearance_primary ui-link_hover-underline compact-track-list-item__name"
+              class="ui-link ui-link_hover-underline compact-track-list-item__name"
               data-v-c0da33d3=""
               data-v-edb7310d=""
               href="[object Object]"
@@ -137,7 +137,8 @@ exports[`CompactTrackList > snapshot 1`] = `
                 data-v-fd41c0c1=""
               >
                 <a
-                  class="ui-link ui-link_appearance_secondary artist-links__link"
+                  appearance="secondary"
+                  class="ui-link artist-links__link"
                   data-v-edb7310d=""
                   data-v-fd41c0c1=""
                   href="[object Object]"
@@ -159,7 +160,8 @@ exports[`CompactTrackList > snapshot 1`] = `
                 data-v-fd41c0c1=""
               >
                 <a
-                  class="ui-link ui-link_appearance_secondary artist-links__link"
+                  appearance="secondary"
+                  class="ui-link artist-links__link"
                   data-v-edb7310d=""
                   data-v-fd41c0c1=""
                   href="[object Object]"

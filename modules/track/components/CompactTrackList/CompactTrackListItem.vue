@@ -170,6 +170,12 @@ onMounted(() => {
     align-items: center;
     gap: 4px;
     line-height: 1.2;
+    color: var(--main-text);
+  }
+
+  &__name {
+    --ui-link-color: var(--main-text);
+    --ui-link-hover-color: var(--main-text);
   }
 
   &__details-bottom-line {
