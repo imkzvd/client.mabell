@@ -5,25 +5,35 @@
 </template>
 
 <script setup lang="ts">
-import type { UILinkProps } from "~/shared/components/UI/UILink/types";
+import { type UILinkProps } from '~/shared/components/UI/UILink/types';
 
-const props = defineProps<UILinkProps>();
+const props = withDefaults(defineProps<UILinkProps>(), {
+  hoverUnderline: true,
+});
 
 const baseClass: string = "ui-link";
 const cssClasses = computed(() => ({
   [baseClass]: true,
   [`${baseClass}_underline`]: props.underline,
+  [`${baseClass}_hover-underline`]: props.hoverUnderline,
 }));
 </script>
 
 <style scoped lang="scss">
 .ui-link {
-  color: var(--ui-link-color, white);
-  font-size: var(--ui-link-font-size, 16px);
+  color: var(--ui-link-color, gray);
 
   @include respond-to(xl) {
+    transition: color 0.25s;
+
     &:hover {
-      text-decoration: underline;
+      color: var(--ui-link-hover-color, white);
+    }
+
+    &_hover-underline {
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 
