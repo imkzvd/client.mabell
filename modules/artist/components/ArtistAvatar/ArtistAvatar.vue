@@ -14,9 +14,7 @@
 <script setup lang="ts">
 import type { ArtistAvatarProps } from "~/modules/artist/components/ArtistAvatar/types";
 
-const props = withDefaults(defineProps<ArtistAvatarProps>(), {
-  size: '140px',
-});
+const props = defineProps<ArtistAvatarProps>();
 
 const baseClass = 'artist-avatar';
 const rootCssClasses = computed<Record<string, boolean>>(() => ({
@@ -26,10 +24,8 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .artist-avatar {
-  --size: v-bind(props.size);
-
-  height: var(--size);
-  width: var(--size);
+  height: var(--size, 80px);
+  width: var(--size, 80px);
   overflow: hidden;
   border-radius: 100%;
 
@@ -37,14 +33,14 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
     display: flex;
     align-items: center;
     justify-content: center;
-    border-width: 0.5px;
+    border-width: 2px;
     border-style: solid;
     border-color: var(--border-color, gray);
   }
 
   &__icon {
-    height: calc(var(--size) / 4);
-    width: calc(var(--size) / 4);
+    height: calc(var(--size, 80px) / 4);
+    width: calc(var(--size, 80px) / 4);
     color: var(--main-text, white);
   }
 }
