@@ -1,11 +1,10 @@
 <template>
-  <button type="button" :aria-label="ariaLabel" :disabled="isDisabled" :class="cssClasses">
+  <button type="button" :aria-label="ariaLabel" :disabled="isDisabled" :class="rootCssClasses">
     <NuxtIcon
       mode="svg"
       role="img"
       :name="icon"
       :size="iconSize"
-      :data-testid="icon"
     />
   </button>
 </template>
@@ -20,7 +19,7 @@ const props = withDefaults(defineProps<UIIconButtonProps>(), {
 });
 
 const baseClass = "ui-icon-button"
-const cssClasses = computed(() => ({
+const rootCssClasses = computed(() => ({
   [baseClass]: true,
   [`${baseClass}_appearance_${props.appearance}`]: props.appearance,
   [`${baseClass}_is-disabled`]: props.isDisabled,
@@ -31,13 +30,14 @@ const cssClasses = computed(() => ({
 .ui-icon-button {
   display: inline-flex;
   padding: 4px;
+  transition: color 0.25s;
+  cursor: pointer;
+
+  @include respond-to(xl) {
+    cursor: pointer;
+  }
 
   &_appearance {
-    @include respond-to(xl) {
-      transition: color 0.25s;
-      cursor: pointer;
-    }
-
     &_primary {
       color: var(--ui-icon-button-color, #ffffff);
 
