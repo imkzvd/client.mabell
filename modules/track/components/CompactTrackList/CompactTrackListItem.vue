@@ -3,7 +3,6 @@
     ref="item"
     :aria-label="item.name"
     class="compact-track-list-item"
-    tabindex="0"
     @mouseenter="toggleHoveredItem()"
     @mouseleave="toggleHoveredItem()"
   >
@@ -26,6 +25,7 @@
           v-show="isHoveredItem || isSelectedItem"
           :aria-label="isPlayingItem ? 'Pause track' : 'Play track'"
           :icon="isPlayingItem ? 'ph:pause-fill' : 'ph:play-fill'"
+          :is-disabled="!item.isActive"
           icon-size="20"
           class="compact-track-list-item__action-button"
           @click.stop="isPlayingItem ? emit('pause-item') : emit('play-item')"
@@ -71,7 +71,7 @@
     </div>
 
     <div class="compact-track-list-item__column">
-      <UIText appearance="secondary" size="14px">
+      <UIText appearance="secondary" class="compact-track-list-item__duration">
         {{ convertedDuration }}
       </UIText>
     </div>
@@ -128,9 +128,9 @@ onMounted(() => {
 .compact-track-list-item {
   display: grid;
   cursor: pointer;
-  grid-template-columns: auto 1fr auto 50px auto;
+  grid-template-columns: auto 1fr auto auto auto;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   border-radius: var(--border-rounded, 6px);
   color: var(--main-text, white);
   margin-inline: -16px;
@@ -163,6 +163,7 @@ onMounted(() => {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10;
   }
 
   &__details-top-line {
@@ -170,7 +171,6 @@ onMounted(() => {
     align-items: center;
     gap: 4px;
     line-height: 1.2;
-    color: var(--main-text);
   }
 
   &__name {
@@ -179,7 +179,7 @@ onMounted(() => {
   }
 
   &__details-bottom-line {
-    font-size: 14px;
+    color: var(--secondary-text, gray);
   }
 
   &__equalizer-icon {
@@ -188,6 +188,10 @@ onMounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     fill: var(--main-text);
+  }
+
+  &__duration {
+    font-size: 14px;
   }
 }
 </style>
