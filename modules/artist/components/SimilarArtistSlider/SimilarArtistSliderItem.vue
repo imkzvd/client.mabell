@@ -32,8 +32,12 @@ defineProps<ArtistSliderCardProps>();
   }
 
   &__avatar {
-    --size: 120px;
     margin-bottom: 8px;
+
+    @include respond-to(md) {
+      --size: 100px;
+      margin-bottom: 12px;
+    }
 
     @include respond-to(xl) {
       --size: 160px;
@@ -44,7 +48,7 @@ defineProps<ArtistSliderCardProps>();
   &__name {
     text-align: center;
     color: var(--main-text, white);
-    --size: 14px;
+    --size: 12px;
 
     @include respond-to(xl) {
       --size: 16px;
