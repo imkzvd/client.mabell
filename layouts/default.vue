@@ -56,6 +56,8 @@
   }
 
   &__main {
+    overflow-x: hidden;
+
     @include respond-to(xl) {
       grid-area: main;
     }
