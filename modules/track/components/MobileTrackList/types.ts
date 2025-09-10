@@ -4,6 +4,7 @@ export type MobileTrackListProps = {
   items: TrackRO[];
   currentItemId?: string;
   isPlaying?: boolean;
+  ariaLabel?: string;
 };
 
 export type MobileTrackListEmits = {

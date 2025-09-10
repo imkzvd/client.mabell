@@ -38,7 +38,7 @@
     <div class="mobile-track-list-item__column">
       <UIIconButton
         icon="i-ph-dots-three-outline-fill"
-        icon-size="24"
+        icon-size="20"
         appearance="secondary"
         aria-label="Open track menu"
         @click.stop="emit('open-item-menu', $event)"
@@ -74,13 +74,12 @@ const isPlayingItem = computed<boolean>(
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  line-height: 1;
+  line-height: 1.2;
   color: var(--main-text, white);
-  padding-block: 4px;
+  padding-block: 2px;
 
   @include respond-to(xs) {
-    font-size: 16px;
+    padding-block: 4px;
   }
 
   &__cover-container {
@@ -88,7 +87,7 @@ const isPlayingItem = computed<boolean>(
   }
 
   &__cover {
-    --size: 32px;
+    --size: 40px;
 
     @include respond-to(xs) {
       --size: 48px;
@@ -104,12 +103,8 @@ const isPlayingItem = computed<boolean>(
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 50;
+    z-index: 10;
     fill: var(--main-text, white);
-  }
-
-  &__name {
-    margin-bottom: 2px;
   }
 
   &__artist-names {

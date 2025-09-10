@@ -1,5 +1,5 @@
 <template>
-  <ul aria-label="Top tracks" class="mobile-track-list">
+  <ul :aria-label="ariaLabel" class="mobile-track-list">
     <MobileTrackListItem
       v-for="(item, index) of items"
       :key="item.id"
