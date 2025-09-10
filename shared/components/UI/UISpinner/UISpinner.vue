@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { defaultSizeProp, defaultWidthProp } from "~/shared/components/UI/UISpinner/constants";
-import TEST_TOKENS from "~/__tests__/TEST_TOKENS";
+import { TEST_TOKENS } from "~/__tests__/TEST_TOKENS";
 import type { UISpinnerProps } from "~/shared/components/UI/UISpinner/types";
 
 const props = withDefaults(defineProps<UISpinnerProps>(), {
