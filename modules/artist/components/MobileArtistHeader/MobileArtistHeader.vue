@@ -10,7 +10,7 @@
           appearance="secondary"
           icon="i-ph-dots-three-outline-fill"
           icon-size="20"
-          aria-label="Artist options"
+          aria-label="Artist menu"
           @click="onOptionsButtonClick"
         >
         </UIIconButton>
@@ -26,7 +26,7 @@ import type {
 
 const props = defineProps<MobileArtistHeaderProps>();
 
-const cssArtistAvatarURL = computed<string | null>(() => {
+const artistAvatarURL = computed<string | null>(() => {
   return props.artist.avatar ? `url(${props.artist.avatar})` : null;
 })
 
@@ -43,32 +43,32 @@ function onOptionsButtonClick() {
   justify-content: flex-end;
   width: 100vw;
   aspect-ratio: 1;
-  background-image: v-bind(cssArtistAvatarURL);
+  background-image: v-bind(artistAvatarURL);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: saturate(200%);
+  filter: saturate(var(--img-saturate));
   padding-bottom: 16px;
-  z-index: 10;
 
   &::before {
     position: absolute;
     inset: 0;
-    z-index: -10;
-    background: linear-gradient(0deg, var(--base-bg) 0%, transparent 100%);
+    background: linear-gradient(0deg, var(--base-bg) 0%, transparent 80%);
     content: "";
-  }
-
-  &__heading {
-    line-height: 1.2;
-
-    @include text-ellipsis(2);
   }
 
   &__details {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__heading {
+    line-height: 1.2;
+
+    @include text-ellipsis(2);
   }
 }
 </style>
