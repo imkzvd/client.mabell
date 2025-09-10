@@ -25,13 +25,45 @@ const cssClasses = computed<Record<string, boolean>>(() => ({
 
   &_level {
     &_1 {
-      font-size: var(--size, 32px);
+      font-size: 28px;
       font-family: var(--title-font, sans-serif);
+
+      @include respond-to(xs) {
+        font-size: 32px;
+      }
+
+      @include respond-to(md) {
+        font-size: 48px;
+      }
+
+      @include respond-to(xl) {
+        font-size: 52px;
+      }
+
+      @include respond-to('2xl') {
+        font-size: 64px;
+      }
     }
 
     &_2 {
-      font-size: var(--size, 20px);
+      font-size: 16px;
       font-family: var(--bold-font, sans-serif);
+
+      @include respond-to(xs) {
+        font-size: 18px;
+      }
+
+      @include respond-to(md) {
+        font-size: 20px;
+      }
+
+      @include respond-to(xl) {
+        font-size: 22px;
+      }
+
+      @include respond-to('2xl') {
+        font-size: 24px;
+      }
     }
   }
 
