@@ -16,7 +16,7 @@ defineProps<SimilarArtistSliderProps>();
   gap: 8px;
   overflow-x: auto;
 
-  @include respond-to(xl) {
+  @include respond-to(md) {
     gap: 12px;
   }
 
