@@ -57,12 +57,12 @@
       <AlbumSlider :items="fetchedData?.albums.items" class="artist-page__album-slider" />
     </section>
 
-    <section v-if="fetchedData.similarArtists.length" class="section">
+    <section v-if="fetchedData?.similarArtists.length" class="section">
       <div class="container">
         <UIHeading level="2" class="section__heading">Similar Artists</UIHeading>
       </div>
 
-      <SimilarArtistSlider :items="fetchedData.similarArtists" class="artist-page__similar-artists" />
+      <SimilarArtistSlider :items="fetchedData?.similarArtists" class="artist-page__similar-artists" />
     </section>
   </div>
 </template>
