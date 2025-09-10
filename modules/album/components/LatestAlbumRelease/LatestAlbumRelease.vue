@@ -48,6 +48,7 @@ const releaseDate = computed<string | null>(() => {
   &__link-container {
     display: flex;
     align-items: center;
+    gap: 12px;
 
     @include respond-to(xl) {
       flex-direction: column;
@@ -56,21 +57,13 @@ const releaseDate = computed<string | null>(() => {
   }
 
   &__album-cover {
-    margin-right: 12px;
-
     @include respond-to(xs) {
       --size: 140px;
     }
 
     @include respond-to(xl) {
       --size: 200px;
-      margin-bottom: 8px;
-      margin-right: 0;
     }
-  }
-
-  &__meta {
-    --size: 14px;
   }
 }
 </style>
