@@ -1,25 +1,24 @@
 <template>
   <header class="artist-header">
-    <div class="artist-header__line">
-      <div class="container">
-        <div class="artist-header__details">
-          <div class="artist-header__heading-container">
-            <UIHeading class="artist-header__heading">
-              {{ artist.name }}
-            </UIHeading>
+    <div class="container">
+      <div class="artist-header__details">
+        <div class="artist-header__heading-container">
+          <UIHeading class="artist-header__heading">
+            {{ artist.name }}
+          </UIHeading>
 
-            <UIIconButton
-              appearance="secondary"
-              icon="i-ph-dots-three-outline-fill"
-              aria-label="Artist options"
-              @click="onOptionsButtonClick"
-            />
-          </div>
-
-          <UIText appearance="secondary" class="artist-header__biography">
-            {{ artist.biography }}
-          </UIText>
+          <UIIconButton
+            appearance="secondary"
+            icon="i-ph-dots-three-outline-fill"
+            aria-label="Artist options"
+            class="artist-header__artist-menu-button"
+            @click="onOptionsButtonClick"
+          />
         </div>
+
+        <UIText appearance="secondary" class="artist-header__biography">
+          {{ artist.biography }}
+        </UIText>
       </div>
     </div>
   </header>
@@ -49,7 +48,7 @@ function onOptionsButtonClick() {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: saturate(150%);
+  filter: saturate(var(--img-saturate));
   padding-bottom: 16px;
 
   @include respond-to(lg) {
@@ -72,20 +71,21 @@ function onOptionsButtonClick() {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    column-gap: 32px;
+    column-gap: 16px;
   }
 
   &__heading {
-    --size: 48px;
+    line-height: 1.2;
+  }
 
-    @include respond-to('2xl') {
-      --size: 64px;
-      line-height: 1.2;
+  &__artist-menu-button {
+    @include respond-to(xl) {
+      display: none;
     }
   }
 
   &__biography {
-    @include respond-to('2xl') {
+    @include respond-to(xl) {
       max-width: 800px;
     }
   }
