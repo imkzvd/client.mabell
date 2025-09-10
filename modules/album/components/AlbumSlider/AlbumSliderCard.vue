@@ -41,7 +41,10 @@ const releaseYear = computed<number | null>(() => {
 
   &__cover {
     margin-bottom: 4px;
-    --size: 140px;
+
+    @include respond-to(xs) {
+      --size: 140px;
+    }
 
     @include respond-to(xl) {
       --size: 200px;
@@ -49,7 +52,7 @@ const releaseYear = computed<number | null>(() => {
   }
 
   &__name {
-    --size: 14px;
+    --size: 12px;
 
     @include respond-to(xl) {
       --size: 16px;
