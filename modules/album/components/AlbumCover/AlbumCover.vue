@@ -3,6 +3,7 @@
     <img v-if="url" :src="url" :alt="alt" />
     <NuxtIcon
       v-else
+      mode="svg"
       role="presentation"
       aria-hidden="true"
       name="i-ph-music-note-fill"
@@ -28,6 +29,8 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
   width: var(--size, 100px);
   overflow: hidden;
   border-radius: var(--border-rounded, 4px);
+  position: relative; // TODO: fix safari error: iphone se
+  z-index: 100; //
 
   &_no-cover {
     display: flex;
