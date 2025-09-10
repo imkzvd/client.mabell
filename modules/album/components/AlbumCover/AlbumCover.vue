@@ -24,8 +24,8 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .album-cover {
-  height: var(--size, 80px);
-  width: var(--size, 80px);
+  height: var(--size, 100px);
+  width: var(--size, 100px);
   overflow: hidden;
   border-radius: var(--border-rounded, 4px);
 
