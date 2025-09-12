@@ -22,8 +22,11 @@
 <script setup lang="ts">
 import type { TrackCoverProps } from '~/modules/track/components/TrackCover/types';
 
-const props = defineProps<TrackCoverProps>();
+const props = withDefaults(defineProps<TrackCoverProps>(), {
+  size: '40px',
+});
 
+const test = computed(() => props.size);
 const baseCssClass = 'track-cover';
 const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
   [baseCssClass]: true,
@@ -33,13 +36,12 @@ const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .track-cover {
-  --size: 40px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--size, 40px);
-  width: var(--size, 40px);
+  height: var(--size, v-bind('props.size'));
+  width: var(--size, v-bind('props.size'));
   flex-shrink: 0;
   overflow: hidden;
   border-radius: var(--border-rounded);
@@ -50,8 +52,8 @@ const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
   }
 
   &__icon {
-    height: calc(var(--size, 40px) / 3);
-    width: calc(var(--size, 40px) / 3);
+    height: calc(var(--size, v-bind('props.size')) / 3);
+    width: calc(var(--size, v-bind('props.size')) / 3);
     color: var(--main-text, #ffffff);
   }
 }
