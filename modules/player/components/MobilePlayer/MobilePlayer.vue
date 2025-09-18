@@ -20,10 +20,6 @@
 <script lang="ts" setup>
 import { useAudio } from '~/modules/player/composables/useAudio';
 import type { PlayerAPI } from '~/modules/player/types';
-import type { DesktopPlayerEmits, DesktopPlayerProps } from '~/modules/player/components/DesktopPlayer/types';
-
-defineProps<DesktopPlayerProps>();
-defineEmits<DesktopPlayerEmits>();
 
 const {
   items,
@@ -69,7 +65,7 @@ defineExpose<PlayerAPI>({
     inset: 0;
     content: "";
     background-color: var(--black, #000000);
-    opacity: 0.4;
+    opacity: 0.5;
   }
 
   &__track-details {
