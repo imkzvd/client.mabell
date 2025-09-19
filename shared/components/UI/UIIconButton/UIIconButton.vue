@@ -5,6 +5,7 @@
       role="img"
       :name="icon"
       :size="iconSize"
+      class="ui-icon-button__icon"
     />
   </button>
 </template>
@@ -28,7 +29,9 @@ const rootCssClasses = computed(() => ({
 
 <style lang="scss" scoped>
 .ui-icon-button {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 4px;
   transition: color 0.25s;
   cursor: pointer;
@@ -62,6 +65,11 @@ const rootCssClasses = computed(() => ({
   &_is-disabled {
     color: var(--ui-icon-button-disabled-color, #cccccc);
     pointer-events: none;
+  }
+
+  &__icon {
+    width: var(--size, v-bind(iconSize));
+    height: var(--size, v-bind(iconSize));
   }
 }
 </style>
