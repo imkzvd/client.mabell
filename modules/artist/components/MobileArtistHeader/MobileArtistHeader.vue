@@ -50,10 +50,10 @@ function onOptionsButtonClick() {
   filter: saturate(var(--img-saturate));
   padding-bottom: 16px;
 
-  &::before {
+  &::after {
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, var(--base-bg) 0%, transparent 80%);
+    box-shadow: inset 0px -90px 60px -10px var(--base-bg);
     content: "";
   }
 
