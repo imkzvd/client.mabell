@@ -68,10 +68,11 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '~/shared/stores/app.store';
 import { artistApiService } from '~/modules/artist/services/artist.api.service';
+import { PlayerInjectKey } from '~/modules/player/constants';
 import type { TrackRO } from '~/api/api.module';
 
+const player = inject(PlayerInjectKey);
 
 const route = useRoute();
 const { isMobile, isMobileOrTablet } = useDevice();
@@ -116,7 +117,8 @@ useHead({
 });
 
 function onItemPlay(item: TrackRO, index: number) {
-  alert(`Track ${item.name} - playing!`);
+  player.value?.addTracks(fetchedData.value?.tracks.items || [], index);
+  player.value?.play();
 }
 
 function onItemPause(item: TrackRO, index: number) {
