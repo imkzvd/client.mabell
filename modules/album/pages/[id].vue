@@ -39,7 +39,10 @@
 <script setup lang="ts">
 import AlbumTrackList from '~/modules/track/components/AlbumTrackList/AlbumTrackList.vue';
 import { albumApiService } from '~/modules/album/services/album.api.service';
+import { PlayerInjectKey } from '~/modules/player/constants';
 import type { TrackRO } from '~/api/api.module';
+
+const player = inject(PlayerInjectKey);
 
 const route = useRoute();
 const { isMobile } = useDevice();
@@ -75,7 +78,8 @@ useHead({
 });
 
 function onItemPlay(item: TrackRO, index: number) {
-  alert(`Track ${item.name} - playing!`);
+  player.value?.addTracks(fetchedData.value?.tracks.items || [], index);
+  player.value?.play();
 }
 
 function onItemPause(item: TrackRO, index: number) {
