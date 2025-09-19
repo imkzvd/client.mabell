@@ -44,7 +44,7 @@ const separatorCssClass = computed(() => ({
   }
 
   &__separator {
-    color: var(--ui-link-color);
+    color: var(--color, var(--ui-link-color));
 
     &_dot {
       display: inline-flex;
