@@ -22,15 +22,15 @@ const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .ui-text {
-  font-size: var(--size, 16px);
+  font-size: var(--font-size, 14px);
 
   &_appearance {
     &_default {
-      color: var(--ui-text-default-text, #ffffff);
+      color: var(--color, var(--ui-text-default-text));
     }
 
     &_secondary {
-      color: var(--ui-text-secondary-text, #cccccc);
+      color: var(--color, var(--ui-text-secondary-text));
     }
   }
 

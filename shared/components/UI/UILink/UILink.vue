@@ -21,13 +21,13 @@ const cssClasses = computed(() => ({
 
 <style scoped lang="scss">
 .ui-link {
-  color: var(--ui-link-color, gray);
+  color: var(--color, var(--ui-link-color));
 
   @include respond-to(xl) {
     transition: color 0.25s;
 
     &:hover {
-      color: var(--ui-link-hover-color, white);
+      color: var(--hover-color, var(--ui-link-hover-color));
     }
 
     &_hover-underline {
