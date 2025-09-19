@@ -47,7 +47,7 @@ const releaseAlbumYear = computed<number | null>(() => {
   background: linear-gradient(
       0deg,
       var(--base-bg) 0%,
-      var(--album-color, #121212) 80%
+      var(--album-color, var(--base-bg)) 80%
   );
 
   &__columns {
@@ -65,7 +65,7 @@ const releaseAlbumYear = computed<number | null>(() => {
     flex-shrink: 0;
 
     @include respond-to(xl) {
-      --size: 300px;
+      --size: 240px;
     }
   }
 
