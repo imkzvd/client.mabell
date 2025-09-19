@@ -1,0 +1,5 @@
+@use 'mixins' as *;
+
+@include font('Mabell', normal, 400, '@/assets/fonts/Mabell/Mabell.woff2');
+@include font('MabellBold', normal, 700, '@/assets/fonts/Mabell/MabellBold.woff2');
+@include font('MabellTitle', normal, 800, '@/assets/fonts/Mabell/MabellTitle.woff2');
