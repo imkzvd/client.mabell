@@ -1,0 +1,16 @@
+@use 'mixins' as *;
+
+.section {
+  margin-bottom: 24px;
+
+  @include respond-to(xl) {
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__heading {
+    margin-bottom: 8px;
+  }
+}

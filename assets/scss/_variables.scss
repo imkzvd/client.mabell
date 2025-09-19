@@ -1,0 +1,152 @@
+:root {
+  /* Основные */
+  --black: #000000;
+  --white: #ffffff;
+
+  /* Серые оттенки */
+  --gray-lightest: #f5f5f5; /* Очень светлый серый */
+  --gray-lighter: #e0e0e0;  /* Светлый серый */
+  --gray-light: #b0b0b0;    /* Легкий серый */
+  --gray: #808080;          /* Стандартный серый */
+  --gray-dark: #404040;     /* Темный серый */
+  --gray-darker: #2c2c2c;   /* Очень темный серый */
+  --gray-darkest: #1a1a1a;  /* Почти черный */
+
+  /* Дополнительные оттенки */
+  --silver: #c0c0c0;        /* Серебристый */
+  --charcoal: #333333;      /* Угольный серый */
+  --stone: #6c6c6c;         /* Каменный серый */
+  --ash: #d8d8d8;           /* Пепельный серый */
+  --pearl: #f0f0f0;         /* Перловый */
+
+  /* Белые оттенки */
+  --off-white: #f8f8f8;     /* Молочно-белый */
+  --cream: #fafafa;         /* Кремовый */
+  --ivory: #fffff0;         /* Айвори (слоновая кость) */
+  --snow: #fffafa;          /* Снежный белый */
+  --linen: #faf0e6;         /* Льняной белый */
+
+  // Common:
+  --body-bg: #000000;
+  --overlay-bg: #121212;
+  --base-bg: #080808;
+  --nav-bg: var(--gray-darkest);
+  --nav-devider-color: hsl(0deg 0% 100% / 5%);
+  --main-content-bg: #000;
+  --main-text: var(--white);
+  --secondary-text: var(--gray-light);
+  --success-color: rgb(13 208 42 / 80%);
+  --error-color: rgb(255 0 0 / 80%);
+  --overlay-color: rgb(0 0 0 / 85%);
+  --border-color: .0625rem solid hsla(0, 0%, 100%, .04);
+  --main-sidebar: 320px;
+  --img-saturate: 150%;
+  --border-rounded: 4px;
+  --cover-rounded: 8px;
+
+  // Nav bar
+  --mobile-nav-bar: 64px;
+
+  // Typography
+  --regular-font: Mabell, sans-serif;
+  --bold-font: MabellBold, sans-serif;
+  --title-font: MabellTitle, sans-serif;
+
+  // Player
+  --player-height: 64px;
+  --player-bg: rgb(255 255 255 / 10%);
+  //--player-progress-bar-color: rgb(255 255 255 / 10%);
+
+  // Track list
+  --track-list-item-hover: rgba(255,255,255, 0.1);
+  --track-list-item-focus: rgba(255,255,255, 0.15);
+
+  // UIHeading
+  --ui-heading-color: var(--off-white);
+
+  // UISpinner
+  --ui-spinner-color: #000;
+  --ui-spinner-contrast-color: #fff;
+
+  // UIButton
+  --ui-button-bg-color: #fff;
+  --ui-button-hover-bg-color: #cccccc;
+  --ui-button-text-color: #000;
+  --ui-button-rounded: 4px;
+  --ui-button-secondary-bg-color: rgb(47 24 251 / 100%);
+  --ui-button-secondary-hover-bg-color: rgb(47 24 251 / 90%);
+  --ui-button-secondary-text-color: #fff;
+  --ui-button-disabled-bg-color: #eeeded;
+  --ui-button-disabled-text-color: #8c8c8c;
+
+  // UIText
+  --ui-text-default-text: var(--main-text);
+  --ui-text-secondary-text: var(--secondary-text);
+
+  // UIInput
+  //--ui-input-bg: #fff;
+  //--ui-input-text: #000;
+  //--ui-input-disabled-bg: #fafafa;
+  //--ui-input-disabled-text: #bbb;
+  //--ui-input-rounded: 4px;
+  //--ui-input-label-color: #fff;
+  //--ui-input-placeholder-color: rgba(0, 0, 0, 0.5);
+  //--ui-input-icon-color: rgba(0, 0, 0, 0.5);
+  //--ui-input-icon-hover-color: rgba(0, 0, 0, 0.5);
+  --ui-input-ff: 'PT Sans';
+
+  // UISlider
+  --ui-slider-runway-bg: #5e5e5e;
+  --ui-slider-bar-bg: #eeeded;
+  --ui-slider-thumb-color: #fff;
+  --ui-slider-thumb-border-color: #bbb;
+
+  // UIIconButton
+  --ui-icon-button-color: var(--gray-lightest);
+  --ui-icon-button-hover-color: var(--gray-lighter);
+  --ui-icon-button-secondary-color: var(--gray);
+  --ui-icon-button-secondary-hover-color: var(--white);
+  --ui-icon-button-disabled-color: #5e5e5e;
+
+  // UICheckbox
+  --ui-checkbox-height: 16px;
+  --ui-checkbox-width: 16px;
+  --ui-checkbox-bg: #fff;
+  --ui-checkbox-border-color: #fff;
+  --ui-checkbox-border-hover-color: #dfdfdf;
+  --ui-checkbox-border-width: 2px;
+  --ui-checkbox-border-radius: 4px;
+  --ui-checkbox-checked-bg: #fff;
+  --ui-checkbox-checked-hover-bg: #dfdfdf;
+  --ui-checkbox-checked-border-color: #fff;
+  --ui-checkbox-checked-icon-color: #000;
+  --ui-checkbox-label-color: #fff;
+  --ui-checkbox-sublabel-color: #ccc;
+  --ui-checkbox-label-font-weight: 400;
+  --ui-checkbox-disabled-bg: #b5b5b5;
+  --ui-checkbox-disabled-border-color: #b5b5b5;
+  --ui-checkbox-disabled-checked-icon-color: #e4e4e4;
+  --ui-checkbox-label-font-size: 14px;
+  --ui-checkbox-label-line-height: 20px;
+  --ui-checkbox-sublabel-font-size: 12px;
+  --ui-checkbox-sublabel-line-height: 16px;
+
+  @media (width >= 768px) {
+    --ui-checkbox-label-font-size: 16px;
+    --ui-checkbox-label-line-height: 24px;
+    --ui-checkbox-sublabel-font-size: 12px;
+    --ui-checkbox-sublabel-line-height: 16px;
+  }
+
+  @media (width >= 1280px) {
+    --ui-checkbox-label-font-size: 18px;
+    --ui-checkbox-label-line-height: 24px;
+    --ui-checkbox-sublabel-font-size: 14px;
+    --ui-checkbox-sublabel-line-height: 16px;
+  }
+
+  // UILink
+  --ui-link-font-size: 16px;
+  --ui-link-color: var(--gray-light);
+  --ui-link-hover-color: var(--gray-lighter);
+}
