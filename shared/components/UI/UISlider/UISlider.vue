@@ -95,6 +95,7 @@ function onMouseMove(e: MouseEvent) {
     width: 100%;
     height: var(--ui-slider-runway-height, 4px);
     background-color: var(--ui-slider-runway-bg, gray);
+    border-radius: 8px;
   }
 
   &__bar {

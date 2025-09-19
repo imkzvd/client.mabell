@@ -5,4 +5,5 @@ export type UITextProps = {
   tag?: string;
   appearance?: UIAppearance;
   isBold?: boolean;
+  size?: string;
 };
