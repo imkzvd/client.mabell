@@ -52,7 +52,7 @@ function onOptionsButtonClick() {
   padding-bottom: 16px;
 
   @include respond-to(lg) {
-    height: 70vh;
+    height: 60vh;
   }
 
   &::before {
