@@ -1,6 +1,13 @@
 <template>
-  <div>
+  <NuxtLayout @contextmenu.prevent>
+    <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+</script>
+
+<style scoped lang="scss">
+</style>
