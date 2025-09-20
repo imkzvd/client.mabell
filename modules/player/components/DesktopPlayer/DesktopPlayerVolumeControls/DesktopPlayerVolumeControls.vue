@@ -19,7 +19,6 @@
 import type {
   DesktopPlayerVolumeControlsEmits,
 } from '~/modules/player/components/DesktopPlayer/DesktopPlayerVolumeControls/types';
-import UISlider from '#shared/components/UI/UISlider/UISlider.vue';
 
 const emit = defineEmits<DesktopPlayerVolumeControlsEmits>();
 const model = defineModel<number>({ default: 100 });

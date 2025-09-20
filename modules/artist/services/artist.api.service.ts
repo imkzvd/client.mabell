@@ -1,6 +1,6 @@
-import { apiService } from '~/shared/services/api.service';
-import type { AlbumRO, ArtistRO, SimplifiedAlbumRO, SimplifiedAlbumsRO, TracksRO } from '~/api/api.module';
-import { ApiError } from '#shared/errors/api-error';
+import { apiService } from '~/modules/shared/services/api.service';
+import { ApiError } from '~/modules/shared/errors/api-error';
+import type { AlbumRO, ArtistRO, SimplifiedAlbumsRO, TracksRO } from '~/api/api.module';
 
 export class ArtistApiService {
   async getArtistById(artistId: string): Promise<ArtistRO> {
