@@ -1,5 +1,5 @@
 import type { ArtistRO, SimplifiedArtistRO } from "~/api/api.module";
-import type { UITextProps } from '#shared/components/UI/UIText/types';
+import type { UITextProps } from '~/modules/shared/components/UI/UIText/types';
 
 export enum ArtistNamesSeparators {
   comma = 'comma',

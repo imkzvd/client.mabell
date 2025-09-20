@@ -38,7 +38,6 @@
 
 <script setup lang="ts">
 import { PlayerInjectKey } from '~/modules/player/constants';
-import MobileBottomBar from '#shared/components/MobileBottomBar/MobileBottomBar.vue';
 import type { DesktopPlayerInstance } from '~/modules/player/components/DesktopPlayer/types';
 
 const playerInstance = useTemplateRef<DesktopPlayerInstance>('player');

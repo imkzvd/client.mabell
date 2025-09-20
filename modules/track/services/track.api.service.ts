@@ -1,4 +1,4 @@
-import { apiService } from '~/shared/services/api.service';
+import { apiService } from '~/modules/shared/services/api.service';
 import type { TracksRO } from '~/api/api.module';
 
 export class TrackApiService {
