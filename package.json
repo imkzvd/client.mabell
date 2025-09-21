@@ -8,12 +8,13 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "build:api": "npx swagger-typescript-api@13.0.23 -p http://localhost:3000/swagger-json -o ./api -n api.module.ts --api-class-name ApiModule --module-name-first-tag --disable-throw-on-error",
+    "build:api": "npx swagger-typescript-api@13.0.23 -p https://api.mabell.fun/swagger-json -o ./api -n api.module.ts --api-class-name ApiModule --module-name-first-tag --disable-throw-on-error",
     "test": "vitest --watch --coverage"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^1.15.0",
+    "@nuxt/image": "^1.11.0",
     "@nuxtjs/device": "^3.2.4",
     "@pinia/nuxt": "^0.11.2",
     "@vueuse/nuxt": "^13.8.0",
