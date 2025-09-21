@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
 
 export default defineNuxtConfig({
   ssr: true,
@@ -11,13 +11,9 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      viewport: "width=device-width, height=device-height, initial-scale=1, maximum-scale=1",
+      viewport: 'width=device-width, height=device-height, initial-scale=1, maximum-scale=1',
     },
   },
-
-  components: [
-    { path: "~/shared/components", pathPrefix: false }
-  ],
 
   imports: {
     autoImport: true,
@@ -29,7 +25,7 @@ export default defineNuxtConfig({
 
   devServer: {
     port: import.meta.env.VITE_SERVER_PORT,
-    host: "0.0.0.0",
+    host: '0.0.0.0',
   },
 
   css: ['~/assets/scss/main.scss'],
@@ -38,14 +34,14 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '@use "~/assets/scss/_mixins.scss" as *;'
-        }
-      }
-    }
+          additionalData: '@use "~/assets/scss/_mixins.scss" as *;',
+        },
+      },
+    },
   },
 
   fonts: {
-    provider: "google",
+    provider: 'google',
     families: [
       {
         name: 'Fjalla One',
@@ -65,14 +61,15 @@ export default defineNuxtConfig({
         styles: ['normal'],
         display: 'swap',
       },
-    ]
+    ],
   },
 
   modules: [
-    "@nuxt/icon",
-    "@vueuse/nuxt",
-    "@nuxt/fonts",
+    '@nuxt/icon',
+    '@vueuse/nuxt',
+    '@nuxt/fonts',
     'nuxt-viewport',
+    '~/modules/shared',
     '~/modules/artist',
     '~/modules/album',
     '~/modules/track',
@@ -80,11 +77,11 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/device',
     'dayjs-nuxt',
-    '@nuxt/image'
+    '@nuxt/image',
   ],
 
   icon: {
-    componentName: 'NuxtIcon'
+    componentName: 'NuxtIcon',
   },
 
   viewport: {
@@ -103,10 +100,10 @@ export default defineNuxtConfig({
       tablet: 'md',
     },
 
-    fallbackBreakpoint: 'lg'
+    fallbackBreakpoint: 'lg',
   },
 
   image: {
-    domains: ['admin-api.mabell.fun']
-  }
+    domains: ['admin-api.mabell.fun'],
+  },
 });
