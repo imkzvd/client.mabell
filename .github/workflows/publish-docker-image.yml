@@ -25,7 +25,7 @@ jobs:
 
       - name: Build docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/app:${{ env.VERSION }} .
+          docker build --build-arg API_URL=${{ vars.API_URL }} -t ghcr.io/${{ github.repository }}/app:${{ env.VERSION }} .
 
       - name: Push Docker image
         run: |
