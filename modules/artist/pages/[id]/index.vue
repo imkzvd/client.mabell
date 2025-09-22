@@ -33,7 +33,7 @@
             <UILink
               v-if="fetchedData?.artist"
               hover-underline
-              :to="{ name: 'artist', params: { id: fetchedData?.artist.id } }"
+              :to="{ name: 'artist-id', params: { id: fetchedData?.artist.id } }"
               class="artist-page__see-more-tracks-link"
             >
               See More
