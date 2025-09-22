@@ -1,7 +1,7 @@
 import { ApiModule } from '~/api/api.module';
 
 export const apiService = new ApiModule({
-  baseUrl: useRuntimeConfig().public.apiUrl,
+  baseUrl: import.meta.env.VITE_API_URL,
   baseApiParams: {
     credentials: 'include',
   }
