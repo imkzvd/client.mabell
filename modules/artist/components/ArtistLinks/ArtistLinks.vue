@@ -4,7 +4,7 @@
       <UILink
         appearance="secondary"
         :hover-underline="hoverUnderline"
-        :to="{ name: 'artist', params: { id: item.id } }"
+        :to="{ name: 'artist-id', params: { id: item.id } }"
         class="artist-links__link"
         @click.stop
       >

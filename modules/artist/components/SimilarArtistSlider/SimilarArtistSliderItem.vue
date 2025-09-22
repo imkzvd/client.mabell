@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="{ name: 'artist', params: { id: item.id } }"
+    :to="{ name: 'artist-id', params: { id: item.id } }"
     class="similar-artist-slider-item"
   >
     <ArtistAvatar
