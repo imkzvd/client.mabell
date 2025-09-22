@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: '2025-07-15',
 
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL,
+    },
+  },
+
   // alias: {
   //   "~": fileURLToPath(new URL("./", import.meta.url)),
   // },
