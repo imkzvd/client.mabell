@@ -4,4 +4,5 @@ export interface UILinkProps {
   to: RouteLocationRaw;
   underline?: boolean;
   hoverUnderline?: boolean;
+  lineClamp?: number | null;
 }

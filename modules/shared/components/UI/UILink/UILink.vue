@@ -9,6 +9,7 @@ import { type UILinkProps } from '~/modules/shared/components/UI/UILink/types';
 
 const props = withDefaults(defineProps<UILinkProps>(), {
   hoverUnderline: true,
+  lineClamp: null,
 });
 
 const baseClass: string = "ui-link";
@@ -16,6 +17,7 @@ const cssClasses = computed(() => ({
   [baseClass]: true,
   [`${baseClass}_underline`]: props.underline,
   [`${baseClass}_hover-underline`]: props.hoverUnderline,
+  [`${baseClass}_ellipsis`]: !!props.lineClamp,
 }));
 </script>
 
@@ -39,6 +41,14 @@ const cssClasses = computed(() => ({
 
   &_underline {
     text-decoration: underline;
+  }
+
+  &_ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line-clamp, v-bind(lineClamp));
   }
 }
 </style>
