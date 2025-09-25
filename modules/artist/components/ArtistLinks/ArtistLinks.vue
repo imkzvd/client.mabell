@@ -1,32 +1,29 @@
 <template>
   <div class="artist-links">
-    <div v-for="(item, index) of items" :key="item.id" class="artist-links__item">
-      <UILink
-        appearance="secondary"
-        :hover-underline="hoverUnderline"
-        :to="{ name: 'artist-id', params: { id: item.id } }"
-        class="artist-links__link"
-        @click.stop
-      >
-        {{ item.name }}
-      </UILink>
-      <span v-if="index !== items.length - 1" :class="separatorCssClass">
-        <NuxtIcon v-if="dotSeparator" name="i-ph-dot-outline-fill" />
-        <template v-else>,</template>
-      </span>
-    </div>
+    <UILink
+      v-for="(item, index) of items" :key="item.id"
+      :to="{ name: 'artist-id', params: { id: item.id } }"
+      appearance="secondary"
+      :hover-underline="hoverUnderline"
+      class="artist-links__link"
+      :class="linkCssClasses"
+      @click.stop
+    >
+      {{ item.name }}
+    </UILink>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { ArtistLinksProps } from '~/modules/artist/components/ArtistLinks/types';
+import { type ArtistLinksProps, ArtistLinksSeparators } from '~/modules/artist/components/ArtistLinks/types';
 
-const props = defineProps<ArtistLinksProps>();
+const props = withDefaults(defineProps<ArtistLinksProps>(), {
+  separator: ArtistLinksSeparators.comma,
+});
 
 const baseClass = 'artist-links';
-const separatorCssClass = computed(() => ({
-  [`${baseClass}__separator`]: true,
-  [`${baseClass}__separator_dot`]: props.dotSeparator,
+const linkCssClasses = computed(() => ({
+  [`${baseClass}__link_separator_${props.separator}`]: true,
 }));
 </script>
 
@@ -34,20 +31,21 @@ const separatorCssClass = computed(() => ({
 .artist-links {
   font-size: var(--size, inherit);
 
-  &__item {
-    display: inline-flex;
-    align-items: center;
+  &__link {
+    &_separator {
+      &_comma {
+        &:not(:last-child)::after {
+          content: ',';
+          margin-right: 2px;
+        }
+      }
 
-    &:not(:last-child) {
-      margin-right: 2px;
-    }
-  }
-
-  &__separator {
-    color: var(--color, var(--ui-link-color));
-
-    &_dot {
-      display: inline-flex;
+      &_dot {
+        &:not(:last-child)::after {
+          content: '•';
+          margin-inline: 4px;
+        }
+      }
     }
   }
 }
