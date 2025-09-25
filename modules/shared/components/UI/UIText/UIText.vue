@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<UITextProps>(), {
   lineClamp: null,
   tag: "p",
   appearance: "primary",
+  size: 'inherit',
 });
 
 const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
@@ -22,7 +23,7 @@ const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .ui-text {
-  font-size: var(--font-size, 14px);
+  font-size: var(--font-size, v-bind(size));
 
   &_appearance {
     &_default {
