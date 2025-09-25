@@ -16,6 +16,7 @@ const cssClasses = computed<Record<string, boolean>>(() => ({
   [baseClass]: true,
   [`${baseClass}_level_${props.level}`]: true,
   [`${baseClass}_leading_none`]: props.leadingNone,
+  [`${baseClass}_ellipsis`]: props.lineClamp,
 }));
 </script>
 
@@ -69,6 +70,14 @@ const cssClasses = computed<Record<string, boolean>>(() => ({
 
   &_leading_none {
     line-height: 1;
+  }
+
+  &_ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line-clamp, v-bind(lineClamp));
   }
 }
 </style>
