@@ -28,6 +28,10 @@
           >
             {{ playlist.description }}
           </UIText>
+
+          <UILink to="#" hover-underline class="playlist-header__user-link">
+            {{ playlist.user.name }}
+          </UILink>
         </div>
       </div>
     </div>
@@ -58,20 +62,20 @@ const playlistCreatedDate = computed<string>(() =>
   padding-block: 16px;
   background: linear-gradient(
       0deg,
-      var(--base-bg) 0%,
+      var(--base-bg) 10%,
       var(--playlist-color, var(--base-bg)) 100%
   );
 
-  &:after {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.3) 0%,
-        transparent 100%
-    );
-    content: '';
-  }
+  //&:after {
+  //  position: absolute;
+  //  inset: 0;
+  //  background: linear-gradient(
+  //      180deg,
+  //      rgba(0, 0, 0, 0.3) 0%,
+  //      transparent 100%
+  //  );
+  //  //content: '';
+  //}
 
   &__columns {
     position: relative;
@@ -114,6 +118,12 @@ const playlistCreatedDate = computed<string>(() =>
 
   &__description {
     max-width: 800px;
+    margin-bottom: 8px;
+  }
+
+  &__user-link {
+    color: var(--tertiary-text, white);
+    //font-weight: bold;
   }
 }
 </style>
