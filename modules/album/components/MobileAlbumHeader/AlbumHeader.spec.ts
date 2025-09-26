@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { render } from "@testing-library/vue";
-import AlbumHead from "~/components/AlbumHeader/MobileAlbumHeader.vue";
+import AlbumHead from "~/components/AlbumHeader/MobilePlaylistHeader.vue";
 import NuxtLinkStub from "~/__tests__/stubs/nuxt-link.stub";
 import type { TAlbumHeadProps } from "~/components/AlbumHeader/types";
 import FakeAlbumRO from "~/__tests__/ros/fake-album.ro";

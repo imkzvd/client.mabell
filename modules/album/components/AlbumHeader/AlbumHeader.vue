@@ -5,17 +5,31 @@
         <AlbumCover :url="album.cover" :alt="album.name" class="album-header__cover" />
 
         <div class="album-header__details">
-          <UIText class="album-header__meta-info">
-            <span>{{ album.type.label }}</span> -
-            <span>{{ albumGenres }}</span> -
-            <span v-if="releaseAlbumYear">{{ releaseAlbumYear }}</span>
-          </UIText>
-
-          <UIHeading class="album-header__name">
+          <UIHeading :line-clamp="2" class="album-header__name">
             {{ album.name }}
           </UIHeading>
 
-          <ArtistLinks :items="album.artists" dot-separator class="album-header__artist-links" />
+          <UIText appearance="secondary" class="album-header__meta-data">
+            <span class="album-header__meta-data-item">{{ album.type.label }}</span>
+            <span class="album-header__meta-data-item">{{ albumGenres }}</span>
+            <span v-if="releaseAlbumYear">{{ releaseAlbumYear }}</span>
+          </UIText>
+
+          <UIText
+            appearance="secondary"
+            :line-clamp="2"
+            :title="album.description"
+            class="album-header__description"
+          >
+            {{ album.description }}
+          </UIText>
+
+          <ArtistLinks
+            hover-underline
+            separator="dot"
+            :items="album.artists"
+            class="album-header__artist-links"
+          />
         </div>
       </div>
     </div>
@@ -42,21 +56,20 @@ const releaseAlbumYear = computed<number | null>(() => {
   --album-color: v-bind(props.album.color);
   display: flex;
   align-items: center;
-  height: 50vh;
+  height: 40vh;
+  min-height: 320px;
   padding-block: 16px;
+  font-size: 14px;
   background: linear-gradient(
       0deg,
       var(--base-bg) 0%,
-      var(--album-color, var(--base-bg)) 80%
+      var(--album-color, var(--base-bg)) 100%
   );
 
   &__columns {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 32px;
-    height: 100%;
-    min-height: 400px;
+    align-items: flex-end;
+    column-gap: 32px;
   }
 
   &__cover {
@@ -70,34 +83,39 @@ const releaseAlbumYear = computed<number | null>(() => {
   }
 
   &__details {
-    text-align: center;
-
-    @include respond-to(md) {
-      text-align: left;
-    }
+    padding-bottom: 16px;
   }
 
   &__name {
+    line-height: normal;
+    font-size: 32px;
     margin-bottom: 4px;
-    line-height: 1.2;
 
     @include respond-to(xl) {
-      margin-bottom: 8px;
+      font-size: 40px;
+    }
+  }
+
+  &__meta-data {
+    color: var(--secondary-text, gray);
+    margin-bottom: 4px;
+  }
+
+  &__meta-data-item {
+    &:not(:last-child)::after {
+      content: '•';
+      margin-inline: 4px;
     }
   }
 
   &__artist-links {
-    --ui-link-color: var(--main-text, white);
-    --size: 16px;
+    --color: var(--tertiary-text, white);
+    font-family: var(--bold-font);
   }
 
-  &__meta-info {
-    font-size: 12px;
-    color: var(--secondary-text, gray);
-
-    @include respond-to(xs) {
-      font-size: 14px;
-    }
+  &__description {
+    max-width: 800px;
+    margin-bottom: 8px;
   }
 }
 </style>
