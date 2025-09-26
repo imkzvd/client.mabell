@@ -1,13 +1,14 @@
 <template>
-  <li
+  <div
     ref="item"
     tabindex="0"
     :aria-label="item.name"
     class="album-track-list-item"
+    :class="rootCssClasses"
     @mouseenter="toggleHoveredItem()"
     @mouseleave="toggleHoveredItem()"
   >
-    <div class="album-track-list-item__column">
+    <div class="album-track-list-item__column album-track-list-item__column_center">
       <div class="album-track-list-item__index-container">
         <div
           v-if="!isPlayingItem"
@@ -28,7 +29,7 @@
           :aria-label="isPlayingItem ? 'Pause track' : 'Play track'"
           :icon="isPlayingItem ? 'ph:pause-fill' : 'ph:play-fill'"
           :is-disabled="!item.isActive"
-          icon-size="20"
+          icon-size="18"
           class="album-track-list-item__action-button"
           @click.stop="isPlayingItem ? emit('pause-item') : emit('play-item')"
         />
@@ -60,10 +61,9 @@
       </div>
     </div>
 
-    <div class="album-track-list-item__column">
-      <div class="album-track-list-item__add-track-button">
+    <div class="album-track-list-item__column album-track-list-item__column_center">
+      <div class="album-track-list-item__add-button">
         <UIIconButton
-          v-show="isHoveredItem"
           appearance="secondary"
           aria-label="Add track"
           icon="ph:plus-bold"
@@ -72,27 +72,24 @@
           @click.stop="emit('add-item')"
         />
       </div>
-    </div>
 
-    <div class="album-track-list-item__column hidden md:block">
       <div class="album-track-list-item__duration">
-        {{ computedConvertedDuration }}
+        {{ convertSecondsToMinute(item.duration) }}
       </div>
-    </div>
 
-    <div class="album-track-list-item__column">
       <UIIconButton
         icon="i-ph-dots-three-outline-fill"
         aria-label="Track menu"
         appearance="secondary"
+        icon-size="18"
         @click.stop="emit('open-item-menu', $event)"
       />
     </div>
-  </li>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { convertSecondsToMinute } from './utils';
+import { convertSecondsToMinute } from '~/modules/shared/utils/convert-seconds-to-minute.util';
 import type {
   AlbumTrackListItemProps,
   AlbumTrackListItemEmits,
@@ -104,16 +101,15 @@ const emit = defineEmits<AlbumTrackListItemEmits>();
 const itemEl = useTemplateRef<HTMLLIElement>('item');
 const [isHoveredItem, toggleHoveredItem] = useToggle();
 
+const baseClass = 'album-track-list-item';
+const rootCssClasses = computed(() => ({
+  [`${baseClass}_is-disabled`]: !props.item.isActive,
+}))
 const isSelectedItem = computed<boolean>(() => props.item.id === props.selectedItemId);
 const isCurrentItem = computed<boolean>(() => props.item.id === props.currentItemId);
 const isPlayingItem = computed<boolean>(
   () => props.item.id === props.currentItemId && props.isPlaying,
 );
-const computedConvertedDuration = computed<string | null>(() => {
-  if (!props.item.duration) return null;
-
-  return convertSecondsToMinute(props.item.duration);
-});
 
 onMounted(() => {
   if (isSelectedItem.value) {
@@ -127,15 +123,20 @@ onMounted(() => {
   position: relative;
   display: grid;
   cursor: pointer;
-  grid-template-columns: 40px 1fr 40px 50px auto;
+  grid-template-columns: var(--album-track-list-grid-template-columns);
   align-items: center;
-  gap: 32px;
-  border-radius: var(--border-rounded);
-  font-size: 16px;
-  color: var(--main-text, white);
-  margin-inline: -16px;
-  padding: 12px 16px;
+  gap: 12px;
+  border-radius: var(--border-rounded, 4px);
+  font-size: 14px;
+  color: var(--main-text, gray);
+  --color: var(--main-text, gray);
+  margin-inline: -8px;
+  padding: 12px 8px;
   transition: 0.25s all;
+
+  &:nth-child(even) {
+    background-color: rgba(35, 35, 35, 0.2);
+  }
 
   &:focus {
     background-color: var(--track-list-item-focus, lightgray);
@@ -146,8 +147,25 @@ onMounted(() => {
     background-color: var(--track-list-item-hover, gray);
   }
 
+  &:hover & {
+    &__add-button {
+      opacity: 1;
+    }
+  }
+
+  &_is-disabled {
+    opacity: 0.5;
+  }
+
   &__column {
     position: relative;
+    display: flex;
+    align-items: center;
+
+    &_center {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   &__index {
@@ -170,15 +188,12 @@ onMounted(() => {
 
   &__name {
     margin-right: 4px;
-    font-size: inherit;
+    //font-size: inherit;
   }
 
   &__featured-artist-links {
     --ui-link-color: var(--main-text, white);
-    display: flex;
-    align-items: center;
     margin-right: 4px;
-    font-size: inherit;
   }
 
   &__equalizer-icon {
@@ -189,9 +204,13 @@ onMounted(() => {
     fill: var(--main-text, white);
   }
 
+  &__add-button {
+    transition: opacity 0.25s;
+    opacity: 0;
+  }
+
   &__duration {
-    font-size: 14px;
-    color: var(--secondary-text, gray);
+    margin-inline: 8px;
   }
 }
 </style>
