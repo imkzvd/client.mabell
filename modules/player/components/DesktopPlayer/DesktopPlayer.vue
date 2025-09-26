@@ -91,7 +91,7 @@ function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
 .desktop-player {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 160px 1fr;
   padding-inline: 16px;
   height: 100%;
 
@@ -101,6 +101,7 @@ function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
 
   &__column {
     display: flex;
+    overflow: hidden;
   }
 
   &__control-buttons {
