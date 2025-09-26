@@ -13,16 +13,16 @@
           {{ playlist.name }}
         </UIHeading>
 
-        <UIText appearance="secondary" class="mobile-playlist-header__meta-info">
-          <span class="mobile-playlist-header__meta-info-item">
+        <UIText appearance="secondary" class="mobile-playlist-header__meta-data">
+          <span class="mobile-playlist-header__meta-data-item">
             Playlist
           </span>
 
-          <span class="mobile-playlist-header__meta-info-item">
+          <span class="mobile-playlist-header__meta-data-item">
             {{ playlistGenres }}
           </span>
 
-          <span class="mobile-playlist-header__meta-info-item">
+          <span class="mobile-playlist-header__meta-data-item">
             {{ playlistCreatedDate }}
           </span>
         </UIText>
@@ -46,51 +46,71 @@ const playlistCreatedDate = computed<string>(() => {
 
 <style scoped lang="scss">
 .mobile-playlist-header {
-  --playlist-color: v-bind(props.playlist.color);
-
-  display: flex;
-  align-items: center;
+  position: relative;
+  padding-block: 16px 32px;
+  font-size: 12px;
   background: linear-gradient(
       0deg,
-      var(--base-bg) 0%,
-      var(--playlist-color, var(--base-bg)) 90%
+      transparent 0%,
+      var(--playlist-color, var(--base-bg)) 100%,
   );
-  padding-block: 16px;
+  --playlist-color: v-bind(props.playlist.color);
+
+  &:after {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        0deg,
+        transparent 0%,
+        var(--playlist-color, var(--base-bg)) 100%,
+    );
+    content: '';
+  }
+
+  @include respond-to(xs) {
+    font-size: 14px;
+  }
 
   &__cover {
+    position: relative;
+    z-index: 10;
     margin-inline: auto;
     margin-bottom: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    --size: 160px;
 
     @include respond-to(xs) {
-      --size: 240px;
-      margin-bottom: 20px;
+      --size: 220px;
+      margin-bottom: 16px;
     }
   }
 
   &__details {
+    position: relative;
+    z-index: 10;
     text-align: center;
   }
 
   &__name {
-    font-size: 24px;
+    font-size: 20px;
+    margin-bottom: 2px;
     line-height: normal;
-    margin-bottom: 4px;
 
     @include respond-to(xs) {
-      font-size: 28px;
+      font-size: 24px;
+      margin-bottom: 4px;
     }
   }
 
-  &__meta-info {
-    font-size: 12px;
+  &__meta-data {
+    margin-bottom: 2px;
 
     @include respond-to(xs) {
-      font-size: 14px;
+      margin-bottom: 4px;
     }
   }
 
-  &__meta-info-item {
+  &__meta-data-item {
     &:not(:last-child)::after {
       content: '•';
       margin-inline: 4px;
