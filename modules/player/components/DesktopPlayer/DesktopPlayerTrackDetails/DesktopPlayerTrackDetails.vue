@@ -8,10 +8,11 @@
 
     <div class="desktop-player-track-details__lines">
       <div class="desktop-player-track-details__top-line">
-        <UIText size="14px">{{ track.name }}</UIText>
+        <UIText size="14px" class="desktop-player-track-details__name">{{ track.name }}</UIText>
 
         <NuxtIcon
           v-if="track.isExplicit"
+          mode="svg"
           name="material-symbols:explicit"
           size="16"
           class="desktop-player-track-details__explicit-icon"
@@ -19,7 +20,7 @@
       </div>
 
       <div class="desktop-player-track-details__bottom-line">
-        <ArtistLinks :items="allTrackArtists" />
+        <ArtistLinks hover-underline :items="allTrackArtists" />
 
         <span>-</span>
 
@@ -54,23 +55,34 @@ const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   display: flex;
   align-items: center;
   gap: 12px;
+  max-width: 100%;
 
   &__cover {
     --size: 52px;
+  }
+
+  &__lines {
+    max-width: 100%;
+    overflow: hidden;
   }
 
   &__top-line {
     display: flex;
     align-items: center;
     gap: 4px;
-    line-height: 1;
+  }
+
+  &__name {
+    @include text-ellipsis();
   }
 
   &__bottom-line {
     display: flex;
-    gap: 2px;
-    font-size: 14px;
+    column-gap: 4px;
+    font-size: 12px;
     color: var(--ui-link-color);
+
+    @include text-ellipsis();
   }
 
   &__explicit-icon {
