@@ -29,8 +29,6 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
   width: var(--size, 100px);
   overflow: hidden;
   border-radius: var(--border-rounded, 4px);
-  position: relative; // TODO: fix safari error: iphone se
-  z-index: 100; //
 
   &_no-cover {
     display: flex;
