@@ -1,5 +1,15 @@
 <template>
-  <ul class="album-track-list">
+  <div class="album-track-list">
+    <div class="album-track-list__header">
+      <div class="album-track-list__header-column album-track-list__header-column_center">
+        #
+      </div>
+      <div class="album-track-list__header-column">Track</div>
+      <div class="album-track-list__header-column album-track-list__header-column_center">
+        Time
+      </div>
+    </div>
+    
     <AlbumTrackListItem
       v-for="(item, index) of items"
       :key="item.id"
@@ -15,7 +25,7 @@
       @pause-item="emit('pause-item', item, index)"
       @add-item="emit('add-item', item, index)"
     />
-  </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -45,3 +55,25 @@ function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
   alert(`Open menu for ${item.name} track`)
 }
 </script>
+
+<style scoped lang="scss">
+.album-track-list {
+  --album-track-list-grid-template-columns: 40px 1fr 120px;
+
+  &__header {
+    display: grid;
+    grid-template-columns: var(--album-track-list-grid-template-columns);
+    gap: 12px;
+    margin-inline: -8px;
+    padding: 8px;
+    color: var(--gray, gray);
+    font-size: 14px;
+  }
+
+  &__header-column {
+    &_center {
+      text-align: center;
+    }
+  }
+}
+</style>
