@@ -8,21 +8,23 @@
       />
 
       <div class="mobile-album-header__details">
-
-        <UIHeading class="mobile-album-header__name">
+        <UIHeading :line-clamp="2" class="mobile-album-header__name">
           {{ album.name }}
         </UIHeading>
 
-        <div class="mobile-album-header__artist-links">
-          <ArtistLinks :items="album.artists" dot-separator class="mobile-album-header__artist-links" />
-        </div>
-
-
-        <UIText class="mobile-album-header__meta-info">
-          <span>{{ album.type.label }}</span> -
-          <span>{{ albumGenres }}</span> -
-          <span v-if="releaseAlbumYear">{{ releaseAlbumYear }}</span>
+        <UIText class="mobile-album-header__meta-data">
+          <span class="mobile-album-header__meta-data-item">{{ album.type.label }}</span>
+          <span class="mobile-album-header__meta-data-item">{{ albumGenres }}</span>
+          <span v-if="releaseAlbumYear" class="mobile-album-header__meta-data-item">
+            {{ releaseAlbumYear }}
+          </span>
         </UIText>
+
+        <ArtistLinks
+          separator="dot"
+          :items="album.artists"
+          class="mobile-album-header__artist-links"
+        />
       </div>
     </div>
   </header>
@@ -45,57 +47,80 @@ const releaseAlbumYear = computed<number | null>(() => {
 
 <style scoped lang="scss">
 .mobile-album-header {
-  --album-color: v-bind(props.album.color);
-  padding: 16px;
-
+  position: relative;
+  padding-block: 16px 32px;
+  font-size: 12px;
   background: linear-gradient(
       0deg,
-      var(--base-bg) 0%,
-      var(--album-color, #121212) 100%
+      transparent 0%,
+      var(--album-color, var(--base-bg)) 100%
   );
+  --album-color: v-bind(props.album.color);
+
+  @include respond-to(xs) {
+    font-size: 14px;
+  }
+
+  &:after {
+    position: absolute;
+    inset: 0;
+    content: '';
+    background: linear-gradient(
+        0deg,
+        transparent 0%,
+        var(--album-color, var(--base-bg)) 100%,
+    );
+  }
 
   &__cover {
+    position: relative;
+    z-index: 10;
     margin-inline: auto;
-    margin-bottom: 8px;
-    box-shadow: 0 1px 10px 0 #000000;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     --size: 160px;
 
     @include respond-to(xs) {
       --size: 220px;
+      margin-bottom: 16px;
     }
   }
 
   &__details {
-    text-align: center;
     position: relative;
+    z-index: 10;
+    text-align: center;
   }
 
   &__name {
-    font-size: 22px;
+    font-size: 20px;
+    line-height: normal;
+    margin-bottom: 2px;
 
     @include respond-to(xs) {
-      font-size: 32px;
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__meta-data {
+    margin-bottom: 2px;
+
+    @include respond-to(xs) {
+      margin-bottom: 4px;
+    }
+  }
+
+  &__meta-data-item {
+    &:not(:last-child)::after {
+      content: '•';
+      margin-inline: 4px;
     }
   }
 
   &__artist-links {
-    --size: 16px;
-    margin-inline: auto;
-    margin-bottom: 4px;
-    --ui-link-color: var(--main-text, white);
-
-    @include respond-to(xs) {
-      --size: 18px;
-    }
-  }
-
-  &__meta-info {
-    font-size: 12px;
-    color: var(--secondary-text, gray);
-
-    @include respond-to(xs) {
-      font-size: 14px;
-    }
+    font-family: var(--bold-font);
+    --color: var(--main-text, white);
   }
 }
 </style>
