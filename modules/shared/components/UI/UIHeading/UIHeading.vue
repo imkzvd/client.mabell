@@ -1,5 +1,5 @@
 <template>
-  <component :is="'h' + level" :class="cssClasses">
+  <component :is="'h' + level" class="ui-heading" :class="rootCSSClasses">
     <slot />
   </component>
 </template>
@@ -11,58 +11,36 @@ const props = withDefaults(defineProps<UIHeadingProps>(), {
   level: 1,
 });
 
-const baseClass = 'ui-heading';
-const cssClasses = computed<Record<string, boolean>>(() => ({
-  [baseClass]: true,
-  [`${baseClass}_level_${props.level}`]: true,
-  [`${baseClass}_leading_none`]: props.leadingNone,
-  [`${baseClass}_ellipsis`]: props.lineClamp,
+const rootCSSClass = 'ui-heading';
+const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+  [`${rootCSSClass}_level_${props.level}`]: true,
+  [`${rootCSSClass}_leading_none`]: props.leadingNone,
+  [`${rootCSSClass}_ellipsis`]: !!props.lineClamp,
 }));
 </script>
 
 <style scoped lang="scss">
 .ui-heading {
   color: var(--ui-heading-color, white);
+  font-family: var(--bold-font, sans-serif);
 
   &_level {
     &_1 {
-      font-size: 28px;
-      font-family: var(--title-font, sans-serif);
+      font-size: 24px;
 
       @include respond-to(xs) {
-        font-size: 32px;
+        font-size: 24px;
       }
 
       @include respond-to(md) {
-        font-size: 48px;
-      }
-
-      @include respond-to(xl) {
-        font-size: 52px;
-      }
-
-      @include respond-to('2xl') {
-        font-size: 64px;
+        font-size: 32px;
       }
     }
 
     &_2 {
-      font-size: 16px;
-      font-family: var(--bold-font, sans-serif);
-
-      @include respond-to(xs) {
-        font-size: 18px;
-      }
-
-      @include respond-to(md) {
-        font-size: 20px;
-      }
+      font-size: 20px;
 
       @include respond-to(xl) {
-        font-size: 22px;
-      }
-
-      @include respond-to('2xl') {
         font-size: 24px;
       }
     }
