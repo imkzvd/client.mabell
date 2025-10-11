@@ -1,6 +1,6 @@
 <template>
   <div class="album-slider">
-    <AlbumSliderCard v-for="item of items" :key="item.id" :item="item" />
+    <AlbumSliderItem v-for="item of items" :key="item.id" :item="item" />
   </div>
 </template>
 
@@ -13,11 +13,11 @@ defineProps<AlbumSliderProps>();
 <style scoped lang="scss">
 .album-slider {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   overflow-x: auto;
 
-  @include respond-to(xl) {
-    gap: 12px;
+  @include respond-to(xs) {
+    gap: 16px;
   }
 
   &::-webkit-scrollbar {

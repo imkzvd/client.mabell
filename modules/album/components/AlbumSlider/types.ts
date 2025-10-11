@@ -4,6 +4,6 @@ export type AlbumSliderProps = {
   items: SimplifiedAlbumRO[];
 };
 
-export type AlbumSliderCardProps = {
+export type AlbumSliderItemProps = {
   item: SimplifiedAlbumRO;
 };
