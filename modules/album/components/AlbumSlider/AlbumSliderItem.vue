@@ -7,7 +7,7 @@
     <UIImg :url="item.cover" :alt="item.name" class="album-slider-item__cover" />
 
     <div class="album-slider-item__details">
-      <UIText :line-clamp="2" class="album-slider-item__name">
+      <UIText :line-clamp="1" class="album-slider-item__name">
         {{ item.name }}
       </UIText>
 
