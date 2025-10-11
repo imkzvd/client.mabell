@@ -1,0 +1,42 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SimilarArtistSlider > snapshot 1`] = `
+<div>
+  <div
+    class="artist-slider"
+    data-v-a50d4bd0=""
+  >
+    
+    <a
+      class="similar-artist-slider-item"
+      data-v-a50d4bd0=""
+      data-v-b9021376=""
+      href="[object Object]"
+    >
+      
+      <div
+        class="artist-avatar similar-artist-slider-item__avatar"
+        data-v-3453b790=""
+        data-v-b9021376=""
+      >
+        <img
+          alt="Artist name"
+          data-v-3453b790=""
+          src="https://fake-url.com"
+        />
+      </div>
+      <p
+        class="ui-text ui-text_appearance_primary ui-text_ellipsis similar-artist-slider-item__name"
+        data-v-7381037b=""
+        data-v-b9021376=""
+      >
+        
+        Artist name
+        
+      </p>
+      
+    </a>
+    
+  </div>
+</div>
+`;
