@@ -13,15 +13,13 @@ defineProps<AlbumSliderProps>();
 <style scoped lang="scss">
 .album-slider {
   display: flex;
-  gap: 12px;
+  gap: var(--album-slider-column-gap, 12px);
   overflow-x: auto;
 
-  @include respond-to(xs) {
-    gap: 16px;
-  }
+  @include hide-scrollbar();
 
-  &::-webkit-scrollbar {
-    display: none;
+  @include respond-to(xs) {
+    gap: var(--album-slider-column-xs-gap, 16px);
   }
 }
 </style>
