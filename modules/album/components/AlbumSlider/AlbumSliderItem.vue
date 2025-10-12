@@ -4,7 +4,7 @@
     :to="{ name: 'album-id', params: { id: item.id } }"
     class="album-slider-item"
   >
-    <UIImg :url="item.cover" :alt="item.name" class="album-slider-item__cover" />
+    <UIImg :url="item.cover" :alt="item.name" fallback-icon="i-ph-music-notes-simple-bold" class="album-slider-item__cover" />
 
     <div class="album-slider-item__details">
       <UIText :line-clamp="1" class="album-slider-item__name">
@@ -35,23 +35,23 @@ const releaseYear = computed<number | null>(() => {
   width: min-content;
 
   &__cover {
+    --size: var(--album-slider-cover-size, 120px);
     margin-bottom: 8px;
-    --size: 120px;
 
     @include respond-to(xs) {
+      --size: var(--album-slider-cover-xs-size, 140px);
       margin-bottom: 12px;
-      --size: 140px;
     }
 
     @include respond-to(md) {
-      --size: 160px;
+      --size: var(--album-slider-cover-md-size, 160px);
     }
   }
 
   &__name {
     font-size: 14px;
 
-    @include respond-to(xs) {
+    @include respond-to(md) {
       font-size: 16px;
     }
   }
@@ -59,7 +59,7 @@ const releaseYear = computed<number | null>(() => {
   &__year {
     font-size: 12px;
 
-    @include respond-to(xs) {
+    @include respond-to(md) {
       font-size: 14px;
     }
   }
