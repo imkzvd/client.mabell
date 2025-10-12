@@ -8,7 +8,7 @@
       </UIHeading>
     </div>
 
-    <div v-if="contentContainer" class="container">
+    <div v-if="withContainer" class="container">
       <slot name="default" />
     </div>
     <template v-else>
@@ -21,12 +21,22 @@
 import type { UISectionProps } from '~/modules/shared/components/UI/UISection/types';
 
 withDefaults(defineProps<UISectionProps>(), {
-  contentContainer: true,
+  withContainer: false,
 })
 </script>
 
 <style scoped lang="scss">
 .ui-section {
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  @include respond-to(md) {
+    &:not(:last-child) {
+      margin-bottom: 32px;
+    }
+  }
+
   &__heading {
     margin-bottom: 16px;
   }
