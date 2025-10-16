@@ -55,7 +55,7 @@
 
     <div class="playlist-track-list-item__column">
       <UILink
-        :to="{ name: 'album', params: { id: item.track.album.id } }"
+        :to="{ name: 'album-id', params: { id: item.track.album.id } }"
         :line-clamp="1"
         @click.stop
       >
@@ -118,7 +118,7 @@ const rootCssClasses = computed(() => ({
 }))
 const allTrackArtists = computed<(ArtistRO | SimplifiedArtistRO)[]>(
   () => [
-    ...props.item.track?.album.artists,
+    ...props.item.track?.artists,
     ...props.item.track?.featArtists,
   ],
 );

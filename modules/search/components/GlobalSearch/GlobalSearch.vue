@@ -28,29 +28,29 @@
         <TopResults :items="searchResult.topResults.slice(0,108)" />
       </UISection>
 
-      <UISection v-if="searchResult?.albums.length" heading="Albums" :content-container="false">
-        <AlbumSlider :items="searchResult?.albums" class="global-search__slider" />
+      <UISection v-if="searchResult?.albums.total" heading="Albums" :content-container="false">
+        <AlbumSlider :items="searchResult?.albums.items" class="global-search__slider" />
       </UISection>
 
-      <UISection v-if="searchResult?.artists.length" heading="Artists" :content-container="false">
-        <ArtistSlider :items="searchResult?.artists" class="global-search__slider" />
+      <UISection v-if="searchResult?.artists.total" heading="Artists" :content-container="false">
+        <ArtistSlider :items="searchResult?.artists.items" class="global-search__slider" />
       </UISection>
 
-      <UISection v-if="searchResult?.tracks.length" heading="Tracks" with-container>
-        <TopResults :items="searchResult.tracks" />
+      <UISection v-if="searchResult?.tracks.total" heading="Tracks" with-container>
+        <TopResults :items="searchResult.tracks.items" />
       </UISection>
 
-      <UISection v-if="searchResult?.playlists.length" heading="Playlists" :content-container="false">
-        <PlaylistSlider :items="searchResult.playlists" />
+      <UISection v-if="searchResult?.playlists.total" heading="Playlists" :content-container="false">
+        <PlaylistSlider :items="searchResult.playlists.items" />
       </UISection>
 
       <UIText
         v-if="
         !searchResult?.topResults.length &&
-        !searchResult?.albums.length &&
-        !searchResult?.artists.length &&
-        !searchResult?.tracks.length &&
-        !searchResult?.playlists.length"
+        !searchResult?.albums.total &&
+        !searchResult?.artists.total &&
+        !searchResult?.tracks.total &&
+        !searchResult?.playlists.total"
         size="16px"
         is-bold
         align="center"
