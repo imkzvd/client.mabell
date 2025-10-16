@@ -25,50 +25,50 @@ export interface LabelValueRO {
 export interface ArtistRO {
   /**
    * Id
-   * @example "968ad807c85ca7cfbd6fbf4a"
+   * @example "facc629886ed7207c260bb7d"
    */
   id: string;
   /**
    * Name
-   * @example "Edgardo"
+   * @example "Colt"
    */
   name: string;
   /**
    * Birth name
-   * @example "Josh Gibson"
+   * @example "Wayne Beier"
    */
   birthName: string | null;
   /**
    * Birth date
    * @format date-time
-   * @example "2025-07-08T13:20:11.987Z"
+   * @example "2025-05-30T17:12:24.104Z"
    */
   birthDate: string | null;
   /** Genres */
   genres: LabelValueRO[];
   /**
    * Biography
-   * @example "fun lover, coach ✋🏼"
+   * @example "film lover, designer, film lover"
    */
   biography: string;
   /**
    * Avatar URL
-   * @example "undefined/experience.webp"
+   * @example "https://api.mabell.fun/graceful_over.webp"
    */
   avatar: string | null;
   /**
    * Cover URL
-   * @example "undefined/wearily_overfeed.webp"
+   * @example "https://api.mabell.fun/till_apropos.webp"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#23fb13"
+   * @example "#eaadcc"
    */
   accentColor: string | null;
   /**
    * Secondary color
-   * @example "#55d947"
+   * @example "#ab654e"
    */
   secondaryColor: string | null;
   /**
@@ -81,25 +81,25 @@ export interface ArtistRO {
 export interface SimplifiedAlbumRO {
   /**
    * Id
-   * @example "febda75bff4695b9862e9acb"
+   * @example "f2aec7686f6a9da33e0acce1"
    */
   id: string;
   /**
    * Name
-   * @example "How You Remind Me"
+   * @example "(Sittin' On) the Dock of the Bay"
    */
   name: string;
   /** Type */
   type: LabelValueRO;
   /**
    * Cover
-   * @example "https://picsum.photos/seed/6XAHWSJwL/2124/3710"
+   * @example "https://picsum.photos/seed/mT4k7J0/2902/2173"
    */
   cover: string | null;
   /**
    * Release date
    * @format date-time
-   * @example "2025-04-03T02:54:57.659Z"
+   * @example "2025-09-15T02:54:00.213Z"
    */
   releaseAt: string | null;
 }
@@ -132,12 +132,12 @@ export interface SimplifiedAlbumsRO {
 export interface SimplifiedArtistRO {
   /**
    * Id
-   * @example "b5d2bde11bb1bce8066ea6c8"
+   * @example "dffa808c3d709bfead0eebbb"
    */
   id: string;
   /**
    * Name
-   * @example "Arlie"
+   * @example "Mariana"
    */
   name: string;
   /**
@@ -147,71 +147,35 @@ export interface SimplifiedArtistRO {
   isActive: boolean;
 }
 
-export interface AlbumRO {
-  /**
-   * Id
-   * @example "fc35bebf2b252514845dbd2b"
-   */
-  id: string;
-  /**
-   * Name
-   * @example "Ballerina"
-   */
-  name: string;
-  /** Artists */
-  artists: SimplifiedArtistRO[];
-  /** Type */
-  type: LabelValueRO;
-  /** Genres */
-  genres: LabelValueRO[];
-  /**
-   * Cover
-   * @example "https://picsum.photos/seed/u6Ts3vO/1583/3843"
-   */
-  cover: string | null;
-  /**
-   * Accent color
-   * @example "#4c0fe3"
-   */
-  color: string | null;
-  /**
-   * Description
-   * @example "Centum viduo aperte catena custodia cognomen saepe avarus. Vereor necessitatibus suppono quod adimpleo crapula impedit. Supra cenaculum est approbo tui delego benigne suppono ascit pecco. Aufero arbor socius comitatus cura. Stillicidium utilis dens speculum carbo aperiam dens defetiscor."
-   */
-  description: string;
-  /**
-   * Release date
-   * @format date-time
-   * @example "2025-03-29T09:37:25.234Z"
-   */
-  releaseAt: string | null;
-  /**
-   * Active
-   * @example true
-   */
-  isActive: boolean;
-}
-
 export interface TrackRO {
   /**
    * Id
-   * @example "8bb23ef4ae7cf9cfd52150cb"
+   * @example "306342caa5b89edf3ae6c2c9"
    */
   id: string;
   /**
    * Name
-   * @example "My Blue Heaven"
+   * @example "Light My Fire"
    */
   name: string;
   /** Album */
-  album: AlbumRO;
+  album: SimplifiedAlbumRO;
+  /** Artist */
+  artists: SimplifiedArtistRO[];
   /** Featured artist */
   featArtists: SimplifiedArtistRO[];
   /**
    * Url
-   * @example "https://pale-freezing.org/"
+   * @example "https://alienated-supplier.name/"
    */
   file: string | null;
+  /**
+   * Cover
+   * @example "https://picsum.photos/seed/4PspNhi9V/3745/1926"
+   */
+  cover: string | null;
+  /** Type */
+  type: LabelValueRO;
   /**
    * Duration
    * @example 240
@@ -232,11 +196,484 @@ export interface TrackRO {
    * @example true
    */
   isActive: boolean;
+  /**
+   * Release date
+   * @format date-time
+   * @example "2025-02-06T21:22:40.134Z"
+   */
+  releaseAt: string | null;
 }
 
 export interface TracksRO {
   /** Items */
   items: TrackRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface AlbumRO {
+  /**
+   * Id
+   * @example "d3a7b563e8e9a67bb11b7e6a"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Disco Duck"
+   */
+  name: string;
+  /** Artists */
+  artists: SimplifiedArtistRO[];
+  /** Type */
+  type: LabelValueRO;
+  /** Genres */
+  genres: LabelValueRO[];
+  /**
+   * Cover
+   * @example "https://loremflickr.com/3145/46?lock=7026978709797762"
+   */
+  cover: string | null;
+  /**
+   * Accent color
+   * @example "#dd2cc6"
+   */
+  color: string | null;
+  /**
+   * Description
+   * @example "Dicta ab sursum reprehenderit charisma territo antea perferendis. Excepturi deleo vinco vetus capto tenax coepi vilicus. Ascisco vetus dicta censura voveo tremo.
+   * Apto paens virtus totus asperiores solium valetudo volutabrum. Illo tristis usus cognatus. Cariosus aer degero via depono tubineus.
+   * Curia depereo aperiam depereo neque. Strues adfero odio tui quia aranea. Versus eligendi spero ceno."
+   */
+  description: string;
+  /**
+   * Release date
+   * @format date-time
+   * @example "2025-04-28T18:33:46.289Z"
+   */
+  releaseAt: string | null;
+  /**
+   * Active
+   * @example true
+   */
+  isActive: boolean;
+}
+
+export interface SimplifiedUserRO {
+  /**
+   * Id
+   * @example "6e23ff3b9bd5a580e297c11c"
+   */
+  id: string;
+  /**
+   * Birth name
+   * @example "Coralie"
+   */
+  name: string;
+}
+
+export interface PlaylistRO {
+  /**
+   * Id
+   * @example "efbe1c2c67efe50a845aa847"
+   */
+  id: string;
+  /** User id */
+  userId: string;
+  /** User */
+  user: SimplifiedUserRO;
+  /**
+   * Name
+   * @example "Ol' Man River"
+   */
+  name: string;
+  /** Genres */
+  genres: LabelValueRO[];
+  /**
+   * Cover
+   * @example "https://loremflickr.com/2794/2315?lock=7776835037772279"
+   */
+  cover: string | null;
+  /**
+   * Accent color
+   * @example "#ef7e64"
+   */
+  color: string | null;
+  /**
+   * Description
+   * @example "Demens clamo sunt accusator.
+   * Aer conor patrocinor vilicus appello quia timidus vicissitudo vesica valens.
+   * Caput tum degero thorax tepidus benigne cuius alius."
+   */
+  description: string;
+  /**
+   * Created date
+   * @format date-time
+   * @example "2025-05-17T06:49:56.693Z"
+   */
+  createdAt: string;
+  /**
+   * Updated date
+   * @format date-time
+   * @example "2024-12-11T02:51:18.305Z"
+   */
+  updatedAt: string;
+}
+
+export interface PlaylistTrackRO {
+  /** Track */
+  track: TrackRO;
+  /**
+   * Added date
+   * @format date-time
+   * @example "2025-01-16T13:07:44.235Z"
+   */
+  addedAt: string;
+}
+
+export interface PlaylistTracksRO {
+  /** Items */
+  items: PlaylistTrackRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface PlaylistsRO {
+  /** Items */
+  items: PlaylistRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface IndexedArtistRO {
+  /**
+   * Id
+   * @example "835b0ffe7b8d9d8d1b172fce"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Aniyah"
+   */
+  name: string;
+  /**
+   * Avatar
+   * @example "https://loremflickr.com/3846/3022?lock=2885019265487631"
+   */
+  avatar: string | null;
+  /** Type */
+  type: string;
+}
+
+export interface IndexedArtistsRO {
+  /** Items */
+  items: IndexedArtistRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface IndexedSimplifiedArtistRO {
+  /**
+   * Id
+   * @example "1c448fedb54fbc13ffa44815"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Krista"
+   */
+  name: string;
+}
+
+export interface IndexedAlbumRO {
+  /**
+   * Id
+   * @example "ed177a3ca3561ceabc8afdf0"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Neal"
+   */
+  name: string;
+  /** Artists of the album */
+  artists: IndexedSimplifiedArtistRO[];
+  /**
+   * Cover
+   * @example "https://picsum.photos/seed/UCnCK2/624/3656"
+   */
+  cover: string | null;
+  /** Type */
+  type: string;
+}
+
+export interface IndexedAlbumsRO {
+  /** Items */
+  items: IndexedAlbumRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface IndexedSimplifiedAlbumRO {
+  /**
+   * Id
+   * @example "cdd8c65e7b71eb889f90cadc"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Rico"
+   */
+  name: string;
+}
+
+export interface IndexedTrackRO {
+  /**
+   * Id
+   * @example "6ebbbccb3c6699ab47da13bd"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Jesus"
+   */
+  name: string;
+  /** Artists of the album */
+  album: IndexedSimplifiedAlbumRO;
+  /**
+   * Featured artists
+   * @example [null]
+   */
+  artists: IndexedSimplifiedArtistRO[];
+  /**
+   * Featured artists
+   * @example [null]
+   */
+  featArtists: IndexedSimplifiedArtistRO[];
+  /**
+   * Cover
+   * @example "https://picsum.photos/seed/L4QOtn8/1049/212"
+   */
+  cover: string | null;
+  /** Type */
+  type: string;
+}
+
+export interface IndexedTracksRO {
+  /** Items */
+  items: IndexedTrackRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface IndexedSimplifiedUserRO {
+  /**
+   * Id
+   * @example "b0b3bbf5aac351ff45f63beb"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Luther"
+   */
+  name: string;
+}
+
+export interface IndexedPlaylistRO {
+  /**
+   * Id
+   * @example "ac4a6ae4553d4fed04be34fc"
+   */
+  id: string;
+  /**
+   * Name
+   * @example "Krista"
+   */
+  name: string;
+  /** User */
+  user: IndexedSimplifiedUserRO;
+  /**
+   * Cover
+   * @example "https://loremflickr.com/726/1822?lock=8293863309599724"
+   */
+  cover: string | null;
+  /** Type */
+  type: string;
+}
+
+export interface IndexedPlaylistsRO {
+  /** Items */
+  items: IndexedPlaylistRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface SearchResultRO {
+  /** Artists */
+  artists: IndexedArtistsRO;
+  /** Albums */
+  albums: IndexedAlbumsRO;
+  /** Tracks */
+  tracks: IndexedTracksRO;
+  /** Playlists */
+  playlists: IndexedPlaylistsRO;
+  /** Top results */
+  topResults: IndexedPlaylistRO[];
+}
+
+export interface ArtistsRO {
+  /** Items */
+  items: ArtistRO[];
+  /**
+   * Total
+   * @example 1000
+   */
+  total: number;
+  /**
+   * Offset
+   * @example 0
+   */
+  offset: number;
+  /**
+   * Limit
+   * @example 25
+   */
+  limit: number;
+  /**
+   * Has More
+   * @example true
+   */
+  hasMore: boolean;
+}
+
+export interface AlbumsRO {
+  /** Items */
+  items: AlbumRO[];
   /**
    * Total
    * @example 1000
@@ -482,7 +919,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Client API
- * @version 1.0.0
+ * @version 1.0.0-alpha.7
  * @contact
  *
  * The API description
@@ -663,6 +1100,227 @@ export class ApiModule<SecurityDataType extends unknown> extends HttpClient<Secu
       this.request<TrackRO, any>({
         path: `/tracks/${id}`,
         method: 'GET',
+        format: 'json',
+        ...params,
+      }),
+  };
+  playlist = {
+    /**
+     * No description
+     *
+     * @tags Playlist
+     * @name GetPlaylist
+     * @summary Get playlist by id
+     * @request GET:/playlists/{id}
+     */
+    getPlaylist: (id: string, params: RequestParams = {}) =>
+      this.request<PlaylistRO, any>({
+        path: `/playlists/${id}`,
+        method: 'GET',
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Playlist
+     * @name GetPlaylistTracks
+     * @summary Get playlist tracks
+     * @request GET:/playlists/{id}/tracks
+     */
+    getPlaylistTracks: (
+      id: string,
+      query?: {
+        /**
+         * Limit
+         * @example 50
+         */
+        limit?: string;
+        /**
+         * Offset
+         * @example 0
+         */
+        offset?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<PlaylistTracksRO, any>({
+        path: `/playlists/${id}/tracks`,
+        method: 'GET',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Playlist
+     * @name GetPlaylistsByGenres
+     * @summary Get playlist by genre
+     * @request GET:/playlists
+     */
+    getPlaylistsByGenres: (
+      query: {
+        /**
+         * Genre
+         * @example "hip-hop"
+         */
+        genres: string;
+        /**
+         * Offset
+         * @example 0
+         */
+        offset?: string;
+        /**
+         * Limit
+         * @example 50
+         */
+        limit?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<PlaylistsRO, any>({
+        path: `/playlists`,
+        method: 'GET',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+  };
+  search = {
+    /**
+     * No description
+     *
+     * @tags Search
+     * @name Search
+     * @summary Global search
+     * @request GET:/search
+     */
+    search: (
+      query: {
+        /**
+         * Query
+         * @example "eminem"
+         */
+        q: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<SearchResultRO, any>({
+        path: `/search`,
+        method: 'GET',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+  };
+  popular = {
+    /**
+     * No description
+     *
+     * @tags Popular
+     * @name GetPopularArtists
+     * @summary Get popular artists
+     * @request GET:/popular/artists
+     */
+    getPopularArtists: (
+      query: {
+        /**
+         * Genres
+         * @example "HH,POP"
+         */
+        genres: string;
+        /**
+         * Offset
+         * @example 0
+         */
+        offset?: number;
+        /**
+         * Limit
+         * @example 50
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<ArtistsRO, any>({
+        path: `/popular/artists`,
+        method: 'GET',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Popular
+     * @name GetPopularAlbums
+     * @summary Get popular albums
+     * @request GET:/popular/albums
+     */
+    getPopularAlbums: (
+      query: {
+        /**
+         * Genres
+         * @example "HH,POP"
+         */
+        genres: string;
+        /**
+         * Offset
+         * @example 0
+         */
+        offset?: number;
+        /**
+         * Limit
+         * @example 50
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<AlbumsRO, any>({
+        path: `/popular/albums`,
+        method: 'GET',
+        query: query,
+        format: 'json',
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Popular
+     * @name GetPopularPlaylists
+     * @summary Get popular playlists
+     * @request GET:/popular/playlists
+     */
+    getPopularPlaylists: (
+      query: {
+        /**
+         * Genres
+         * @example "HH,POP"
+         */
+        genres: string;
+        /**
+         * Offset
+         * @example 0
+         */
+        offset?: number;
+        /**
+         * Limit
+         * @example 50
+         */
+        limit?: number;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<PlaylistsRO, any>({
+        path: `/popular/playlists`,
+        method: 'GET',
+        query: query,
         format: 'json',
         ...params,
       }),
