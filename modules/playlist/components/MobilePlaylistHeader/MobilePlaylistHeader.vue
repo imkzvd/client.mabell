@@ -1,7 +1,7 @@
 <template>
   <header class="mobile-playlist-header">
     <div class="container">
-      <TrackCover
+      <UIImg
         :url="playlist.cover"
         :alt="playlist.name"
         size="180px"
@@ -14,9 +14,7 @@
         </UIHeading>
 
         <UIText appearance="secondary" class="mobile-playlist-header__meta-data">
-          <span class="mobile-playlist-header__meta-data-item">
-            Playlist
-          </span>
+          <span class="mobile-playlist-header__meta-data-item"> Playlist </span>
 
           <span class="mobile-playlist-header__meta-data-item">
             {{ playlistGenres }}
@@ -37,7 +35,7 @@ import type { MobilePlaylistHeaderProps } from '~/modules/playlist/components/Mo
 const props = defineProps<MobilePlaylistHeaderProps>();
 
 const playlistGenres = computed<string>(() =>
-  props.playlist.genres.map(({ label }) => label).join("/"),
+  props.playlist.genres.map(({ label }) => label).join('/'),
 );
 const playlistCreatedDate = computed<string>(() => {
   return new Date(props.playlist.createdAt).toLocaleDateString();
@@ -49,21 +47,13 @@ const playlistCreatedDate = computed<string>(() => {
   position: relative;
   padding-block: 16px 32px;
   font-size: 12px;
-  background: linear-gradient(
-      0deg,
-      transparent 0%,
-      var(--playlist-color, var(--base-bg)) 100%,
-  );
+  background: linear-gradient(0deg, transparent 0%, var(--playlist-color, var(--base-bg)) 100%);
   --playlist-color: v-bind(props.playlist.color);
 
   &:after {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        0deg,
-        transparent 0%,
-        var(--playlist-color, var(--base-bg)) 100%,
-    );
+    background: linear-gradient(0deg, transparent 0%, var(--playlist-color, var(--base-bg)) 100%);
     content: '';
   }
 

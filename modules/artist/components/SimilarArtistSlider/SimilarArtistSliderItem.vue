@@ -1,13 +1,6 @@
 <template>
-  <NuxtLink
-    :to="{ name: 'artist-id', params: { id: item.id } }"
-    class="similar-artist-slider-item"
-  >
-    <ArtistAvatar
-      :url="item.avatar"
-      :alt="item.name"
-      class="similar-artist-slider-item__avatar"
-    />
+  <NuxtLink :to="{ name: 'artist-id', params: { id: item.id } }" class="similar-artist-slider-item">
+    <UIImg :url="item.avatar" :alt="item.name" class="similar-artist-slider-item__avatar" />
 
     <UIText :line-clamp="2" class="similar-artist-slider-item__name">
       {{ item.name }}
@@ -16,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistSliderCardProps } from "~/modules/artist/components/SimilarArtistSlider/types";
+import type { ArtistSliderCardProps } from '~/modules/artist/components/SimilarArtistSlider/types';
 
 defineProps<ArtistSliderCardProps>();
 </script>

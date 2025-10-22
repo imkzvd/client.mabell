@@ -1,10 +1,6 @@
 <template>
   <div class="desktop-player-track-details">
-    <TrackCover
-      :url="track.album.cover"
-      :alt="track.name"
-      class="desktop-player-track-details__cover"
-    />
+    <UIImg :url="track.album.cover" :alt="track.name" class="desktop-player-track-details__cover" />
 
     <div class="desktop-player-track-details__lines">
       <div class="desktop-player-track-details__top-line">
@@ -25,11 +21,7 @@
         <span>-</span>
 
         <UILink :to="{ name: 'album', params: { id: track.album.id } }">
-          {{
-            track.album.type.value === "ALBUM"
-              ? track.album.name
-              : track.album.type.label
-          }}
+          {{ track.album.type.value === 'ALBUM' ? track.album.name : track.album.type.label }}
         </UILink>
       </div>
     </div>
@@ -37,9 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  DesktopPlayerTrackDetailsProps,
-} from '~/modules/player/components/DesktopPlayer/DesktopPlayerTrackDetails/types';
+import type { DesktopPlayerTrackDetailsProps } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTrackDetails/types';
 import type { SimplifiedArtistRO } from '~/api/api.module';
 
 const props = defineProps<DesktopPlayerTrackDetailsProps>();

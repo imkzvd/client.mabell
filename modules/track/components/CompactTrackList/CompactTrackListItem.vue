@@ -8,11 +8,14 @@
   >
     <div class="compact-track-list-item__column">
       <div class="compact-track-list-item__cover-container">
-        <TrackCover
+        <UIImg
           :url="item.album.cover"
           :alt="item.name"
           class="compact-track-list-item__cover"
-          :class="{ 'compact-track-list-item__cover_has-overlay': isSelectedItem || isHoveredItem || isCurrentItem || isPlayingItem }"
+          :class="{
+            'compact-track-list-item__cover_has-overlay':
+              isSelectedItem || isHoveredItem || isCurrentItem || isPlayingItem,
+          }"
         />
 
         <IconEqualizer
@@ -37,7 +40,7 @@
       <div class="compact-track-list-item__details">
         <div class="compact-track-list-item__details-top-line">
           <UILink
-            :to="{ name: 'album', params: { id: item.album.id }}"
+            :to="{ name: 'album', params: { id: item.album.id } }"
             class="compact-track-list-item__name"
           >
             {{ item.name }}
@@ -88,12 +91,12 @@
 </template>
 
 <script setup lang="ts">
-import { convertSecondsToMinute } from "./utils";
-import type { SimplifiedArtistRO } from "~/api/api.module";
+import { convertSecondsToMinute } from './utils';
+import type { SimplifiedArtistRO } from '~/api/api.module';
 import type {
   CompactTrackListItemProps,
   CompactTrackListItemEmits,
-} from "~/modules/track/components/CompactTrackList/types";
+} from '~/modules/track/components/CompactTrackList/types';
 
 const props = defineProps<CompactTrackListItemProps>();
 const emit = defineEmits<CompactTrackListItemEmits>();
@@ -120,8 +123,7 @@ onMounted(() => {
   if (isSelectedItem.value) {
     itemEl.value?.focus();
   }
-})
-
+});
 </script>
 
 <style scoped lang="scss">
