@@ -1,4 +1,4 @@
-import type { SimplifiedAlbumRO } from "~/api/api.module";
+import type { SimplifiedAlbumRO } from '~/api/api.module';
 
 export type AlbumSliderProps = {
   items: SimplifiedAlbumRO[];

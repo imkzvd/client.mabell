@@ -1,6 +1,6 @@
 import { render } from '@testing-library/vue';
-import IconStub from '~/__tests__/stubs/icon.stub';
 import { describe, expect, test } from 'vitest';
+import IconStub from '~/__tests__/stubs/icon.stub';
 import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
 import ArtistAvatar from '~/modules/artist/components/ArtistAvatar/ArtistAvatar.vue';
 import type { ArtistAvatarProps } from '~/modules/artist/components/ArtistAvatar/types';

@@ -10,21 +10,24 @@
 </template>
 
 <script setup lang="ts">
-import { defaultSizeProp, defaultWidthProp } from "~/modules/shared/components/UI/UISpinner/constants";
-import { TEST_TOKENS } from "~/__tests__/TEST_TOKENS";
-import type { UISpinnerProps } from "~/modules/shared/components/UI/UISpinner/types";
+import {
+  defaultSizeProp,
+  defaultWidthProp,
+} from '~/modules/shared/components/UI/UISpinner/constants';
+import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
+import type { UISpinnerProps } from '~/modules/shared/components/UI/UISpinner/types';
 
 const props = withDefaults(defineProps<UISpinnerProps>(), {
   size: defaultSizeProp,
   width: defaultWidthProp,
 });
 
-const baseClass: string = "ui-spinner";
+const baseClass: string = 'ui-spinner';
 
 const cssVars = computed(() => ({
-  "--width": `${props.size}px`,
-  "--height": `${props.size}px`,
-  "--border-width": `${props.width}px`,
+  '--width': `${props.size}px`,
+  '--height': `${props.size}px`,
+  '--border-width': `${props.width}px`,
 }));
 const cssClasses = computed(() => ({
   [`${baseClass}_is-contrasted`]: props.isContrasted,

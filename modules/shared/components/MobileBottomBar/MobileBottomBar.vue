@@ -21,7 +21,7 @@ const mobileBottomBar = useTemplateRef<HTMLDivElement>('mobile-bottom-bar');
 onMounted(() => {
   window.addEventListener('touchstart', (e: TouchEvent) => {
     const [touch] = e.touches;
-    scrollTopByFirstTouch = window.scrollY ;
+    scrollTopByFirstTouch = window.scrollY;
   });
 
   window.addEventListener('scroll', throttleFunc);
@@ -29,8 +29,8 @@ onMounted(() => {
 
 function hideBar(e: Event) {
   if (!mobileBottomBar.value) return;
-  
-  scrollPage.value = document.documentElement.scrollHeight - document.documentElement.clientHeight
+
+  scrollPage.value = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   scrollTop.value = document.documentElement.scrollTop;
   scrollTopPercent.value = Math.ceil(scrollTop.value / (scrollPage.value / 100));
 
@@ -56,11 +56,11 @@ function hideBar(e: Event) {
   left: 0;
   z-index: 100;
   transform: translateY(var(--mobile-nav-bar));
-  transition: 0.30s;
+  transition: 0.3s;
   display: flex;
   flex-direction: column;
   row-gap: 4px;
-  
+
   &__container {
     padding-inline: 8px;
   }

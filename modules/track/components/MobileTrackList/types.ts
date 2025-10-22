@@ -1,4 +1,4 @@
-import type { TrackRO } from "~/api/api.module";
+import type { TrackRO } from '~/api/api.module';
 
 export type MobileTrackListProps = {
   items: TrackRO[];
@@ -8,7 +8,7 @@ export type MobileTrackListProps = {
 };
 
 export type MobileTrackListEmits = {
-  (e: "play-item", item: TrackRO, index: number): void;
+  (e: 'play-item', item: TrackRO, index: number): void;
 };
 
 export type MobileTrackListItemProps = {
@@ -18,5 +18,5 @@ export type MobileTrackListItemProps = {
 };
 
 export type MobileTrackListItemEmits = {
-  (e: "open-item-menu", evt: Event): void;
+  (e: 'open-item-menu', evt: Event): void;
 };

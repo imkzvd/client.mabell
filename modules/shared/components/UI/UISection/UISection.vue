@@ -22,7 +22,7 @@ import type { UISectionProps } from '~/modules/shared/components/UI/UISection/ty
 
 withDefaults(defineProps<UISectionProps>(), {
   withContainer: false,
-})
+});
 </script>
 
 <style scoped lang="scss">

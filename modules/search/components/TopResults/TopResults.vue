@@ -1,11 +1,7 @@
 <template>
   <div class="top-results">
     <template v-for="item of items">
-      <TopResultsArtistItem
-        v-if="item.type === 'artist'"
-        :item="item"
-        class="top-results__item"
-      />
+      <TopResultsArtistItem v-if="item.type === 'artist'" :item="item" class="top-results__item" />
       <TopResultsAlbumItem
         v-else-if="item.type === 'album'"
         :item="item"

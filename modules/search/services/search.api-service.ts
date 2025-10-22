@@ -1,8 +1,6 @@
 import { apiService } from '~/modules/shared/services/api.service';
 import { ApiError } from '~/modules/shared/errors/api-error';
-import type {
-  SearchResultRO,
-} from '@/api/api.module.ts';
+import type { SearchResultRO } from '@/api/api.module.ts';
 
 export class SearchApiService {
   async search(q: string): Promise<SearchResultRO> {

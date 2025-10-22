@@ -2,11 +2,11 @@
   <div class="global-search">
     <UISection with-container>
       <UIInput
+        v-model="modelValue"
         size="lg"
         placeholder="Enter the name of the artist, album, track, playlist"
         class="global-search__input"
         is-clearable
-        v-model="modelValue"
         @update:model-value="onModelValueUpdate"
         @blur="onBlur"
       />
@@ -25,7 +25,7 @@
     </template>
     <template v-else-if="searchResult">
       <UISection v-if="searchResult?.topResults.length" heading="Top  Results" with-container>
-        <TopResults :items="searchResult.topResults.slice(0,108)" />
+        <TopResults :items="searchResult.topResults.slice(0, 108)" />
       </UISection>
 
       <UISection v-if="searchResult?.albums.total" heading="Albums" :content-container="false">
@@ -40,17 +40,22 @@
         <TopResults :items="searchResult.tracks.items" />
       </UISection>
 
-      <UISection v-if="searchResult?.playlists.total" heading="Playlists" :content-container="false">
+      <UISection
+        v-if="searchResult?.playlists.total"
+        heading="Playlists"
+        :content-container="false"
+      >
         <PlaylistSlider :items="searchResult.playlists.items" />
       </UISection>
 
       <UIText
         v-if="
-        !searchResult?.topResults.length &&
-        !searchResult?.albums.total &&
-        !searchResult?.artists.total &&
-        !searchResult?.tracks.total &&
-        !searchResult?.playlists.total"
+          !searchResult?.topResults.length &&
+          !searchResult?.albums.total &&
+          !searchResult?.artists.total &&
+          !searchResult?.tracks.total &&
+          !searchResult?.playlists.total
+        "
         size="16px"
         is-bold
         align="center"

@@ -1,4 +1,4 @@
-import type { TrackRO } from "~/api/api.module";
+import type { TrackRO } from '~/api/api.module';
 
 export type AlbumTrackListProps = {
   items: TrackRO[];
@@ -8,9 +8,9 @@ export type AlbumTrackListProps = {
 };
 
 export type AlbumTrackListEmits = {
-  (e: "play-item", item: TrackRO, index: number): void;
-  (e: "pause-item", item: TrackRO, index: number): void;
-  (e: "add-item", item: TrackRO, index: number): void;
+  (e: 'play-item', item: TrackRO, index: number): void;
+  (e: 'pause-item', item: TrackRO, index: number): void;
+  (e: 'add-item', item: TrackRO, index: number): void;
 };
 
 export type AlbumTrackListItemProps = {
@@ -22,8 +22,8 @@ export type AlbumTrackListItemProps = {
 };
 
 export type AlbumTrackListItemEmits = {
-  (e: "play-item"): void;
-  (e: "pause-item"): void;
-  (e: "add-item"): void;
-  (e: "open-item-menu", evt: Event): void;
+  (e: 'play-item'): void;
+  (e: 'pause-item'): void;
+  (e: 'add-item'): void;
+  (e: 'open-item-menu', evt: Event): void;
 };

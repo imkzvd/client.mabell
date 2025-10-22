@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AlbumSliderProps } from "~/modules/album/components/AlbumSlider/types";
+import type { AlbumSliderProps } from '~/modules/album/components/AlbumSlider/types';
 
 defineProps<AlbumSliderProps>();
 </script>

@@ -40,6 +40,6 @@ function onDblClick(item: TrackRO, index: number) {
 }
 
 function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert(`Open menu for ${item.name} track`)
+  alert(`Open menu for ${item.name} track`);
 }
 </script>

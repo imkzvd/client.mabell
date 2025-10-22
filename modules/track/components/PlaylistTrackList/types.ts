@@ -8,9 +8,9 @@ export type PlaylistTrackListListProps = {
 };
 
 export type PlaylistTrackListListEmits = {
-  (e: "play-item", item: PlaylistTrackRO, index: number): void;
-  (e: "pause-item", item: PlaylistTrackRO, index: number): void;
-  (e: "add-item", item: PlaylistTrackRO, index: number): void;
+  (e: 'play-item', item: PlaylistTrackRO, index: number): void;
+  (e: 'pause-item', item: PlaylistTrackRO, index: number): void;
+  (e: 'add-item', item: PlaylistTrackRO, index: number): void;
 };
 
 export type PlaylistTrackListListItemProps = {
@@ -22,8 +22,8 @@ export type PlaylistTrackListListItemProps = {
 };
 
 export type PlaylistTrackListListItemEmits = {
-  (e: "play-item"): void;
-  (e: "pause-item"): void;
-  (e: "add-item"): void;
-  (e: "open-item-menu", evt: Event): void;
+  (e: 'play-item'): void;
+  (e: 'pause-item'): void;
+  (e: 'add-item'): void;
+  (e: 'open-item-menu', evt: Event): void;
 };

@@ -12,14 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistAvatarProps } from "~/modules/artist/components/ArtistAvatar/types";
+import type { ArtistAvatarProps } from '~/modules/artist/components/ArtistAvatar/types';
 
 const props = defineProps<ArtistAvatarProps>();
 
 const baseClass = 'artist-avatar';
 const rootCssClasses = computed<Record<string, boolean>>(() => ({
   [`${baseClass}_no-cover`]: !props.url,
-}))
+}));
 </script>
 
 <style scoped lang="scss">

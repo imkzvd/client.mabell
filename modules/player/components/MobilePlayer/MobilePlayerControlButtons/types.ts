@@ -4,6 +4,6 @@ export type MobilePlayerControlButtonsProps = {
 };
 
 export type MobilePlayerControlButtonsEmits = {
-  (e: "play"): void;
-  (e: "pause"): void;
+  (e: 'play'): void;
+  (e: 'pause'): void;
 };

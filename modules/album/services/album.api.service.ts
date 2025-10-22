@@ -17,7 +17,7 @@ export class AlbumApiService {
     const { data, ok, error } = await apiService.album.getAlbumTracks(albumId);
 
     if (!ok) {
-      throw new ApiError(error.message,  error.statusCode);
+      throw new ApiError(error.message, error.statusCode);
     }
 
     return data;

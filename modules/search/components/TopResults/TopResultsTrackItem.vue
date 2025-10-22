@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="{ name: 'album-id', params: { id: item.album.id }, query: { tid: item.id }}"
+    :to="{ name: 'album-id', params: { id: item.album.id }, query: { tid: item.id } }"
     class="top-results-track-item"
   >
     <UIImg :url="item.cover" :alt="item.name" class="top-results-track-item__cover" />

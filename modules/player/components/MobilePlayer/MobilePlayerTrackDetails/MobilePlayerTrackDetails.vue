@@ -17,9 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  DesktopPlayerTrackDetailsProps,
-} from '~/modules/player/components/DesktopPlayer/DesktopPlayerTrackDetails/types';
+import type { DesktopPlayerTrackDetailsProps } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTrackDetails/types';
 import type { SimplifiedArtistRO } from '~/api/api.module';
 
 const props = defineProps<DesktopPlayerTrackDetailsProps>();

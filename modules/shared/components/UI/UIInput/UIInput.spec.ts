@@ -124,11 +124,11 @@ describe('UIInput', () => {
     test('it will render clearable button, if it has some value', () => {
       const { getByRole } = renderComponent({
         modelValue: 'some text',
-        isClearable: true
+        isClearable: true,
       });
 
       getByRole<HTMLButtonElement>('button', { name: 'Clear field' });
-    })
+    });
 
     test('it will render password visible button', () => {
       const { getByRole } = renderComponent({
@@ -136,7 +136,7 @@ describe('UIInput', () => {
       });
 
       getByRole<HTMLButtonElement>('button', { name: 'Show password' });
-    })
+    });
   });
 
   describe('Actions:', () => {
@@ -169,7 +169,7 @@ describe('UIInput', () => {
       const fakeTextValue = 'some text';
       const { getByRole } = renderComponent({
         modelValue: fakeTextValue,
-        isClearable: true
+        isClearable: true,
       });
       const user = userEvent.setup();
 
@@ -188,14 +188,16 @@ describe('UIInput', () => {
       const fakePassword = '1234567';
       const { getByRole, getByText } = renderComponent({
         modelValue: fakePassword,
-        type: UIInputTypes.password
+        type: UIInputTypes.password,
       });
       const user = userEvent.setup();
-      const passwordVisibleButton = getByRole<HTMLInputElement>('button', { name: 'Show password' });
+      const passwordVisibleButton = getByRole<HTMLInputElement>('button', {
+        name: 'Show password',
+      });
 
       await user.click(passwordVisibleButton);
 
-      getByRole<HTMLInputElement>('textbox')
+      getByRole<HTMLInputElement>('textbox');
     });
 
     test('it will emit "update:modelValue"', async () => {

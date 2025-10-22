@@ -5,12 +5,12 @@
 </template>
 
 <script setup lang="ts">
-import type { UITextProps } from "~/modules/shared/components/UI/UIText/types";
+import type { UITextProps } from '~/modules/shared/components/UI/UIText/types';
 
 const props = withDefaults(defineProps<UITextProps>(), {
   lineClamp: null,
-  tag: "p",
-  appearance: "primary",
+  tag: 'p',
+  appearance: 'primary',
   size: 'inherit',
 });
 

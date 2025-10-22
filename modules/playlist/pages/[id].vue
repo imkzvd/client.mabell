@@ -39,17 +39,14 @@ const { isMobile, isMobileOrTablet } = useDevice();
 
 const routePlaylistId = route.params.id as string;
 
-const { data: fetchedData, error } = await useAsyncData(
-  `playlist:${routePlaylistId}`,
-  async () => {
-    const [playlist, tracks] = await Promise.all([
-      playlistApiService.getPlaylistById(routePlaylistId),
-      playlistApiService.getPlaylistTracksById(routePlaylistId),
-    ]);
+const { data: fetchedData, error } = await useAsyncData(`playlist:${routePlaylistId}`, async () => {
+  const [playlist, tracks] = await Promise.all([
+    playlistApiService.getPlaylistById(routePlaylistId),
+    playlistApiService.getPlaylistTracksById(routePlaylistId),
+  ]);
 
-    return { playlist, tracks };
-  },
-);
+  return { playlist, tracks };
+});
 
 if (error.value) {
   showError({
@@ -57,7 +54,6 @@ if (error.value) {
     statusMessage: error.value.message,
   });
 }
-
 
 useHead({
   title: fetchedData.value?.playlist.name || 'Playlist',
@@ -83,6 +79,4 @@ function onItemAdd(item: PlaylistTrackRO, index: number) {
 }
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

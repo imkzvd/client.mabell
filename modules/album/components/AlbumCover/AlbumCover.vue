@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AlbumCoverProps } from "~/modules/album/components/AlbumCover/types";
+import type { AlbumCoverProps } from '~/modules/album/components/AlbumCover/types';
 
 const props = defineProps<AlbumCoverProps>();
 

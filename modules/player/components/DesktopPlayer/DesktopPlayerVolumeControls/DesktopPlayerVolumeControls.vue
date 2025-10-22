@@ -16,9 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  DesktopPlayerVolumeControlsEmits,
-} from '~/modules/player/components/DesktopPlayer/DesktopPlayerVolumeControls/types';
+import type { DesktopPlayerVolumeControlsEmits } from '~/modules/player/components/DesktopPlayer/DesktopPlayerVolumeControls/types';
 
 const emit = defineEmits<DesktopPlayerVolumeControlsEmits>();
 const model = defineModel<number>({ default: 100 });

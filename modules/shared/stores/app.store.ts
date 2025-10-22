@@ -1,6 +1,6 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 
-export const useAppStore = defineStore("app", () => {
+export const useAppStore = defineStore('app', () => {
   const isDisabledGlobalScroll = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
   const message = ref<string | null>(null);

@@ -4,7 +4,6 @@ import { render } from '@testing-library/vue';
 import UICheckbox from '~/modules/shared/components/UI/UICheckbox/UICheckbox.vue';
 import type { UICheckboxProps } from '~/modules/shared/components/UI/UICheckbox/types';
 
-
 function renderComponent(props?: Partial<UICheckboxProps>) {
   return render(UICheckbox, {
     props: <UICheckboxProps>{
@@ -45,7 +44,7 @@ describe('UICheckbox', () => {
       const expectedLabel = 'Some Label';
       const { getByRole } = renderComponent({
         id: expectedId,
-        label: expectedLabel
+        label: expectedLabel,
       });
 
       const checkboxEl = getByRole<HTMLInputElement>('checkbox', { name: expectedLabel });

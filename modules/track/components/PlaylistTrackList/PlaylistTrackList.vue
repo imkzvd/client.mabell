@@ -61,7 +61,8 @@ function onItemMenuOpen(e: Event, item: PlaylistTrackRO, index: number) {
 
 <style scoped lang="scss">
 .playlist-track-list {
-  --playlist-track-list-grid-template-columns: 40px minmax(320px, 1fr) minmax(200px, 400px) minmax(100px, 300px) 120px;
+  --playlist-track-list-grid-template-columns: 40px minmax(320px, 1fr) minmax(200px, 400px)
+    minmax(100px, 300px) 120px;
 
   &__header {
     display: grid;

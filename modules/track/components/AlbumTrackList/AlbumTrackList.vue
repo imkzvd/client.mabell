@@ -1,15 +1,11 @@
 <template>
   <div class="album-track-list">
     <div class="album-track-list__header">
-      <div class="album-track-list__header-column album-track-list__header-column_center">
-        #
-      </div>
+      <div class="album-track-list__header-column album-track-list__header-column_center">#</div>
       <div class="album-track-list__header-column">Track</div>
-      <div class="album-track-list__header-column album-track-list__header-column_center">
-        Time
-      </div>
+      <div class="album-track-list__header-column album-track-list__header-column_center">Time</div>
     </div>
-    
+
     <AlbumTrackListItem
       v-for="(item, index) of items"
       :key="item.id"
@@ -32,7 +28,7 @@
 import type {
   AlbumTrackListProps,
   AlbumTrackListEmits,
-} from "~/modules/track/components/AlbumTrackList/types";
+} from '~/modules/track/components/AlbumTrackList/types';
 import AlbumTrackListItem from '~/modules/track/components/AlbumTrackList/AlbumTrackListItem.vue';
 import type { TrackRO } from '~/api/api.module';
 
@@ -52,7 +48,7 @@ function onDblClick(item: TrackRO, index: number) {
 }
 
 function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert(`Open menu for ${item.name} track`)
+  alert(`Open menu for ${item.name} track`);
 }
 </script>
 

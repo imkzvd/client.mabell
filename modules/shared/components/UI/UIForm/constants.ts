@@ -2,9 +2,6 @@ import type { UIFormContext, UIFormItemContext } from '~/modules/shared/componen
 
 export const baseClass: string = 'ui-form';
 
-export const UIFormContextKey: InjectionKey<UIFormContext> =
-  Symbol('UIFormContextKey');
+export const UIFormContextKey: InjectionKey<UIFormContext> = Symbol('UIFormContextKey');
 
-export const UIFormItemContextKey: InjectionKey<UIFormItemContext> = Symbol(
-  'UIFormItemContextKey',
-);
+export const UIFormItemContextKey: InjectionKey<UIFormItemContext> = Symbol('UIFormItemContextKey');

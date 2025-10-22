@@ -8,7 +8,11 @@
     />
 
     <UIIconButton
-      :icon="isPlaying ? 'i-material-symbols-pause-circle-rounded' : 'i-material-symbols-play-circle-rounded'"
+      :icon="
+        isPlaying
+          ? 'i-material-symbols-pause-circle-rounded'
+          : 'i-material-symbols-play-circle-rounded'
+      "
       :is-disabled="isDisabled"
       icon-size="40"
       :aria-label="isPlaying ? 'Pause track' : 'Play track'"
@@ -26,7 +30,8 @@
 
 <script setup lang="ts">
 import type {
-  DesktopPlayerControlButtonsProps, DesktopPlayerControlButtonsEmits,
+  DesktopPlayerControlButtonsProps,
+  DesktopPlayerControlButtonsEmits,
 } from '~/modules/player/components/DesktopPlayer/DesktopPlayerControlButtons/types';
 
 defineProps<DesktopPlayerControlButtonsProps>();

@@ -11,18 +11,17 @@
 </template>
 
 <script setup lang="ts">
-import type { SkeletonTopResultsItem } from '~/modules/search/components/TopResults/types';
 import { computed } from 'vue';
+import type { SkeletonTopResultsItem } from '~/modules/search/components/TopResults/types';
 
 const props = withDefaults(defineProps<SkeletonTopResultsItem>(), {
   withRoundedImage: true,
-})
+});
 
 const rootCSSClass = 'skeleton-top-results-item';
 const imageCSSClasses = computed(() => ({
   [`${rootCSSClass}__image_is-rounded`]: props.withRoundedImage,
 }));
-
 </script>
 
 <style scoped lang="scss">

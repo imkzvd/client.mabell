@@ -4,9 +4,7 @@
       <Logo width="32px" height="32px" class="install-pwa-banner__logo" />
 
       <div class="install-pwa-banner__details">
-        <UIText is-bold class="install-pwa-banner__title">
-          Mabell Application
-        </UIText>
+        <UIText is-bold class="install-pwa-banner__title"> Mabell Application </UIText>
 
         <UIText appearance="secondary" class="install-pwa-banner__subtitle">
           Discover new music every day

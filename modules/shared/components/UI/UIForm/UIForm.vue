@@ -56,13 +56,10 @@ function addValidFormItem(item: UIFormItemContext): void {
 }
 
 async function validate(): Promise<boolean> {
-  const validatedItems = await Promise.all(
-    validFormItems.value.map(({ validate }) => validate()),
-  );
+  const validatedItems = await Promise.all(validFormItems.value.map(({ validate }) => validate()));
 
   return validatedItems.some((isInvalid) => isInvalid);
 }
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

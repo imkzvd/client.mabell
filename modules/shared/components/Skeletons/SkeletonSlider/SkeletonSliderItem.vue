@@ -9,15 +9,15 @@
 <script setup lang="ts">
 import type { SkeletonSliderItemProps } from '~/modules/shared/components/Skeletons/SkeletonSlider/types';
 
-const props =  defineProps<SkeletonSliderItemProps>();
+const props = defineProps<SkeletonSliderItemProps>();
 
 const rootClass = 'skeleton-slider-item';
 const imgCssClasses = computed(() => ({
   [`${rootClass}__img_is-rounded`]: props.isRounded,
-}))
+}));
 const nameCssClasses = computed(() => ({
   [`${rootClass}__name_align_${props.align}`]: props.align,
-}))
+}));
 </script>
 
 <style scoped lang="scss">

@@ -8,5 +8,5 @@ export type UICheckboxProps = {
 };
 
 export type UICheckboxEmits = {
-  (e: "update:modelValue", value: boolean): void;
+  (e: 'update:modelValue', value: boolean): void;
 };

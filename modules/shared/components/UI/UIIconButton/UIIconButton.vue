@@ -1,17 +1,14 @@
 <template>
   <button type="button" :aria-label="ariaLabel" :disabled="isDisabled" :class="rootCssClasses">
-    <NuxtIcon
-      mode="svg"
-      role="img"
-      :name="icon"
-      :size="iconSize"
-      class="ui-icon-button__icon"
-    />
+    <NuxtIcon mode="svg" role="img" :name="icon" :size="iconSize" class="ui-icon-button__icon" />
   </button>
 </template>
 
 <script setup lang="ts">
-import { UIIconButtonAppearances, type UIIconButtonProps } from '~/modules/shared/components/UI/UIIconButton/types';
+import {
+  UIIconButtonAppearances,
+  type UIIconButtonProps,
+} from '~/modules/shared/components/UI/UIIconButton/types';
 import { defaultIconSizeProp } from '~/modules/shared/components/UI/UIIconButton/constants';
 
 const props = withDefaults(defineProps<UIIconButtonProps>(), {
@@ -19,7 +16,7 @@ const props = withDefaults(defineProps<UIIconButtonProps>(), {
   iconSize: defaultIconSizeProp,
 });
 
-const baseClass = "ui-icon-button"
+const baseClass = 'ui-icon-button';
 const rootCssClasses = computed(() => ({
   [baseClass]: true,
   [`${baseClass}_appearance_${props.appearance}`]: props.appearance,

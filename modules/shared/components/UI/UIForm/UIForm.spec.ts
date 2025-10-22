@@ -10,12 +10,7 @@ function renderComponent(props?: Partial<UIFormProps>) {
   return render(UIForm, {
     props: { state: {} },
     slots: {
-      default: () =>
-        h(
-          UIButton,
-          <UIButtonProps>{ type: 'submit' },
-          { default: () => 'Submit' },
-        ),
+      default: () => h(UIButton, <UIButtonProps>{ type: 'submit' }, { default: () => 'Submit' }),
     },
   });
 }
@@ -25,9 +20,9 @@ describe('UIForm', () => {
     test('it will render submit button', () => {
       const { getByRole } = renderComponent();
 
-      getByRole<HTMLButtonElement>('button', { name: 'Submit' } );
-    })
-  })
+      getByRole<HTMLButtonElement>('button', { name: 'Submit' });
+    });
+  });
 
   describe('Actions:', () => {
     test('it will emit "submit", if user click submit', async () => {
@@ -38,7 +33,7 @@ describe('UIForm', () => {
       await user.click(buttonEl);
 
       expect(emitted('submit')).toBeTruthy();
-    })
+    });
 
     test('it will emit "submit", if user press enter', async () => {
       const { getByRole, emitted } = renderComponent();
@@ -49,10 +44,10 @@ describe('UIForm', () => {
       await user.keyboard('[Enter]');
 
       expect(emitted('submit')).toBeTruthy();
-    })
-  })
+    });
+  });
 
-  test("snapshot", () => {
+  test('snapshot', () => {
     const { container } = renderComponent();
 
     expect(container).toMatchSnapshot();

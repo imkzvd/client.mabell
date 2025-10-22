@@ -17,7 +17,7 @@
 import type {
   MobileAlbumTrackListProps,
   MobileAlbumTrackListEmits,
-} from "~/modules/track/components/MobileAlbumTrackList/types";
+} from '~/modules/track/components/MobileAlbumTrackList/types';
 import type { TrackRO } from '~/api/api.module';
 
 const props = defineProps<MobileAlbumTrackListProps>();
@@ -28,6 +28,6 @@ function onClick(item: TrackRO, index: number) {
 }
 
 function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert(`Open menu for ${item.name} track`)
+  alert(`Open menu for ${item.name} track`);
 }
 </script>

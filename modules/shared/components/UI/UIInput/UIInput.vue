@@ -1,12 +1,7 @@
 <template>
   <div class="ui-input">
     <transition v-if="label" name="slide-fade">
-      <label
-        v-show="showLabel"
-        :for="id"
-        :class="cssLabelClasses"
-        aria-hidden="true"
-      >
+      <label v-show="showLabel" :for="id" :class="cssLabelClasses" aria-hidden="true">
         {{ label }}
       </label>
     </transition>
@@ -54,8 +49,16 @@
 </template>
 
 <script setup lang="ts">
-import { UIFormContextKey, UIFormItemContextKey } from '~/modules/shared/components/UI/UIForm/constants';
-import { type UIInputProps, type UIInputEmits, UIInputTypes, UIInputSizes } from '~/modules/shared/components/UI/UIInput/types';
+import {
+  UIFormContextKey,
+  UIFormItemContextKey,
+} from '~/modules/shared/components/UI/UIForm/constants';
+import {
+  type UIInputProps,
+  type UIInputEmits,
+  UIInputTypes,
+  UIInputSizes,
+} from '~/modules/shared/components/UI/UIInput/types';
 
 const UIFormContext = inject(UIFormContextKey);
 const UIFormItemContext = inject(UIFormItemContextKey);

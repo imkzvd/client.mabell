@@ -1,11 +1,10 @@
 <template>
   <div class="skeleton-top-results">
-    <SkeletonTopResultsItem v-for="(item, index) of 10" :with-rounded-image="!!!index"/>
+    <SkeletonTopResultsItem v-for="(item, index) of 10" :with-rounded-image="!!!index" />
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .skeleton-top-results {

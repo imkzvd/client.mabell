@@ -6,13 +6,12 @@ export enum UIInputTypes {
   text = 'text',
 }
 
-
 export type UIInputType = keyof typeof UIInputTypes;
 
 export enum UIInputSizes {
   sm = 'sm',
   md = 'md',
-  lg = 'lg'
+  lg = 'lg',
 }
 
 export type UIInputSize = keyof typeof UIInputSizes;
