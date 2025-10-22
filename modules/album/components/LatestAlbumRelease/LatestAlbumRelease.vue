@@ -2,7 +2,7 @@
   <div class="latest-album-release">
     <NuxtLink
       :aria-label="`Go to ${album.name} album page`"
-      :to="{ name: 'album', params: { id: album.id } }"
+      :to="{ name: 'album-id', params: { id: album.id } }"
       class="latest-album-release__link-container"
     >
       <UIImg :url="album.cover" :alt="album.name" class="latest-album-release__album-cover" />

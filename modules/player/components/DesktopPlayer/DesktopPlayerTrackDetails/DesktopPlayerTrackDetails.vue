@@ -20,7 +20,7 @@
 
         <span>-</span>
 
-        <UILink :to="{ name: 'album', params: { id: track.album.id } }">
+        <UILink :to="{ name: 'album-id', params: { id: track.album.id } }">
           {{ track.album.type.value === 'ALBUM' ? track.album.name : track.album.type.label }}
         </UILink>
       </div>
