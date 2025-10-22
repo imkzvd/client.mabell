@@ -105,7 +105,7 @@ const itemEl = useTemplateRef<HTMLLIElement>('item');
 const [isHoveredItem, toggleHoveredItem] = useToggle();
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
-  ...props.item.album.artists,
+  ...props.item.artists,
   ...props.item.featArtists,
 ]);
 const convertedDuration = computed<string | null>(() => {
