@@ -2,7 +2,7 @@
   <li :aria-label="item.name" class="mobile-track-list-item">
     <div class="mobile-track-list-item__column">
       <div class="mobile-track-list-item__cover-container">
-        <TrackCover
+        <UIImg
           :url="item.album.cover"
           :alt="item.name"
           class="mobile-track-list-item__cover"

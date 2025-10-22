@@ -1,11 +1,7 @@
 <template>
   <header class="mobile-album-header">
     <div class="container">
-      <AlbumCover
-        :url="album.cover"
-        :alt="album.name"
-        class="mobile-album-header__cover"
-      />
+      <UIImg :url="album.cover" :alt="album.name" class="mobile-album-header__cover" />
 
       <div class="mobile-album-header__details">
         <UIHeading :line-clamp="2" class="mobile-album-header__name">
@@ -31,13 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import type { MobileAlbumHeaderProps } from "~/modules/album/components/MobileAlbumHeader/types";
+import type { MobileAlbumHeaderProps } from '~/modules/album/components/MobileAlbumHeader/types';
 
 const props = defineProps<MobileAlbumHeaderProps>();
 
-const albumGenres = computed<string>(() =>
-  props.album.genres.map(({ label }) => label).join("/"),
-);
+const albumGenres = computed<string>(() => props.album.genres.map(({ label }) => label).join('/'));
 const releaseAlbumYear = computed<number | null>(() => {
   if (!props.album.releaseAt) return null;
 
@@ -50,11 +44,7 @@ const releaseAlbumYear = computed<number | null>(() => {
   position: relative;
   padding-block: 16px 32px;
   font-size: 12px;
-  background: linear-gradient(
-      0deg,
-      transparent 0%,
-      var(--album-color, var(--base-bg)) 100%
-  );
+  background: linear-gradient(0deg, transparent 0%, var(--album-color, var(--base-bg)) 100%);
   --album-color: v-bind(props.album.color);
 
   @include respond-to(xs) {
@@ -65,11 +55,7 @@ const releaseAlbumYear = computed<number | null>(() => {
     position: absolute;
     inset: 0;
     content: '';
-    background: linear-gradient(
-        0deg,
-        transparent 0%,
-        var(--album-color, var(--base-bg)) 100%,
-    );
+    background: linear-gradient(0deg, transparent 0%, var(--album-color, var(--base-bg)) 100%);
   }
 
   &__cover {

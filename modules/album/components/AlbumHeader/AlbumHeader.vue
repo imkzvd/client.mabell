@@ -2,7 +2,7 @@
   <header class="album-header">
     <div class="container">
       <div class="album-header__columns">
-        <AlbumCover :url="album.cover" :alt="album.name" class="album-header__cover" />
+        <UIImg :url="album.cover" :alt="album.name" class="album-header__cover" />
 
         <div class="album-header__details">
           <UIHeading :line-clamp="2" class="album-header__name">
@@ -41,9 +41,7 @@ import type { MobileAlbumHeaderProps } from '~/modules/album/components/MobileAl
 
 const props = defineProps<MobileAlbumHeaderProps>();
 
-const albumGenres = computed<string>(() =>
-  props.album.genres.map(({ label }) => label).join("/"),
-);
+const albumGenres = computed<string>(() => props.album.genres.map(({ label }) => label).join('/'));
 const releaseAlbumYear = computed<number | null>(() => {
   if (!props.album.releaseAt) return null;
 
@@ -60,11 +58,7 @@ const releaseAlbumYear = computed<number | null>(() => {
   min-height: 320px;
   padding-block: 16px;
   font-size: 14px;
-  background: linear-gradient(
-      0deg,
-      var(--base-bg) 0%,
-      var(--album-color, var(--base-bg)) 100%
-  );
+  background: linear-gradient(0deg, var(--base-bg) 0%, var(--album-color, var(--base-bg)) 100%);
 
   &__columns {
     display: flex;

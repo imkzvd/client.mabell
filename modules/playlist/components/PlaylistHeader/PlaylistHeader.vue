@@ -2,7 +2,7 @@
   <header class="playlist-header">
     <div class="container">
       <div class="playlist-header__columns">
-        <TrackCover
+        <UIImg
           :url="playlist.cover"
           :alt="playlist.name"
           size="240px"
@@ -47,7 +47,8 @@ const playlistGenres = computed<string>(() =>
   props.playlist.genres.map(({ label }) => label).join('/'),
 );
 const playlistCreatedDate = computed<string>(() =>
-  new Date(props.playlist.createdAt).toLocaleDateString());
+  new Date(props.playlist.createdAt).toLocaleDateString(),
+);
 </script>
 
 <style scoped lang="scss">
@@ -60,11 +61,7 @@ const playlistCreatedDate = computed<string>(() =>
   height: 40vh;
   min-height: 320px;
   padding-block: 16px;
-  background: linear-gradient(
-      0deg,
-      var(--base-bg) 10%,
-      var(--playlist-color, var(--base-bg)) 100%
-  );
+  background: linear-gradient(0deg, var(--base-bg) 10%, var(--playlist-color, var(--base-bg)) 100%);
 
   //&:after {
   //  position: absolute;

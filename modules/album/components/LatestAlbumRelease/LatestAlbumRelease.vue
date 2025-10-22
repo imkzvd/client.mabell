@@ -5,11 +5,7 @@
       :to="{ name: 'album', params: { id: album.id } }"
       class="latest-album-release__link-container"
     >
-      <AlbumCover
-        :url="album.cover"
-        :alt="album.name"
-        class="latest-album-release__album-cover"
-      />
+      <UIImg :url="album.cover" :alt="album.name" class="latest-album-release__album-cover" />
 
       <div class="latest-album-release__details">
         <UIText is-bold class="latest-album-release__name">{{ album.name }}</UIText>
@@ -24,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LatestAlbumReleaseProps } from "~/modules/album/components/LatestAlbumRelease/types";
+import type { LatestAlbumReleaseProps } from '~/modules/album/components/LatestAlbumRelease/types';
 
 const props = defineProps<LatestAlbumReleaseProps>();
 
@@ -32,7 +28,7 @@ const releaseDate = computed<string | null>(() => {
   const { releaseAt } = props.album;
 
   return releaseAt ? new Date(releaseAt).toLocaleDateString() : null;
-})
+});
 </script>
 
 <style scoped lang="scss">

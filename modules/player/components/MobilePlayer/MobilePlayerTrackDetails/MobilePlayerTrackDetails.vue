@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-player-track-details">
-    <TrackCover :url="track.album.cover" :alt="track.name" class="mobile-player-track-details__cover" />
+    <UIImg :url="track.album.cover" :alt="track.name" class="mobile-player-track-details__cover" />
 
     <div class="mobile-player-track-details__lines">
       <div class="mobile-player-track-details__top-line">
