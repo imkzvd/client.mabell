@@ -25,50 +25,50 @@ export interface LabelValueRO {
 export interface ArtistRO {
   /**
    * Id
-   * @example "facc629886ed7207c260bb7d"
+   * @example "4fedf7d00a4f162aeb7e346a"
    */
   id: string;
   /**
    * Name
-   * @example "Colt"
+   * @example "Marietta"
    */
   name: string;
   /**
    * Birth name
-   * @example "Wayne Beier"
+   * @example "Sophie Sawayn"
    */
   birthName: string | null;
   /**
    * Birth date
    * @format date-time
-   * @example "2025-05-30T17:12:24.104Z"
+   * @example "2024-12-24T23:05:49.775Z"
    */
   birthDate: string | null;
   /** Genres */
   genres: LabelValueRO[];
   /**
    * Biography
-   * @example "film lover, designer, film lover"
+   * @example "vol junkie, creator"
    */
   biography: string;
   /**
    * Avatar URL
-   * @example "https://api.mabell.fun/graceful_over.webp"
+   * @example "https://api.mabell.fun/doodle_deflect_now.webp"
    */
   avatar: string | null;
   /**
    * Cover URL
-   * @example "https://api.mabell.fun/till_apropos.webp"
+   * @example "https://api.mabell.fun/bony_irritably_alb.webp"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#eaadcc"
+   * @example "#3d0ead"
    */
   accentColor: string | null;
   /**
    * Secondary color
-   * @example "#ab654e"
+   * @example "#edead7"
    */
   secondaryColor: string | null;
   /**
@@ -81,25 +81,25 @@ export interface ArtistRO {
 export interface SimplifiedAlbumRO {
   /**
    * Id
-   * @example "f2aec7686f6a9da33e0acce1"
+   * @example "71de4d3fca8faf23b63d0afb"
    */
   id: string;
   /**
    * Name
-   * @example "(Sittin' On) the Dock of the Bay"
+   * @example "St Louis Blues"
    */
   name: string;
   /** Type */
   type: LabelValueRO;
   /**
    * Cover
-   * @example "https://picsum.photos/seed/mT4k7J0/2902/2173"
+   * @example "https://picsum.photos/seed/Xg5oZAARS/1011/875"
    */
   cover: string | null;
   /**
    * Release date
    * @format date-time
-   * @example "2025-09-15T02:54:00.213Z"
+   * @example "2024-12-26T01:29:55.741Z"
    */
   releaseAt: string | null;
 }
@@ -132,12 +132,12 @@ export interface SimplifiedAlbumsRO {
 export interface SimplifiedArtistRO {
   /**
    * Id
-   * @example "dffa808c3d709bfead0eebbb"
+   * @example "affd25cfd0ce156df3610bf7"
    */
   id: string;
   /**
    * Name
-   * @example "Mariana"
+   * @example "Dwight"
    */
   name: string;
   /**
@@ -150,12 +150,12 @@ export interface SimplifiedArtistRO {
 export interface TrackRO {
   /**
    * Id
-   * @example "306342caa5b89edf3ae6c2c9"
+   * @example "694f87e5e9cf08a134b84283"
    */
   id: string;
   /**
    * Name
-   * @example "Light My Fire"
+   * @example "Let's Groove"
    */
   name: string;
   /** Album */
@@ -166,12 +166,12 @@ export interface TrackRO {
   featArtists: SimplifiedArtistRO[];
   /**
    * Url
-   * @example "https://alienated-supplier.name/"
+   * @example "https://unsightly-making.org"
    */
   file: string | null;
   /**
    * Cover
-   * @example "https://picsum.photos/seed/4PspNhi9V/3745/1926"
+   * @example "https://picsum.photos/seed/ZWlK4Vop4/2119/1689"
    */
   cover: string | null;
   /** Type */
@@ -199,7 +199,7 @@ export interface TrackRO {
   /**
    * Release date
    * @format date-time
-   * @example "2025-02-06T21:22:40.134Z"
+   * @example "2025-04-01T20:10:35.001Z"
    */
   releaseAt: string | null;
 }
@@ -232,12 +232,12 @@ export interface TracksRO {
 export interface AlbumRO {
   /**
    * Id
-   * @example "d3a7b563e8e9a67bb11b7e6a"
+   * @example "ebf2caa9aee4d66cbf3ffc9e"
    */
   id: string;
   /**
    * Name
-   * @example "Disco Duck"
+   * @example "Don't Fence Me In"
    */
   name: string;
   /** Artists */
@@ -248,25 +248,25 @@ export interface AlbumRO {
   genres: LabelValueRO[];
   /**
    * Cover
-   * @example "https://loremflickr.com/3145/46?lock=7026978709797762"
+   * @example "https://loremflickr.com/2447/1113?lock=1598882796089135"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#dd2cc6"
+   * @example "#adcdcd"
    */
   color: string | null;
   /**
    * Description
-   * @example "Dicta ab sursum reprehenderit charisma territo antea perferendis. Excepturi deleo vinco vetus capto tenax coepi vilicus. Ascisco vetus dicta censura voveo tremo.
-   * Apto paens virtus totus asperiores solium valetudo volutabrum. Illo tristis usus cognatus. Cariosus aer degero via depono tubineus.
-   * Curia depereo aperiam depereo neque. Strues adfero odio tui quia aranea. Versus eligendi spero ceno."
+   * @example "Articulus statim curiositas bellicus audax absorbeo stultus non tempora supellex. Tersus ducimus vulgivagus antiquus aptus vociferor patrocinor iste corona. Utique uredo bellicus tum quibusdam beatus colligo magni velum nihil.
+   * Aggero dedecor caste. Convoco quis totus tenax. Corrumpo angulus cilicium.
+   * Ea tersus vesica ambulo vinculum compono vulgo. Teres tutis verecundia sum tutis dolorem. Tergiversatio defetiscor thorax."
    */
   description: string;
   /**
    * Release date
    * @format date-time
-   * @example "2025-04-28T18:33:46.289Z"
+   * @example "2025-06-13T19:46:28.547Z"
    */
   releaseAt: string | null;
   /**
@@ -279,12 +279,12 @@ export interface AlbumRO {
 export interface SimplifiedUserRO {
   /**
    * Id
-   * @example "6e23ff3b9bd5a580e297c11c"
+   * @example "12d6a8a219bd3ca12b3c0cd5"
    */
   id: string;
   /**
    * Birth name
-   * @example "Coralie"
+   * @example "Olga"
    */
   name: string;
 }
@@ -292,7 +292,7 @@ export interface SimplifiedUserRO {
 export interface PlaylistRO {
   /**
    * Id
-   * @example "efbe1c2c67efe50a845aa847"
+   * @example "deffafcb3cca7cb541d8d7cb"
    */
   id: string;
   /** User id */
@@ -301,38 +301,36 @@ export interface PlaylistRO {
   user: SimplifiedUserRO;
   /**
    * Name
-   * @example "Ol' Man River"
+   * @example "The Girl From Ipanema"
    */
   name: string;
   /** Genres */
   genres: LabelValueRO[];
   /**
    * Cover
-   * @example "https://loremflickr.com/2794/2315?lock=7776835037772279"
+   * @example "https://loremflickr.com/918/737?lock=5964150382963122"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#ef7e64"
+   * @example "#bf79b1"
    */
   color: string | null;
   /**
    * Description
-   * @example "Demens clamo sunt accusator.
-   * Aer conor patrocinor vilicus appello quia timidus vicissitudo vesica valens.
-   * Caput tum degero thorax tepidus benigne cuius alius."
+   * @example "Acerbitas maxime centum temporibus. Alioqui tempora cicuta pauper sustineo summopere."
    */
   description: string;
   /**
    * Created date
    * @format date-time
-   * @example "2025-05-17T06:49:56.693Z"
+   * @example "2025-10-17T07:22:00.943Z"
    */
   createdAt: string;
   /**
    * Updated date
    * @format date-time
-   * @example "2024-12-11T02:51:18.305Z"
+   * @example "2025-10-01T09:45:56.983Z"
    */
   updatedAt: string;
 }
@@ -343,7 +341,7 @@ export interface PlaylistTrackRO {
   /**
    * Added date
    * @format date-time
-   * @example "2025-01-16T13:07:44.235Z"
+   * @example "2025-02-13T19:45:07.067Z"
    */
   addedAt: string;
 }
@@ -401,17 +399,17 @@ export interface PlaylistsRO {
 export interface IndexedArtistRO {
   /**
    * Id
-   * @example "835b0ffe7b8d9d8d1b172fce"
+   * @example "8de2f26e94a5dac9afb9ac29"
    */
   id: string;
   /**
    * Name
-   * @example "Aniyah"
+   * @example "Hayley"
    */
   name: string;
   /**
    * Avatar
-   * @example "https://loremflickr.com/3846/3022?lock=2885019265487631"
+   * @example "https://picsum.photos/seed/hIUmamuQ/3862/1880"
    */
   avatar: string | null;
   /** Type */
@@ -446,12 +444,12 @@ export interface IndexedArtistsRO {
 export interface IndexedSimplifiedArtistRO {
   /**
    * Id
-   * @example "1c448fedb54fbc13ffa44815"
+   * @example "d4d5f22c66a3e5f48397bfce"
    */
   id: string;
   /**
    * Name
-   * @example "Krista"
+   * @example "Eloise"
    */
   name: string;
 }
@@ -459,19 +457,19 @@ export interface IndexedSimplifiedArtistRO {
 export interface IndexedAlbumRO {
   /**
    * Id
-   * @example "ed177a3ca3561ceabc8afdf0"
+   * @example "a837638edb5b269dfe88f62a"
    */
   id: string;
   /**
    * Name
-   * @example "Neal"
+   * @example "Kane"
    */
   name: string;
   /** Artists of the album */
   artists: IndexedSimplifiedArtistRO[];
   /**
    * Cover
-   * @example "https://picsum.photos/seed/UCnCK2/624/3656"
+   * @example "https://loremflickr.com/2297/3181?lock=222460804491004"
    */
   cover: string | null;
   /** Type */
@@ -506,12 +504,12 @@ export interface IndexedAlbumsRO {
 export interface IndexedSimplifiedAlbumRO {
   /**
    * Id
-   * @example "cdd8c65e7b71eb889f90cadc"
+   * @example "4a7ad0f3eefd467ac4081ea1"
    */
   id: string;
   /**
    * Name
-   * @example "Rico"
+   * @example "Trenton"
    */
   name: string;
 }
@@ -519,12 +517,12 @@ export interface IndexedSimplifiedAlbumRO {
 export interface IndexedTrackRO {
   /**
    * Id
-   * @example "6ebbbccb3c6699ab47da13bd"
+   * @example "6cdf07ccae3b4deffb80cd1a"
    */
   id: string;
   /**
    * Name
-   * @example "Jesus"
+   * @example "Alvina"
    */
   name: string;
   /** Artists of the album */
@@ -541,7 +539,7 @@ export interface IndexedTrackRO {
   featArtists: IndexedSimplifiedArtistRO[];
   /**
    * Cover
-   * @example "https://picsum.photos/seed/L4QOtn8/1049/212"
+   * @example "https://loremflickr.com/1542/316?lock=5008552754150219"
    */
   cover: string | null;
   /** Type */
@@ -576,12 +574,12 @@ export interface IndexedTracksRO {
 export interface IndexedSimplifiedUserRO {
   /**
    * Id
-   * @example "b0b3bbf5aac351ff45f63beb"
+   * @example "cc1c260b54ce1beb9482eb9c"
    */
   id: string;
   /**
    * Name
-   * @example "Luther"
+   * @example "Lila"
    */
   name: string;
 }
@@ -589,19 +587,19 @@ export interface IndexedSimplifiedUserRO {
 export interface IndexedPlaylistRO {
   /**
    * Id
-   * @example "ac4a6ae4553d4fed04be34fc"
+   * @example "9ed4ea33eea8a1f5d4220ac6"
    */
   id: string;
   /**
    * Name
-   * @example "Krista"
+   * @example "Freeman"
    */
   name: string;
   /** User */
   user: IndexedSimplifiedUserRO;
   /**
    * Cover
-   * @example "https://loremflickr.com/726/1822?lock=8293863309599724"
+   * @example "https://loremflickr.com/119/851?lock=2090952004105769"
    */
   cover: string | null;
   /** Type */
