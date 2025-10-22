@@ -58,7 +58,7 @@ const props = defineProps<MobileTrackListItemProps>();
 const emit = defineEmits<MobileTrackListItemEmits>();
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
-  ...props.item.album.artists,
+  ...props.item.artists,
   ...props.item.featArtists,
 ]);
 const isCurrentItem = computed<boolean>(() => props.item.id === props.currentItemId);
