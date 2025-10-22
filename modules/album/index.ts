@@ -14,7 +14,7 @@ export default defineNuxtModule({
 
     nuxt.hook('pages:extend', (pages) => {
       pages.push({
-        name: 'album',
+        name: 'album-id',
         path: '/album/:id',
         file: resolve(__dirname, './pages/[id].vue')
       })
