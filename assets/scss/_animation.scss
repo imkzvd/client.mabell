@@ -1,0 +1,11 @@
+@keyframes pulse-bg {
+  0% {
+    background-color: var(--gray-darkest, gray); /* Lighter gray */
+  }
+  50% {
+    background-color: var(--gray-darker, lightgray); /* Even lighter gray */
+  }
+  100% {
+    background-color: var(--gray-darkest, gray);
+  }
+}
