@@ -40,7 +40,7 @@
       <div class="compact-track-list-item__details">
         <div class="compact-track-list-item__details-top-line">
           <UILink
-            :to="{ name: 'album', params: { id: item.album.id } }"
+            :to="{ name: 'album-id', params: { id: item.album.id } }"
             class="compact-track-list-item__name"
           >
             {{ item.name }}
