@@ -15,13 +15,27 @@
       </UISection>
 
       <UISection heading="Popular Artists">
-        <SkeletonSlider v-if="isDataFetching" :total="5" align="center" is-rounded class="search-page__slider" />
-        <ArtistSlider v-else :items="fetchedPopularArtistsResponse?.items" class="search-page__slider" />
+        <SkeletonSlider
+          v-if="isDataFetching"
+          :total="5"
+          align="center"
+          is-rounded
+          class="search-page__slider"
+        />
+        <ArtistSlider
+          v-else
+          :items="fetchedPopularArtistsResponse?.items"
+          class="search-page__slider"
+        />
       </UISection>
 
       <UISection heading="Discover picks for you">
         <SkeletonSlider v-if="isDataFetching" :total="6" class="search-page__slider" />
-        <PlaylistSlider v-else :items="fetchedPopularPlaylistsResponse?.items" class="search-page__slider" />
+        <PlaylistSlider
+          v-else
+          :items="fetchedPopularPlaylistsResponse?.items"
+          class="search-page__slider"
+        />
       </UISection>
     </GlobalSearch>
   </div>
@@ -40,9 +54,18 @@ const fetchedPopularPlaylistsResponse = ref<PlaylistsRO | null>(null);
 
 onMounted(async () => {
   try {
-    fetchedPopularAlbumsResponse.value = await popularApiService.getAlbums(['HH'], { offset: 0, limit: 15 });
-    fetchedPopularArtistsResponse.value = await popularApiService.getArtists(['HH'], { offset: 5, limit: 15 });
-    fetchedPopularPlaylistsResponse.value = await popularApiService.getPlaylists(['HH'], { offset: 5, limit: 15 });
+    fetchedPopularAlbumsResponse.value = await popularApiService.getAlbums(['HH'], {
+      offset: 0,
+      limit: 15,
+    });
+    fetchedPopularArtistsResponse.value = await popularApiService.getArtists(['HH'], {
+      offset: 5,
+      limit: 15,
+    });
+    fetchedPopularPlaylistsResponse.value = await popularApiService.getPlaylists(['HH'], {
+      offset: 5,
+      limit: 15,
+    });
   } catch (e) {
     const { message } = e as ApiError;
 
@@ -63,7 +86,6 @@ onMounted(async () => {
     margin-bottom: 32px;
     line-height: 1;
   }
-
 
   &__slider {
     @extend .container;

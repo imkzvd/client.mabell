@@ -4,15 +4,20 @@
       <div class="ui-checkbox__input-container">
         <input
           :id="id"
+          v-model="model"
           :name="name"
           :disabled="isDisabled"
           type="checkbox"
           class="ui-checkbox__input"
-          v-model="model"
         />
 
         <div class="ui-checkbox__overlay">
-          <NuxtIcon mode="svg" name="i-mdi-check-bold" size="16" class="ui-checkbox__overlay-icon" />
+          <NuxtIcon
+            mode="svg"
+            name="i-mdi-check-bold"
+            size="16"
+            class="ui-checkbox__overlay-icon"
+          />
         </div>
       </div>
     </div>
@@ -30,14 +35,14 @@
 </template>
 
 <script setup lang="ts">
-import type { UICheckboxProps } from "~/modules/shared/components/UI/UICheckbox/types";
+import type { UICheckboxProps } from '~/modules/shared/components/UI/UICheckbox/types';
 
 const props = withDefaults(defineProps<UICheckboxProps>(), {
   id: crypto.randomUUID(),
 });
 
 const baseClass = 'ui-checkbox';
-const model = defineModel<UICheckboxProps["modelValue"]>();
+const model = defineModel<UICheckboxProps['modelValue']>();
 
 const cssClasses = computed(() => ({
   [baseClass]: true,
@@ -89,7 +94,7 @@ const cssClasses = computed(() => ({
       &:hover {
         border-color: var(--ui-checkbox-border-hover-color, #dfdfdf);
       }
-    };
+    }
   }
 
   &__overlay-icon {

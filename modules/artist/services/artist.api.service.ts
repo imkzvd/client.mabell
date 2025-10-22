@@ -13,7 +13,10 @@ export class ArtistApiService {
     return data;
   }
 
-  async getTopTracksById(artistId: string, pagination?: Partial<{ offset: number, limit: number }>): Promise<TracksRO> {
+  async getTopTracksById(
+    artistId: string,
+    pagination?: Partial<{ offset: number; limit: number }>,
+  ): Promise<TracksRO> {
     const { data, ok, error } = await apiService.artists.getArtistTracks(artistId, pagination);
 
     if (!ok) {
@@ -23,10 +26,13 @@ export class ArtistApiService {
     return data;
   }
 
-  async getAlbumsById(artistId: string, pagination?: Partial<{
-    offset: number,
-    limit: number
-  }>): Promise<SimplifiedAlbumsRO> {
+  async getAlbumsById(
+    artistId: string,
+    pagination?: Partial<{
+      offset: number;
+      limit: number;
+    }>,
+  ): Promise<SimplifiedAlbumsRO> {
     const { data, ok, error } = await apiService.artists.getArtistAlbums(artistId, pagination);
 
     if (!ok) {

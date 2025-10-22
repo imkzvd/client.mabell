@@ -5,26 +5,26 @@
 
   /* Серые оттенки */
   --gray-lightest: #f5f5f5; /* Очень светлый серый */
-  --gray-lighter: #e0e0e0;  /* Светлый серый */
-  --gray-light: #b0b0b0;    /* Легкий серый */
-  --gray: #808080;          /* Стандартный серый */
-  --gray-dark: #404040;     /* Темный серый */
-  --gray-darker: #2c2c2c;   /* Очень темный серый */
-  --gray-darkest: #1a1a1a;  /* Почти черный */
+  --gray-lighter: #e0e0e0; /* Светлый серый */
+  --gray-light: #b0b0b0; /* Легкий серый */
+  --gray: #808080; /* Стандартный серый */
+  --gray-dark: #404040; /* Темный серый */
+  --gray-darker: #2c2c2c; /* Очень темный серый */
+  --gray-darkest: #1a1a1a; /* Почти черный */
 
   /* Дополнительные оттенки */
-  --silver: #c0c0c0;        /* Серебристый */
-  --charcoal: #333333;      /* Угольный серый */
-  --stone: #6c6c6c;         /* Каменный серый */
-  --ash: #d8d8d8;           /* Пепельный серый */
-  --pearl: #f0f0f0;         /* Перловый */
+  --silver: #c0c0c0; /* Серебристый */
+  --charcoal: #333333; /* Угольный серый */
+  --stone: #6c6c6c; /* Каменный серый */
+  --ash: #d8d8d8; /* Пепельный серый */
+  --pearl: #f0f0f0; /* Перловый */
 
   /* Белые оттенки */
-  --off-white: #f8f8f8;     /* Молочно-белый */
-  --cream: #fafafa;         /* Кремовый */
-  --ivory: #fffff0;         /* Айвори (слоновая кость) */
-  --snow: #fffafa;          /* Снежный белый */
-  --linen: #faf0e6;         /* Льняной белый */
+  --off-white: #f8f8f8; /* Молочно-белый */
+  --cream: #fafafa; /* Кремовый */
+  --ivory: #fffff0; /* Айвори (слоновая кость) */
+  --snow: #fffafa; /* Снежный белый */
+  --linen: #faf0e6; /* Льняной белый */
 
   // Common:
   --body-bg: #000000;
@@ -58,8 +58,8 @@
   //--player-progress-bar-color: rgb(255 255 255 / 10%);
 
   // Track list
-  --track-list-item-hover: rgba(255,255,255, 0.1);
-  --track-list-item-focus: rgba(255,255,255, 0.15);
+  --track-list-item-hover: rgba(255, 255, 255, 0.1);
+  --track-list-item-focus: rgba(255, 255, 255, 0.15);
 
   // UIHeading
   --ui-heading-color: var(--off-white);

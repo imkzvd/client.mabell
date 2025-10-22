@@ -17,7 +17,7 @@ export class PlaylistApiService {
     const { data, ok, error } = await apiService.playlist.getPlaylistTracks(playlistId);
 
     if (!ok) {
-      throw new ApiError(error.message,  error.statusCode);
+      throw new ApiError(error.message, error.statusCode);
     }
 
     return data;

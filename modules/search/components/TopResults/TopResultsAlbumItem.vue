@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="{ name: 'album-id', params: { id: item.id }}" class="top-results-album-item">
+  <NuxtLink :to="{ name: 'album-id', params: { id: item.id } }" class="top-results-album-item">
     <UIImg :url="item.cover" :alt="item.name" class="top-results-album-item__cover" />
 
     <div class="top-results-album-item__details">

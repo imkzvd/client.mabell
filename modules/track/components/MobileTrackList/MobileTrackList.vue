@@ -16,7 +16,7 @@
 import type {
   MobileTrackListEmits,
   MobileTrackListProps,
-} from "~/modules/track/components/MobileTrackList/types";
+} from '~/modules/track/components/MobileTrackList/types';
 import type { TrackRO } from '~/api/api.module';
 
 defineProps<MobileTrackListProps>();
@@ -27,6 +27,6 @@ function onClick(item: TrackRO, index: number) {
 }
 
 function onTrackMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert('Open track menu.')
+  alert('Open track menu.');
 }
 </script>

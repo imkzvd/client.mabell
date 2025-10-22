@@ -19,21 +19,37 @@
 
 @mixin respond-to($breakpoint) {
   @if $breakpoint == 'xss' {
-    @media (min-width: 320px) { @content; }
+    @media (min-width: 320px) {
+      @content;
+    }
   } @else if $breakpoint == 'xs' {
-    @media (min-width: 375px) { @content; }
+    @media (min-width: 375px) {
+      @content;
+    }
   } @else if $breakpoint == 'sm' {
-    @media (min-width: 640px) { @content; }
+    @media (min-width: 640px) {
+      @content;
+    }
   } @else if $breakpoint == 'md' {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 768px) {
+      @content;
+    }
   } @else if $breakpoint == 'lg' {
-    @media (min-width: 1024px) { @content; }
+    @media (min-width: 1024px) {
+      @content;
+    }
   } @else if $breakpoint == 'xl' {
-    @media (min-width: 1280px) { @content; }
+    @media (min-width: 1280px) {
+      @content;
+    }
   } @else if $breakpoint == '2xl' {
-    @media (min-width: 1536px) { @content; }
+    @media (min-width: 1536px) {
+      @content;
+    }
   } @else if type-of($breakpoint) == 'number' {
-    @media (min-width: $breakpoint + 'px') { @content; }
+    @media (min-width: $breakpoint + 'px') {
+      @content;
+    }
   }
 }
 

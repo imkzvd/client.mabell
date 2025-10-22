@@ -6,27 +6,9 @@
     viewBox="0 0 24 24"
     :class="rootCssClasses"
   >
-    <rect
-      class="eq-bar eq-bar--1"
-      x="4"
-      y="4"
-      width="3.7"
-      :height="isPlaying ? '8' : '4'"
-    />
-    <rect
-      class="eq-bar eq-bar--2"
-      x="10.2"
-      y="4"
-      width="3.7"
-      :height="isPlaying ? '16' : '4'"
-    />
-    <rect
-      class="eq-bar eq-bar--3"
-      x="16.3"
-      y="4"
-      width="3.7"
-      :height="isPlaying ? '11' : '4'"
-    />
+    <rect class="eq-bar eq-bar--1" x="4" y="4" width="3.7" :height="isPlaying ? '8' : '4'" />
+    <rect class="eq-bar eq-bar--2" x="10.2" y="4" width="3.7" :height="isPlaying ? '16' : '4'" />
+    <rect class="eq-bar eq-bar--3" x="16.3" y="4" width="3.7" :height="isPlaying ? '11' : '4'" />
   </svg>
 </template>
 

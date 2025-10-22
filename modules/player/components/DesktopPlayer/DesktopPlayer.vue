@@ -48,7 +48,10 @@ import {
   DesktopPlayerTimerModes,
 } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTimer/types';
 
-const timeModeFromLS = useLocalStorage<DesktopPlayerTimerMode>('player-timer-mode', DesktopPlayerTimerModes.full)
+const timeModeFromLS = useLocalStorage<DesktopPlayerTimerMode>(
+  'player-timer-mode',
+  DesktopPlayerTimerModes.full,
+);
 
 const {
   items: playlist,
@@ -63,7 +66,7 @@ const {
   addNextTrack,
   setCurrentTime,
   prevTrack,
-  nextTrack
+  nextTrack,
 } = useAudio();
 
 defineExpose<PlayerAPI>({

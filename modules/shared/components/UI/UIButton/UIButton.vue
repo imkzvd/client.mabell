@@ -65,7 +65,7 @@ $base-class: ui-button;
       @include respond-to(xl) {
         &:not(.#{$base-class}_loading, :disabled) {
           &:hover {
-            background-color: var(--ui-button-hover-bg-color, #F4F4F4FF);
+            background-color: var(--ui-button-hover-bg-color, #f4f4f4ff);
           }
         }
       }
@@ -78,7 +78,7 @@ $base-class: ui-button;
       @include respond-to(xl) {
         &:not(.#{$base-class}_loading, :disabled) {
           &:hover {
-            background-color: var(--ui-button-secondary-hover-bg-color, #F4F4F4FF);
+            background-color: var(--ui-button-secondary-hover-bg-color, #f4f4f4ff);
           }
         }
       }

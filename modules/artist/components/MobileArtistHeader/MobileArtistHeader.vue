@@ -20,15 +20,13 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  MobileArtistHeaderProps,
-} from "~/modules/artist/components/MobileArtistHeader/types";
+import type { MobileArtistHeaderProps } from '~/modules/artist/components/MobileArtistHeader/types';
 
 const props = defineProps<MobileArtistHeaderProps>();
 
 const artistAvatarURL = computed<string | null>(() => {
   return props.artist.avatar ? `url(${props.artist.avatar})` : null;
-})
+});
 
 function onOptionsButtonClick() {
   alert('Open menu.');
@@ -54,7 +52,7 @@ function onOptionsButtonClick() {
     position: absolute;
     inset: 0;
     box-shadow: inset 0px -90px 60px -10px var(--base-bg);
-    content: "";
+    content: '';
   }
 
   &__details {

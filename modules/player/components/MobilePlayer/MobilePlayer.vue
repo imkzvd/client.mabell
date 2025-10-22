@@ -21,16 +21,8 @@
 import { useAudio } from '~/modules/player/composables/useAudio';
 import type { PlayerAPI } from '~/modules/player/types';
 
-const {
-  items,
-  currentItem,
-  play,
-  pause,
-  addTrack,
-  addTracks,
-  addNextTrack,
-  isPlaying,
-} = useAudio();
+const { items, currentItem, play, pause, addTrack, addTracks, addNextTrack, isPlaying } =
+  useAudio();
 
 defineExpose<PlayerAPI>({
   playlist: items,
@@ -63,7 +55,7 @@ defineExpose<PlayerAPI>({
   &:after {
     position: absolute;
     inset: 0;
-    content: "";
+    content: '';
     background-color: var(--black, #000000);
     opacity: 0.5;
   }

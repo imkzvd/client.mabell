@@ -1,7 +1,10 @@
 <template>
   <div class="desktop-player-timer" @click="onClick">
     <span
-      v-if="currentMode === DesktopPlayerTimerModes.elapsed || currentMode === DesktopPlayerTimerModes.full"
+      v-if="
+        currentMode === DesktopPlayerTimerModes.elapsed ||
+        currentMode === DesktopPlayerTimerModes.full
+      "
       class="desktop-player-timer__elapsed-time"
     >
       {{ elapsedTime }}
@@ -26,7 +29,10 @@ import {
   PlayerTrackTimerModes,
 } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTimer/constants';
 import {
-  type DesktopPlayerTimerEmits, type DesktopPlayerTimerMode, DesktopPlayerTimerModes, type DesktopPlayerTimerProps,
+  type DesktopPlayerTimerEmits,
+  type DesktopPlayerTimerMode,
+  DesktopPlayerTimerModes,
+  type DesktopPlayerTimerProps,
 } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTimer/types';
 
 const props = withDefaults(defineProps<DesktopPlayerTimerProps>(), {
@@ -39,20 +45,14 @@ const currentMode = computed<DesktopPlayerTimerMode>(
   () => PlayerTrackTimerModes[currentModeIndex.value],
 );
 const { unix } = useDayjs();
-const elapsedTime = computed(() =>
-  unix(props.value).format(defaultDesktopPlayerTimerFormat),
-);
+const elapsedTime = computed(() => unix(props.value).format(defaultDesktopPlayerTimerFormat));
 const remainingTime = computed(() =>
   unix(props.duration - props.value).format(defaultDesktopPlayerTimerFormat),
 );
-const duration = computed(() =>
-  unix(props.duration).format(defaultDesktopPlayerTimerFormat),
-);
+const duration = computed(() => unix(props.duration).format(defaultDesktopPlayerTimerFormat));
 
 onMounted(() => {
-  currentModeIndex.value = PlayerTrackTimerModes.indexOf(
-    DesktopPlayerTimerModes[props.mode],
-  );
+  currentModeIndex.value = PlayerTrackTimerModes.indexOf(DesktopPlayerTimerModes[props.mode]);
 });
 
 function onClick() {

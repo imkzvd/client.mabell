@@ -4,7 +4,12 @@
     :to="{ name: 'album-id', params: { id: item.id } }"
     class="album-slider-item"
   >
-    <UIImg :url="item.cover" :alt="item.name" fallback-icon="i-ph-music-notes-simple-bold" class="album-slider-item__cover" />
+    <UIImg
+      :url="item.cover"
+      :alt="item.name"
+      fallback-icon="i-ph-music-notes-simple-bold"
+      class="album-slider-item__cover"
+    />
 
     <div class="album-slider-item__details">
       <UIText :line-clamp="1" class="album-slider-item__name">

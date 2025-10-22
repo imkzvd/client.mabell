@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SimilarArtistSliderProps } from "~/modules/artist/components/SimilarArtistSlider/types";
+import type { SimilarArtistSliderProps } from '~/modules/artist/components/SimilarArtistSlider/types';
 
 defineProps<SimilarArtistSliderProps>();
 </script>

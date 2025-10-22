@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<UILinkProps>(), {
   lineClamp: null,
 });
 
-const baseClass: string = "ui-link";
+const baseClass: string = 'ui-link';
 const cssClasses = computed(() => ({
   [baseClass]: true,
   [`${baseClass}_underline`]: props.underline,

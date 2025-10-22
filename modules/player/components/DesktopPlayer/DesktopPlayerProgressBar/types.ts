@@ -4,6 +4,6 @@ export type DesktopPlayerProgressBarProps = {
 };
 
 export type DesktopPlayerProgressBarEmits = {
-  (e: "update:modelValue", value: number): void;
-  (e: "change", value: number): void;
+  (e: 'update:modelValue', value: number): void;
+  (e: 'change', value: number): void;
 };

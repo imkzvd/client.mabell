@@ -22,17 +22,11 @@ export function useAudio() {
     nextTrack();
   });
 
-  const currentItemId = computed(() =>
-    items.value[currentItemIndex.value],
-  );
+  const currentItemId = computed(() => items.value[currentItemIndex.value]);
   const currentItem = computed<TrackRO>(() => items.value[currentItemIndex.value]);
   // const nextItem = computed(() => nextTrack);
-  const isFirstTrack = computed<boolean>(
-    () => currentItemIndex.value === 0,
-  );
-  const isLastTrack = computed<boolean>(
-    () => currentItemIndex.value === items.value.length - 1,
-  );
+  const isFirstTrack = computed<boolean>(() => currentItemIndex.value === 0);
+  const isLastTrack = computed<boolean>(() => currentItemIndex.value === items.value.length - 1);
 
   watch(currentItem, (value: TrackRO | null) => {
     if (!value?.file) {
@@ -44,12 +38,16 @@ export function useAudio() {
     audio.src = value.file;
   });
 
-  watch(volume, (value: number) => {
-    audio.volume = value / 100;
-    volumeFromLS.value = value;
-  }, {
-    immediate: true,
-  })
+  watch(
+    volume,
+    (value: number) => {
+      audio.volume = value / 100;
+      volumeFromLS.value = value;
+    },
+    {
+      immediate: true,
+    },
+  );
 
   audio.addEventListener('timeupdate', (e) => {
     const { currentTime: audioCurrentTime } = e.target as HTMLAudioElement;

@@ -42,10 +42,7 @@
           {{ item.name }}
         </UIText>
 
-        <div
-          v-if="item.featArtists.length"
-          class="album-track-list-item__featured-artist-links"
-        >
+        <div v-if="item.featArtists.length" class="album-track-list-item__featured-artist-links">
           <span>(feat. </span>
           <ArtistLinks :items="item.featArtists" hover-underline />
           <span>)</span>
@@ -104,7 +101,7 @@ const [isHoveredItem, toggleHoveredItem] = useToggle();
 const baseClass = 'album-track-list-item';
 const rootCssClasses = computed(() => ({
   [`${baseClass}_is-disabled`]: !props.item.isActive,
-}))
+}));
 const isSelectedItem = computed<boolean>(() => props.item.id === props.selectedItemId);
 const isCurrentItem = computed<boolean>(() => props.item.id === props.currentItemId);
 const isPlayingItem = computed<boolean>(

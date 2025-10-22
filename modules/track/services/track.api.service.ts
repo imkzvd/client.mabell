@@ -2,7 +2,10 @@ import { apiService } from '~/modules/shared/services/api.service';
 import type { TracksRO } from '~/api/api.module';
 
 export class TrackApiService {
-  async getTopTracksByArtistId(id: string, pagination: Partial<{ offset: number, limit: number }>): Promise<TracksRO> {
+  async getTopTracksByArtistId(
+    id: string,
+    pagination: Partial<{ offset: number; limit: number }>,
+  ): Promise<TracksRO> {
     const { data, ok, error } = await apiService.artists.getArtistTracks(id, pagination);
 
     if (!ok) {
@@ -12,7 +15,10 @@ export class TrackApiService {
     return data;
   }
 
-  async getArtistTracksByArtistId(id: string, pagination: Partial<{ offset: number, limit: number }>): Promise<TracksRO> {
+  async getArtistTracksByArtistId(
+    id: string,
+    pagination: Partial<{ offset: number; limit: number }>,
+  ): Promise<TracksRO> {
     const { data, ok, error } = await apiService.artists.getArtistTracks(id, pagination);
 
     if (!ok) {

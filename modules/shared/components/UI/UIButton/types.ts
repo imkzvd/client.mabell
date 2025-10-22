@@ -8,7 +8,7 @@ export type UIButtonType = keyof typeof UIButtonTypes;
 export enum UIButtonSizes {
   sm = 'sm',
   md = 'md',
-  lg = 'lg'
+  lg = 'lg',
 }
 
 export type UIButtonSize = keyof typeof UIButtonSizes;

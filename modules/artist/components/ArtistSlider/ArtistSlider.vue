@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistSliderProps } from "~/modules/artist/components/ArtistSlider/types";
+import type { ArtistSliderProps } from '~/modules/artist/components/ArtistSlider/types';
 
-defineProps<ArtistSliderProps>()
+defineProps<ArtistSliderProps>();
 </script>
 
 <style scoped lang="scss">

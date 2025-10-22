@@ -3,7 +3,7 @@ import type { UILinkProps } from '~/modules/shared/components/UI/UILink/types';
 
 export enum ArtistLinksSeparators {
   comma = 'comma',
-  dot = 'dot'
+  dot = 'dot',
 }
 
 export type ArtistLinksSeparator = keyof typeof ArtistLinksSeparators;

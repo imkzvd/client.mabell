@@ -2,25 +2,45 @@
   <div ref="mobile-nav-menu" class="mobile-nav-menu">
     <ul class="mobile-nav-menu__list">
       <li class="mobile-nav-menu__list-item">
-        <NuxtIcon mode="svg" size="24" name="i-ph-house-fill" class="mobile-nav-menu__list-item-icon" />
+        <NuxtIcon
+          mode="svg"
+          size="24"
+          name="i-ph-house-fill"
+          class="mobile-nav-menu__list-item-icon"
+        />
 
         <span>Home</span>
       </li>
 
       <li class="mobile-nav-menu__list-item">
-        <NuxtIcon mode="svg" size="24" name="i-ph-magnifying-glass-fill" class="mobile-nav-menu__list-item-icon" />
+        <NuxtIcon
+          mode="svg"
+          size="24"
+          name="i-ph-magnifying-glass-fill"
+          class="mobile-nav-menu__list-item-icon"
+        />
 
         <span>Search</span>
       </li>
 
       <li class="mobile-nav-menu__list-item">
-        <NuxtIcon mode="svg" size="24" name="i-ph-music-note-fill" class="mobile-nav-menu__list-item-icon" />
+        <NuxtIcon
+          mode="svg"
+          size="24"
+          name="i-ph-music-note-fill"
+          class="mobile-nav-menu__list-item-icon"
+        />
 
         <span>Library</span>
       </li>
 
       <li class="mobile-nav-menu__list-item">
-        <NuxtIcon mode="svg" size="24" name="i-ph-sign-in-bold" class="mobile-nav-menu__list-item-icon" />
+        <NuxtIcon
+          mode="svg"
+          size="24"
+          name="i-ph-sign-in-bold"
+          class="mobile-nav-menu__list-item-icon"
+        />
 
         <span>Sign In</span>
       </li>
@@ -28,8 +48,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .mobile-nav-menu {
@@ -44,7 +63,6 @@
   position: relative;
   background-color: #121212;
   box-shadow: 0 0 20px 4px var(--black);
-
 
   &__list {
     display: flex;

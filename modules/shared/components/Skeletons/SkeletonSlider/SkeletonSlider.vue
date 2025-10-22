@@ -1,6 +1,6 @@
 <template>
   <div class="skeleton-slider">
-    <SkeletonSliderItem v-for="item of total" :align="align" :is-rounded="isRounded"/>
+    <SkeletonSliderItem v-for="item of total" :align="align" :is-rounded="isRounded" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import type { SkeletonSliderProps } from '~/modules/shared/components/Skeletons/
 withDefaults(defineProps<SkeletonSliderProps>(), {
   total: 5,
   align: UIAlignments.left,
-})
+});
 </script>
 
 <style scoped lang="scss">

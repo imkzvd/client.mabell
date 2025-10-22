@@ -1,7 +1,8 @@
 <template>
   <div class="artist-links">
     <UILink
-      v-for="(item, index) of items" :key="item.id"
+      v-for="(item, index) of items"
+      :key="item.id"
       :to="{ name: 'artist-id', params: { id: item.id } }"
       appearance="secondary"
       :hover-underline="hoverUnderline"
@@ -15,7 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { type ArtistLinksProps, ArtistLinksSeparators } from '~/modules/artist/components/ArtistLinks/types';
+import {
+  type ArtistLinksProps,
+  ArtistLinksSeparators,
+} from '~/modules/artist/components/ArtistLinks/types';
 
 const props = withDefaults(defineProps<ArtistLinksProps>(), {
   separator: ArtistLinksSeparators.comma,

@@ -1,4 +1,4 @@
-import type { PlaylistRO } from "~/api/api.module";
+import type { PlaylistRO } from '~/api/api.module';
 
 export type PlaylistSliderProps = {
   items: PlaylistRO[];

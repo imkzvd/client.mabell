@@ -47,7 +47,7 @@
 import type {
   MobileAlbumTrackListItemProps,
   MobileAlbumTrackListItemEmits,
-} from "~/modules/track/components/MobileAlbumTrackList/types";
+} from '~/modules/track/components/MobileAlbumTrackList/types';
 
 const props = defineProps<MobileAlbumTrackListItemProps>();
 const emit = defineEmits<MobileAlbumTrackListItemEmits>();

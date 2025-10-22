@@ -8,10 +8,7 @@
     <section class="artist-page__section">
       <div class="container">
         <div class="artist-page__featured-content">
-          <section
-            v-if="fetchedData?.tracks.items.length"
-            class="section artist-page__top-tracks"
-          >
+          <section v-if="fetchedData?.tracks.items.length" class="section artist-page__top-tracks">
             <UIHeading level="2">Top Tracks</UIHeading>
 
             <MobileTrackList
@@ -40,7 +37,10 @@
             </UILink>
           </section>
 
-          <section v-if="fetchedData?.latestAlbum" class="section artist-page__latest-release-section">
+          <section
+            v-if="fetchedData?.latestAlbum"
+            class="section artist-page__latest-release-section"
+          >
             <UIHeading level="2">Latest Release</UIHeading>
 
             <LatestAlbumRelease :album="fetchedData?.latestAlbum" />
@@ -62,7 +62,10 @@
         <UIHeading level="2" class="section__heading">Similar Artists</UIHeading>
       </div>
 
-      <SimilarArtistSlider :items="fetchedData?.similarArtists" class="artist-page__similar-artists" />
+      <SimilarArtistSlider
+        :items="fetchedData?.similarArtists"
+        class="artist-page__similar-artists"
+      />
     </section>
   </div>
 </template>
@@ -81,13 +84,7 @@ const artistIdRouteParam = route.params.id as string;
 const { data: fetchedData, error } = await useAsyncData(
   `artist:${artistIdRouteParam}`,
   async () => {
-    const [
-      artist,
-      tracks,
-      latestAlbum,
-      albums,
-      similarArtists,
-    ] = await Promise.all([
+    const [artist, tracks, latestAlbum, albums, similarArtists] = await Promise.all([
       artistApiService.getArtistById(artistIdRouteParam),
       artistApiService.getTopTracksById(artistIdRouteParam, { limit: 5 }),
       artistApiService.getLatestAlbumById(artistIdRouteParam),

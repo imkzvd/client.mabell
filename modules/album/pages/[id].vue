@@ -1,7 +1,7 @@
 <template>
   <div class="album-page">
     <template v-if="fetchedData?.album">
-      <MobileAlbumHeader v-if="isMobile" :album="fetchedData?.album"/>
+      <MobileAlbumHeader v-if="isMobile" :album="fetchedData?.album" />
       <AlbumHeader v-else :album="fetchedData?.album" />
     </template>
 
@@ -28,9 +28,7 @@
 
     <div class="album-page__footer">
       <div class="container">
-        <UIText appearance="secondary">
-          {{ fetchedData?.tracks.total }} tracks
-        </UIText>
+        <UIText appearance="secondary"> {{ fetchedData?.tracks.total }} tracks </UIText>
       </div>
     </div>
   </div>
@@ -49,17 +47,14 @@ const { isMobile } = useDevice();
 
 const routeAlbumId = route.params.id as string;
 
-const { data: fetchedData, error } = await useAsyncData(
-  `album:${routeAlbumId}`,
-  async () => {
-    const [album, tracks] = await Promise.all([
-      albumApiService.getAlbumById(routeAlbumId),
-      albumApiService.getAlbumTracksById(routeAlbumId),
-    ]);
+const { data: fetchedData, error } = await useAsyncData(`album:${routeAlbumId}`, async () => {
+  const [album, tracks] = await Promise.all([
+    albumApiService.getAlbumById(routeAlbumId),
+    albumApiService.getAlbumTracksById(routeAlbumId),
+  ]);
 
-    return { album, tracks };
-  },
-);
+  return { album, tracks };
+});
 
 if (error.value) {
   showError({

@@ -99,13 +99,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import { convertSecondsToMinute } from '~/modules/shared/utils/convert-seconds-to-minute.util';
 import type {
   PlaylistTrackListListItemEmits,
   PlaylistTrackListListItemProps,
 } from '~/modules/track/components/PlaylistTrackList/types';
 import type { ArtistRO, SimplifiedArtistRO } from '~/api/api.module';
-import { computed } from 'vue';
 
 const props = defineProps<PlaylistTrackListListItemProps>();
 const emit = defineEmits<PlaylistTrackListListItemEmits>();
@@ -115,23 +115,17 @@ const [isHoveredItem, toggleHoveredItem] = useToggle();
 const baseClass = 'playlist-track-list-item';
 const rootCssClasses = computed(() => ({
   [`${baseClass}_disabled`]: !props.item.track.isActive,
-}))
-const allTrackArtists = computed<(ArtistRO | SimplifiedArtistRO)[]>(
-  () => [
-    ...props.item.track?.artists,
-    ...props.item.track?.featArtists,
-  ],
-);
-const addedDate = computed<string>(() =>
-  new Date(props.item.addedAt).toLocaleDateString(),
-);
+}));
+const allTrackArtists = computed<(ArtistRO | SimplifiedArtistRO)[]>(() => [
+  ...props.item.track?.artists,
+  ...props.item.track?.featArtists,
+]);
+const addedDate = computed<string>(() => new Date(props.item.addedAt).toLocaleDateString());
 const isCurrentItem = computed<boolean>(() => props.item.track.id === props.currentItemId);
 const isPlayingItem = computed<boolean>(
   () => props.item.track.id === props.currentItemId && props.isPlaying,
 );
-const isSelectedItem = computed<boolean>(
-  () => props.selectedItemId === props.item.track.id,
-);
+const isSelectedItem = computed<boolean>(() => props.selectedItemId === props.item.track.id);
 </script>
 
 <style scoped lang="scss">

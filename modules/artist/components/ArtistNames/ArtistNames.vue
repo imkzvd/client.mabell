@@ -1,13 +1,21 @@
 <template>
   <UIText class="artist-names" appearance="secondary" :line-clamp="lineClamp">
-    <span v-for="(item, index) of allArtistNames" :key="index" class="artist-names__item" :class="itemCssClass">
+    <span
+      v-for="(item, index) of allArtistNames"
+      :key="index"
+      class="artist-names__item"
+      :class="itemCssClass"
+    >
       {{ item }}
     </span>
   </UIText>
 </template>
 
 <script setup lang="ts">
-import { type ArtistNamesProps, ArtistNamesSeparators } from '~/modules/artist/components/ArtistNames/types';
+import {
+  type ArtistNamesProps,
+  ArtistNamesSeparators,
+} from '~/modules/artist/components/ArtistNames/types';
 
 const props = withDefaults(defineProps<ArtistNamesProps>(), {
   separator: ArtistNamesSeparators.comma,

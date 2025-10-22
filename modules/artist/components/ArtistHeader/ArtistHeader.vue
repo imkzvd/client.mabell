@@ -59,7 +59,7 @@ function onOptionsButtonClick() {
     position: absolute;
     inset: 0;
     z-index: -10;
-    content: "";
+    content: '';
     background: linear-gradient(0deg, var(--base-bg) 0%, transparent 80%);
   }
 

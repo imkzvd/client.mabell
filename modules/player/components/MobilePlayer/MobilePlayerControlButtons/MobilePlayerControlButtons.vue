@@ -1,7 +1,9 @@
 <template>
   <div class="mobile-player-control-buttons">
     <UIIconButton
-      :icon="isPlaying ? 'i-material-symbols-pause-rounded' : 'i-material-symbols-play-arrow-rounded'"
+      :icon="
+        isPlaying ? 'i-material-symbols-pause-rounded' : 'i-material-symbols-play-arrow-rounded'
+      "
       :is-disabled="isDisabled"
       icon-size="28px"
       :aria-label="isPlaying ? 'Pause track' : 'Play track'"
@@ -13,7 +15,8 @@
 
 <script setup lang="ts">
 import type {
-  MobilePlayerControlButtonsEmits, MobilePlayerControlButtonsProps,
+  MobilePlayerControlButtonsEmits,
+  MobilePlayerControlButtonsProps,
 } from '~/modules/player/components/MobilePlayer/MobilePlayerControlButtons/types';
 
 defineProps<MobilePlayerControlButtonsProps>();

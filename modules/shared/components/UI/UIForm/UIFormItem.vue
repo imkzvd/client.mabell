@@ -14,9 +14,16 @@
 
 <script setup lang="ts">
 import AsyncValidator from 'async-validator';
-import { baseClass, UIFormContextKey, UIFormItemContextKey } from '~/modules/shared/components/UI/UIForm/constants';
 import type { ValidateError, Rule } from 'async-validator';
-import type { UIFormItemContext, UIFormItemProps } from '~/modules/shared/components/UI/UIForm/types';
+import {
+  baseClass,
+  UIFormContextKey,
+  UIFormItemContextKey,
+} from '~/modules/shared/components/UI/UIForm/constants';
+import type {
+  UIFormItemContext,
+  UIFormItemProps,
+} from '~/modules/shared/components/UI/UIForm/types';
 
 const UIFormContext = inject(UIFormContextKey);
 
@@ -31,13 +38,11 @@ const context: UIFormItemContext = reactive({
 
 provide<UIFormItemContext>(UIFormItemContextKey, context);
 
-const validRules = computed<Rule | null>(
-  () => UIFormContext?.rules?.[props.name] || null,
-);
+const validRules = computed<Rule | null>(() => UIFormContext?.rules?.[props.name] || null);
 const validator: AsyncValidator | null = validRules.value
   ? new AsyncValidator({
-    [props.name]: validRules.value,
-  })
+      [props.name]: validRules.value,
+    })
   : null;
 const errorMessage = ref<string>('');
 

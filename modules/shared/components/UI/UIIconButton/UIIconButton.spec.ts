@@ -10,7 +10,7 @@ function renderComponent(props?: Partial<UIIconButtonProps>) {
   return render(UIIconButton, {
     props: <UIIconButtonProps>{
       icon: fakeIconName,
-      ...props
+      ...props,
     },
   });
 }
@@ -21,32 +21,32 @@ describe('UIIconButton', () => {
       const { getByRole } = renderComponent();
 
       getByRole<HTMLButtonElement>('button');
-    })
+    });
 
     test('it will render the icon', () => {
       const { getByTestId } = renderComponent();
 
       getByTestId(fakeIconName);
-    })
-  })
+    });
+  });
 
   describe('Reactive:', () => {
     test('it will render the disabled button', () => {
-      const { getByRole } = renderComponent({ isDisabled: true })
+      const { getByRole } = renderComponent({ isDisabled: true });
       const buttonEl = getByRole<HTMLButtonElement>('button');
 
       expect(buttonEl.disabled).toBeTruthy();
-    })
+    });
 
     test('it will render the button with aria-label', () => {
       const fakeAriaLabel = 'Search';
       const { getByRole } = renderComponent({
-        ariaLabel: fakeAriaLabel
+        ariaLabel: fakeAriaLabel,
       });
 
-      getByRole<HTMLButtonElement>('button', { name: fakeAriaLabel })
-    })
-  })
+      getByRole<HTMLButtonElement>('button', { name: fakeAriaLabel });
+    });
+  });
 
   describe('Actions:', () => {
     test('it will emit "click"', async () => {
@@ -57,7 +57,7 @@ describe('UIIconButton', () => {
       await user.click(buttonEl);
 
       expect(emitted('click')).toBeTruthy();
-    })
+    });
 
     test('it will not emit "click", if it has disabled state', async () => {
       const { getByRole, emitted } = renderComponent({ isDisabled: true });
@@ -67,8 +67,8 @@ describe('UIIconButton', () => {
       await user.click(buttonEl);
 
       expect(emitted('click')).toBeFalsy();
-    })
-  })
+    });
+  });
 
   test('snapshot', () => {
     const { container } = renderComponent();

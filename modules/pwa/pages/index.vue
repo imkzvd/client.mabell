@@ -6,13 +6,13 @@
 
     <UISection with-container>
       <dl class="pwa-page__instruction-list">
-        <dt class="pwa-page__instruction-list-term">
-          1. Tap the Share Icon
-        </dt>
+        <dt class="pwa-page__instruction-list-term">1. Tap the Share Icon</dt>
 
         <dd class="pwa-page__instruction-list-definition">
           <UIText size="14px" appearance="secondary" class="pwa-page__item-description">
-            Tap the Share icon <NuxtIcon name="i-material-symbols-light-ios-share" size="16" /> located at the bottom of the screen (the square with an upward arrow).
+            Tap the Share icon
+            <NuxtIcon name="i-material-symbols-light-ios-share" size="16" /> located at the bottom
+            of the screen (the square with an upward arrow).
           </UIText>
 
           <NuxtImg class="pwa-page__image" src="/images/pwa-instruction-1.jpg" />
@@ -32,7 +32,8 @@
 
         <dd class="pwa-page__instruction-list-definition">
           <UIText size="14px" appearance="secondary" class="pwa-page__item-description">
-            After installation, you’ll find the app icon on your Home Screen. Tap the icon to launch the Mabell App.
+            After installation, you’ll find the app icon on your Home Screen. Tap the icon to launch
+            the Mabell App.
           </UIText>
 
           <NuxtImg class="pwa-page__image" src="/images/pwa-instruction-3.jpg" />
@@ -42,9 +43,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .pwa-page {

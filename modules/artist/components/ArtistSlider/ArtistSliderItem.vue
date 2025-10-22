@@ -4,12 +4,7 @@
     :to="item ? { name: 'artist-id', params: { id: item.id } } : null"
     class="artist-slider-item"
   >
-    <UIImg
-      :url="item.avatar"
-      :alt="item.name"
-      is-rounded
-      class="artist-slider-item__avatar"
-    />
+    <UIImg :url="item.avatar" :alt="item.name" is-rounded class="artist-slider-item__avatar" />
 
     <UIText :line-clamp="2" align="center" class="artist-slider-item__name">
       {{ item.name }}

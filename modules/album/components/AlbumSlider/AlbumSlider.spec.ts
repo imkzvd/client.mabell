@@ -1,9 +1,9 @@
-import { describe, expect, test } from "vitest";
-import { render } from "@testing-library/vue";
-import NuxtLinkStub from "~/__tests__/stubs/nuxt-link.stub";
+import { describe, expect, test } from 'vitest';
+import { render } from '@testing-library/vue';
+import NuxtLinkStub from '~/__tests__/stubs/nuxt-link.stub';
 import { FakeSimplifiedAlbumRO } from '~/__tests__/ros/fake-simplified-album.ro';
-import AlbumSlider from "~/modules/album/components/AlbumSlider/AlbumSlider.vue";
-import type { AlbumSliderProps } from "~/modules/album/components/AlbumSlider/types";
+import AlbumSlider from '~/modules/album/components/AlbumSlider/AlbumSlider.vue';
+import type { AlbumSliderProps } from '~/modules/album/components/AlbumSlider/types';
 
 const fakeSimplifiedAlbum = new FakeSimplifiedAlbumRO();
 
@@ -21,47 +21,47 @@ function renderComponent(props?: Partial<AlbumSliderProps>) {
   });
 }
 
-describe("AlbumSliderList", () => {
-  describe("Default:", () => {
+describe('AlbumSliderList', () => {
+  describe('Default:', () => {
     test('it will render the link', () => {
-      const { getByRole } = renderComponent()
+      const { getByRole } = renderComponent();
 
       getByRole<HTMLAnchorElement>('link');
-    })
+    });
 
     test('it will render the image', () => {
-      const { getByRole } = renderComponent()
+      const { getByRole } = renderComponent();
 
       getByRole<HTMLImageElement>('img', { name: fakeSimplifiedAlbum.name });
-    })
+    });
 
     test('it will render album name', () => {
-      const { getByText } = renderComponent()
+      const { getByText } = renderComponent();
 
       getByText<HTMLParagraphElement>(fakeSimplifiedAlbum.name);
-    })
+    });
 
     test('it will render album release year', () => {
-      const { getByText } = renderComponent()
+      const { getByText } = renderComponent();
       const expectedYear = new Date(fakeSimplifiedAlbum.releaseAt).getFullYear();
 
       getByText(expectedYear);
-    })
-  })
+    });
+  });
 
-  describe("Reactive:", () => {
+  describe('Reactive:', () => {
     test('it will render 2 links', () => {
       const { getAllByRole } = renderComponent({
-        items: [fakeSimplifiedAlbum, fakeSimplifiedAlbum]
+        items: [fakeSimplifiedAlbum, fakeSimplifiedAlbum],
       });
 
       const linkEls = getAllByRole<HTMLAnchorElement>('link');
 
       expect(linkEls.length).toBe(2);
-    })
-  })
+    });
+  });
 
-  test("snapshot", () => {
+  test('snapshot', () => {
     const { container } = renderComponent();
 
     expect(container).toMatchSnapshot();

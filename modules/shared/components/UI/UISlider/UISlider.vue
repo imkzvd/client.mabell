@@ -23,23 +23,26 @@ const runwayWidth = ref<number>(0);
 const localState = ref<number>(props.modelValue);
 
 const runwayPixelsPerUnit = computed<number>(() => runwayWidth.value / props.max);
-const barWidth = computed<number>(() => localState.value * runwayPixelsPerUnit.value)
+const barWidth = computed<number>(() => localState.value * runwayPixelsPerUnit.value);
 const rootCssStyles = computed(() => ({
-  "--dynamic-bar-width": `${barWidth.value}px`,
+  '--dynamic-bar-width': `${barWidth.value}px`,
 }));
 
 onMounted(() => {
   runwayWidth.value = slider.value?.clientWidth || 0;
   sliderLeftOffset = slider.value?.getBoundingClientRect().left || 0;
-})
+});
 
-const watcher = watch(() => props.modelValue, (value: number) => {
-  localState.value = value;
-})
+const watcher = watch(
+  () => props.modelValue,
+  (value: number) => {
+    localState.value = value;
+  },
+);
 
 function onMouseDown() {
-  document.addEventListener("mouseup", onMouseUp, { once: true });
-  document.addEventListener("mousemove", onMouseMove);
+  document.addEventListener('mouseup', onMouseUp, { once: true });
+  document.addEventListener('mousemove', onMouseMove);
 
   watcher.pause();
 }
@@ -51,7 +54,7 @@ function calcSliderValue(e: MouseEvent) {
 }
 
 function onMouseUp(e: MouseEvent) {
-  document.removeEventListener("mousemove", onMouseMove);
+  document.removeEventListener('mousemove', onMouseMove);
 
   const sliderValue = calcSliderValue(e);
 

@@ -9,9 +9,7 @@
         <NavMenu />
       </div>
 
-      <div>
-        #User
-      </div>
+      <div>#User</div>
     </aside>
 
     <main class="default-layout__main">
@@ -52,12 +50,12 @@ provide(PlayerInjectKey, playerInstance);
     display: grid;
     grid-template-columns: var(--main-sidebar, 300px) 1fr;
     grid-template-rows: 1fr 80px;
-    grid-template-areas: "aside main" "aside player";
+    grid-template-areas: 'aside main' 'aside player';
     gap: 8px;
     height: 100%;
     padding: 12px;
     background-color: var(--overlay-bg, gray);
-    border: 1px solid hsla(0,0%,100%,.1);
+    border: 1px solid hsla(0, 0%, 100%, 0.1);
     border-radius: 16px;
   }
 
@@ -72,7 +70,7 @@ provide(PlayerInjectKey, playerInstance);
       width: var(--main-sidebar, 300px);
       padding: 32px 24px;
       background-color: #080808;
-      border: .0625rem solid hsla(0,0%,100%,.04);
+      border: 0.0625rem solid hsla(0, 0%, 100%, 0.04);
       border-radius: 12px;
     }
   }
@@ -84,7 +82,7 @@ provide(PlayerInjectKey, playerInstance);
       overflow: auto;
       scroll-behavior: smooth;
       grid-area: main;
-      border: .0625rem solid hsla(0,0%,100%,.04);
+      border: 0.0625rem solid hsla(0, 0%, 100%, 0.04);
       border-radius: 12px;
     }
   }
@@ -95,7 +93,7 @@ provide(PlayerInjectKey, playerInstance);
     grid-area: player;
     height: 80px;
     background-color: #080808;
-    border: .0625rem solid hsla(0,0%,100%,.04);
+    border: 0.0625rem solid hsla(0, 0%, 100%, 0.04);
     border-radius: 12px;
   }
 
