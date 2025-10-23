@@ -1,5 +1,7 @@
 <template>
   <NuxtLayout @contextmenu.prevent>
+    <NuxtPwaManifest />
+
     <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
     <NuxtPage />
