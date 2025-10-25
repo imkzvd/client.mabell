@@ -1,77 +1,16 @@
 @use 'mixins' as *;
-//html, body, #__nuxt {
-//  @supports (height: -webkit-fill-available) {
-//    @apply h-[-webkit-fill-available];
-//  }
-//
-//  @supports not (height: -webkit-fill-available) {
-//    @apply h-screen;
-//  }
-//}
-
-html {
-  //height: 100dvh;
-  //scrollbar-gutter: stable;
-
-  //@supports (-webkit-touch-callout: none) {
-  //  body {
-  //    /* The hack for Safari */
-  //    height: -webkit-fill-available;
-  //  }
-  //}
-  //overflow: hidden;
-}
 
 body {
-  //height: 100dvh;
-  //scrollbar-gutter: stable;
-  font-family: var(--regular-font);
-  background-color: var(--body-bg, black);
-  color: var(--main-text);
-  scroll-behavior: smooth;
+  color: var(--main-text, white);
+  background-color: var(--panel-bg, black);
   user-select: none;
 
   @include respond-to(xl) {
-    height: 100vh;
-    padding: 16px;
-    overflow: hidden;
-    //overflow: hidden;
-    //user-select: none;
-  }
-  //@supports (-webkit-touch-callout: none) {
-  //  body {
-  //    /* The hack for Safari */
-  //    height: -webkit-fill-available;
-  //  }
-  //}
-}
-
-#__nuxt {
-  //height: 100dvh;
-  //overflow: auto;
-
-  &.is-lock {
+    background-color: var(--body-bg, black);
     overflow: hidden;
   }
-
-  //@supports (-webkit-touch-callout: none) {
-  //  body {
-  //    /* The hack for Safari */
-  //    height: -webkit-fill-available;
-  //  }
-  //}
-  height: 100%;
-  //overflow: hidden;
 }
 
-//
-///* Avoid Chrome to see Safari hack */
-//@supports (-webkit-touch-callout: none) {
-//  body {
-//    /* The hack for Safari */
-//    height: -webkit-fill-available;
-//  }
-//}
 .page {
   flex-grow: 1;
 }
