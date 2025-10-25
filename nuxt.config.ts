@@ -10,6 +10,10 @@ export default defineNuxtConfig({
   // },
 
   app: {
+    rootAttrs: {
+      id: '__mabell',
+      class: 'mabell-app',
+    },
     head: {
       viewport:
         'width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover',
