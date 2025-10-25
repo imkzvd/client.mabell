@@ -9,7 +9,7 @@ export default defineNuxtModule({
   setup() {
     const { resolve } = createResolver(import.meta.url);
 
-    addLayout({ src: resolve('./layouts/default.vue'), write: true }, 'desktop');
+    addLayout({ src: resolve('./layouts/desktop.vue'), write: true }, 'desktop');
     addLayout({ src: resolve('./layouts/mobile.vue'), write: true }, 'mobile');
     addComponentsDir({ path: join(__dirname, 'components'), pathPrefix: false });
   },
