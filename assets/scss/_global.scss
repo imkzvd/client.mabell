@@ -29,7 +29,5 @@ img {
 }
 
 * {
-  //&::-webkit-scrollbar {
-  //  display: none;
-  //}
+  @include hide-scrollbar()
 }
