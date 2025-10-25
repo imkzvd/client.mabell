@@ -1,22 +1,16 @@
-import { defineNuxtModule } from '@nuxt/kit';
-import { resolve, join } from 'pathe';
-import type { Nuxt } from '@nuxt/schema';
+import { defineNuxtModule, addLayout, createResolver, addComponentsDir } from '@nuxt/kit';
+import { join } from 'pathe';
 
 export default defineNuxtModule({
   meta: {
     name: 'shared-module',
     configKey: 'shared-module',
   },
-  defaults: {
-    // Module options
-    enabled: true,
-  },
-  setup(options: any, nuxt: Nuxt) {
-    nuxt.hook('components:dirs', (dirs) => {
-      dirs.push({
-        path: join(__dirname, 'components'),
-        pathPrefix: false,
-      });
-    });
+  setup() {
+    const { resolve } = createResolver(import.meta.url);
+
+    addLayout({ src: resolve('./layouts/default.vue'), write: true }, 'desktop');
+    addLayout({ src: resolve('./layouts/mobile.vue'), write: true }, 'mobile');
+    addComponentsDir({ path: join(__dirname, 'components'), pathPrefix: false });
   },
 });
