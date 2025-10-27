@@ -12,3 +12,11 @@ export enum UISizes {
 }
 
 export type UISize = keyof typeof UISizes;
+
+export enum UIAlignments {
+  left = 'left',
+  center = 'center',
+  right = 'right',
+}
+
+export type UIAlignment = keyof typeof UIAlignments;
