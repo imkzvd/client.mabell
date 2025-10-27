@@ -6,7 +6,7 @@
 
     <AppFooter />
 
-    <MobileBottomBar class="mobile-layout__mobile-bottom-bar" />
+    <StickyMobileBottomBar />
   </div>
 </template>
 
@@ -31,14 +31,6 @@ provide(PlayerInjectKey, playerInstance);
 
   &__main {
     flex-grow: 1;
-  }
-
-  &__mobile-bottom-bar {
-    position: sticky;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
   }
 }
 </style>
