@@ -30,6 +30,7 @@ const route = useRoute();
 <style scoped lang="scss">
 .mobile-nav-menu {
   font-size: 12px;
+  color: var(--secondary-text, gray);
 
   &__links {
     display: flex;
@@ -44,7 +45,7 @@ const route = useRoute();
     padding-block: 8px;
 
     &_active {
-      color: var(--main-text);
+      color: var(--main-text, white);
     }
   }
 
