@@ -1,5 +1,5 @@
 <template>
-  <div class="mobile-bottom-bar">
+  <div class="sticky-mobile-bottom-bar">
     <MobileNavMenu />
   </div>
 </template>
@@ -9,7 +9,7 @@
 </script>
 
 <style scoped lang="scss">
-.mobile-bottom-bar {
+.sticky-mobile-bottom-bar {
   position: sticky;
   right: 0;
   bottom: 0;
