@@ -13,8 +13,12 @@ withDefaults(defineProps<SkeletonTextLoaderProps>(), {
 <style scoped lang="scss">
 .skeleton-text-loader {
   width: v-bind(width);
-  height: 16px;
+  height: 12px;
   border-radius: var(--border-radius, 4px);
   animation: pulse-bg 1s infinite;
+
+  @include respond-to(xs) {
+    height: 16px;
+  }
 }
 </style>
