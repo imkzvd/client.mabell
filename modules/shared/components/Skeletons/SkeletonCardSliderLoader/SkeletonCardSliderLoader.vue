@@ -3,7 +3,7 @@
     <div v-for="(item, index) of cardsTotal" :key="index" class="skeleton-card-slider-loader__card">
       <div
         class="skeleton-card-slider-loader__img"
-        :class="{ 'skeleton-card-slider-loader__img_is-rounded': roundedImage }"
+        :class="{ 'skeleton-card-slider-loader__img_is-rounded': isRoundedImage }"
       />
 
       <div
@@ -38,24 +38,6 @@ withDefaults(defineProps<SkeletonCardSliderLoaderProps>(), {
 
   @include respond-to(lg) {
     gap: var(--album-card-links-lg-gap, 16px);
-  }
-
-  &__card {
-    display: none;
-
-    &:nth-child(-n + 3) {
-      display: block;
-    }
-
-    @include respond-to(md) {
-      &:nth-child(-n + 4) {
-        display: block;
-      }
-    }
-
-    @include respond-to(lg) {
-      display: block;
-    }
   }
 
   &__img {
