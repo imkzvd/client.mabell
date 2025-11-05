@@ -22,7 +22,8 @@
       :class="cssInputClasses"
       @input="onInput"
       @change="onChange"
-      @blur="emit('blur')"
+      @focus="emit('focus', modelValue)"
+      @blur="emit('blur', modelValue)"
     />
 
     <UIIconButton
