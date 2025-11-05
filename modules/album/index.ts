@@ -9,6 +9,7 @@ export default defineNuxtModule({
     nuxt.hook('components:dirs', (dirs) => {
       dirs.push({
         path: join(__dirname, 'components'),
+        pathPrefix: false,
       });
     });
 
