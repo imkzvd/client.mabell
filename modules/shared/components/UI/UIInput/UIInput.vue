@@ -64,7 +64,6 @@ const UIFormContext = inject(UIFormContextKey);
 const UIFormItemContext = inject(UIFormItemContextKey);
 
 const props = withDefaults(defineProps<UIInputProps>(), {
-  id: crypto.randomUUID(),
   type: UIInputTypes.text,
   size: UIInputSizes.md,
 });
