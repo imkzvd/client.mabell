@@ -2,13 +2,13 @@ import { describe, expect, test } from 'vitest';
 import { render } from '@testing-library/vue';
 import NuxtLinkStub from '~/__tests__/stubs/nuxt-link.stub';
 import { FakeSimplifiedAlbumRO } from '~/__tests__/ros/fake-simplified-album.ro';
-import AlbumCardLinkSlider from '~/modules/album/components/AlbumCardLinkSlider/AlbumCardLinkSlider.vue';
-import type { AlbumSliderProps } from '~/modules/album/components/AlbumCardLinkSlider/types';
+import AlbumCardLinksSlider from '~/modules/album/components/AlbumCardLinksSlider/AlbumCardLinksSlider.vue';
+import type { AlbumSliderProps } from '~/modules/album/components/AlbumCardLinksSlider/types';
 
 const fakeSimplifiedAlbum = new FakeSimplifiedAlbumRO();
 
 function renderComponent(props?: Partial<AlbumSliderProps>) {
-  return render(AlbumCardLinkSlider, {
+  return render(AlbumCardLinksSlider, {
     global: {
       stubs: {
         NuxtLink: NuxtLinkStub,

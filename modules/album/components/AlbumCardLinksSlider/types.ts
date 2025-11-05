@@ -1,10 +1,9 @@
 import type { SimplifiedAlbumRO } from '~/api/api.module';
 
-export type AlbumCardLinkSliderProps = {
+export type AlbumCardLinksSliderProps = {
   items: SimplifiedAlbumRO[];
-  maxRows?: string | number;
 };
 
-export type AlbumCardLinkProps = {
+export type AlbumCardLinkSliderProps = {
   item: SimplifiedAlbumRO;
 };
