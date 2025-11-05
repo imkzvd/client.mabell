@@ -6,7 +6,7 @@
   >
     <UIImg :url="item.avatar" :alt="item.name" is-rounded class="artist-card-link__avatar" />
 
-    <UIText :line-clamp="2" align="center" class="artist-card-link__name">
+    <UIText :line-clamp="1" align="center" class="artist-card-link__name">
       {{ item.name }}
     </UIText>
   </UILink>
