@@ -34,14 +34,14 @@ withDefaults(defineProps<SkeletonCardSliderLoaderProps>(), {
 .skeleton-card-slider-loader {
   display: flex;
   overflow-x: hidden;
-  column-gap: var(--album-card-links-gap, 12px);
+  column-gap: var(--card-links-gap, 12px);
 
   @include respond-to(lg) {
-    gap: var(--album-card-links-lg-gap, 16px);
+    gap: var(--card-links-lg-gap, 16px);
   }
 
   &__img {
-    width: var(--album-card-links-cover-size, 80px);
+    width: var(--card-link-cover-size, 80px);
     aspect-ratio: 1;
     margin-bottom: 8px;
     border-radius: var(--border-radius, 4px);
@@ -49,15 +49,15 @@ withDefaults(defineProps<SkeletonCardSliderLoaderProps>(), {
 
     @include respond-to(xs) {
       margin-bottom: 12px;
-      width: var(--album-card-links-cover-xs-size, 100px);
+      width: var(--card-link-cover-xs-size, 100px);
     }
 
     @include respond-to(md) {
-      width: var(--album-card-links-cover-md-size, 120px);
+      width: var(--card-link-cover-md-size, 120px);
     }
 
     @include respond-to(lg) {
-      width: var(--album-card-links-cover-lg-size, 160px);
+      width: var(--card-link-cover-lg-size, 160px);
     }
 
     &_is-rounded {
