@@ -1,21 +1,15 @@
 <template>
-  <div
+  <UILink
     :hover-underline="false"
     :to="{ name: 'artist-id', params: { id: item.id } }"
     class="artist-card-link"
   >
-    <UIImg
-      :url="item.cover"
-      :alt="item.name"
-      is-rounded
-      fallback-icon="i-ph-music-notes-simple-bold"
-      class="artist-card-link__avatar"
-    />
+    <UIImg :url="item.cover" :alt="item.name" is-rounded class="artist-card-link__avatar" />
 
     <UIText align="center" :line-clamp="2" class="artist-card-link__name">
       {{ item.name }}
     </UIText>
-  </div>
+  </UILink>
 </template>
 
 <script setup lang="ts">
