@@ -33,24 +33,33 @@ withDefaults(defineProps<SkeletonCardListLoaderProps>(), {
 <style scoped lang="scss">
 .skeleton-card-list-loader {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--album-list-cover-size, 80px), 1fr));
-  gap: var(--album-list-item-gap, 12px);
+  grid-template-columns: repeat(auto-fill, minmax(var(--album-card-links-cover-size, 80px), 1fr));
+  gap: var(--album-card-links-gap, 12px);
   grid-template-rows: auto;
   grid-auto-rows: 0;
   row-gap: 0;
   overflow: hidden;
 
   @include respond-to(xs) {
-    grid-template-columns: repeat(auto-fill, minmax(var(--album-list-cover-xs-size, 100px), 1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--album-card-links-cover-xs-size, 100px), 1fr)
+    );
   }
 
   @include respond-to(md) {
-    grid-template-columns: repeat(auto-fill, minmax(var(--album-list-cover-md-size, 120px), 1fr));
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--album-card-links-cover-md-size, 120px), 1fr)
+    );
   }
 
   @include respond-to(lg) {
-    grid-template-columns: repeat(auto-fill, minmax(var(--album-list-cover-lg-size, 160px), 1fr));
-    gap: var(--album-list-item-lg-gap, 16px);
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(var(--album-card-links-cover-lg-size, 160px), 1fr)
+    );
+    gap: var(--album-card-links-lg-gap, 16px);
   }
 
   &__img {
