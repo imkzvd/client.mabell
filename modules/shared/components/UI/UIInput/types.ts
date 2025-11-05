@@ -17,7 +17,7 @@ export enum UIInputSizes {
 export type UIInputSize = keyof typeof UIInputSizes;
 
 export type UIInputProps = {
-  modelValue: string | number;
+  modelValue: string;
   id?: string;
   name?: string;
   type?: UIInputType;
@@ -33,9 +33,9 @@ export type UIInputProps = {
 };
 
 export type UIInputEmits = {
-  (e: 'update:modelValue', value: string): void;
-  (e: 'input', value: string): void;
-  (e: 'change', value: string): void;
-  (e: 'focus'): void;
-  (e: 'blur'): void;
+  (e: 'update:modelValue', value: UIInputProps['modelValue']): void;
+  (e: 'input', value: UIInputProps['modelValue']): void;
+  (e: 'change', value: UIInputProps['modelValue']): void;
+  (e: 'focus', value: UIInputProps['modelValue']): void;
+  (e: 'blur', value: UIInputProps['modelValue']): void;
 };
