@@ -1,7 +1,7 @@
 <template>
   <UILink
+    :to="{ name: 'artist-id', params: { id: item.id } }"
     :hover-underline="false"
-    :to="item ? { name: 'artist-id', params: { id: item.id } } : null"
     class="artist-card-link"
   >
     <UIImg :url="item.avatar" :alt="item.name" is-rounded class="artist-card-link__avatar" />
