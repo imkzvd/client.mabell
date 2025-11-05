@@ -2,21 +2,21 @@
   <UILink
     :hover-underline="false"
     :to="{ name: 'album-id', params: { id: item.id } }"
-    class="album-slider-item"
+    class="album-card-link"
   >
     <UIImg
       :url="item.cover"
       :alt="item.name"
       fallback-icon="i-ph-music-notes-simple-bold"
-      class="album-slider-item__cover"
+      class="album-card-link__cover"
     />
 
-    <div class="album-slider-item__details">
-      <UIText :line-clamp="1" class="album-slider-item__name">
+    <div class="album-card-link__details">
+      <UIText :line-clamp="1" class="album-card-link__name">
         {{ item.name }}
       </UIText>
 
-      <UIText v-if="releaseYear" appearance="secondary" class="album-slider-item__year">
+      <UIText v-if="releaseYear" appearance="secondary" class="album-card-link__year">
         {{ releaseYear }}
       </UIText>
     </div>
@@ -24,9 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import type { AlbumSliderItemProps } from '~/modules/album/components/AlbumSlider/types';
+import type { AlbumCardLinkProps } from '~/modules/album/components/AlbumCardLinkSlider/types';
 
-const props = defineProps<AlbumSliderItemProps>();
+const props = defineProps<AlbumCardLinkProps>();
 
 const releaseYear = computed<number | null>(() => {
   const { releaseAt } = props.item;
@@ -36,20 +36,22 @@ const releaseYear = computed<number | null>(() => {
 </script>
 
 <style scoped lang="scss">
-.album-slider-item {
-  width: min-content;
-
+.album-card-link {
   &__cover {
-    --size: var(--album-slider-cover-size, 120px);
+    --size: var(--album-card-link-cover-size, 80px);
     margin-bottom: 8px;
 
     @include respond-to(xs) {
-      --size: var(--album-slider-cover-xs-size, 140px);
+      --size: var(--album-card-link-cover-xs-size, 120px);
       margin-bottom: 12px;
     }
 
     @include respond-to(md) {
-      --size: var(--album-slider-cover-md-size, 160px);
+      --size: var(--album-card-link-cover-md-size, 140px);
+    }
+
+    @include respond-to(lg) {
+      --size: var(--album-card-link-cover-lg-size, 160px);
     }
   }
 
