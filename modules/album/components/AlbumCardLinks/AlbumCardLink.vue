@@ -1,15 +1,10 @@
 <template>
-  <div
-    :hover-underline="false"
+  <UILink
     :to="{ name: 'album-id', params: { id: item.id } }"
+    :hover-underline="false"
     class="album-card-link"
   >
-    <UIImg
-      :url="item.cover"
-      :alt="item.name"
-      fallback-icon="i-ph-music-notes-simple-bold"
-      class="album-card-link__cover"
-    />
+    <UIImg :url="item.cover" :alt="item.name" class="album-card-link__cover" />
 
     <div class="album-card-link__details">
       <UIText :line-clamp="1" class="album-card-link__name">
@@ -20,7 +15,7 @@
         {{ releaseYear }}
       </UIText>
     </div>
-  </div>
+  </UILink>
 </template>
 
 <script setup lang="ts">
