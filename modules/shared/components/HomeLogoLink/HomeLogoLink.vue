@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="{ name: 'index' }" class="home-logo-link">
+  <NuxtLink :to="{ name: 'home' }" class="home-logo-link">
     <HomeLogo :width="width" :height="height" />
   </NuxtLink>
 </template>

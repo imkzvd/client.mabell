@@ -17,7 +17,7 @@ export default defineNuxtModule({
 
     extendPages((pages) => {
       pages.push({
-        name: 'index',
+        name: 'home',
         path: '/',
         file: resolve(__dirname, './pages/index.vue'),
       });
