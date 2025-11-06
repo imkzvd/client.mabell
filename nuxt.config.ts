@@ -327,6 +327,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     'nuxt-viewport',
     '~/modules/shared',
+    '~/modules/home',
     '~/modules/artist',
     '~/modules/album',
     '~/modules/track',
