@@ -1,4 +1,4 @@
-# <img src="assets/svg/client_logo.svg" width="200">
+<img src="assets/svg/client_logo.svg" width="200">
 
 ## Description
 
