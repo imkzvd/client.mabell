@@ -26,5 +26,5 @@ export type TopResultsPlaylistItemProps = {
 };
 
 export type SkeletonTopResultsItem = {
-  withRoundedImage?: boolean;
+  isRoundedImage?: boolean;
 };
