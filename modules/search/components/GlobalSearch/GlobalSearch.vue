@@ -3,77 +3,102 @@
     <UISection with-container>
       <UIInput
         v-model="modelValue"
-        size="lg"
-        placeholder="Enter the name of the artist, album, track, playlist"
-        class="global-search__input"
+        :size="isDesktop ? 'lg' : 'md'"
+        placeholder="What do you want to listen to?"
         is-clearable
-        @update:model-value="onModelValueUpdate"
         @blur="onBlur"
+        @update:model-value="onModelValueUpdate"
       />
     </UISection>
 
-    <template v-if="isSearchFetching">
-      <div class="container">
-        <SkeletonSection>
-          <SkeletonTopResults />
-        </SkeletonSection>
+    <UISection v-if="isSearchFetching" with-container>
+      <SkeletonSectionLoader>
+        <SkeletonTopResults />
+      </SkeletonSectionLoader>
 
-        <SkeletonSection v-if="isDesktopOrTablet">
-          <SkeletonSlider />
-        </SkeletonSection>
-      </div>
-    </template>
+      <SkeletonSectionLoader v-if="isDesktopOrTablet">
+        <SkeletonCardListLoader />
+      </SkeletonSectionLoader>
+
+      <SkeletonSectionLoader v-if="isDesktopOrTablet">
+        <SkeletonCardListLoader is-rounded-image align="center" />
+      </SkeletonSectionLoader>
+    </UISection>
     <template v-else-if="searchResult">
-      <UISection v-if="searchResult?.topResults.length" heading="Top  Results" with-container>
-        <TopResults :items="searchResult.topResults.slice(0, 108)" />
-      </UISection>
-
-      <UISection v-if="searchResult?.albums.total" heading="Albums" :content-container="false">
-        <AlbumSlider :items="searchResult?.albums.items" class="global-search__slider" />
-      </UISection>
-
-      <UISection v-if="searchResult?.artists.total" heading="Artists" :content-container="false">
-        <ArtistSlider :items="searchResult?.artists.items" class="global-search__slider" />
-      </UISection>
-
-      <UISection v-if="searchResult?.tracks.total" heading="Tracks" with-container>
-        <TopResults :items="searchResult.tracks.items" />
-      </UISection>
-
-      <UISection
-        v-if="searchResult?.playlists.total"
-        heading="Playlists"
-        :content-container="false"
-      >
-        <PlaylistSlider :items="searchResult.playlists.items" />
-      </UISection>
-
-      <UIText
+      <template
         v-if="
-          !searchResult?.topResults.length &&
-          !searchResult?.albums.total &&
-          !searchResult?.artists.total &&
-          !searchResult?.tracks.total &&
-          !searchResult?.playlists.total
+          searchResult.topResults.length || // TODO: add 'searchResult.total' in api resp for all items
+          searchResult.albums.total || //
+          searchResult.artists.total || //
+          searchResult.tracks.total || //
+          searchResult.playlists.total //
         "
-        size="16px"
-        is-bold
-        align="center"
       >
-        No Results
-      </UIText>
+        <UISection v-if="searchResult.topResults.length" heading="Top  Results" with-container>
+          <!--TODO: delete slice.-->
+          <TopResults :items="searchResult.topResults.slice(0, 8)" />
+        </UISection>
+
+        <UISection
+          v-if="searchResult.albums.items.length"
+          heading="Albums"
+          :with-container="!isMobileOrTablet"
+        >
+          <AlbumCardLinksSlider
+            v-if="isMobileOrTablet"
+            :items="searchResult.albums.items"
+            class="global-search__slider"
+          />
+          <AlbumCardLinks v-else :items="searchResult.albums.items" />
+        </UISection>
+
+        <UISection
+          v-if="searchResult.artists.items.length"
+          heading="Artists"
+          :with-container="!isMobileOrTablet"
+        >
+          <ArtistCardLinksSlider
+            v-if="isMobileOrTablet"
+            :items="searchResult.artists.items"
+            class="global-search__slider"
+          />
+          <ArtistCardLinks v-else :items="searchResult.artists.items" />
+        </UISection>
+
+        <UISection v-if="searchResult.tracks.total" heading="Tracks" with-container>
+          <TopResults :items="searchResult.tracks.items" />
+        </UISection>
+
+        <UISection
+          v-if="searchResult.playlists.items.length"
+          heading="Playlists"
+          :with-container="!isMobileOrTablet"
+        >
+          <PlaylistCardLinksSlider
+            v-if="isMobileOrTablet"
+            :items="searchResult.playlists.items"
+            class="global-search__slider"
+          />
+          <PlaylistCardLinks v-else :items="searchResult.playlists.items" />
+        </UISection>
+      </template>
+      <UISection v-else class="global-search__no-results-section">
+        <UIText size="16px" is-bold align="center">No Results.</UIText>
+      </UISection>
     </template>
-    <slot v-else name="default" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { searchApiService } from '~/modules/search/services/search.api-service';
 import type { SearchResultRO } from '~/api/api.module';
+import type { GlobalSearchEmit } from '~/modules/search/components/GlobalSearch/types';
+
+const emit = defineEmits<GlobalSearchEmit>();
 
 const router = useRouter();
 const route = useRoute();
-const { isDesktopOrTablet } = useDevice();
+const { isMobileOrTablet, isDesktopOrTablet, isDesktop } = useDevice();
 const queryFromRouter = route.query.q as string | undefined;
 const debounceSearch = useDebounceFn(search, 500);
 const [isSearchFetching, toggleSearchFetching] = useToggle();
@@ -103,13 +128,16 @@ function onBlur(value: string) {
 
 async function search(q: string) {
   try {
+    emit('search-start');
     toggleSearchFetching();
+
     searchResult.value = await searchApiService.search(q);
   } catch (e) {
     const { message } = e as Error;
 
     console.error(message);
   } finally {
+    emit('search-end');
     toggleSearchFetching();
   }
 }
@@ -119,12 +147,12 @@ async function search(q: string) {
 @use '~/assets/scss/container';
 
 .global-search {
-  &__input {
-    margin-bottom: 16px;
-  }
-
   &__slider {
     @extend .container;
+  }
+
+  &__no-results-section {
+    padding-block: 24px;
   }
 }
 </style>
