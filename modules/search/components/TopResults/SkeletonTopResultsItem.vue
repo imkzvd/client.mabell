@@ -3,9 +3,9 @@
     <div class="skeleton-top-results-item__image" :class="imageCSSClasses" />
 
     <div class="skeleton-top-results-item__details">
-      <SkeletonText width="30%" class="skeleton-top-results-item__name" />
+      <SkeletonTextLoader width="30%" class="skeleton-top-results-item__name" />
 
-      <SkeletonText />
+      <SkeletonTextLoader />
     </div>
   </div>
 </template>
@@ -15,12 +15,12 @@ import { computed } from 'vue';
 import type { SkeletonTopResultsItem } from '~/modules/search/components/TopResults/types';
 
 const props = withDefaults(defineProps<SkeletonTopResultsItem>(), {
-  withRoundedImage: true,
+  isRoundedImage: true,
 });
 
 const rootCSSClass = 'skeleton-top-results-item';
 const imageCSSClasses = computed(() => ({
-  [`${rootCSSClass}__image_is-rounded`]: props.withRoundedImage,
+  [`${rootCSSClass}__image_is-rounded`]: props.isRoundedImage,
 }));
 </script>
 
