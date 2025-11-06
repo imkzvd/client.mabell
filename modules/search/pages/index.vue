@@ -4,40 +4,77 @@
       <UIHeading class="search-page__heading">Search</UIHeading>
     </div>
 
-    <GlobalSearch>
-      <UISection heading="New Releases">
-        <SkeletonSlider v-if="isDataFetching" :total="4" class="search-page__slider" />
-        <AlbumSlider
-          v-else
-          :items="fetchedPopularAlbumsResponse?.items"
-          class="search-page__slider"
-        />
+    <UISection>
+      <GlobalSearch @search-start="onGlobalSearchStart" @search-end="onGlobalSearchEnd" />
+    </UISection>
+
+    <div v-show="!isGlobalSearching">
+      <UISection :with-container="!isMobileOrTablet" heading="New Releases">
+        <template v-if="isMobileOrTablet">
+          <SkeletonCardSliderLoader
+            v-if="isDataFetching"
+            text-rows="2"
+            class="search-page__slider"
+          />
+          <AlbumCardLinksSlider
+            v-else-if="popularAlbumsResponse?.items.length"
+            :items="popularAlbumsResponse.items"
+            class="search-page__slider"
+          />
+        </template>
+        <template v-else>
+          <SkeletonCardListLoader v-if="isDataFetching" text-rows="2" />
+          <AlbumCardLinks
+            v-else-if="popularAlbumsResponse?.items.length"
+            max-rows="1"
+            :items="popularAlbumsResponse.items"
+          />
+        </template>
       </UISection>
 
-      <UISection heading="Popular Artists">
-        <SkeletonSlider
-          v-if="isDataFetching"
-          :total="5"
-          align="center"
-          is-rounded
-          class="search-page__slider"
-        />
-        <ArtistSlider
-          v-else
-          :items="fetchedPopularArtistsResponse?.items"
-          class="search-page__slider"
-        />
+      <UISection :with-container="!isMobileOrTablet" heading="Popular Artists">
+        <template v-if="isMobileOrTablet">
+          <SkeletonCardSliderLoader
+            v-if="isDataFetching"
+            align="center"
+            is-rounded-image
+            class="search-page__slider"
+          />
+          <ArtistCardLinksSlider
+            v-else-if="popularArtistsResponse?.items.length"
+            :items="popularArtistsResponse.items"
+            class="search-page__slider"
+          />
+        </template>
+        <template v-else>
+          <SkeletonCardListLoader v-if="isDataFetching" align="center" is-rounded-image />
+          <ArtistCardLinks
+            v-else-if="popularArtistsResponse?.items.length"
+            :items="popularArtistsResponse.items"
+            max-rows="1"
+          />
+        </template>
       </UISection>
 
-      <UISection heading="Discover picks for you">
-        <SkeletonSlider v-if="isDataFetching" :total="6" class="search-page__slider" />
-        <PlaylistSlider
-          v-else
-          :items="fetchedPopularPlaylistsResponse?.items"
-          class="search-page__slider"
-        />
+      <UISection :with-container="!isMobileOrTablet" heading="Discover picks for you">
+        <template v-if="isMobileOrTablet">
+          <SkeletonCardSliderLoader v-if="isDataFetching" class="search-page__slider" />
+          <PlaylistCardLinksSlider
+            v-else-if="popularPlaylistsResponse?.items.length"
+            :items="popularPlaylistsResponse.items"
+            class="search-page__slider"
+          />
+        </template>
+        <template v-else>
+          <SkeletonCardListLoader v-if="isDataFetching" />
+          <PlaylistCardLinks
+            v-else-if="popularPlaylistsResponse?.items.length"
+            :items="popularPlaylistsResponse.items"
+            max-rows="1"
+          />
+        </template>
       </UISection>
-    </GlobalSearch>
+    </div>
   </div>
 </template>
 
@@ -46,26 +83,25 @@ import { popularApiService } from '~/modules/popular/services/popular.api.servic
 import type { AlbumsRO, ArtistsRO, PlaylistsRO } from '~/api/api.module';
 import type { ApiError } from '~/modules/shared/errors/api-error';
 
+const { isMobileOrTablet } = useDevice();
 const [isDataFetching, toggleDataFetching] = useToggle(true);
+const [isGlobalSearching, toggleGlobalSearching] = useToggle();
 
-const fetchedPopularAlbumsResponse = ref<AlbumsRO | null>(null);
-const fetchedPopularArtistsResponse = ref<ArtistsRO | null>(null);
-const fetchedPopularPlaylistsResponse = ref<PlaylistsRO | null>(null);
+const popularAlbumsResponse = ref<AlbumsRO | null>(null);
+const popularArtistsResponse = ref<ArtistsRO | null>(null);
+const popularPlaylistsResponse = ref<PlaylistsRO | null>(null);
 
 onMounted(async () => {
   try {
-    fetchedPopularAlbumsResponse.value = await popularApiService.getAlbums(['HH'], {
-      offset: 0,
-      limit: 15,
-    });
-    fetchedPopularArtistsResponse.value = await popularApiService.getArtists(['HH'], {
-      offset: 5,
-      limit: 15,
-    });
-    fetchedPopularPlaylistsResponse.value = await popularApiService.getPlaylists(['HH'], {
-      offset: 5,
-      limit: 15,
-    });
+    const [albums, artists, playlists] = await Promise.all([
+      popularApiService.getAlbums(['HH'], { offset: 0, limit: 15 }), // TODO: random data
+      popularApiService.getArtists(['HH'], { offset: 5, limit: 15 }), //
+      popularApiService.getPlaylists(['HH'], { offset: 5, limit: 15 }), //
+    ]);
+
+    popularAlbumsResponse.value = albums;
+    popularArtistsResponse.value = artists;
+    popularPlaylistsResponse.value = playlists;
   } catch (e) {
     const { message } = e as ApiError;
 
@@ -74,6 +110,14 @@ onMounted(async () => {
     toggleDataFetching();
   }
 });
+
+function onGlobalSearchStart() {
+  toggleGlobalSearching(true);
+}
+
+function onGlobalSearchEnd() {
+  toggleGlobalSearching(false);
+}
 </script>
 
 <style scoped lang="scss">
@@ -83,7 +127,7 @@ onMounted(async () => {
   padding-block: 32px;
 
   &__heading {
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     line-height: 1;
   }
 
