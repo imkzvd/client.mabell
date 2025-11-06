@@ -1,4 +1,4 @@
-import type { UIAppearance } from '~/modules/shared/components/UI/types';
+import type { UIAlignment, UIAppearance } from '~/modules/shared/components/UI/types';
 
 export type UITextProps = {
   lineClamp?: number | null;
@@ -6,4 +6,5 @@ export type UITextProps = {
   appearance?: UIAppearance;
   isBold?: boolean;
   size?: string;
+  align?: UIAlignment;
 };
