@@ -1,11 +1,11 @@
 @keyframes pulse-bg {
   0% {
-    background-color: var(--gray-darkest, gray); /* Lighter gray */
+    background-color: var(--gray-darker, gray);
   }
   50% {
-    background-color: var(--gray-darker, lightgray); /* Even lighter gray */
+    background-color: #353535; // TODO: add in global css vars
   }
   100% {
-    background-color: var(--gray-darkest, gray);
+    background-color: var(--gray-darker, gray);
   }
 }
