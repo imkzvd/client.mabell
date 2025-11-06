@@ -13,7 +13,7 @@ withDefaults(defineProps<SkeletonHeadingLoaderProps>(), {
 <style scoped lang="scss">
 .skeleton-heading-loader {
   width: v-bind(width);
-  height: 32px;
+  height: 24px;
   border-radius: var(--border-radius, 4px);
   animation: pulse-bg 1s infinite;
 }
