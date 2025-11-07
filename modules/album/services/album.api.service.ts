@@ -13,6 +13,19 @@ export class AlbumApiService {
     return data;
   }
 
+  async getAlbumsByIds(albumIds: string[]): Promise<AlbumRO[]> {
+    const albumIdsQueryParam = albumIds.join(',');
+    const { data, ok, error } = await apiService.album.getAlbumsByIds({
+      ids: albumIdsQueryParam,
+    });
+
+    if (!ok) {
+      throw new ApiError(error.message, error.statusCode);
+    }
+
+    return data.filter((i) => i !== null);
+  }
+
   async getAlbumTracksById(albumId: string): Promise<TracksRO> {
     const { data, ok, error } = await apiService.album.getAlbumTracks(albumId);
 

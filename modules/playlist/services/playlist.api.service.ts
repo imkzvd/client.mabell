@@ -13,6 +13,19 @@ export class PlaylistApiService {
     return data;
   }
 
+  async getPlaylistsByIds(playlistIds: string[]): Promise<PlaylistRO[]> {
+    const playlistIdsQueryParam = playlistIds.join(',');
+    const { data, ok, error } = await apiService.playlist.getPlaylistsByIds({
+      ids: playlistIdsQueryParam,
+    });
+
+    if (!ok) {
+      throw new ApiError(error.message, error.statusCode);
+    }
+
+    return data.filter((i) => i !== null);
+  }
+
   async getPlaylistTracksById(playlistId: string): Promise<PlaylistTracksRO> {
     const { data, ok, error } = await apiService.playlist.getPlaylistTracks(playlistId);
 
