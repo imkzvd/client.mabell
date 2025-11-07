@@ -37,6 +37,12 @@ withDefaults(defineProps<UISectionProps>(), {
     }
   }
 
+  @include respond-to(lg) {
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
+  }
+
   &__heading {
     margin-bottom: 16px;
   }
