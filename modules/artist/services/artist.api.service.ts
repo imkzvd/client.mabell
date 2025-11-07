@@ -13,6 +13,19 @@ export class ArtistApiService {
     return data;
   }
 
+  async getArtistsByIds(artistIds: string[]): Promise<ArtistRO[]> {
+    const artistIdsQueryParam = artistIds.join(',');
+    const { data, ok, error } = await apiService.artists.getArtistsByIds({
+      ids: artistIdsQueryParam,
+    });
+
+    if (!ok) {
+      throw new ApiError(error.message, error.statusCode);
+    }
+
+    return data.filter((i) => i !== null);
+  }
+
   async getTopTracksById(
     artistId: string,
     pagination?: Partial<{ offset: number; limit: number }>,
