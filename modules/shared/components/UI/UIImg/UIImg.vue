@@ -1,17 +1,12 @@
 <template>
   <div class="ui-img" :class="rootCSSClasses">
-    <NuxtIcon
-      v-if="!isLoaded"
-      mode="svg"
-      name="i-ph-music-notes-simple-bold"
-      class="ui-img__icon"
-    />
+    <NuxtIcon v-if="!isCompleted" mode="svg" :name="fallbackIcon" class="ui-img__icon" />
 
     <NuxtImg
-      v-if="url"
-      v-show="isLoaded"
+      v-if="path"
+      v-show="isCompleted"
       ref="nuxtImgInstance"
-      :src="url"
+      :src="path"
       :alt="alt"
       @load="onLoad"
       @error="onError"
@@ -23,30 +18,37 @@
 import type { UIImgProps } from '~/modules/shared/components/UI/UIImg/types';
 import type { NuxtImg } from '#components';
 
-const props = defineProps<UIImgProps>();
+const props = withDefaults(defineProps<UIImgProps>(), {
+  alt: '',
+  fallbackIcon: 'i-mynaui-music-solid',
+});
 
 const nuxtImgInstance = ref<InstanceType<typeof NuxtImg>>();
-const [isLoading, toggleLoading] = useToggle();
-const [isLoaded, toggleLoaded] = useToggle();
+const [isLoading, toggleLoading] = useToggle(true);
+const [isCompleted, toggleCompleted] = useToggle();
 
 const rootCSSClass = 'ui-img';
 const rootCSSClasses = computed<Record<string, boolean>>(() => ({
   [`${rootCSSClass}_is-loading`]: isLoading.value,
   [`${rootCSSClass}_is-rounded`]: props.isRounded,
-  [`${rootCSSClass}_no-image`]: !isLoaded.value,
 }));
 
 onMounted(() => {
+  if (!props.path) {
+    toggleLoading(false);
+  }
+
   if (nuxtImgInstance.value?.$el.complete) {
-    toggleLoaded(true);
+    toggleCompleted(true);
+    toggleLoading(false);
   }
 });
 
 watch(
-  () => props.url,
-  (val: UIImgProps['url'], oldVal: UIImgProps['url']) => {
+  () => props.path,
+  (val: UIImgProps['path'], oldVal: UIImgProps['path']) => {
     if (val !== oldVal) {
-      toggleLoaded(false);
+      toggleCompleted(false);
     }
 
     if (val) toggleLoading(true);
@@ -55,12 +57,12 @@ watch(
 
 function onLoad() {
   toggleLoading(false);
-  toggleLoaded(true);
+  toggleCompleted(true);
 }
 
 function onError() {
   toggleLoading(false);
-  toggleLoaded(false);
+  toggleCompleted(false);
 }
 </script>
 
@@ -69,18 +71,15 @@ function onError() {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--size, 100px);
-  width: var(--size, 100px);
+  width: var(--width, initial);
+  height: var(--height, initial);
   overflow: hidden;
+  background-color: #323232;
   border-radius: var(--border-rounded, 4px);
-
-  &_no-image {
-    border: 1px solid var(--gray-dark, gray);
-  }
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 50%, 0.1);
 
   &_is-loading {
     animation: pulse-bg 1s infinite;
-    border-color: var(--gray-darkest, gray);
   }
 
   &_is-rounded {
@@ -88,9 +87,9 @@ function onError() {
   }
 
   &__icon {
-    height: calc(var(--size, 80px) / 2);
-    width: calc(var(--size, 80px) / 2);
-    color: var(--main-text, white);
+    width: calc(var(--width, 100%) / 2.5);
+    height: calc(var(--height, 100%) / 2.5);
+    color: rgba(235, 235, 245, 0.16);
   }
 }
 </style>
