@@ -68,11 +68,13 @@ const releaseAlbumYear = computed<number | null>(() => {
 
   &__cover {
     --width: 200px;
+    --height: 200px;
     box-shadow: 0 1px 10px 0 #000000;
     flex-shrink: 0;
 
     @include respond-to(xl) {
       --width: 240px;
+      --height: 240px;
     }
   }
 
