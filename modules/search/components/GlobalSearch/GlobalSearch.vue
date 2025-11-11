@@ -1,6 +1,6 @@
 <template>
   <div class="global-search">
-    <UISection with-container>
+    <UISection content-container>
       <UIInput
         v-model="modelValue"
         :size="isDesktop ? 'lg' : 'md'"
@@ -11,19 +11,19 @@
       />
     </UISection>
 
-    <UISection v-if="isSearchFetching" with-container>
-      <SkeletonSectionLoader>
-        <SkeletonTopResults />
+    <template v-if="isSearchFetching">
+      <SkeletonSectionLoader heading-container content-container>
+        <SkeletonTopResultsLoader />
       </SkeletonSectionLoader>
 
-      <SkeletonSectionLoader v-if="isDesktopOrTablet">
-        <SkeletonCardListLoader />
+      <SkeletonSectionLoader v-if="isDesktopOrTablet" heading-container content-container>
+        <SkeletonCardLinkListLoader image-rounded text-align="center" />
       </SkeletonSectionLoader>
 
-      <SkeletonSectionLoader v-if="isDesktopOrTablet">
-        <SkeletonCardListLoader is-rounded-image align="center" />
+      <SkeletonSectionLoader v-if="isDesktopOrTablet" heading-container content-container>
+        <SkeletonCardLinkListLoader is-rounded-image text-rows="2" />
       </SkeletonSectionLoader>
-    </UISection>
+    </template>
     <template v-else-if="searchResult">
       <template
         v-if="
@@ -34,7 +34,12 @@
           searchResult.playlists.total //
         "
       >
-        <UISection v-if="searchResult.topResults.length" heading="Top  Results" with-container>
+        <UISection
+          v-if="searchResult.topResults.length"
+          heading="Top Results"
+          heading-container
+          content-container
+        >
           <!--TODO: delete slice.-->
           <TopResults :items="searchResult.topResults.slice(0, 8)" />
         </UISection>
@@ -42,44 +47,53 @@
         <UISection
           v-if="searchResult.albums.items.length"
           heading="Albums"
-          :with-container="!isMobileOrTablet"
+          heading-container
+          :content-container="!isMobileOrTablet"
         >
           <AlbumCardLinksSlider
             v-if="isMobileOrTablet"
             :items="searchResult.albums.items"
+            show-artists
             class="global-search__slider"
           />
-          <AlbumCardLinks v-else :items="searchResult.albums.items" />
+          <AlbumCardLinksList v-else :items="searchResult.albums.items" max-rows="1" show-artists />
         </UISection>
 
         <UISection
           v-if="searchResult.artists.items.length"
           heading="Artists"
-          :with-container="!isMobileOrTablet"
+          heading-container
+          :content-container="!isMobileOrTablet"
         >
           <ArtistCardLinksSlider
             v-if="isMobileOrTablet"
             :items="searchResult.artists.items"
             class="global-search__slider"
           />
-          <ArtistCardLinks v-else :items="searchResult.artists.items" />
+          <ArtistCardLinksList v-else :items="searchResult.artists.items" />
         </UISection>
 
-        <UISection v-if="searchResult.tracks.total" heading="Tracks" with-container>
+        <UISection
+          v-if="searchResult.tracks.total"
+          heading="Tracks"
+          heading-container
+          content-container
+        >
           <TopResults :items="searchResult.tracks.items" />
         </UISection>
 
         <UISection
           v-if="searchResult.playlists.items.length"
           heading="Playlists"
-          :with-container="!isMobileOrTablet"
+          heading-container
+          :content-container="!isMobileOrTablet"
         >
           <PlaylistCardLinksSlider
             v-if="isMobileOrTablet"
             :items="searchResult.playlists.items"
             class="global-search__slider"
           />
-          <PlaylistCardLinks v-else :items="searchResult.playlists.items" />
+          <PlaylistCardLinksList v-else :items="searchResult.playlists.items" max-rows="2" />
         </UISection>
       </template>
       <UISection v-else class="global-search__no-results-section">
