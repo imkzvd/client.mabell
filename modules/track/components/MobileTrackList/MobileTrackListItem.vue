@@ -3,7 +3,7 @@
     <div class="mobile-track-list-item__column">
       <div class="mobile-track-list-item__cover-container">
         <UIImg
-          :url="item.album.cover"
+          :path="item.album.cover"
           :alt="item.name"
           class="mobile-track-list-item__cover"
           :class="{ 'mobile-track-list-item__cover_has-overlay': isCurrentItem || isPlayingItem }"
@@ -87,11 +87,8 @@ const isPlayingItem = computed<boolean>(
   }
 
   &__cover {
-    --size: 40px;
-
-    @include respond-to(xs) {
-      --size: 48px;
-    }
+    --width: var(--track-image-width, 40px);
+    --height: var(--track-image-width, 40px);
 
     &_has-overlay {
       --overlay: 0.4;
