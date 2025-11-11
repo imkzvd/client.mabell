@@ -1,14 +1,14 @@
 <template>
   <header class="mobile-album-header">
     <div class="container">
-      <UIImg :url="album.cover" :alt="album.name" class="mobile-album-header__cover" />
+      <UIImg :path="album.cover" :alt="album.name" class="mobile-album-header__cover" />
 
       <div class="mobile-album-header__details">
         <UIHeading :line-clamp="2" class="mobile-album-header__name">
           {{ album.name }}
         </UIHeading>
 
-        <UIText class="mobile-album-header__meta-data">
+        <UIText align="center" appearance="secondary" class="mobile-album-header__meta-data">
           <span class="mobile-album-header__meta-data-item">{{ album.type.label }}</span>
           <span class="mobile-album-header__meta-data-item">{{ albumGenres }}</span>
           <span v-if="releaseAlbumYear" class="mobile-album-header__meta-data-item">
@@ -64,10 +64,12 @@ const releaseAlbumYear = computed<number | null>(() => {
     margin-inline: auto;
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    --size: 160px;
+    --width: 160px;
+    --height: 160px;
 
     @include respond-to(xs) {
-      --size: 220px;
+      --width: 220px;
+      --height: 220px;
       margin-bottom: 16px;
     }
   }
