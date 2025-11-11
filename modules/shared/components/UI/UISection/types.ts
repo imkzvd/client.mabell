@@ -1,4 +1,5 @@
 export type UISectionProps = {
   heading?: string | number;
-  withContainer?: boolean;
+  headingContainer?: boolean;
+  contentContainer?: boolean;
 };

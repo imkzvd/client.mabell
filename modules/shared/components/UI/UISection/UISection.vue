@@ -1,19 +1,18 @@
 <template>
   <section class="ui-section">
-    <div v-if="$slots.heading || heading" class="container">
-      <UIHeading level="2" class="ui-section__heading">
+    <template v-if="$slots.heading || heading">
+      <div :class="headingContainer ? 'container' : 'container-fluid'">
         <slot name="heading">
-          {{ heading }}
+          <UIHeading level="2" class="ui-section__heading">
+            {{ heading }}
+          </UIHeading>
         </slot>
-      </UIHeading>
-    </div>
-
-    <div v-if="withContainer" class="container">
-      <slot name="default" />
-    </div>
-    <template v-else>
-      <slot name="default" />
+      </div>
     </template>
+
+    <div :class="contentContainer ? 'container' : 'container-fluid'">
+      <slot name="default" />
+    </div>
   </section>
 </template>
 
@@ -21,30 +20,19 @@
 import type { UISectionProps } from '~/modules/shared/components/UI/UISection/types';
 
 withDefaults(defineProps<UISectionProps>(), {
-  withContainer: false,
+  headingContainer: false,
+  contentContainer: false,
 });
 </script>
 
 <style scoped lang="scss">
 .ui-section {
   &:not(:last-child) {
-    margin-bottom: 16px;
-  }
-
-  @include respond-to(md) {
-    &:not(:last-child) {
-      margin-bottom: 32px;
-    }
-  }
-
-  @include respond-to(lg) {
-    &:not(:last-child) {
-      margin-bottom: 40px;
-    }
+    margin-bottom: var(--section-bottom-margin, 24px);
   }
 
   &__heading {
-    margin-bottom: 16px;
+    margin-bottom: var(--section-heading-bottom-margin, 16px);
   }
 }
 </style>
