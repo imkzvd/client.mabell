@@ -1,19 +1,14 @@
 <template>
   <header class="mobile-playlist-header">
     <div class="container">
-      <UIImg
-        :url="playlist.cover"
-        :alt="playlist.name"
-        size="180px"
-        class="mobile-playlist-header__cover"
-      />
+      <UIImg :path="playlist.cover" :alt="playlist.name" class="mobile-playlist-header__cover" />
 
       <div class="mobile-playlist-header__details">
-        <UIHeading line-clamp="2" class="mobile-playlist-header__name">
+        <UIHeading :line-clamp="2" class="mobile-playlist-header__name">
           {{ playlist.name }}
         </UIHeading>
 
-        <UIText appearance="secondary" class="mobile-playlist-header__meta-data">
+        <UIText align="center" appearance="secondary" class="mobile-playlist-header__meta-data">
           <span class="mobile-playlist-header__meta-data-item"> Playlist </span>
 
           <span class="mobile-playlist-header__meta-data-item">
@@ -67,10 +62,12 @@ const playlistCreatedDate = computed<string>(() => {
     margin-inline: auto;
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    --size: 160px;
+    --width: 160px;
+    --height: 160px;
 
     @include respond-to(xs) {
-      --size: 220px;
+      --width: 220px;
+      --height: 220px;
       margin-bottom: 16px;
     }
   }

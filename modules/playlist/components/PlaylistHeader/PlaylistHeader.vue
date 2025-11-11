@@ -2,15 +2,10 @@
   <header class="playlist-header">
     <div class="container">
       <div class="playlist-header__columns">
-        <UIImg
-          :url="playlist.cover"
-          :alt="playlist.name"
-          size="240px"
-          class="playlist-header__cover"
-        />
+        <UIImg :path="playlist.cover" :alt="playlist.name" class="playlist-header__cover" />
 
         <div class="playlist-header__details">
-          <UIHeading line-clamp="3" class="playlist-header__name">{{ playlist.name }}</UIHeading>
+          <UIHeading :line-clamp="3" class="playlist-header__name">{{ playlist.name }}</UIHeading>
 
           <UIText appearance="secondary" class="playlist-header__meta-info">
             <span class="playlist-header__meta-info-item">Playlist</span>
@@ -83,7 +78,15 @@ const playlistCreatedDate = computed<string>(() =>
   }
 
   &__cover {
+    --width: 200px;
+    --height: 200px;
     box-shadow: 0 1px 20px 0 var(--black, black);
+    flex-shrink: 0;
+
+    @include respond-to(xl) {
+      --width: 240px;
+      --height: 240px;
+    }
   }
 
   &__details {

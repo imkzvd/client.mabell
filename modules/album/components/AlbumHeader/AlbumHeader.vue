@@ -2,7 +2,7 @@
   <header class="album-header">
     <div class="container">
       <div class="album-header__columns">
-        <UIImg :url="album.cover" :alt="album.name" class="album-header__cover" />
+        <UIImg :path="album.cover" :alt="album.name" class="album-header__cover" />
 
         <div class="album-header__details">
           <UIHeading :line-clamp="2" class="album-header__name">
@@ -67,12 +67,12 @@ const releaseAlbumYear = computed<number | null>(() => {
   }
 
   &__cover {
-    --size: 200px;
+    --width: 200px;
     box-shadow: 0 1px 10px 0 #000000;
     flex-shrink: 0;
 
     @include respond-to(xl) {
-      --size: 240px;
+      --width: 240px;
     }
   }
 
