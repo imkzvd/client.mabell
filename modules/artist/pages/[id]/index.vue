@@ -110,9 +110,11 @@ if (error.value) {
   });
 }
 
-useHead({
-  title: `${fetchedArtist.value?.name} | Mabell` || 'Mabell Music',
-});
+if (fetchedArtist.value) {
+  useHead({
+    title: `${fetchedArtist.value.name} | Mabell`,
+  });
+}
 
 onMounted(async () => {
   await fetchArtistData(artistIdRouteParam);
