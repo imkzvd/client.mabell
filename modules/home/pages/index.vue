@@ -1,53 +1,59 @@
 <template>
   <div class="home-page">
-    <UISection heading="Trending Music" :with-container="!isMobileOrTablet">
-      <template v-if="isMobileOrTablet">
-        <SkeletonCardSliderLoader v-if="isFetching" text-rows="2" class="home-page__slider" />
-        <AlbumCardLinksSlider v-else :items="fetchedTrendingAlbums" class="home-page__slider" />
-      </template>
-      <template v-else>
-        <SkeletonCardListLoader v-if="isFetching" text-rows="2" />
-        <AlbumCardLinks v-else :items="fetchedTrendingAlbums" max-rows="1" />
-      </template>
-    </UISection>
+    <template v-if="isFetching">
+      <SkeletonSectionLoader
+        v-for="(_, index) of skeletonSectionsTotal"
+        :key="index"
+        heading-container
+      >
+        <SkeletonCardLinkListLoader
+          text-rows="2"
+          :mode="isMobileOrTablet ? 'slider' : 'list'"
+          class="home-page__slider"
+        />
+      </SkeletonSectionLoader>
+    </template>
+    <template v-else>
+      <UISection heading="Trending Music" heading-container :content-container="!isMobileOrTablet">
+        <AlbumCardLinksSlider
+          v-if="isMobileOrTablet"
+          :items="fetchedTrendingAlbums"
+          class="home-page__slider"
+        />
+        <AlbumCardLinksList v-else :items="fetchedTrendingAlbums" show-meta max-rows="1" />
+      </UISection>
 
-    <UISection heading="Top Albums" :with-container="!isMobileOrTablet">
-      <template v-if="isMobileOrTablet">
-        <SkeletonCardSliderLoader v-if="isFetching" text-rows="2" class="home-page__slider" />
-        <AlbumCardLinksSlider v-else :items="fetchedTopAlbums" class="home-page__slider" />
-      </template>
-      <template v-else>
-        <SkeletonCardListLoader v-if="isFetching" text-rows="2" />
-        <AlbumCardLinks v-else :items="fetchedTopAlbums" max-rows="1" />
-      </template>
-    </UISection>
+      <UISection heading="Top Albums" heading-container :content-container="!isMobileOrTablet">
+        <AlbumCardLinksSlider
+          v-if="isMobileOrTablet"
+          :items="fetchedTopAlbums"
+          class="home-page__slider"
+        />
+        <AlbumCardLinksList v-else :items="fetchedTopAlbums" show-artists max-rows="1" />
+      </UISection>
 
-    <UISection heading="Hot Playlists" :with-container="!isMobileOrTablet">
-      <template v-if="isMobileOrTablet">
-        <SkeletonCardSliderLoader v-if="isFetching" text-rows="2" class="home-page__slider" />
-        <PlaylistCardLinksSlider v-else :items="fetchedHotPlaylists" class="home-page__slider" />
-      </template>
-      <template v-else>
-        <SkeletonCardListLoader v-if="isFetching" />
-        <PlaylistCardLinks v-else :items="fetchedHotPlaylists" max-rows="1" />
-      </template>
-    </UISection>
+      <UISection heading="Hot Playlists" heading-container :content-container="!isMobileOrTablet">
+        <PlaylistCardLinksSlider
+          v-if="isMobileOrTablet"
+          :items="fetchedHotPlaylists"
+          class="home-page__slider"
+        />
+        <PlaylistCardLinksList v-else :items="fetchedHotPlaylists" max-rows="1" />
+      </UISection>
 
-    <UISection heading="Popular artists" :with-container="!isMobileOrTablet">
-      <template v-if="isMobileOrTablet">
-        <SkeletonCardSliderLoader v-if="isFetching" text-rows="2" class="home-page__slider" />
-        <ArtistCardLinksSlider v-else :items="fetchedPopularArtists" class="home-page__slider" />
-      </template>
-      <template v-else>
-        <SkeletonCardListLoader v-if="isFetching" is-rounded-image align="center" />
-        <ArtistCardLinks v-else :items="fetchedPopularArtists" max-rows="1" />
-      </template>
-    </UISection>
+      <UISection heading="Popular artists" heading-container :content-container="!isMobileOrTablet">
+        <ArtistCardLinksSlider
+          v-if="isMobileOrTablet"
+          :items="fetchedPopularArtists"
+          class="home-page__slider"
+        />
+        <ArtistCardLinksList v-else :items="fetchedPopularArtists" max-rows="1" />
+      </UISection>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { AlbumRO, ArtistRO, PlaylistRO } from '~/api/api.module';
 import { albumApiService } from '~/modules/album/services/album.api.service';
 import { playlistApiService } from '~/modules/playlist/services/playlist.api.service';
 import { artistApiService } from '~/modules/artist/services/artist.api.service';
@@ -57,7 +63,9 @@ import {
   topAlbumIds,
   trendingMusicIds,
 } from '~/modules/home/constants';
+import type { AlbumRO, ArtistRO, PlaylistRO } from '~/api/api.module';
 
+const skeletonSectionsTotal = 3;
 const { isMobileOrTablet } = useDevice();
 const [isFetching, toggleFetching] = useToggle(true);
 
@@ -79,7 +87,7 @@ onMounted(async () => {
   fetchedHotPlaylists.value = hotPlaylists;
   fetchedPopularArtists.value = popularArtists;
 
-  toggleFetching();
+  toggleFetching(false);
 });
 </script>
 
