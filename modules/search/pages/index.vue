@@ -4,7 +4,7 @@
       <UIHeading class="search-page__heading">Search</UIHeading>
     </div>
 
-    <UISection content-container>
+    <UISection>
       <GlobalSearch @search-start="onGlobalSearchStart" @search-end="onGlobalSearchEnd" />
     </UISection>
 

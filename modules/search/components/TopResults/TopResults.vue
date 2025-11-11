@@ -1,20 +1,24 @@
 <template>
   <div class="top-results">
-    <template v-for="item of items">
-      <TopResultsArtistItem v-if="item.type === 'artist'" :item="item" class="top-results__item" />
+    <template v-for="item of items" :key="item.id">
+      <TopResultsArtistItem
+        v-if="item.type === 'artist'"
+        :item="item as IndexedArtistRO"
+        class="top-results__item"
+      />
       <TopResultsAlbumItem
         v-else-if="item.type === 'album'"
-        :item="item"
+        :item="item as IndexedAlbumRO"
         class="top-results__item"
       />
       <TopResultsTrackItem
         v-else-if="item.type === 'track'"
-        :item="item"
+        :item="item as IndexedTrackRO"
         class="top-results__item"
       />
       <TopResultsPlaylistItem
         v-else-if="item.type === 'playlist'"
-        :item="item"
+        :item="item as IndexedPlaylistRO"
         class="top-results__item"
       />
     </template>
@@ -23,6 +27,12 @@
 
 <script setup lang="ts">
 import type { TopResultsProps } from '~/modules/search/components/TopResults/types';
+import type {
+  IndexedAlbumRO,
+  IndexedArtistRO,
+  IndexedPlaylistRO,
+  IndexedTrackRO,
+} from '~/api/api.module';
 
 defineProps<TopResultsProps>();
 </script>
