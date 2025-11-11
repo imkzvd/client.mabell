@@ -1,105 +1,106 @@
 <template>
   <div class="artist-page">
-    <template v-if="fetchedData?.artist">
-      <MobileArtistHeader v-if="isMobile" :artist="fetchedData.artist" />
-      <ArtistHeader v-else :artist="fetchedData.artist" />
-    </template>
+    <template v-if="fetchedArtist">
+      <MobileArtistHeader v-if="isMobile" :artist="fetchedArtist" />
+      <ArtistHeader v-else :artist="fetchedArtist" />
 
-    <section class="artist-page__section">
-      <div class="container">
+      <UISection content-container>
         <div class="artist-page__featured-content">
-          <section v-if="fetchedData?.tracks.items.length" class="section artist-page__top-tracks">
-            <UIHeading level="2">Top Tracks</UIHeading>
-
+          <UISection heading="Top Tracks" class="artist-page__top-tracks">
+            <SkeletonTrackListLoader v-if="isFetching" />
             <MobileTrackList
-              v-if="isMobileOrTablet"
-              :items="fetchedData?.tracks.items"
-              :aria-label="`${fetchedData.artist.name} top tracks`"
+              v-else-if="isMobileOrTablet"
+              :items="fetchedArtistTopTracks"
+              :aria-label="`${fetchedArtist.name} top tracks`"
               @play-item="onItemPlay"
               @pause-item="onItemPause"
             />
             <CompactTrackList
               v-else
-              :items="fetchedData?.tracks.items"
-              :aria-label="`${fetchedData.artist.name} top tracks`"
+              :items="fetchedArtistTopTracks"
+              :aria-label="`${fetchedArtist.name} top tracks`"
               @play-item="onItemPlay"
               @pause-item="onItemPause"
               @add-item="onItemAdd"
             />
 
             <UILink
-              v-if="fetchedData?.artist"
+              v-if="!isFetching && fetchedArtist"
               hover-underline
-              :to="{ name: 'artist-id', params: { id: fetchedData?.artist.id } }"
+              :to="{ name: 'artist-id', params: { id: fetchedArtist.id } }"
               class="artist-page__see-more-tracks-link"
             >
               See More
             </UILink>
-          </section>
+          </UISection>
 
-          <section
-            v-if="fetchedData?.latestAlbum"
-            class="section artist-page__latest-release-section"
-          >
-            <UIHeading level="2">Latest Release</UIHeading>
-
-            <LatestAlbumRelease :album="fetchedData?.latestAlbum" />
-          </section>
+          <UISection v-if="isDesktop" heading="Latest Release">
+            <SkeletonCardLinkLoader
+              v-if="isFetching"
+              text-rows="2"
+              :direction="isMobileOrTablet ? 'row' : 'column'"
+            />
+            <LatestAlbumRelease
+              v-else-if="fetchedArtistLatestAlbum"
+              :album="fetchedArtistLatestAlbum"
+            />
+          </UISection>
         </div>
-      </div>
-    </section>
+      </UISection>
 
-    <section v-if="fetchedData?.albums.total" class="section artist-page__section">
-      <div class="container">
-        <UIHeading level="2" class="section__heading">Albums</UIHeading>
-      </div>
+      <UISection heading="Albums" :content-container="!isMobileOrTablet" heading-container>
+        <SkeletonCardLinkListLoader
+          v-if="isFetching"
+          :mode="isMobileOrTablet ? 'slider' : 'list'"
+          text-rows="2"
+          :class="isMobileOrTablet ? 'artist-page__slider' : ''"
+        />
+        <AlbumCardLinksSlider
+          v-else-if="isMobileOrTablet"
+          :items="fetchedArtistAlbums"
+          class="artist-page__slider"
+        />
+        <AlbumCardLinksList v-else :items="fetchedArtistAlbums" show-meta max-rows="1" />
+      </UISection>
 
-      <AlbumSlider :items="fetchedData?.albums.items" class="artist-page__album-slider" />
-    </section>
-
-    <section v-if="fetchedData?.similarArtists.length" class="section">
-      <div class="container">
-        <UIHeading level="2" class="section__heading">Similar Artists</UIHeading>
-      </div>
-
-      <SimilarArtistSlider
-        :items="fetchedData?.similarArtists"
-        class="artist-page__similar-artists"
-      />
-    </section>
+      <UISection heading="Similar Artists" :content-container="!isMobileOrTablet" heading-container>
+        <SkeletonCardLinkListLoader
+          v-if="isFetching"
+          mode="slider"
+          text-align="center"
+          image-rounded
+          :class="isMobileOrTablet ? 'artist-page__slider' : ''"
+        />
+        <ArtistCardLinksSlider
+          v-else-if="isMobileOrTablet"
+          :items="fetchedSimilarArtists"
+          class="artist-page__slider"
+        />
+        <ArtistCardLinksList v-else :items="fetchedSimilarArtists" max-rows="1" />
+      </UISection>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { artistApiService } from '~/modules/artist/services/artist.api.service';
 import { PlayerInjectKey } from '~/modules/player/constants';
-import type { TrackRO } from '~/api/api.module';
+import type { SimplifiedAlbumRO, SimplifiedArtistRO, TrackRO } from '~/api/api.module';
+import type { ApiError } from '~/modules/shared/errors/api-error';
 
 const player = inject(PlayerInjectKey);
 
 const route = useRoute();
-const { isMobile, isMobileOrTablet } = useDevice();
+const { isMobile, isDesktop, isMobileOrTablet } = useDevice();
+const [isFetching, toggleFetching] = useToggle(true);
 const artistIdRouteParam = route.params.id as string;
+const fetchedArtistTopTracks = ref<TrackRO[]>([]);
+const fetchedArtistLatestAlbum = ref<SimplifiedAlbumRO | null>(null);
+const fetchedArtistAlbums = ref<SimplifiedAlbumRO[]>([]);
+const fetchedSimilarArtists = ref<SimplifiedArtistRO[]>([]);
 
-const { data: fetchedData, error } = await useAsyncData(
-  `artist:${artistIdRouteParam}`,
-  async () => {
-    const [artist, tracks, latestAlbum, albums, similarArtists] = await Promise.all([
-      artistApiService.getArtistById(artistIdRouteParam),
-      artistApiService.getTopTracksById(artistIdRouteParam, { limit: 5 }),
-      artistApiService.getLatestAlbumById(artistIdRouteParam),
-      artistApiService.getAlbumsById(artistIdRouteParam, { limit: 5 }),
-      artistApiService.getSimilarArtistsById(artistIdRouteParam),
-    ]);
-
-    return {
-      artist,
-      tracks,
-      latestAlbum,
-      albums,
-      similarArtists,
-    };
-  },
+const { data: fetchedArtist, error } = await useAsyncData(`artist:${artistIdRouteParam}`, () =>
+  artistApiService.getArtistById(artistIdRouteParam),
 );
 
 if (error.value) {
@@ -110,8 +111,33 @@ if (error.value) {
 }
 
 useHead({
-  title: fetchedData.value?.artist.name || 'Artist',
+  title: `${fetchedArtist.value?.name} | Mabell` || 'Mabell Music',
 });
+
+onMounted(async () => {
+  await fetchArtistData(artistIdRouteParam);
+  toggleFetching(false);
+});
+
+async function fetchArtistData(artistId: string) {
+  try {
+    const [topTracks, latestAlbum, albums, similarArtists] = await Promise.all([
+      artistApiService.getTopTracksById(artistId, { limit: 5 }),
+      artistApiService.getLatestAlbumById(artistId),
+      artistApiService.getAlbumsById(artistId, { limit: 5 }),
+      artistApiService.getSimilarArtistsById(artistId),
+    ]);
+
+    fetchedArtistTopTracks.value = topTracks.items;
+    fetchedArtistLatestAlbum.value = latestAlbum;
+    fetchedArtistAlbums.value = albums.items;
+    fetchedSimilarArtists.value = similarArtists;
+  } catch (e) {
+    const { message } = e as ApiError;
+
+    console.error(message);
+  }
+}
 
 function onItemPlay(item: TrackRO, index: number) {
   player.value?.addTracks(fetchedData.value?.tracks.items || [], index);
@@ -128,29 +154,11 @@ function onItemAdd(item: TrackRO, index: number) {
 </script>
 
 <style lang="scss" scoped>
+@use '~/assets/scss/container';
+
 .artist-page {
-  &__album-slider {
-    padding-inline: 8px;
-
-    @include respond-to(xs) {
-      padding-inline: 16px;
-    }
-
-    @include respond-to(md) {
-      padding-inline: 32px;
-    }
-  }
-
-  &__similar-artists {
-    padding-inline: 8px;
-
-    @include respond-to(xs) {
-      padding-inline: 16px;
-    }
-
-    @include respond-to(md) {
-      padding-inline: 32px;
-    }
+  &__slider {
+    @extend .container;
   }
 
   &__see-more-tracks-link {
@@ -165,8 +173,7 @@ function onItemAdd(item: TrackRO, index: number) {
   &__featured-content {
     display: flex;
     flex-direction: column;
-    column-gap: 32px;
-    margin-bottom: 24px;
+    column-gap: 48px;
 
     @include respond-to(xl) {
       flex-direction: row;
@@ -176,6 +183,10 @@ function onItemAdd(item: TrackRO, index: number) {
   &__top-tracks {
     max-width: 800px;
     flex-grow: 1;
+
+    @include respond-to(lg) {
+      --section-bottom-margin: 0;
+    }
   }
 }
 </style>
