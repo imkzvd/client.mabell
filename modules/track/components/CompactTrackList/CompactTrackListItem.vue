@@ -9,7 +9,7 @@
     <div class="compact-track-list-item__column">
       <div class="compact-track-list-item__cover-container">
         <UIImg
-          :url="item.album.cover"
+          :path="item.album.cover"
           :alt="item.name"
           class="compact-track-list-item__cover"
           :class="{
@@ -137,6 +137,7 @@ onMounted(() => {
   color: var(--main-text, white);
   margin-inline: -16px;
   padding: 8px 16px;
+  line-height: 1.2;
   transition: 0.25s all;
 
   &:focus {
@@ -153,10 +154,11 @@ onMounted(() => {
   }
 
   &__cover {
-    --size: 52px;
+    --width: var(--track-image-width, 40px);
+    aspect-ratio: 1;
 
     &_has-overlay {
-      --overlay: 0.4;
+      filter: brightness(50%);
     }
   }
 
@@ -172,7 +174,6 @@ onMounted(() => {
     display: flex;
     align-items: center;
     gap: 4px;
-    line-height: 1.2;
   }
 
   &__name {
@@ -182,6 +183,7 @@ onMounted(() => {
 
   &__details-bottom-line {
     color: var(--secondary-text, gray);
+    font-size: 14px;
   }
 
   &__equalizer-icon {
