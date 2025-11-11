@@ -1,9 +1,7 @@
 <template>
-  <div class="album-card-links-slider">
-    <div v-for="item of items" :key="item.id">
-      <AlbumCardLinkSlider :item="item" />
-    </div>
-  </div>
+  <CardLinksSlider class="album-card-links-slider">
+    <AlbumCardLink v-for="item of items" :key="item.id" :item="item" show-meta />
+  </CardLinksSlider>
 </template>
 
 <script setup lang="ts">
@@ -12,14 +10,4 @@ import type { AlbumCardLinksSliderProps } from '~/modules/album/components/Album
 defineProps<AlbumCardLinksSliderProps>();
 </script>
 
-<style scoped lang="scss">
-.album-card-links-slider {
-  display: flex;
-  column-gap: var(--card-links-gap, 12px);
-  overflow-x: auto;
-
-  @include respond-to(lg) {
-    column-gap: var(--card-links-lg-gap, 16px);
-  }
-}
-</style>
+<style scoped lang="scss"></style>
