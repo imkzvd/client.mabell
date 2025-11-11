@@ -6,7 +6,10 @@
           {{ artist.name }}
         </UIHeading>
 
+        <UIText appearance="secondary" size="14px" :line-clamp="2">{{ artist.biography }}</UIText>
+
         <UIIconButton
+          v-if="false"
           appearance="secondary"
           icon="i-ph-dots-three-outline-fill"
           icon-size="20"
@@ -46,25 +49,23 @@ function onOptionsButtonClick() {
   background-position: center;
   background-repeat: no-repeat;
   filter: saturate(var(--img-saturate));
-  padding-bottom: 16px;
+  padding-block: var(--section-bottom-margin, 24px);
 
   &::after {
     position: absolute;
     inset: 0;
-    box-shadow: inset 0px -90px 60px -10px var(--base-bg);
+    box-shadow: inset 0px -120px 120px 0px var(--base-bg, black);
     content: '';
   }
 
   &__details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     position: relative;
     z-index: 10;
   }
 
   &__heading {
     line-height: 1.2;
+    margin-bottom: 4px;
 
     @include text-ellipsis(2);
   }
