@@ -1,11 +1,11 @@
 @keyframes pulse-bg {
   0% {
-    background-color: var(--gray-darker, gray);
+    background-color: #323232; // TODO: add in global css vars
   }
   50% {
-    background-color: #353535; // TODO: add in global css vars
+    background-color: var(--gray-dark, gray);
   }
   100% {
-    background-color: var(--gray-darker, gray);
+    background-color: #323232; // TODO: add in global css vars
   }
 }
