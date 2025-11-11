@@ -1,6 +1,12 @@
 <template>
   <CardLinksSlider class="album-card-links-slider">
-    <AlbumCardLink v-for="item of items" :key="item.id" :item="item" show-meta />
+    <AlbumCardLink
+      v-for="item of items"
+      :key="item.id"
+      :item="item"
+      :show-artists="showArtists"
+      :show-meta="showMeta"
+    />
   </CardLinksSlider>
 </template>
 
