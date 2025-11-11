@@ -1,5 +1,5 @@
 <template>
-  <CardLinksList class="playlist-card-links-list">
+  <CardLinksList class="playlist-card-links-list" :max-rows="maxRows">
     <PlaylistCardLink v-for="item of items" :key="item.id" :item="item" />
   </CardLinksList>
 </template>
