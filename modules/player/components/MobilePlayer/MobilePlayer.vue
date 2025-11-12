@@ -18,21 +18,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useAudio } from '~/modules/player/composables/useAudio';
-import type { PlayerAPI } from '~/modules/player/types';
+const { $audioPlayer } = useNuxtApp();
 
-const { items, currentItem, play, pause, addTrack, addTracks, addNextTrack, isPlaying } =
-  useAudio();
+const { currentItem, play, pause, isPlaying } = $audioPlayer;
 
-defineExpose<PlayerAPI>({
-  playlist: items,
-  currentTrack: currentItem,
-  isPlaying,
-  play,
-  pause,
-  addTrack,
-  addTracks,
-  addNextTrack,
+const albumColor = computed(() => {
+  return currentItem.value?.album.color || 'var(--stone)';
 });
 </script>
 
@@ -43,13 +34,13 @@ defineExpose<PlayerAPI>({
   justify-content: space-between;
   column-gap: 8px;
   padding: 4px;
-  background-color: v-bind('currentItem?.album.color');
+  background-color: v-bind(albumColor);
   border-radius: 8px;
-  box-shadow: 0 0 20px 4px var(--black);
-  //z-index: 20;
+  overflow: hidden;
 
   @include respond-to(xs) {
-    padding: 8px;
+    padding: 6px;
+    padding-right: 12px;
   }
 
   &:after {

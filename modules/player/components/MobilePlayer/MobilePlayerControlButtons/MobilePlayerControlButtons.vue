@@ -1,11 +1,9 @@
 <template>
   <div class="mobile-player-control-buttons">
     <UIIconButton
-      :icon="
-        isPlaying ? 'i-material-symbols-pause-rounded' : 'i-material-symbols-play-arrow-rounded'
-      "
+      :icon="isPlaying ? 'i-mynaui-pause-solid' : 'i-mynaui-play-solid'"
+      icon-size="32"
       :is-disabled="isDisabled"
-      icon-size="28px"
       :aria-label="isPlaying ? 'Pause track' : 'Play track'"
       class="mobile-player-control-buttons__icon-button"
       @click="isPlaying ? emit('pause') : emit('play')"
@@ -27,7 +25,7 @@ const emit = defineEmits<MobilePlayerControlButtonsEmits>();
 .mobile-player-control-buttons {
   &__icon-button {
     @include respond-to(xs) {
-      --size: 32px;
+      --size: 40px;
     }
   }
 }

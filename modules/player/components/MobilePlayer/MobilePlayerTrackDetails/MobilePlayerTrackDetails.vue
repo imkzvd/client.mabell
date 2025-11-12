@@ -1,6 +1,6 @@
 <template>
   <div class="mobile-player-track-details">
-    <UIImg :url="track.album.cover" :alt="track.name" class="mobile-player-track-details__cover" />
+    <UIImg :path="track.album.cover" :alt="track.name" class="mobile-player-track-details__cover" />
 
     <div class="mobile-player-track-details__lines">
       <div class="mobile-player-track-details__top-line">
@@ -10,7 +10,7 @@
       </div>
 
       <div class="mobile-player-track-details__bottom-line">
-        <ArtistNames :line-clamp="1" :items="allTrackArtists" />
+        <ArtistNames :items="allTrackArtists" :line-clamp="1" />
       </div>
     </div>
   </div>
@@ -23,7 +23,7 @@ import type { SimplifiedArtistRO } from '~/api/api.module';
 const props = defineProps<DesktopPlayerTrackDetailsProps>();
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
-  ...props.track.album.artists,
+  ...props.track.artists,
   ...props.track.featArtists,
 ]);
 </script>
@@ -33,14 +33,24 @@ const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   display: flex;
   align-items: center;
   gap: 8px;
-  --font-size: 12px;
+  font-size: 12px;
 
   @include respond-to(xs) {
-    --font-size: 14px;
+    font-size: 14px;
+  }
+
+  &__cover {
+    --width: 40px;
+    --height: 40px;
+    flex-shrink: 0;
+
+    @include respond-to(xs) {
+      --width: 48px;
+      --height: 48px;
+    }
   }
 
   &__lines {
-    overflow: hidden;
     line-height: 1.2;
   }
 }
