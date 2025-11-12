@@ -1,22 +1,28 @@
 <template>
   <div class="desktop-player-track-details">
-    <UIImg :url="track.album.cover" :alt="track.name" class="desktop-player-track-details__cover" />
+    <UIImg
+      :path="track.album.cover"
+      :alt="track.name"
+      class="desktop-player-track-details__cover"
+    />
 
     <div class="desktop-player-track-details__lines">
       <div class="desktop-player-track-details__top-line">
-        <UIText size="14px" class="desktop-player-track-details__name">{{ track.name }}</UIText>
+        <UIText :line-clamp="1" size="14px" class="desktop-player-track-details__name">
+          {{ track.name }}
+        </UIText>
 
         <NuxtIcon
           v-if="track.isExplicit"
           mode="svg"
-          name="material-symbols:explicit"
+          name="i-mynaui-letter-e-square-solid"
           size="16"
           class="desktop-player-track-details__explicit-icon"
         />
       </div>
 
       <div class="desktop-player-track-details__bottom-line">
-        <ArtistLinks hover-underline :items="allTrackArtists" />
+        <ArtistLinks :items="allTrackArtists" is-truncated hover-underline />
 
         <span>-</span>
 
@@ -35,7 +41,7 @@ import type { SimplifiedArtistRO } from '~/api/api.module';
 const props = defineProps<DesktopPlayerTrackDetailsProps>();
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
-  ...props.track.album.artists,
+  ...props.track.artists,
   ...props.track.featArtists,
 ]);
 </script>
@@ -45,34 +51,23 @@ const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   display: flex;
   align-items: center;
   gap: 12px;
-  max-width: 100%;
 
   &__cover {
-    --size: 52px;
-  }
-
-  &__lines {
-    max-width: 100%;
-    overflow: hidden;
+    --width: 56px;
+    --height: 56px;
+    flex-shrink: 0;
   }
 
   &__top-line {
     display: flex;
     align-items: center;
-    gap: 4px;
-  }
-
-  &__name {
-    @include text-ellipsis();
+    column-gap: 4px;
   }
 
   &__bottom-line {
     display: flex;
     column-gap: 4px;
     font-size: 12px;
-    color: var(--ui-link-color);
-
-    @include text-ellipsis();
   }
 
   &__explicit-icon {
