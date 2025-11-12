@@ -1,13 +1,6 @@
 <template>
   <UIText class="artist-names" appearance="secondary" :line-clamp="lineClamp">
-    <span
-      v-for="(item, index) of allArtistNames"
-      :key="index"
-      class="artist-names__item"
-      :class="itemCssClass"
-    >
-      {{ item }}
-    </span>
+    {{ preparedString }}
   </UIText>
 </template>
 
@@ -21,31 +14,12 @@ const props = withDefaults(defineProps<ArtistNamesProps>(), {
   separator: ArtistNamesSeparators.comma,
 });
 
-const baseClass = 'artist-names';
-const itemCssClass = computed(() => ({
-  [`${baseClass}__item_separator_${props.separator}`]: true,
-}));
-const allArtistNames = computed(() => props.items.map(({ name }) => name));
+const allArtistNames = computed<string[]>(() => props.items.map(({ name }) => name));
+const preparedString = computed<string>(() => {
+  return props.separator === ArtistNamesSeparators.comma
+    ? allArtistNames.value.join(', ')
+    : allArtistNames.value.join(' • ');
+});
 </script>
 
-<style scoped lang="scss">
-.artist-names {
-  &__item {
-    &_separator {
-      &_comma {
-        &:not(:last-child)::after {
-          content: ',';
-          margin-right: 2px;
-        }
-      }
-
-      &_dot {
-        &:not(:last-child)::after {
-          content: '•';
-          margin-inline: 2px;
-        }
-      }
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>
