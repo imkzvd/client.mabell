@@ -1,10 +1,9 @@
 <template>
   <div class="desktop-player-volume-controls">
     <UIIconButton
-      type="secondary"
-      :icon="isMuting ? 'ion:volume-mute' : 'ion:volume-high'"
+      appearance="secondary"
+      :icon="isMuting ? 'i-mynaui-volume-x-solid' : 'i-mynaui-volume-high-solid'"
       icon-size="20"
-      class="mr-1"
       :aria-label="isMuting ? 'Unmute' : 'Mute'"
       @click="isMuting ? onUnmuteButtonClick() : onMuteButtonClick()"
     />
@@ -42,6 +41,7 @@ function onUnmuteButtonClick() {
 .desktop-player-volume-controls {
   display: flex;
   align-items: center;
+  column-gap: 4px;
 
   &__slider-wrapper {
     width: 120px;

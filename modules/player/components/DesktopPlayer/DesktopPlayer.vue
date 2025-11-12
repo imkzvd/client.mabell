@@ -41,51 +41,34 @@
 </template>
 
 <script lang="ts" setup>
-import { useAudio } from '~/modules/player/composables/useAudio';
-import type { PlayerAPI } from '~/modules/player/types';
 import {
   type DesktopPlayerTimerMode,
   DesktopPlayerTimerModes,
 } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTimer/types';
 
+const { $audioPlayer } = useNuxtApp();
 const timeModeFromLS = useLocalStorage<DesktopPlayerTimerMode>(
   'player-timer-mode',
   DesktopPlayerTimerModes.full,
 );
 
 const {
-  items: playlist,
   currentItem: currentTrack,
   currentTime,
   isPlaying,
   volume,
   play,
   pause,
-  addTrack,
-  addTracks,
-  addNextTrack,
   setCurrentTime,
   prevTrack,
   nextTrack,
-} = useAudio();
-
-defineExpose<PlayerAPI>({
-  playlist,
-  currentTrack,
-  isPlaying,
-  play,
-  pause,
-  addTrack,
-  addTracks,
-  addNextTrack,
-});
+} = $audioPlayer;
 
 function onPlayerProgressBarChange(value: number) {
   setCurrentTime(value);
 }
 
 function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
-  console.log(mode);
   timeModeFromLS.value = mode;
 }
 </script>
@@ -94,7 +77,8 @@ function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
 .desktop-player {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 160px 1fr;
+  grid-template-columns: 1fr 400px 1fr;
+  column-gap: 16px;
   padding-inline: 16px;
   height: 100%;
 
@@ -104,7 +88,6 @@ function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
 
   &__column {
     display: flex;
-    overflow: hidden;
   }
 
   &__control-buttons {

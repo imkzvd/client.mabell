@@ -17,9 +17,4 @@ defineProps<DesktopPlayerProgressBarProps>();
 const emit = defineEmits<DesktopPlayerProgressBarEmits>();
 </script>
 
-<style lang="scss" scoped>
-.desktop-player-progress-bar {
-  border-radius: 8px;
-  overflow: hidden;
-}
-</style>
+<style lang="scss" scoped></style>
