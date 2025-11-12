@@ -11,6 +11,6 @@ export type ArtistLinksSeparator = keyof typeof ArtistLinksSeparators;
 export type ArtistLinksProps = {
   items: (ArtistRO | SimplifiedArtistRO)[];
   hoverUnderline?: UILinkProps['hoverUnderline'];
-  lineClamp?: number | null;
   separator?: ArtistLinksSeparator;
+  isTruncated?: boolean;
 };
