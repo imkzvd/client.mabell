@@ -1,5 +1,5 @@
 <template>
-  <div class="artist-links">
+  <div class="artist-links" :class="rootCSSClasses">
     <UILink
       v-for="(item, index) of items"
       :key="item.id"
@@ -7,7 +7,7 @@
       appearance="secondary"
       :hover-underline="hoverUnderline"
       class="artist-links__link"
-      :class="linkCssClasses"
+      :class="linkCSSClasses"
       @click.stop
     >
       {{ item.name }}
@@ -25,15 +25,29 @@ const props = withDefaults(defineProps<ArtistLinksProps>(), {
   separator: ArtistLinksSeparators.comma,
 });
 
-const baseClass = 'artist-links';
-const linkCssClasses = computed(() => ({
-  [`${baseClass}__link_separator_${props.separator}`]: true,
+const rootCSSClass = 'artist-links';
+const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+  [`${rootCSSClass}_is-truncated`]: !!props.isTruncated,
+}));
+const linkCSSClasses = computed<Record<string, boolean>>(() => ({
+  [`${rootCSSClass}__link_separator_${props.separator}`]: !!props.separator,
 }));
 </script>
 
 <style scoped lang="scss">
 .artist-links {
+  display: flex;
+  flex-wrap: wrap;
   font-size: var(--size, inherit);
+
+  &_is-truncated {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+  }
 
   &__link {
     &_separator {
