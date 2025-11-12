@@ -57,6 +57,7 @@ provide(PlayerInjectKey, playerInstance);
   &__panel {
     background-color: var(--panel-bg, gray);
     border-radius: 12px;
+    box-shadow: inset 0 0 0 1px hsla(0, 0%, 50%, 0.1);
 
     &_aside {
       grid-area: aside;
