@@ -41,6 +41,7 @@
         <div class="compact-track-list-item__details-top-line">
           <UILink
             :to="{ name: 'album-id', params: { id: item.album.id } }"
+            :line-clamp="1"
             class="compact-track-list-item__name"
           >
             {{ item.name }}
@@ -55,7 +56,11 @@
         </div>
 
         <div class="compact-track-list-item__details-bottom-line">
-          <ArtistLinks :items="allTrackArtists" class="compact-track-list-item__artist-links" />
+          <ArtistLinks
+            :items="allTrackArtists"
+            is-truncated
+            class="compact-track-list-item__artist-links"
+          />
         </div>
       </div>
     </div>
@@ -130,7 +135,7 @@ onMounted(() => {
 .compact-track-list-item {
   display: grid;
   cursor: pointer;
-  grid-template-columns: auto 1fr auto auto auto;
+  grid-template-columns: auto 1fr 32px auto auto;
   align-items: center;
   gap: 12px;
   border-radius: var(--border-rounded, 6px);
