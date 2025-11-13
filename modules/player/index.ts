@@ -1,17 +1,16 @@
-import { defineNuxtModule } from '@nuxt/kit';
-import { resolve, join } from 'pathe';
-import type { Nuxt } from '@nuxt/schema';
+import { defineNuxtModule, addPlugin, createResolver, addComponentsDir } from '@nuxt/kit';
 
 export default defineNuxtModule({
-  name: 'player-module',
-  configKey: 'player-module',
-  setup(options: any, nuxt: Nuxt) {
-    // Auto register components
-    nuxt.hook('components:dirs', (dirs) => {
-      dirs.push({
-        path: join(__dirname, 'components'),
-        pathPrefix: false,
-      });
+  meta: {
+    name: 'player-module',
+  },
+  setup() {
+    const resolver = createResolver(import.meta.url);
+
+    addComponentsDir({
+      path: resolver.resolve('./components'),
+      pathPrefix: false,
     });
+    addPlugin(resolver.resolve('./plugins/audio-player.client'));
   },
 });
