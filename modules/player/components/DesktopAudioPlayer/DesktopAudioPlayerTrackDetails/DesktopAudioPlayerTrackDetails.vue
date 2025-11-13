@@ -1,14 +1,14 @@
 <template>
-  <div class="desktop-player-track-details">
+  <div class="desktop-audio-player-track-details">
     <UIImg
       :path="track.album.cover"
       :alt="track.name"
-      class="desktop-player-track-details__cover"
+      class="desktop-audio-player-track-details__cover"
     />
 
-    <div class="desktop-player-track-details__lines">
-      <div class="desktop-player-track-details__top-line">
-        <UIText :line-clamp="1" size="14px" class="desktop-player-track-details__name">
+    <div class="desktop-audio-player-track-details__lines">
+      <div class="desktop-audio-player-track-details__top-line">
+        <UIText :line-clamp="1" size="14px" class="desktop-audio-player-track-details__name">
           {{ track.name }}
         </UIText>
 
@@ -17,11 +17,11 @@
           mode="svg"
           name="i-mynaui-letter-e-square-solid"
           size="16"
-          class="desktop-player-track-details__explicit-icon"
+          class="desktop-audio-player-track-details__explicit-icon"
         />
       </div>
 
-      <div class="desktop-player-track-details__bottom-line">
+      <div class="desktop-audio-player-track-details__bottom-line">
         <ArtistLinks :items="allTrackArtists" is-truncated hover-underline />
 
         <span>-</span>
@@ -35,10 +35,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DesktopPlayerTrackDetailsProps } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTrackDetails/types';
+import type { DesktopAudioPlayerTrackDetailsProps } from '~/modules/player/components/DesktopAudioPlayer/DesktopAudioPlayerTrackDetails/types';
 import type { SimplifiedArtistRO } from '~/api/api.module';
 
-const props = defineProps<DesktopPlayerTrackDetailsProps>();
+const props = defineProps<DesktopAudioPlayerTrackDetailsProps>();
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   ...props.track.artists,
@@ -47,7 +47,7 @@ const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
 </script>
 
 <style scoped lang="scss">
-.desktop-player-track-details {
+.desktop-audio-player-track-details {
   display: flex;
   align-items: center;
   gap: 12px;

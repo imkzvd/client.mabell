@@ -1,22 +1,24 @@
 <template>
-  <div class="desktop-player">
-    <div v-if="currentTrack?.duration" class="desktop-player__progress-bar-wrapper">
-      <DesktopPlayerProgressBar
+  <div class="desktop-audio-player">
+    <div v-if="currentTrack?.duration" class="desktop-audio-player__progress-bar-wrapper">
+      <DesktopAudioPlayerProgressBar
+        v-model="currentTrackTime"
         :max="currentTrack.duration"
-        :model-value="currentTime"
+        @mouseup="onPlayerProgressBarMouseUp"
+        @mousedown="onPlayerProgressBarMouseDown"
         @change="onPlayerProgressBarChange"
       />
     </div>
 
-    <div class="desktop-player__column">
-      <DesktopPlayerTrackDetails v-if="currentTrack" :track="currentTrack" />
+    <div class="desktop-audio-player__column">
+      <DesktopAudioPlayerTrackDetails v-if="currentTrack" :track="currentTrack" />
     </div>
 
-    <div class="desktop-player__column">
-      <DesktopPlayerControlButtons
+    <div class="desktop-audio-player__column">
+      <DesktopAudioPlayerControlButtons
         :is-playing="isPlaying"
         :is-disabled="!currentTrack"
-        class="desktop-player__control-buttons"
+        class="desktop-audio-player__control-buttons"
         @previous="prevTrack"
         @play="play"
         @pause="pause"
@@ -24,16 +26,19 @@
       />
     </div>
 
-    <div class="desktop-player__column">
-      <DesktopPlayerVolumeControls v-model="volume" class="desktop-player__volume-controls" />
+    <div class="desktop-audio-player__column">
+      <DesktopAudioPlayerVolumeControls
+        v-model="currentVolume"
+        class="desktop-audio-player__volume-controls"
+      />
     </div>
 
-    <DesktopPlayerTimer
+    <DesktopAudioPlayerTimer
       v-if="currentTrack?.duration"
       :mode="timeModeFromLS"
-      :value="currentTime"
+      :value="currentTrackTime"
       :duration="currentTrack.duration"
-      class="desktop-player__track-timer"
+      class="desktop-audio-player__track-timer"
       data-testid="track-timer"
       @mode-change="onPlayerTimerModeChange"
     />
@@ -42,30 +47,40 @@
 
 <script lang="ts" setup>
 import {
-  type DesktopPlayerTimerMode,
-  DesktopPlayerTimerModes,
-} from '~/modules/player/components/DesktopPlayer/DesktopPlayerTimer/types';
+  type DesktopAudioPlayerTimerMode,
+  DesktopAudioPlayerTimerModes,
+} from '~/modules/player/components/DesktopAudioPlayer/DesktopAudioPlayerTimer/types';
 
 const { $audioPlayer } = useNuxtApp();
-const timeModeFromLS = useLocalStorage<DesktopPlayerTimerMode>(
-  'player-timer-mode',
-  DesktopPlayerTimerModes.full,
+const timeModeFromLS = useLocalStorage<DesktopAudioPlayerTimerMode>(
+  'audio-player:timer-mode',
+  DesktopAudioPlayerTimerModes.full,
 );
 
 const {
-  currentItem: currentTrack,
-  currentTime,
+  currentTrack,
+  currentTrackTime,
   isPlaying,
-  volume,
+  currentVolume,
   play,
   pause,
-  setCurrentTime,
+  setCurrentTrackTime,
   prevTrack,
   nextTrack,
+  disableCurrentTimeUpdating,
+  enableCurrentTimeUpdating,
 } = $audioPlayer;
 
+function onPlayerProgressBarMouseDown() {
+  disableCurrentTimeUpdating();
+}
+
+function onPlayerProgressBarMouseUp() {
+  enableCurrentTimeUpdating();
+}
+
 function onPlayerProgressBarChange(value: number) {
-  setCurrentTime(value);
+  setCurrentTrackTime(value);
 }
 
 function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
@@ -74,7 +89,7 @@ function onPlayerTimerModeChange(mode: DesktopPlayerTimerMode) {
 </script>
 
 <style lang="scss" scoped>
-.desktop-player {
+.desktop-audio-player {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 400px 1fr;

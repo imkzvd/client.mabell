@@ -1,5 +1,5 @@
 <template>
-  <div class="desktop-player-volume-controls">
+  <div class="desktop-audio-player-volume-controls">
     <UIIconButton
       appearance="secondary"
       :icon="isMuting ? 'i-mynaui-volume-x-solid' : 'i-mynaui-volume-high-solid'"
@@ -8,16 +8,16 @@
       @click="isMuting ? onUnmuteButtonClick() : onMuteButtonClick()"
     />
 
-    <div class="desktop-player-volume-controls__slider-wrapper">
+    <div class="desktop-audio-player-volume-controls__slider-wrapper">
       <UISlider v-model="model" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { DesktopPlayerVolumeControlsEmits } from '~/modules/player/components/DesktopPlayer/DesktopPlayerVolumeControls/types';
+import type { DesktopAudioPlayerVolumeControlsEmits } from '~/modules/player/components/DesktopAudioPlayer/DesktopAudioPlayerVolumeControls/types';
 
-const emit = defineEmits<DesktopPlayerVolumeControlsEmits>();
+const emit = defineEmits<DesktopAudioPlayerVolumeControlsEmits>();
 const model = defineModel<number>({ default: 100 });
 
 const isMuting = ref<boolean>(model.value === 0);
@@ -38,13 +38,14 @@ function onUnmuteButtonClick() {
 </script>
 
 <style scoped lang="scss">
-.desktop-player-volume-controls {
+.desktop-audio-player-volume-controls {
   display: flex;
   align-items: center;
   column-gap: 4px;
 
   &__slider-wrapper {
     width: 120px;
+    --ui-slider-bar-bg: var(--ui-icon-button-secondary-color);
   }
 }
 </style>

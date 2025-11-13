@@ -1,9 +1,9 @@
 <template>
-  <div class="desktop-player-control-buttons">
+  <div class="desktop-audio-player-control-buttons">
     <UIIconButton
       icon="i-mynaui-rewind-solid"
       icon-size="32"
-      :is-disabled="isDisabled || isPreviousButtonDisabled"
+      :is-disabled="isDisabled"
       aria-label="Play previous track"
       @click="emit('previous')"
     />
@@ -19,7 +19,7 @@
     <UIIconButton
       icon="i-mynaui-forward-solid"
       icon-size="32"
-      :is-disabled="isDisabled || isNextButtonDisabled"
+      :is-disabled="isDisabled"
       aria-label="Play next track"
       @click="emit('next')"
     />
@@ -28,16 +28,16 @@
 
 <script setup lang="ts">
 import type {
-  DesktopPlayerControlButtonsProps,
-  DesktopPlayerControlButtonsEmits,
-} from '~/modules/player/components/DesktopPlayer/DesktopPlayerControlButtons/types';
+  DesktopAudioPlayerControlButtonsProps,
+  DesktopAudioPlayerControlButtonsEmits,
+} from '~/modules/player/components/DesktopAudioPlayer/DesktopAudioPlayerControlButtons/types';
 
-defineProps<DesktopPlayerControlButtonsProps>();
-const emit = defineEmits<DesktopPlayerControlButtonsEmits>();
+defineProps<DesktopAudioPlayerControlButtonsProps>();
+const emit = defineEmits<DesktopAudioPlayerControlButtonsEmits>();
 </script>
 
 <style scoped lang="scss">
-.desktop-player-control-buttons {
+.desktop-audio-player-control-buttons {
   display: flex;
   align-items: center;
   column-gap: 8px;
