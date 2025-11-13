@@ -68,13 +68,16 @@
   // Section
   --section-bottom-margin: 24px;
   --section-heading-bottom-margin: 16px;
+  --section-y-padding: 12px;
 
   @include respond-to(md) {
     --section-bottom-margin: 32px;
+    --section-y-padding: 16px;
   }
 
   @include respond-to(lg) {
     --section-bottom-margin: 48px;
+    --section-y-padding: 24px;
   }
 
   // Nav bar
