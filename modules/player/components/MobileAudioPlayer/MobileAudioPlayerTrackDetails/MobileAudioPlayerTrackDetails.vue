@@ -1,15 +1,19 @@
 <template>
-  <div class="mobile-player-track-details">
-    <UIImg :path="track.album.cover" :alt="track.name" class="mobile-player-track-details__cover" />
+  <div class="mobile-audio-player-track-details">
+    <UIImg
+      :path="track.album.cover"
+      :alt="track.name"
+      class="mobile-audio-player-track-details__cover"
+    />
 
-    <div class="mobile-player-track-details__lines">
-      <div class="mobile-player-track-details__top-line">
+    <div class="mobile-audio-player-track-details__lines">
+      <div class="mobile-audio-player-track-details__top-line">
         <UIText :line-clamp="1">
           {{ track.name }}
         </UIText>
       </div>
 
-      <div class="mobile-player-track-details__bottom-line">
+      <div class="mobile-audio-player-track-details__bottom-line">
         <ArtistNames :items="allTrackArtists" :line-clamp="1" />
       </div>
     </div>
@@ -17,10 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DesktopPlayerTrackDetailsProps } from '~/modules/player/components/DesktopPlayer/DesktopPlayerTrackDetails/types';
 import type { SimplifiedArtistRO } from '~/api/api.module';
+import type { MobileAudioPlayerTrackDetailsProps } from '~/modules/player/components/MobileAudioPlayer/MobileAudioPlayerTrackDetails/types';
 
-const props = defineProps<DesktopPlayerTrackDetailsProps>();
+const props = defineProps<MobileAudioPlayerTrackDetailsProps>();
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   ...props.track.artists,
@@ -29,7 +33,7 @@ const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
 </script>
 
 <style scoped lang="scss">
-.mobile-player-track-details {
+.mobile-audio-player-track-details {
   display: flex;
   align-items: center;
   gap: 8px;
