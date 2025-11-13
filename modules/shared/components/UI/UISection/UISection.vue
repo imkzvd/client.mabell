@@ -27,9 +27,7 @@ withDefaults(defineProps<UISectionProps>(), {
 
 <style scoped lang="scss">
 .ui-section {
-  &:not(:last-child) {
-    margin-bottom: var(--section-bottom-margin, 24px);
-  }
+  padding-block: var(--section-y-padding, 12px);
 
   &__heading {
     margin-bottom: var(--section-heading-bottom-margin, 16px);
