@@ -1,7 +1,7 @@
 <template>
   <div class="sticky-mobile-bottom-bar">
     <ClientOnly>
-      <MobilePlayer class="sticky-mobile-bottom-bar__mobile-player" />
+      <MobileAudioPlayer class="sticky-mobile-bottom-bar__mobile-player" />
     </ClientOnly>
 
     <MobileNavMenu class="sticky-mobile-bottom-bar__mobile-nav-menu" />
@@ -18,6 +18,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 10;
   padding: 4px 8px;
   padding-bottom: calc(env(safe-area-inset-bottom, 0));
   background-color: rgba(18, 18, 18, 95%);
