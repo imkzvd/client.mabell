@@ -16,7 +16,7 @@
           />
         </div>
 
-        <UIText appearance="secondary" class="artist-header__biography">
+        <UIText :line-clamp="2" appearance="secondary" class="artist-header__biography">
           {{ artist.biography }}
         </UIText>
       </div>
@@ -49,7 +49,7 @@ function onOptionsButtonClick() {
   background-position: center;
   background-repeat: no-repeat;
   filter: saturate(var(--img-saturate));
-  padding-bottom: 16px;
+  padding-block: var(--section-y-padding);
 
   @include respond-to(lg) {
     height: 60vh;
@@ -60,7 +60,7 @@ function onOptionsButtonClick() {
     inset: 0;
     z-index: -10;
     content: '';
-    background: linear-gradient(0deg, var(--base-bg) 0%, transparent 80%);
+    background: linear-gradient(0deg, var(--base-bg) 0%, transparent 100%);
   }
 
   &__line {
@@ -75,6 +75,8 @@ function onOptionsButtonClick() {
   }
 
   &__heading {
+    font-size: 52px;
+    font-family: var(--title-font);
     line-height: 1.2;
   }
 
