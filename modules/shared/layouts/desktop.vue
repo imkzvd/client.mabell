@@ -22,23 +22,16 @@
 
     <div class="default-layout__panel default-layout__panel_player">
       <ClientOnly>
-        <DesktopPlayer ref="player" />
+        <DesktopAudioPlayer />
       </ClientOnly>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { PlayerInjectKey } from '~/modules/player/constants';
-import type { DesktopPlayerInstance } from '~/modules/player/components/DesktopPlayer/types';
-
 useHead({
   meta: [{ name: 'theme-color', content: '#000000' }],
 });
-
-const playerInstance = useTemplateRef<DesktopPlayerInstance>('player');
-
-provide(PlayerInjectKey, playerInstance);
 </script>
 
 <style lang="scss" scoped>
