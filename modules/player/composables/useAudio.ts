@@ -1,131 +1,129 @@
 import type { TrackRO } from '~/api/api.module';
 
-export function useAudio() {
-  const volumeFromLS = useLocalStorage('audio-volume', 100);
+export function useAudioPlayer() {
+  const audioElement = new Audio();
 
-  const audio = new Audio();
-  const items = shallowRef<TrackRO[]>([]);
-  const currentItemIndex = ref<number>(0);
+  const playlists = useLocalStorage<TrackRO[]>('audio-player:playlists', []);
+  const currentTrackIndex = useLocalStorage<number>('audio-player:current-track-index', 0);
+  const currentTrackTime = useLocalStorage<number>('audio-player:current-track-time', 0);
+  const currentVolume = useLocalStorage('audio-player:current-volume', 100);
   const isPlaying = ref<boolean>(false);
   const isPausing = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
-  const currentTime = ref<number>(0);
-  const volume = ref<number>(volumeFromLS.value);
+  const isDisabledTrackTimeUpdating = ref<boolean>(false);
 
-  audio.addEventListener('loadstart', (...a) => {
+  const currentTrack = computed<TrackRO | null>(
+    () => playlists.value[currentTrackIndex.value] || null,
+  );
+  const currentTrackId = computed<string | null>(() => currentTrack.value?.id || null);
+  const isFirstTrack = computed<boolean>(() => currentTrackIndex.value === 0);
+  const isLastTrack = computed<boolean>(
+    () => currentTrackIndex.value === playlists.value.length - 1,
+  );
+
+  if (currentTrackTime.value) {
+    audioElement.currentTime = currentTrackTime.value;
+  }
+
+  audioElement.addEventListener('loadstart', () => {
     isLoading.value = true;
   });
-  audio.addEventListener('loadeddata', (e) => {
+  audioElement.addEventListener('loadeddata', () => {
     isLoading.value = false;
   });
-  audio.addEventListener('ended', (e) => {
-    nextTrack();
-  });
+  audioElement.addEventListener('ended', () => nextTrack());
+  audioElement.addEventListener('timeupdate', ({ target }) => {
+    if (isDisabledTrackTimeUpdating.value) return;
 
-  const currentItemId = computed(() => items.value[currentItemIndex.value]);
-  const currentItem = computed<TrackRO>(() => items.value[currentItemIndex.value]);
-  // const nextItem = computed(() => nextTrack);
-  const isFirstTrack = computed<boolean>(() => currentItemIndex.value === 0);
-  const isLastTrack = computed<boolean>(() => currentItemIndex.value === items.value.length - 1);
+    const { currentTime } = target as HTMLAudioElement;
 
-  watch(currentItem, (value: TrackRO | null) => {
-    if (!value?.file) {
-      isPlaying.value = false;
-
-      return;
-    }
-
-    audio.src = value.file;
+    currentTrackTime.value = currentTime;
   });
 
   watch(
-    volume,
-    (value: number) => {
-      audio.volume = value / 100;
-      volumeFromLS.value = value;
+    currentTrack,
+    (value) => {
+      if (!value?.file) {
+        isPlaying.value = false;
+
+        return;
+      }
+
+      audioElement.src = value.file;
     },
-    {
-      immediate: true,
-    },
+    { immediate: true },
   );
-
-  audio.addEventListener('timeupdate', (e) => {
-    const { currentTime: audioCurrentTime } = e.target as HTMLAudioElement;
-
-    currentTime.value = audioCurrentTime;
-  });
+  watch(currentVolume, (value) => (audioElement.volume = value / 100), { immediate: true });
 
   async function play() {
-    if (isPausing.value) {
-      await audio.play();
-      isPausing.value = false;
-      isPlaying.value = true;
+    if (!currentTrack.value?.file) return;
 
-      return;
-    }
-
-    if (!currentItem.value?.file) return;
-
-    audio.addEventListener('canplay', () => audio.play(), { once: true });
+    console.log('player: ' + audioElement.currentTime);
+    await audioElement.play();
+    isPausing.value = false;
     isPlaying.value = true;
   }
 
   function pause() {
-    audio.pause();
+    audioElement.pause();
     isPlaying.value = false;
     isPausing.value = true;
   }
 
-  function addTrack(item: TrackRO) {
-    items.value.push(item);
-  }
+  function addTracks(
+    items: TrackRO[],
+    index = 0,
+    options?: Partial<{
+      playAfterAdded: boolean;
+    }>,
+  ) {
+    playlists.value = filterActiveTracks(items);
+    currentTrackIndex.value = index;
 
-  function addTracks(value: TrackRO[], index = 0) {
-    items.value = filterActiveTracks(value);
-    currentItemIndex.value = index;
-  }
-
-  function deleteTrack(item: TrackRO) {
-    items.value = items.value.filter((i) => i.id !== item.id);
+    if (options?.playAfterAdded) {
+      audioElement.addEventListener('canplaythrough', () => play(), { once: true });
+    }
   }
 
   function prevTrack() {
-    if (isFirstTrack.value || currentTime.value >= 3) {
-      audio.currentTime = 0;
+    if (isFirstTrack.value || currentTrackTime.value >= 3) {
+      audioElement.currentTime = 0;
 
       return;
     }
 
     if (isPlaying.value) {
-      audio.addEventListener('canplay', () => play(), { once: true });
+      audioElement.addEventListener('canplaythrough', () => play(), { once: true });
     }
 
-    currentItemIndex.value--;
+    currentTrackIndex.value--;
   }
 
   function nextTrack() {
     if (isPlaying.value) {
-      audio.addEventListener('canplay', () => play(), { once: true });
+      audioElement.addEventListener('canplaythrough', () => play(), { once: true });
     }
 
     if (isLastTrack.value) {
-      currentItemIndex.value = 0;
+      currentTrackIndex.value = 0;
     } else {
-      currentItemIndex.value++;
+      currentTrackIndex.value++;
     }
   }
 
-  function addNextTrack(item: TrackRO) {
-    alert('Add next track');
+  function setCurrentTrackTime(value: number) {
+    currentTrackTime.value = value;
+    audioElement.currentTime = value;
+
+    console.log('HM!!!');
   }
 
-  function getCurrentTrackId() {
-    return items.value[currentItemIndex.value];
+  function disableCurrentTimeUpdating() {
+    isDisabledTrackTimeUpdating.value = true;
   }
 
-  function setCurrentTime(value: number) {
-    currentTime.value = value;
-    audio.currentTime = value;
+  function enableCurrentTimeUpdating() {
+    isDisabledTrackTimeUpdating.value = false;
   }
 
   function filterActiveTracks(tracks: TrackRO[]) {
@@ -133,21 +131,21 @@ export function useAudio() {
   }
 
   return {
-    items,
-    addTrack,
+    playlists,
     addTracks,
     play,
     pause,
     nextTrack,
     prevTrack,
-    currentItem,
+    disableCurrentTimeUpdating,
+    enableCurrentTimeUpdating,
+    currentTrack,
+    currentTrackTime,
+    setCurrentTrackTime,
+    currentTrackIndex,
+    currentTrackId,
+    currentVolume,
     isPlaying,
-    currentTime,
-    setCurrentTime,
-    currentItemIndex,
-    currentItemId,
-    addNextTrack,
-    volume,
     isFirstTrack,
     isLastTrack,
     isLoading,
