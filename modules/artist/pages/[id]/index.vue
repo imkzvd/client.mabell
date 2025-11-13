@@ -6,11 +6,13 @@
 
       <UISection content-container>
         <div class="artist-page__featured-content">
-          <UISection heading="Top Tracks" class="artist-page__top-tracks">
+          <UISection heading="Top Tracks" no-padding class="artist-page__top-tracks">
             <SkeletonTrackListLoader v-if="isFetching" />
             <MobileTrackList
               v-else-if="isMobileOrTablet"
               :items="fetchedArtistTopTracks"
+              :is-playing="$audioPlayer?.isPlaying"
+              :current-item-id="$audioPlayer?.currentTrackId.value"
               :aria-label="`${fetchedArtist.name} top tracks`"
               @play-item="onItemPlay"
               @pause-item="onItemPause"
@@ -18,10 +20,11 @@
             <CompactTrackList
               v-else
               :items="fetchedArtistTopTracks"
+              :is-playing="$audioPlayer?.isPlaying.value"
+              :current-item-id="$audioPlayer?.currentTrackId.value"
               :aria-label="`${fetchedArtist.name} top tracks`"
               @play-item="onItemPlay"
               @pause-item="onItemPause"
-              @add-item="onItemAdd"
             />
 
             <UILink
@@ -34,7 +37,12 @@
             </UILink>
           </UISection>
 
-          <UISection v-if="isDesktop" heading="Latest Release">
+          <UISection
+            v-if="isDesktop"
+            heading="Latest Release"
+            no-padding
+            class="artist-page__latest-release"
+          >
             <SkeletonCardLinkLoader
               v-if="isFetching"
               text-rows="2"
@@ -84,12 +92,10 @@
 
 <script setup lang="ts">
 import { artistApiService } from '~/modules/artist/services/artist.api.service';
-import { PlayerInjectKey } from '~/modules/player/constants';
 import type { SimplifiedAlbumRO, SimplifiedArtistRO, TrackRO } from '~/api/api.module';
 import type { ApiError } from '~/modules/shared/errors/api-error';
 
-const player = inject(PlayerInjectKey);
-
+const { $audioPlayer } = useNuxtApp();
 const route = useRoute();
 const { isMobile, isDesktop, isMobileOrTablet } = useDevice();
 const [isFetching, toggleFetching] = useToggle(true);
@@ -142,16 +148,13 @@ async function fetchArtistData(artistId: string) {
 }
 
 function onItemPlay(item: TrackRO, index: number) {
-  player.value?.addTracks(fetchedData.value?.tracks.items || [], index);
-  player.value?.play();
+  $audioPlayer.addTracks(fetchedArtistTopTracks.value || [], index, {
+    playAfterAdded: true,
+  });
 }
 
 function onItemPause(item: TrackRO, index: number) {
-  alert(`Track ${item.name} - paused!`);
-}
-
-function onItemAdd(item: TrackRO, index: number) {
-  alert(`Trac ${item.name} - added`);
+  $audioPlayer.pause();
 }
 </script>
 
@@ -185,10 +188,6 @@ function onItemAdd(item: TrackRO, index: number) {
   &__top-tracks {
     max-width: 800px;
     flex-grow: 1;
-
-    @include respond-to(lg) {
-      --section-bottom-margin: 0;
-    }
   }
 }
 </style>
