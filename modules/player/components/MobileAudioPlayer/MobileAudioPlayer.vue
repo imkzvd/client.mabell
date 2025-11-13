@@ -1,15 +1,15 @@
 <template>
-  <div v-show="currentItem" class="mobile-player">
-    <MobilePlayerTrackDetails
-      v-if="currentItem"
-      :track="currentItem"
-      class="mobile-player__track-details"
+  <div v-show="currentTrack" class="mobile-audio-player">
+    <MobileAudioPlayerTrackDetails
+      v-if="currentTrack"
+      :track="currentTrack"
+      class="mobile-audio-player__track-details"
     />
 
-    <div class="mobile-player__control-buttons-placeholder">
-      <MobilePlayerControlButtons
+    <div class="mobile-audio-player__control-buttons-placeholder">
+      <MobileAudioPlayerControlButtons
         :is-playing="isPlaying"
-        class="mobile-player__control-buttons"
+        class="mobile-audio-player__control-buttons"
         @play="play"
         @pause="pause"
       />
@@ -20,15 +20,15 @@
 <script lang="ts" setup>
 const { $audioPlayer } = useNuxtApp();
 
-const { currentItem, play, pause, isPlaying } = $audioPlayer;
+const { currentTrack, play, pause, isPlaying } = $audioPlayer;
 
 const albumColor = computed(() => {
-  return currentItem.value?.album.color || 'var(--stone)';
+  return currentTrack.value?.album.color || 'var(--stone)';
 });
 </script>
 
 <style lang="scss" scoped>
-.mobile-player {
+.mobile-audio-player {
   position: relative;
   display: flex;
   justify-content: space-between;

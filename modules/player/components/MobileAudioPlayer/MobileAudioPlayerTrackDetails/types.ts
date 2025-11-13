@@ -1,5 +1,5 @@
 import type { TrackRO } from '~/api/api.module';
 
-export type MobilePlayerTrackDetailsProps = {
+export type MobileAudioPlayerTrackDetailsProps = {
   track: TrackRO;
 };
