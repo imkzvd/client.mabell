@@ -5,33 +5,31 @@
       <AlbumHeader v-else :album="fetchedAlbum" />
     </template>
 
-    <UISection class="section">
-      <div class="container">
-        <div v-if="fetchedAlbumTracks?.total" class="album-page__top-tracks">
-          <MobileTrackList
-            v-if="isMobile"
-            :items="fetchedAlbumTracks?.items"
-            :is-playing="$audioPlayer?.isPlaying.value"
-            :current-item-id="$audioPlayer?.currentTrackId.value"
-            :aria-label="`${fetchedAlbum?.name} track`"
-            @play-item="onItemPlay"
-            @pause-item="onItemPause"
-          />
-          <AlbumTrackList
-            v-else
-            :items="fetchedAlbumTracks?.items"
-            :is-playing="$audioPlayer?.isPlaying.value"
-            :current-item-id="$audioPlayer?.currentTrackId.value"
-            @play-item="onItemPlay"
-            @pause-item="onItemPause"
-          />
-        </div>
+    <UISection content-container>
+      <div v-if="fetchedAlbumTracks?.total" class="album-page__top-tracks">
+        <MobileTrackList
+          v-if="isMobile"
+          :items="fetchedAlbumTracks?.items"
+          :is-playing="$audioPlayer?.isPlaying.value"
+          :current-item-id="$audioPlayer?.currentTrackId.value"
+          :aria-label="`${fetchedAlbum?.name} track`"
+          @play-item="onItemPlay"
+          @pause-item="onItemPause"
+        />
+        <AlbumTrackList
+          v-else
+          :items="fetchedAlbumTracks?.items"
+          :is-playing="$audioPlayer?.isPlaying.value"
+          :current-item-id="$audioPlayer?.currentTrackId.value"
+          @play-item="onItemPlay"
+          @pause-item="onItemPause"
+        />
       </div>
     </UISection>
 
     <UISection content-container>
-      <UIText appearance="secondary" size="14px"
-        >© {{ releaseYear }} {{ mainAlbumArtistName }}. All copyrights, performance rights, and
+      <UIText appearance="secondary" size="12px">
+        © {{ releaseYear }} {{ mainAlbumArtistName }}. All copyrights, performance rights, and
         related rights are owned and controlled by the artist.
       </UIText>
     </UISection>
