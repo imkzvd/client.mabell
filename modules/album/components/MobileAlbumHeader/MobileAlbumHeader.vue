@@ -4,21 +4,20 @@
       <UIImg :path="album.cover" :alt="album.name" class="mobile-album-header__cover" />
 
       <div class="mobile-album-header__details">
-        <UIHeading :line-clamp="2" class="mobile-album-header__name">
-          {{ album.name }}
-        </UIHeading>
-
-        <UIText align="center" appearance="secondary" class="mobile-album-header__meta-data">
+        <UIText align="center" class="mobile-album-header__meta-data">
           <span class="mobile-album-header__meta-data-item">{{ album.type.label }}</span>
-          <span class="mobile-album-header__meta-data-item">{{ albumGenres }}</span>
           <span v-if="releaseAlbumYear" class="mobile-album-header__meta-data-item">
             {{ releaseAlbumYear }}
           </span>
         </UIText>
 
+        <UIHeading :line-clamp="2" class="mobile-album-header__name">
+          {{ album.name }}
+        </UIHeading>
+
         <ArtistLinks
-          separator="dot"
           :items="album.artists"
+          separator="dot"
           class="mobile-album-header__artist-links"
         />
       </div>
@@ -31,7 +30,6 @@ import type { MobileAlbumHeaderProps } from '~/modules/album/components/MobileAl
 
 const props = defineProps<MobileAlbumHeaderProps>();
 
-const albumGenres = computed<string>(() => props.album.genres.map(({ label }) => label).join('/'));
 const releaseAlbumYear = computed<number | null>(() => {
   if (!props.album.releaseAt) return null;
 
@@ -42,25 +40,11 @@ const releaseAlbumYear = computed<number | null>(() => {
 <style scoped lang="scss">
 .mobile-album-header {
   position: relative;
-  padding-block: 16px 32px;
-  font-size: 12px;
-  background: linear-gradient(0deg, transparent 0%, var(--album-color, var(--base-bg)) 100%);
+  padding-block: var(--section-y-padding, 16px);
+  background: linear-gradient(0deg, transparent 20%, var(--album-color, var(--base-bg)) 100%);
   --album-color: v-bind(props.album.color);
 
-  @include respond-to(xs) {
-    font-size: 14px;
-  }
-
-  &:after {
-    position: absolute;
-    inset: 0;
-    content: '';
-    background: linear-gradient(0deg, transparent 0%, var(--album-color, var(--base-bg)) 100%);
-  }
-
   &__cover {
-    position: relative;
-    z-index: 10;
     margin-inline: auto;
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -75,27 +59,16 @@ const releaseAlbumYear = computed<number | null>(() => {
   }
 
   &__details {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-  }
-
-  &__name {
-    font-size: 20px;
-    line-height: normal;
-    margin-bottom: 2px;
-
-    @include respond-to(xs) {
-      font-size: 24px;
-      margin-bottom: 4px;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__meta-data {
-    margin-bottom: 2px;
+    font-size: 12px;
 
     @include respond-to(xs) {
-      margin-bottom: 4px;
+      font-size: 14px;
     }
   }
 
@@ -106,9 +79,24 @@ const releaseAlbumYear = computed<number | null>(() => {
     }
   }
 
+  &__name {
+    margin-bottom: 2px;
+    font-size: 28px;
+    line-height: 1.2;
+
+    @include respond-to(xs) {
+      margin-bottom: 4px;
+      font-size: 32px;
+    }
+  }
+
   &__artist-links {
-    font-family: var(--bold-font);
+    font-size: 14px;
     --color: var(--main-text, white);
+
+    @include respond-to(xs) {
+      font-size: 16px;
+    }
   }
 }
 </style>
