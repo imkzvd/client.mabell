@@ -45,7 +45,6 @@ function onUnmuteButtonClick() {
 
   &__slider-wrapper {
     width: 120px;
-    --ui-slider-bar-bg: var(--ui-icon-button-secondary-color);
   }
 }
 </style>
