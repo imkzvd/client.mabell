@@ -1,19 +1,18 @@
 <template>
-  <li :aria-label="item.name" class="mobile-track-list-item">
+  <li :aria-label="item.name" class="mobile-track-list-item" :class="rootCSSClasses">
     <div class="mobile-track-list-item__column">
       <div class="mobile-track-list-item__cover-container">
         <UIImg
           :path="item.album.cover"
           :alt="item.name"
           class="mobile-track-list-item__cover"
-          :class="{ 'mobile-track-list-item__cover_has-overlay': isCurrentItem || isPlayingItem }"
+          :class="{ 'mobile-track-list-item__cover_has-overl2ay': isCurrent || isPlaying }"
         />
 
         <IconEqualizer
-          v-show="isCurrentItem || isPlayingItem"
           role="presentation"
           aria-hidden="true"
-          :is-playing="isPlayingItem"
+          :is-playing="isPlaying"
           class="mobile-track-list-item__equalizer-icon"
         />
       </div>
@@ -25,12 +24,21 @@
           <UIText :line-clamp="1" class="mobile-track-list-item__name">
             {{ item.name }}
           </UIText>
+
+          <NuxtIcon
+            v-if="item.isExplicit"
+            mode="svg"
+            name="i-mynaui-letter-e-square-solid"
+            size="16"
+          />
         </div>
 
         <div class="mobile-track-list-item__details-bottom-line">
-          <UIText :line-clamp="1" class="mobile-track-list-item__artist-names">
-            <ArtistNames :items="allTrackArtists" />
-          </UIText>
+          <ArtistNames
+            :items="allTrackArtists"
+            :line-clamp="1"
+            class="mobile-track-list-item__artist-names"
+          />
         </div>
       </div>
     </div>
@@ -57,14 +65,18 @@ import type {
 const props = defineProps<MobileTrackListItemProps>();
 const emit = defineEmits<MobileTrackListItemEmits>();
 
+const rootCSSClass = 'mobile-track-list-item';
+
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   ...props.item.artists,
   ...props.item.featArtists,
 ]);
-const isCurrentItem = computed<boolean>(() => props.item.id === props.currentItemId);
-const isPlayingItem = computed<boolean>(
-  () => props.item.id === props.currentItemId && props.isPlaying,
-);
+const isCurrent = computed<boolean>(() => props.item.id === props.currentItemId);
+const isPlaying = computed<boolean>(() => props.item.id === props.currentItemId && props.isPlaying);
+const rootCSSClasses = computed(() => ({
+  [`${rootCSSClass}_is-playing`]: isPlaying.value,
+  [`${rootCSSClass}_is-current`]: isCurrent.value,
+}));
 </script>
 
 <style scoped lang="scss">
@@ -75,11 +87,20 @@ const isPlayingItem = computed<boolean>(
   align-items: center;
   gap: 8px;
   line-height: 1.2;
-  color: var(--main-text, white);
   padding-block: 2px;
 
   @include respond-to(xs) {
     padding-block: 4px;
+  }
+
+  &_is-current & {
+    &__cover {
+      filter: brightness(30%);
+    }
+
+    &__equalizer-icon {
+      opacity: 1;
+    }
   }
 
   &__cover-container {
@@ -89,10 +110,6 @@ const isPlayingItem = computed<boolean>(
   &__cover {
     --width: var(--track-image-width, 40px);
     --height: var(--track-image-width, 40px);
-
-    &_has-overlay {
-      --overlay: 0.4;
-    }
   }
 
   &__equalizer-icon {
@@ -102,11 +119,17 @@ const isPlayingItem = computed<boolean>(
     transform: translate(-50%, -50%);
     z-index: 10;
     fill: var(--main-text, white);
+    opacity: 0;
+  }
+
+  &__details-top-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   &__artist-names {
     font-size: 12px;
-    color: var(--secondary-text, gray);
 
     @include respond-to(xs) {
       font-size: 14px;
