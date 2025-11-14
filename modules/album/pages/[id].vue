@@ -1,60 +1,81 @@
 <template>
   <div class="album-page">
-    <template v-if="fetchedData?.album">
-      <MobileAlbumHeader v-if="isMobile" :album="fetchedData?.album" />
-      <AlbumHeader v-else :album="fetchedData?.album" />
+    <template v-if="fetchedAlbum">
+      <MobileAlbumHeader v-if="isMobile" :album="fetchedAlbum" />
+      <AlbumHeader v-else :album="fetchedAlbum" />
     </template>
 
-    <section class="section">
+    <UISection class="section">
       <div class="container">
-        <div v-if="fetchedData?.tracks.total" class="album-page__top-tracks">
-          <MobileAlbumTrackList
+        <div v-if="fetchedAlbumTracks?.total" class="album-page__top-tracks">
+          <MobileTrackList
             v-if="isMobile"
-            :items="fetchedData?.tracks.items"
-            :aria-label="`${fetchedData?.album.name} track`"
+            :items="fetchedAlbumTracks?.items"
+            :is-playing="$audioPlayer?.isPlaying.value"
+            :current-item-id="$audioPlayer?.currentTrackId.value"
+            :aria-label="`${fetchedAlbum?.name} track`"
             @play-item="onItemPlay"
             @pause-item="onItemPause"
           />
           <AlbumTrackList
             v-else
-            :items="fetchedData?.tracks.items"
+            :items="fetchedAlbumTracks?.items"
+            :is-playing="$audioPlayer?.isPlaying.value"
+            :current-item-id="$audioPlayer?.currentTrackId.value"
             @play-item="onItemPlay"
             @pause-item="onItemPause"
-            @add-item="onItemAdd"
           />
         </div>
       </div>
-    </section>
+    </UISection>
 
-    <div class="album-page__footer">
-      <div class="container">
-        <UIText appearance="secondary"> {{ fetchedData?.tracks.total }} tracks </UIText>
-      </div>
-    </div>
+    <UISection content-container>
+      <UIText appearance="secondary" size="14px"
+        >© {{ releaseYear }} {{ mainAlbumArtistName }}. All copyrights, performance rights, and
+        related rights are owned and controlled by the artist.
+      </UIText>
+    </UISection>
+
+    <UISection
+      v-if="fetchedSimilarAlbums.length"
+      heading="You Might Also Like"
+      heading-container
+      :content-container="!isMobileOrTablet"
+    >
+      <AlbumCardLinksSlider
+        v-if="isMobileOrTablet"
+        :items="fetchedSimilarAlbums"
+        show-artists
+        class="album-page__slider"
+      />
+      <AlbumCardLinksList
+        v-else
+        :items="fetchedSimilarAlbums"
+        max-rows="1"
+        show-artists
+        class="album-page__album-card-links-list"
+      />
+    </UISection>
   </div>
 </template>
 
 <script setup lang="ts">
 import AlbumTrackList from '~/modules/track/components/AlbumTrackList/AlbumTrackList.vue';
 import { albumApiService } from '~/modules/album/services/album.api.service';
-import { PlayerInjectKey } from '~/modules/player/constants';
-import type { TrackRO } from '~/api/api.module';
-
-const player = inject(PlayerInjectKey);
+import type { AlbumRO, TrackRO, TracksRO } from '~/api/api.module';
+import type { ApiError } from '~/modules/shared/errors/api-error';
+import { popularApiService } from '~/modules/popular/services/popular.api.service';
 
 const route = useRoute();
-const { isMobile } = useDevice();
+const { $audioPlayer } = useNuxtApp();
+const { isMobile, isMobileOrTablet } = useDevice();
+const [isFetching, toggleFetching] = useToggle(true);
 
-const routeAlbumId = route.params.id as string;
+const albumIdRouteParam = route.params.id as string;
 
-const { data: fetchedData, error } = await useAsyncData(`album:${routeAlbumId}`, async () => {
-  const [album, tracks] = await Promise.all([
-    albumApiService.getAlbumById(routeAlbumId),
-    albumApiService.getAlbumTracksById(routeAlbumId),
-  ]);
-
-  return { album, tracks };
-});
+const { data: fetchedAlbum, error } = await useAsyncData(`album:${albumIdRouteParam}`, () =>
+  albumApiService.getAlbumById(albumIdRouteParam),
+);
 
 if (error.value) {
   showError({
@@ -63,30 +84,75 @@ if (error.value) {
   });
 }
 
-useHead({
-  meta: [
-    {
-      name: 'theme-color',
-      content: fetchedData.value?.album.color || '#121212',
-    },
-  ],
+const fetchedAlbumTracks = ref<TracksRO | null>(null);
+const fetchedSimilarAlbums = ref<AlbumRO[]>([]);
+const mainAlbumArtistName = computed<string | null>(() => {
+  if (!fetchedAlbum.value) return null;
+
+  const [mainArtist] = fetchedAlbum.value.artists;
+
+  return mainArtist.name;
+});
+const releaseYear = computed<number | null>(() => {
+  if (!fetchedAlbum.value?.releaseAt) return null;
+
+  return new Date(fetchedAlbum.value.releaseAt).getFullYear();
 });
 
+if (fetchedAlbum.value) {
+  useHead({
+    meta: [
+      {
+        name: 'theme-color',
+        content: fetchedAlbum.value.color,
+      },
+    ],
+    title: `${fetchedAlbum.value.name} | ${fetchedAlbum.value.artists.map(({ name }) => name).join(', ')} | Mabell`,
+  });
+}
+
+onMounted(async () => {
+  await fetchAlbumData(albumIdRouteParam);
+  toggleFetching(false);
+});
+
+async function fetchAlbumData(id: string) {
+  try {
+    fetchedAlbumTracks.value = await albumApiService.getAlbumTracksById(id);
+
+    if (fetchedAlbum.value) {
+      const albumGenres = fetchedAlbum.value.genres.map(({ value }) => value);
+      const { items } = await popularApiService.getAlbums(albumGenres, { limit: 10 });
+      fetchedSimilarAlbums.value = items;
+    }
+  } catch (e) {
+    const { message } = e as ApiError;
+
+    console.error(message);
+  }
+}
+
 function onItemPlay(item: TrackRO, index: number) {
-  player.value?.addTracks(fetchedData.value?.tracks.items || [], index);
-  player.value?.play();
+  $audioPlayer?.addTracks(fetchedAlbumTracks.value?.items || [], index, { playAfterAdded: true });
 }
 
 function onItemPause(item: TrackRO, index: number) {
-  alert(`Track ${item.name} - paused!`);
-}
-
-function onItemAdd(item: TrackRO, index: number) {
-  alert(`Trac ${item.name} - added`);
+  $audioPlayer?.pause();
 }
 </script>
 
 <style lang="scss" scoped>
+@use '~/assets/scss/container';
+
 .album-page {
+  &__slider {
+    @extend .container;
+  }
+
+  &__album-card-links-list {
+    @include respond-to(lg) {
+      --card-link-image-width: 140px;
+    }
+  }
 }
 </style>
