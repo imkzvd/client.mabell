@@ -27,6 +27,6 @@ function onClick(item: TrackRO, index: number) {
 }
 
 function onTrackMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert('Open track menu.');
+  console.log('item menu opened');
 }
 </script>
