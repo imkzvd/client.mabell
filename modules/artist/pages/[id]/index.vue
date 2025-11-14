@@ -13,6 +13,7 @@
               :items="fetchedArtistTopTracks"
               :is-playing="$audioPlayer?.isPlaying.value"
               :current-item-id="$audioPlayer?.currentTrackId.value"
+              show-cover
               :aria-label="`${fetchedArtist.name} top tracks`"
               @play-item="onItemPlay"
               @pause-item="onItemPause"
