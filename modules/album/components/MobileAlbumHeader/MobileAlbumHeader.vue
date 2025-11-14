@@ -86,7 +86,6 @@ const releaseAlbumYear = computed<number | null>(() => {
 
     @include respond-to(xs) {
       margin-bottom: 4px;
-      font-size: 32px;
     }
   }
 
