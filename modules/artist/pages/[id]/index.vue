@@ -11,7 +11,7 @@
             <MobileTrackList
               v-else-if="isMobileOrTablet"
               :items="fetchedArtistTopTracks"
-              :is-playing="$audioPlayer?.isPlaying"
+              :is-playing="$audioPlayer?.isPlaying.value"
               :current-item-id="$audioPlayer?.currentTrackId.value"
               :aria-label="`${fetchedArtist.name} top tracks`"
               @play-item="onItemPlay"
