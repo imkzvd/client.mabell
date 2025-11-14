@@ -22,7 +22,7 @@ import type {
   CompactTrackListEmits,
   CompactTrackListProps,
 } from '~/modules/track/components/CompactTrackList/types';
-import type { TrackRO, TracksRO } from '~/api/api.module';
+import type { TrackRO } from '~/api/api.module';
 
 const props = defineProps<CompactTrackListProps>();
 const emit = defineEmits<CompactTrackListEmits>();
@@ -40,6 +40,6 @@ function onDblClick(item: TrackRO, index: number) {
 }
 
 function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert(`Open menu for ${item.name} track`);
+  console.log('item menu opened');
 }
 </script>

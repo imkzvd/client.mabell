@@ -1,37 +1,18 @@
 <template>
-  <li
-    ref="item"
-    :aria-label="item.name"
-    class="compact-track-list-item"
-    @mouseenter="toggleHoveredItem()"
-    @mouseleave="toggleHoveredItem()"
-  >
+  <li :aria-label="item.name" class="compact-track-list-item" :class="rootCSSClasses">
     <div class="compact-track-list-item__column">
       <div class="compact-track-list-item__cover-container">
-        <UIImg
-          :path="item.album.cover"
-          :alt="item.name"
-          class="compact-track-list-item__cover"
-          :class="{
-            'compact-track-list-item__cover_has-overlay':
-              isSelectedItem || isHoveredItem || isCurrentItem || isPlayingItem,
-          }"
-        />
+        <UIImg :path="item.album.cover" :alt="item.name" class="compact-track-list-item__cover" />
 
-        <IconEqualizer
-          v-show="!isHoveredItem && !isSelectedItem && (isCurrentItem || isPlayingItem)"
-          class="compact-track-list-item__equalizer-icon"
-          :is-playing="isPlayingItem"
-        />
+        <IconEqualizer :is-playing="isPlaying" class="compact-track-list-item__equalizer-icon" />
 
         <UIIconButton
-          v-show="isHoveredItem || isSelectedItem"
-          :aria-label="isPlayingItem ? 'Pause track' : 'Play track'"
-          :icon="isPlayingItem ? 'ph:pause-fill' : 'ph:play-fill'"
+          :icon="isPlaying ? 'i-mynaui-pause-solid' : 'i-mynaui-play-solid'"
+          icon-size="28"
           :is-disabled="!item.isActive"
-          icon-size="20"
+          :aria-label="isPlaying ? 'Pause track' : 'Play track'"
           class="compact-track-list-item__action-button"
-          @click.stop="isPlayingItem ? emit('pause-item') : emit('play-item')"
+          @click.stop="isPlaying ? emit('pause-item') : emit('play-item')"
         />
       </div>
     </div>
@@ -49,15 +30,16 @@
 
           <NuxtIcon
             v-if="item.isExplicit"
-            name="material-symbols:explicit"
+            mode="svg"
+            name="i-mynaui-letter-e-square-solid"
             size="16"
-            class="compact-track-list-item__explicit-icon"
           />
         </div>
 
         <div class="compact-track-list-item__details-bottom-line">
           <ArtistLinks
             :items="allTrackArtists"
+            hover-underline
             is-truncated
             class="compact-track-list-item__artist-links"
           />
@@ -68,18 +50,16 @@
     <div class="compact-track-list-item__column">
       <div class="compact-track-list-item__add-track-button">
         <UIIconButton
-          v-show="isHoveredItem"
-          appearance="secondary"
           aria-label="Add track"
-          icon="ph:plus-bold"
-          icon-size="16"
+          icon="i-mynaui-plus"
+          icon-size="20"
           @click.stop="emit('add-item')"
         />
       </div>
     </div>
 
     <div class="compact-track-list-item__column">
-      <UIText appearance="secondary" class="compact-track-list-item__duration">
+      <UIText align="center" appearance="secondary" class="compact-track-list-item__duration">
         {{ convertedDuration }}
       </UIText>
     </div>
@@ -87,6 +67,7 @@
     <div class="compact-track-list-item__column">
       <UIIconButton
         icon="i-ph-dots-three-outline-fill"
+        icon-size="20"
         aria-label="Track menu"
         appearance="secondary"
         @click.stop="emit('open-item-menu', $event)"
@@ -106,8 +87,7 @@ import type {
 const props = defineProps<CompactTrackListItemProps>();
 const emit = defineEmits<CompactTrackListItemEmits>();
 
-const itemEl = useTemplateRef<HTMLLIElement>('item');
-const [isHoveredItem, toggleHoveredItem] = useToggle();
+const rootCSSClass = 'compact-track-list-item';
 
 const allTrackArtists = computed<SimplifiedArtistRO[]>(() => [
   ...props.item.artists,
@@ -118,40 +98,68 @@ const convertedDuration = computed<string | null>(() => {
 
   return duration ? convertSecondsToMinute(duration) : null;
 });
-const isSelectedItem = computed<boolean>(() => props.item.id === props.selectedItemId);
-const isCurrentItem = computed<boolean>(() => props.item.id === props.currentItemId);
-const isPlayingItem = computed<boolean>(
-  () => props.item.id === props.currentItemId && props.isPlaying,
-);
-
-onMounted(() => {
-  if (isSelectedItem.value) {
-    itemEl.value?.focus();
-  }
-});
+const isCurrent = computed<boolean>(() => props.item.id === props.currentItemId);
+const isPlaying = computed<boolean>(() => props.item.id === props.currentItemId && props.isPlaying);
+const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+  [`${rootCSSClass}_is-playing`]: isPlaying.value,
+  [`${rootCSSClass}_is-current`]: isCurrent.value,
+}));
 </script>
 
 <style scoped lang="scss">
 .compact-track-list-item {
   display: grid;
-  cursor: pointer;
-  grid-template-columns: auto 1fr 32px auto auto;
+  grid-template-columns: auto 1fr auto 60px auto;
   align-items: center;
   gap: 12px;
-  border-radius: var(--border-rounded, 6px);
-  color: var(--main-text, white);
+  border-radius: var(--border-rounded, 4px);
   margin-inline: -16px;
   padding: 8px 16px;
-  line-height: 1.2;
   transition: 0.25s all;
-
-  &:focus {
-    background-color: var(--track-list-item-focus, lightgray);
-    outline: none;
-  }
+  cursor: pointer;
 
   &:hover {
     background-color: var(--track-list-item-hover, gray);
+  }
+
+  &:hover & {
+    &__action-button {
+      opacity: 1;
+      pointer-events: initial;
+    }
+
+    &__cover {
+      filter: brightness(30%);
+    }
+
+    &__equalizer-icon {
+      opacity: 0;
+    }
+
+    &__add-track-button {
+      opacity: 1;
+    }
+  }
+
+  &_is-current & {
+    &__action-button {
+      opacity: 1;
+      pointer-events: initial;
+    }
+
+    &__cover {
+      filter: brightness(30%);
+    }
+  }
+
+  &_is-playing & {
+    &__equalizer-icon {
+      opacity: 1;
+    }
+
+    &__action-button {
+      opacity: 0;
+    }
   }
 
   &__cover-container {
@@ -160,11 +168,7 @@ onMounted(() => {
 
   &__cover {
     --width: var(--track-image-width, 40px);
-    aspect-ratio: 1;
-
-    &_has-overlay {
-      filter: brightness(50%);
-    }
+    --height: var(--track-image-width, 40px);
   }
 
   &__action-button {
@@ -173,12 +177,15 @@ onMounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    opacity: 0;
+    pointer-events: none;
   }
 
   &__details-top-line {
     display: flex;
     align-items: center;
     gap: 4px;
+    line-height: 1;
   }
 
   &__name {
@@ -197,6 +204,11 @@ onMounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     fill: var(--main-text);
+    opacity: 0;
+  }
+
+  &__add-track-button {
+    opacity: 0;
   }
 
   &__duration {
