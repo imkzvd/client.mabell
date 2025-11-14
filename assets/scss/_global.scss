@@ -1,6 +1,7 @@
 @use 'mixins' as *;
 
 body {
+  font-family: var(--regular-font, sans-serif);
   color: var(--main-text, white);
   background-color: var(--panel-bg, black);
   user-select: none;
