@@ -4,57 +4,46 @@
     tabindex="0"
     :aria-label="item.name"
     class="album-track-list-item"
-    :class="rootCssClasses"
-    @mouseenter="toggleHoveredItem()"
-    @mouseleave="toggleHoveredItem()"
+    :class="rootCSSClasses"
   >
     <div class="album-track-list-item__column album-track-list-item__column_center">
       <div class="album-track-list-item__index-container">
-        <div
-          v-if="!isPlayingItem"
-          v-show="!isHoveredItem && !isSelectedItem"
-          class="album-track-list-item__index"
-        >
+        <UIText appearance="secondary" class="album-track-list-item__index">
           {{ index + 1 }}
-        </div>
+        </UIText>
 
-        <IconEqualizer
-          v-show="!isHoveredItem && !isSelectedItem && (isCurrentItem || isPlayingItem)"
-          class="album-track-list-item__equalizer-icon"
-          :is-playing="isPlayingItem"
-        />
+        <IconEqualizer class="album-track-list-item__equalizer-icon" :is-playing="isPlaying" />
 
         <UIIconButton
-          v-show="isHoveredItem || isSelectedItem"
-          :aria-label="isPlayingItem ? 'Pause track' : 'Play track'"
-          :icon="isPlayingItem ? 'ph:pause-fill' : 'ph:play-fill'"
+          :aria-label="isPlaying ? 'Pause track' : 'Play track'"
+          :icon="isPlaying ? 'ph:pause-fill' : 'ph:play-fill'"
           :is-disabled="!item.isActive"
           icon-size="18"
           class="album-track-list-item__action-button"
-          @click.stop="isPlayingItem ? emit('pause-item') : emit('play-item')"
+          @click.stop="isPlaying ? emit('pause-item') : emit('play-item')"
         />
       </div>
     </div>
 
     <div class="album-track-list-item__column">
       <div class="album-track-list-item__details">
-        <UIText class="album-track-list-item__name">
-          {{ item.name }}
-        </UIText>
+        <div class="album-track-list-item__details-top-line">
+          <UIText class="album-track-list-item__name">
+            {{ item.name }}
+          </UIText>
 
-        <div v-if="item.featArtists.length" class="album-track-list-item__featured-artist-links">
-          <span>(feat. </span>
-          <ArtistLinks :items="item.featArtists" hover-underline />
-          <span>)</span>
+          <NuxtIcon
+            v-if="item.isExplicit"
+            name="material-symbols:explicit"
+            mode="svg"
+            size="16"
+            class="album-track-list-item__explicit-icon"
+          />
         </div>
 
-        <NuxtIcon
-          v-if="item.isExplicit"
-          name="material-symbols:explicit"
-          mode="svg"
-          size="16"
-          class="album-track-list-item__explicit-icon"
-        />
+        <div class="album-track-list-item__details-bottom-line">
+          <ArtistLinks :items="[...item.artists, ...item.featArtists]" hover-underline />
+        </div>
       </div>
     </div>
 
@@ -63,16 +52,16 @@
         <UIIconButton
           appearance="secondary"
           aria-label="Add track"
-          icon="ph:plus-bold"
-          icon-size="16"
+          icon="i-mynaui-plus"
+          icon-size="24"
           :is-disabled="!item.isActive"
           @click.stop="emit('add-item')"
         />
       </div>
 
-      <div class="album-track-list-item__duration">
+      <UIText align="center" appearance="secondary" class="album-track-list-item__duration">
         {{ convertSecondsToMinute(item.duration) }}
-      </div>
+      </UIText>
 
       <UIIconButton
         icon="i-ph-dots-three-outline-fill"
@@ -96,20 +85,19 @@ const props = defineProps<AlbumTrackListItemProps>();
 const emit = defineEmits<AlbumTrackListItemEmits>();
 
 const itemEl = useTemplateRef<HTMLLIElement>('item');
-const [isHoveredItem, toggleHoveredItem] = useToggle();
+const rootClass = 'album-track-list-item';
 
-const baseClass = 'album-track-list-item';
-const rootCssClasses = computed(() => ({
-  [`${baseClass}_is-disabled`]: !props.item.isActive,
+const isSelected = computed<boolean>(() => props.item.id === props.selectedItemId);
+const isCurrent = computed<boolean>(() => props.item.id === props.currentItemId);
+const isPlaying = computed<boolean>(() => props.item.id === props.currentItemId && props.isPlaying);
+const rootCSSClasses = computed(() => ({
+  [`${rootClass}_is-playing`]: isPlaying.value,
+  [`${rootClass}_is-current`]: isCurrent.value,
+  [`${rootClass}_is-disabled`]: !props.item.isActive,
 }));
-const isSelectedItem = computed<boolean>(() => props.item.id === props.selectedItemId);
-const isCurrentItem = computed<boolean>(() => props.item.id === props.currentItemId);
-const isPlayingItem = computed<boolean>(
-  () => props.item.id === props.currentItemId && props.isPlaying,
-);
 
 onMounted(() => {
-  if (isSelectedItem.value) {
+  if (isSelected.value) {
     itemEl.value?.focus();
   }
 });
@@ -122,17 +110,15 @@ onMounted(() => {
   cursor: pointer;
   grid-template-columns: var(--album-track-list-grid-template-columns);
   align-items: center;
-  gap: 12px;
+  gap: var(--album-track-list-grid-column-gap);
   border-radius: var(--border-rounded, 4px);
   font-size: 14px;
-  color: var(--main-text, gray);
-  --color: var(--main-text, gray);
-  margin-inline: -8px;
-  padding: 12px 8px;
+  margin-inline: -16px;
+  padding: 8px 16px;
   transition: 0.25s all;
 
   &:nth-child(even) {
-    background-color: rgba(35, 35, 35, 0.2);
+    background-color: var(--gray-darkest);
   }
 
   &:focus {
@@ -145,8 +131,42 @@ onMounted(() => {
   }
 
   &:hover & {
+    &__index {
+      opacity: 0;
+    }
+
+    &__equalizer-icon {
+      opacity: 0;
+    }
+
+    &__action-button {
+      opacity: 1;
+      pointer-events: initial;
+    }
+
     &__add-button {
       opacity: 1;
+    }
+  }
+
+  &_is-current & {
+    &__index {
+      opacity: 0;
+    }
+
+    &__action-button {
+      opacity: 1;
+      pointer-events: initial;
+    }
+  }
+
+  &_is-playing & {
+    &__equalizer-icon {
+      opacity: 1;
+    }
+
+    &__action-button {
+      opacity: 0;
     }
   }
 
@@ -175,9 +195,11 @@ onMounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    opacity: 0;
+    pointer-events: none;
   }
 
-  &__details {
+  &__details-top-line {
     display: flex;
     align-items: center;
     line-height: 24px;
@@ -185,10 +207,12 @@ onMounted(() => {
 
   &__name {
     margin-right: 4px;
-    //font-size: inherit;
+    font-size: 16px;
   }
 
   &__featured-artist-links {
+    display: flex;
+    align-items: center;
     --ui-link-color: var(--main-text, white);
     margin-right: 4px;
   }
@@ -199,6 +223,7 @@ onMounted(() => {
     left: 50%;
     transform: translate(-50%, -50%);
     fill: var(--main-text, white);
+    opacity: 0;
   }
 
   &__add-button {
@@ -207,7 +232,8 @@ onMounted(() => {
   }
 
   &__duration {
-    margin-inline: 8px;
+    min-width: 60px;
+    margin-inline: 12px;
   }
 }
 </style>

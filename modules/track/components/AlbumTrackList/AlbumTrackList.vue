@@ -54,12 +54,13 @@ function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
 
 <style scoped lang="scss">
 .album-track-list {
-  --album-track-list-grid-template-columns: 40px 1fr 120px;
+  --album-track-list-grid-template-columns: 40px 1fr 160px;
+  --album-track-list-grid-column-gap: 12px;
 
   &__header {
     display: grid;
     grid-template-columns: var(--album-track-list-grid-template-columns);
-    gap: 12px;
+    gap: var(--album-track-list-grid-column-gap);
     margin-inline: -8px;
     padding: 8px;
     color: var(--gray, gray);
