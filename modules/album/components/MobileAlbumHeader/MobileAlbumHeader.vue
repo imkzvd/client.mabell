@@ -4,16 +4,17 @@
       <UIImg :path="album.cover" :alt="album.name" class="mobile-album-header__cover" />
 
       <div class="mobile-album-header__details">
-        <UIText align="center" class="mobile-album-header__meta-data">
-          <span class="mobile-album-header__meta-data-item">{{ album.type.label }}</span>
-          <span v-if="releaseAlbumYear" class="mobile-album-header__meta-data-item">
-            {{ releaseAlbumYear }}
-          </span>
-        </UIText>
-
-        <UIHeading :line-clamp="2" class="mobile-album-header__name">
+        <UIHeading align="center" :line-clamp="2" class="mobile-album-header__name">
           {{ album.name }}
         </UIHeading>
+
+        <UIText appearance="secondary" align="center" class="mobile-album-header__meta-data">
+          <span class="mobile-album-header__meta-data-item">{{ album.type.label }}</span>
+
+          <span v-if="releaseAlbumDate" class="mobile-album-header__meta-data-item">
+            {{ releaseAlbumDate }}
+          </span>
+        </UIText>
 
         <ArtistLinks
           :items="album.artists"
@@ -29,43 +30,51 @@
 import type { MobileAlbumHeaderProps } from '~/modules/album/components/MobileAlbumHeader/types';
 
 const props = defineProps<MobileAlbumHeaderProps>();
+const dayjs = useDayjs();
 
-const releaseAlbumYear = computed<number | null>(() => {
+const releaseAlbumDate = computed<string | null>(() => {
   if (!props.album.releaseAt) return null;
 
-  return new Date(props.album.releaseAt).getFullYear();
+  return dayjs(props.album.releaseAt).format('D MMM YYYY');
 });
 </script>
 
 <style scoped lang="scss">
 .mobile-album-header {
-  position: relative;
-  padding-block: var(--section-y-padding, 16px);
-  background: linear-gradient(0deg, transparent 20%, var(--album-color, var(--base-bg)) 100%);
   --album-color: v-bind(props.album.color);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-block: var(--section-y-padding, 16px);
+  background: linear-gradient(0deg, var(--base-bg) 0%, var(--album-color, var(--base-bg)) 90%);
+  min-height: 50vh;
 
   &__cover {
+    --width: 160px;
+    --height: 160px;
     margin-inline: auto;
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    --width: 160px;
-    --height: 160px;
 
     @include respond-to(xs) {
-      --width: 220px;
-      --height: 220px;
-      margin-bottom: 16px;
+      --width: 280px;
+      --height: 280px;
+      margin-bottom: 20px;
     }
   }
 
-  &__details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  &__name {
+    font-size: 20px;
+    line-height: 1.2;
+
+    @include respond-to(xs) {
+      font-size: 28px;
+    }
   }
 
   &__meta-data {
     font-size: 12px;
+    margin-bottom: 4px;
 
     @include respond-to(xs) {
       font-size: 14px;
@@ -79,19 +88,11 @@ const releaseAlbumYear = computed<number | null>(() => {
     }
   }
 
-  &__name {
-    margin-bottom: 2px;
-    font-size: 28px;
-    line-height: 1.2;
-
-    @include respond-to(xs) {
-      margin-bottom: 4px;
-    }
-  }
-
   &__artist-links {
+    display: flex;
+    justify-content: center;
     font-size: 14px;
-    --color: var(--main-text, white);
+    --ui-link-color: var(--main-text, white);
 
     @include respond-to(xs) {
       font-size: 16px;

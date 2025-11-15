@@ -4,12 +4,12 @@
       <UIImg :path="playlist.cover" :alt="playlist.name" class="mobile-playlist-header__cover" />
 
       <div class="mobile-playlist-header__details">
-        <UIHeading :line-clamp="2" class="mobile-playlist-header__name">
+        <UIHeading align="center" :line-clamp="2" class="mobile-playlist-header__name">
           {{ playlist.name }}
         </UIHeading>
 
         <UIText align="center" appearance="secondary" class="mobile-playlist-header__meta-data">
-          <span class="mobile-playlist-header__meta-data-item"> Playlist </span>
+          <span class="mobile-playlist-header__meta-data-item">Playlist</span>
 
           <span class="mobile-playlist-header__meta-data-item">
             {{ playlistGenres }}
@@ -19,6 +19,8 @@
             {{ playlistCreatedDate }}
           </span>
         </UIText>
+
+        <UILink to="#" class="mobile-playlist-header__user-link">{{ playlist.user.name }}</UILink>
       </div>
     </div>
   </header>
@@ -28,72 +30,61 @@
 import type { MobilePlaylistHeaderProps } from '~/modules/playlist/components/MobilePlaylistHeader/types';
 
 const props = defineProps<MobilePlaylistHeaderProps>();
+const dayjs = useDayjs();
 
 const playlistGenres = computed<string>(() =>
   props.playlist.genres.map(({ label }) => label).join('/'),
 );
 const playlistCreatedDate = computed<string>(() => {
-  return new Date(props.playlist.createdAt).toLocaleDateString();
+  return dayjs(props.playlist.createdAt).format('D MMM YYYY');
 });
 </script>
 
 <style scoped lang="scss">
 .mobile-playlist-header {
-  position: relative;
-  padding-block: 16px 32px;
-  font-size: 12px;
-  background: linear-gradient(0deg, transparent 0%, var(--playlist-color, var(--base-bg)) 100%);
   --playlist-color: v-bind(props.playlist.color);
-
-  &:after {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(0deg, transparent 0%, var(--playlist-color, var(--base-bg)) 100%);
-    content: '';
-  }
-
-  @include respond-to(xs) {
-    font-size: 14px;
-  }
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-block: var(--section-y-padding, 16px);
+  background: linear-gradient(0deg, var(--base-bg) 0%, var(--playlist-color, var(--base-bg)) 90%);
+  min-height: 50vh;
 
   &__cover {
-    position: relative;
-    z-index: 10;
+    --width: 160px;
+    --height: 160px;
     margin-inline: auto;
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    --width: 160px;
-    --height: 160px;
 
     @include respond-to(xs) {
-      --width: 220px;
-      --height: 220px;
-      margin-bottom: 16px;
+      --width: 280px;
+      --height: 280px;
+      margin-bottom: 20px;
     }
   }
 
   &__details {
-    position: relative;
-    z-index: 10;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__name {
     font-size: 20px;
-    margin-bottom: 2px;
-    line-height: normal;
+    line-height: 1.2;
 
     @include respond-to(xs) {
-      font-size: 24px;
-      margin-bottom: 4px;
+      font-size: 28px;
     }
   }
 
   &__meta-data {
-    margin-bottom: 2px;
+    font-size: 12px;
+    margin-bottom: 4px;
 
     @include respond-to(xs) {
-      margin-bottom: 4px;
+      font-size: 14px;
     }
   }
 
@@ -101,6 +92,15 @@ const playlistCreatedDate = computed<string>(() => {
     &:not(:last-child)::after {
       content: '•';
       margin-inline: 4px;
+    }
+  }
+
+  &__user-link {
+    font-size: 14px;
+    --ui-link-color: var(--main-text, white);
+
+    @include respond-to(xs) {
+      font-size: 16px;
     }
   }
 }
