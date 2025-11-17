@@ -1,5 +1,7 @@
 <template>
   <div class="mobile-layout">
+    <StickyMobileTopBar v-if="false" />
+
     <main class="mobile-layout__main">
       <slot name="default" />
     </main>
@@ -11,16 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import { PlayerInjectKey } from '~/modules/player/constants';
-import type { DesktopPlayerInstance } from '~/modules/player/components/DesktopPlayer/types';
-
-const playerInstance = useTemplateRef<DesktopPlayerInstance>('player');
-
 useHead({
   meta: [{ name: 'theme-color', content: '#121212' }],
 });
-
-provide(PlayerInjectKey, playerInstance);
 </script>
 
 <style lang="scss" scoped>
@@ -28,6 +23,12 @@ provide(PlayerInjectKey, playerInstance);
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+
+  &__header {
+    position: sticky;
+    top: 0;
+    padding-block: 16px;
+  }
 
   &__main {
     flex-grow: 1;
