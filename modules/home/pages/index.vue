@@ -18,6 +18,7 @@
         <AlbumCardLinksSlider
           v-if="isMobileOrTablet"
           :items="fetchedTrendingAlbums"
+          show-meta
           class="home-page__slider"
         />
         <AlbumCardLinksList v-else :items="fetchedTrendingAlbums" show-meta max-rows="1" />
@@ -27,6 +28,7 @@
         <AlbumCardLinksSlider
           v-if="isMobileOrTablet"
           :items="fetchedTopAlbums"
+          show-artists
           class="home-page__slider"
         />
         <AlbumCardLinksList v-else :items="fetchedTopAlbums" show-artists max-rows="1" />
