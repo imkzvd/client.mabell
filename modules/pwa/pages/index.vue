@@ -1,21 +1,21 @@
 <template>
   <div class="pwa-page">
     <div class="container">
-      <UIHeading class="pwa-page__heading">Mabell Application</UIHeading>
+      <UIHeading class="pwa-page__heading">Installing Mabell Application</UIHeading>
     </div>
 
-    <UISection with-container>
+    <UISection content-container>
       <dl class="pwa-page__instruction-list">
         <dt class="pwa-page__instruction-list-term">1. Tap the Share Icon</dt>
 
         <dd class="pwa-page__instruction-list-definition">
           <UIText size="14px" appearance="secondary" class="pwa-page__item-description">
             Tap the Share icon
-            <NuxtIcon name="i-material-symbols-light-ios-share" size="16" /> located at the bottom
+            <NuxtIcon name="i-material-symbols-light-ios-share" size="20px" /> located at the bottom
             of the screen (the square with an upward arrow).
           </UIText>
 
-          <NuxtImg class="pwa-page__image" src="/images/pwa-instruction-1.jpg" />
+          <NuxtImg class="pwa-page__image" src="/pwa/install/install-pwa-step-1.png" />
         </dd>
 
         <dt class="pwa-page__instruction-list-term">2. Add to Home Screen</dt>
@@ -25,7 +25,7 @@
             In the Share menu, scroll through the options and tap on Add to Home Screen.
           </UIText>
 
-          <NuxtImg class="pwa-page__image" src="/images/pwa-instruction-2.jpg" />
+          <NuxtImg class="pwa-page__image" src="/pwa/install/install-pwa-step-2.png" />
         </dd>
 
         <dt class="pwa-page__instruction-list-term">3. Launch the Mabell App</dt>
@@ -36,14 +36,18 @@
             the Mabell App.
           </UIText>
 
-          <NuxtImg class="pwa-page__image" src="/images/pwa-instruction-3.jpg" />
+          <NuxtImg class="pwa-page__image" src="/pwa/install/install-pwa-step-3.png" />
         </dd>
       </dl>
     </UISection>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  title: 'Installing Mabell Application',
+});
+</script>
 
 <style scoped lang="scss">
 .pwa-page {
@@ -68,8 +72,7 @@
   }
 
   &__image {
-    border-radius: 16px;
-    border: 1px solid var(--gray-darkest, #ccc);
+    max-width: 400px;
   }
 }
 </style>
