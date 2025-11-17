@@ -39,7 +39,7 @@ const albumColor = computed(() => {
   overflow: hidden;
 
   @include respond-to(xs) {
-    padding: 6px;
+    padding: 8px;
     padding-right: 12px;
   }
 

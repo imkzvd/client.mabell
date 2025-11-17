@@ -1,10 +1,12 @@
 <template>
   <div class="mobile-audio-player-track-details">
-    <UIImg
-      :path="track.album.cover"
-      :alt="track.name"
-      class="mobile-audio-player-track-details__cover"
-    />
+    <NuxtLink :to="{ name: 'album-id', params: { id: track.album.id } }">
+      <UIImg
+        :path="track.album.cover"
+        :alt="track.name"
+        class="mobile-audio-player-track-details__cover"
+      />
+    </NuxtLink>
 
     <div class="mobile-audio-player-track-details__lines">
       <div class="mobile-audio-player-track-details__top-line">
