@@ -25,7 +25,9 @@ defineProps<MobileTrackListProps>();
 const emit = defineEmits<MobileTrackListEmits>();
 
 function onClick(item: TrackRO, index: number) {
-  emit('play-item', item, index);
+  if (item.isActive) {
+    emit('play-item', item, index);
+  }
 }
 
 function onTrackMenuOpen(e: Event, item: TrackRO, index: number) {
