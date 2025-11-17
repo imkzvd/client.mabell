@@ -25,50 +25,50 @@ export interface LabelValueRO {
 export interface ArtistRO {
   /**
    * Id
-   * @example "241ed5749f6e8d7cd32e0fed"
+   * @example "3e01085fd0ac3fd43e7c63d1"
    */
   id: string;
   /**
    * Name
-   * @example "Kadin"
+   * @example "Aaliyah"
    */
   name: string;
   /**
    * Birth name
-   * @example "Amelia Hudson"
+   * @example "Jody Fahey"
    */
   birthName: string | null;
   /**
    * Birth date
    * @format date-time
-   * @example "2025-10-13T22:35:26.300Z"
+   * @example "2025-10-28T09:30:44.887Z"
    */
   birthDate: string | null;
   /** Genres */
   genres: LabelValueRO[];
   /**
    * Biography
-   * @example "coach, grad"
+   * @example "scientist, philosopher"
    */
   biography: string;
   /**
    * Avatar URL
-   * @example "https://api.mabell.fun/suckle_deform_suddenly.webp"
+   * @example "https://api.mabell.fun/ha_understated.webp"
    */
   avatar: string | null;
   /**
    * Cover URL
-   * @example "https://api.mabell.fun/lest_zowie_modulo.webp"
+   * @example "https://api.mabell.fun/every.webp"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#36899d"
+   * @example "#1eb1ce"
    */
   accentColor: string | null;
   /**
    * Secondary color
-   * @example "#ac6ffc"
+   * @example "#3422ec"
    */
   secondaryColor: string | null;
   /**
@@ -81,25 +81,30 @@ export interface ArtistRO {
 export interface SimplifiedAlbumRO {
   /**
    * Id
-   * @example "46cb2af9e8ccdd6cfdebc420"
+   * @example "fb1c9d03ddb3caea7acff01b"
    */
   id: string;
   /**
    * Name
-   * @example "Fallin'"
+   * @example "Ticket to Ride"
    */
   name: string;
   /** Type */
   type: LabelValueRO;
   /**
    * Cover
-   * @example "https://picsum.photos/seed/vwVbw09Wv/2041/213"
+   * @example "https://picsum.photos/seed/xUk3uhEw/2189/3600"
    */
   cover: string | null;
   /**
+   * Accent color
+   * @example "#6ec451"
+   */
+  color: string | null;
+  /**
    * Release date
    * @format date-time
-   * @example "2025-02-24T08:17:07.601Z"
+   * @example "2025-05-28T05:21:45.825Z"
    */
   releaseAt: string | null;
 }
@@ -132,12 +137,12 @@ export interface SimplifiedAlbumsRO {
 export interface SimplifiedArtistRO {
   /**
    * Id
-   * @example "d4c3f3bc89fc36ccb99d2baf"
+   * @example "d936dad28d02db5bbfb493f5"
    */
   id: string;
   /**
    * Name
-   * @example "Brando"
+   * @example "Arianna"
    */
   name: string;
   /**
@@ -150,12 +155,12 @@ export interface SimplifiedArtistRO {
 export interface TrackRO {
   /**
    * Id
-   * @example "0c8e3dd544c61185eb6dd823"
+   * @example "35ebafde1cd3f26b3c44b3ed"
    */
   id: string;
   /**
    * Name
-   * @example "Yakety Yak"
+   * @example "Daydream Believer"
    */
   name: string;
   /** Album */
@@ -166,12 +171,12 @@ export interface TrackRO {
   featArtists: SimplifiedArtistRO[];
   /**
    * Url
-   * @example "https://unusual-meadow.biz"
+   * @example "https://wiggly-horde.com/"
    */
   file: string | null;
   /**
    * Cover
-   * @example "https://loremflickr.com/233/2764?lock=8339677761737418"
+   * @example "https://loremflickr.com/1501/3170?lock=7599572495820741"
    */
   cover: string | null;
   /** Type */
@@ -199,7 +204,7 @@ export interface TrackRO {
   /**
    * Release date
    * @format date-time
-   * @example "2025-06-25T03:36:20.049Z"
+   * @example "2025-08-19T17:20:59.948Z"
    */
   releaseAt: string | null;
 }
@@ -232,12 +237,12 @@ export interface TracksRO {
 export interface AlbumRO {
   /**
    * Id
-   * @example "c2effcacffc0da6a0ff19272"
+   * @example "ef32fca0993bcb86d3a9611d"
    */
   id: string;
   /**
    * Name
-   * @example "Give Me Everything"
+   * @example "I Feel Fine"
    */
   name: string;
   /** Artists */
@@ -248,23 +253,23 @@ export interface AlbumRO {
   genres: LabelValueRO[];
   /**
    * Cover
-   * @example "https://loremflickr.com/1634/553?lock=6718638347784090"
+   * @example "https://picsum.photos/seed/O2saNjdMq8/3779/3137"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#fbacd7"
+   * @example "#83030a"
    */
   color: string | null;
   /**
    * Description
-   * @example "Corporis speculum ars terror abduco iure. Assentator tametsi nemo."
+   * @example "Vapulus sursum antea sordeo adsuesco color accusator cavus terga. Decipio utpote vergo alioqui aperiam corrigo temeritas eos exercitationem summa. Comburo nisi ocer eaque."
    */
   description: string;
   /**
    * Release date
    * @format date-time
-   * @example "2025-05-30T10:24:39.261Z"
+   * @example "2025-09-23T08:23:46.785Z"
    */
   releaseAt: string | null;
   /**
@@ -277,12 +282,12 @@ export interface AlbumRO {
 export interface SimplifiedUserRO {
   /**
    * Id
-   * @example "84af097afbc1cfee75c6bae6"
+   * @example "4dfb72bfcb0026c769ca64c7"
    */
   id: string;
   /**
    * Birth name
-   * @example "Valerie"
+   * @example "Ulices"
    */
   name: string;
 }
@@ -290,7 +295,7 @@ export interface SimplifiedUserRO {
 export interface PlaylistRO {
   /**
    * Id
-   * @example "ca0c6698e1df9bfa4eedf8eb"
+   * @example "13b30bcc2e1fcde6f85efc2f"
    */
   id: string;
   /** User id */
@@ -299,36 +304,36 @@ export interface PlaylistRO {
   user: SimplifiedUserRO;
   /**
    * Name
-   * @example "Wedding Bell Blues"
+   * @example "Pick Up the Pieces"
    */
   name: string;
   /** Genres */
   genres: LabelValueRO[];
   /**
    * Cover
-   * @example "https://picsum.photos/seed/Hu7yelDUI/643/130"
+   * @example "https://picsum.photos/seed/52fAUp3/3137/654"
    */
   cover: string | null;
   /**
    * Accent color
-   * @example "#fa3301"
+   * @example "#bd66cf"
    */
   color: string | null;
   /**
    * Description
-   * @example "Sulum atque tergiversatio argumentum atrocitas crustulum audacia. Tripudio comes vesica vesica adsidue vehemens amicitia desolo alo. Eius curriculum vester creptio. Unus amiculum vae amor basium vociferor strenuus temptatio. Articulus creptio theatrum vulnero statim in velum cupio curatio auctor."
+   * @example "Cruciamentum cui volaticus maxime cohaero."
    */
   description: string;
   /**
    * Created date
    * @format date-time
-   * @example "2025-05-23T10:02:58.073Z"
+   * @example "2025-03-01T00:50:00.307Z"
    */
   createdAt: string;
   /**
    * Updated date
    * @format date-time
-   * @example "2025-09-12T06:22:04.465Z"
+   * @example "2025-02-09T04:14:24.522Z"
    */
   updatedAt: string;
 }
@@ -339,7 +344,7 @@ export interface PlaylistTrackRO {
   /**
    * Added date
    * @format date-time
-   * @example "2025-09-08T17:34:22.437Z"
+   * @example "2025-07-01T09:53:17.520Z"
    */
   addedAt: string;
 }
@@ -372,17 +377,17 @@ export interface PlaylistTracksRO {
 export interface IndexedArtistRO {
   /**
    * Id
-   * @example "23f2bed951b8fceea7aa5ade"
+   * @example "132c5c9af55a76d7d5fcfbbe"
    */
   id: string;
   /**
    * Name
-   * @example "Diana"
+   * @example "Josefina"
    */
   name: string;
   /**
    * Avatar
-   * @example "https://picsum.photos/seed/G91m3NuJ/3232/3029"
+   * @example "https://picsum.photos/seed/kgxjHSVqqi/798/315"
    */
   avatar: string | null;
   /** Type */
@@ -417,12 +422,12 @@ export interface IndexedArtistsRO {
 export interface IndexedSimplifiedArtistRO {
   /**
    * Id
-   * @example "34faf2d36e37c7be2e66de9d"
+   * @example "3b680e4905ffe5199ac2a4f5"
    */
   id: string;
   /**
    * Name
-   * @example "Amalia"
+   * @example "Alexanne"
    */
   name: string;
 }
@@ -430,19 +435,19 @@ export interface IndexedSimplifiedArtistRO {
 export interface IndexedAlbumRO {
   /**
    * Id
-   * @example "add7e7d86ee1062ef8ad8e25"
+   * @example "57ecc846b2ea1d3efa52a2ac"
    */
   id: string;
   /**
    * Name
-   * @example "Tamia"
+   * @example "Felix"
    */
   name: string;
   /** Artists of the album */
   artists: IndexedSimplifiedArtistRO[];
   /**
    * Cover
-   * @example "https://picsum.photos/seed/q6Zh9/450/2071"
+   * @example "https://loremflickr.com/1901/2946?lock=634768270789809"
    */
   cover: string | null;
   /** Type */
@@ -477,12 +482,12 @@ export interface IndexedAlbumsRO {
 export interface IndexedSimplifiedAlbumRO {
   /**
    * Id
-   * @example "dcad5071564c2782fef127d8"
+   * @example "8ecca5c5b8022e8cbd16f8d7"
    */
   id: string;
   /**
    * Name
-   * @example "Jaida"
+   * @example "Lourdes"
    */
   name: string;
 }
@@ -490,12 +495,12 @@ export interface IndexedSimplifiedAlbumRO {
 export interface IndexedTrackRO {
   /**
    * Id
-   * @example "2f8dbbe9ef1915dc4d9933cc"
+   * @example "920da5b41dfa0a2fbdb77d17"
    */
   id: string;
   /**
    * Name
-   * @example "Elmore"
+   * @example "Alana"
    */
   name: string;
   /** Artists of the album */
@@ -512,7 +517,7 @@ export interface IndexedTrackRO {
   featArtists: IndexedSimplifiedArtistRO[];
   /**
    * Cover
-   * @example "https://loremflickr.com/3795/3085?lock=3848167558924471"
+   * @example "https://picsum.photos/seed/rkDapYdpP/1986/1873"
    */
   cover: string | null;
   /** Type */
@@ -547,12 +552,12 @@ export interface IndexedTracksRO {
 export interface IndexedSimplifiedUserRO {
   /**
    * Id
-   * @example "47f74f0a5e4b9830a7e5ae93"
+   * @example "0ea5188d13dc9d1327fcda66"
    */
   id: string;
   /**
    * Name
-   * @example "Dagmar"
+   * @example "Lucas"
    */
   name: string;
 }
@@ -560,19 +565,19 @@ export interface IndexedSimplifiedUserRO {
 export interface IndexedPlaylistRO {
   /**
    * Id
-   * @example "df1f7cf7fbd5c76f6de83fd4"
+   * @example "a3fe5c32aa54dee3d6b37bc5"
    */
   id: string;
   /**
    * Name
-   * @example "Samantha"
+   * @example "Lon"
    */
   name: string;
   /** User */
   user: IndexedSimplifiedUserRO;
   /**
    * Cover
-   * @example "https://picsum.photos/seed/V2bDeui/51/71"
+   * @example "https://picsum.photos/seed/OMAmG26WFl/1332/2246"
    */
   cover: string | null;
   /** Type */
@@ -915,7 +920,7 @@ export class HttpClient<SecurityDataType = unknown> {
 
 /**
  * @title Client API
- * @version 1.0.0-alpha.8
+ * @version 1.0.0-alpha.9
  * @contact
  *
  * The API description
@@ -934,7 +939,7 @@ export class ApiModule<SecurityDataType extends unknown> extends HttpClient<Secu
       query: {
         /**
          * Ids
-         * @example "e7ed5d6fbfc378d920cc3de2,cb6eeede27772c08a4ef47c0"
+         * @example "0eb50debeb9abb27468dc95e,3ff4c2cad0cebb52e5cd6d5f"
          */
         ids: string;
       },
@@ -1073,7 +1078,7 @@ export class ApiModule<SecurityDataType extends unknown> extends HttpClient<Secu
       query: {
         /**
          * Ids
-         * @example "4fc8e647dacadefecce9fd6d,e03b241f817b1d5a6f26df53"
+         * @example "feebb63ac95b7f4046fc1a29,1dccd9c3efd91e27d2db0eba"
          */
         ids: string;
       },
@@ -1165,7 +1170,7 @@ export class ApiModule<SecurityDataType extends unknown> extends HttpClient<Secu
       query: {
         /**
          * Ids
-         * @example "72d3ef57db264ad9008f2f53,6aeea92cc3db34e2d99e00f6"
+         * @example "b219e9e104cddc9fbe0737e4,d05f53b45f1ff5c1583e0fad"
          */
         ids: string;
       },
