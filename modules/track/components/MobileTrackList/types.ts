@@ -5,6 +5,7 @@ export type MobileTrackListProps = {
   currentItemId?: string;
   isPlaying?: boolean;
   ariaLabel?: string;
+  showCover?: boolean;
 };
 
 export type MobileTrackListEmits = {
@@ -13,8 +14,10 @@ export type MobileTrackListEmits = {
 
 export type MobileTrackListItemProps = {
   item: TrackRO;
+  index: number;
   currentItemId?: string;
   isPlaying?: boolean;
+  showCover?: boolean;
 };
 
 export type MobileTrackListItemEmits = {

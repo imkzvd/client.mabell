@@ -4,8 +4,10 @@
       v-for="(item, index) of items"
       :key="item.id"
       :item="item"
+      :index="index"
       :current-item-id="currentItemId"
       :is-playing="isPlaying"
+      :show-cover="showCover"
       @click="onClick(item, index)"
       @open-item-menu="onTrackMenuOpen($event, item, index)"
     />
