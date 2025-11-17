@@ -78,10 +78,14 @@ export function useAudioPlayer() {
     }>,
   ) {
     playlists.value = filterActiveTracks(items);
-    currentTrackIndex.value = index;
 
     if (options?.playAfterAdded) {
-      audioElement.addEventListener('canplaythrough', () => play(), { once: true });
+      if (index !== currentTrackIndex.value) {
+        currentTrackIndex.value = index;
+        audioElement.addEventListener('canplaythrough', () => play(), { once: true });
+      } else {
+        play();
+      }
     }
   }
 
