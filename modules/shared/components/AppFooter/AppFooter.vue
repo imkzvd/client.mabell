@@ -1,12 +1,13 @@
 <template>
   <footer class="app-footer">
     <div class="container">
-      <div class="app-footer__copyright">Copyright © 2024</div>
+      <UIText size="12px" appearance="secondary">© 2025 Mabell Music</UIText>
 
-      <div class="app-footer__links">
-        <UILink class="mr-1">Privacy</UILink>&
-        <UILink>Feedback</UILink>
-      </div>
+      <UIText size="12px" appearance="secondary">
+        All music, images, and artist information are the property of their respective owners.
+        Mabell Music is a non-commercial, educational project created for learning and demonstration
+        purposes only. No copyright infringement intended.
+      </UIText>
     </div>
   </footer>
 </template>
@@ -15,12 +16,7 @@
 
 <style scoped lang="scss">
 .app-footer {
-  padding-block: 32px;
+  padding-block: var(--section-y-padding, 12px);
   font-size: 12px;
-  color: var(--secondary-text);
-
-  &__copyright {
-    margin-bottom: 8px;
-  }
 }
 </style>
