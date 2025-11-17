@@ -1,5 +1,5 @@
 <template>
-  <ul :aria-label="ariaLabel" class="mobile-album-track-list">
+  <div :aria-label="ariaLabel" class="mobile-album-track-list">
     <MobileAlbumTrackListItem
       v-for="(item, index) of items"
       :key="item.id"
@@ -10,7 +10,7 @@
       @click="onClick(item, index)"
       @open-item-menu="onItemMenuOpen($event, item, index)"
     />
-  </ul>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -20,7 +20,7 @@ import type {
 } from '~/modules/track/components/MobileAlbumTrackList/types';
 import type { TrackRO } from '~/api/api.module';
 
-const props = defineProps<MobileAlbumTrackListProps>();
+defineProps<MobileAlbumTrackListProps>();
 const emit = defineEmits<MobileAlbumTrackListEmits>();
 
 function onClick(item: TrackRO, index: number) {
@@ -28,6 +28,6 @@ function onClick(item: TrackRO, index: number) {
 }
 
 function onItemMenuOpen(e: Event, item: TrackRO, index: number) {
-  alert(`Open menu for ${item.name} track`);
+  console.log('track menu opened');
 }
 </script>
