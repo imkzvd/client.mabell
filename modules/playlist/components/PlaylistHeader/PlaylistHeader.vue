@@ -17,7 +17,6 @@
 
           <UIText
             :line-clamp="2"
-            appearance="secondary"
             :title="playlist.description"
             class="playlist-header__description"
           >
@@ -56,18 +55,7 @@ const playlistCreatedDate = computed<string>(() =>
   height: 40vh;
   min-height: 320px;
   padding-block: 16px;
-  background: linear-gradient(0deg, var(--base-bg) 10%, var(--playlist-color, var(--base-bg)) 100%);
-
-  //&:after {
-  //  position: absolute;
-  //  inset: 0;
-  //  background: linear-gradient(
-  //      180deg,
-  //      rgba(0, 0, 0, 0.3) 0%,
-  //      transparent 100%
-  //  );
-  //  //content: '';
-  //}
+  background: linear-gradient(0deg, var(--base-bg) 0%, var(--playlist-color, var(--base-bg)) 100%);
 
   &__columns {
     position: relative;
@@ -123,7 +111,6 @@ const playlistCreatedDate = computed<string>(() =>
 
   &__user-link {
     color: var(--tertiary-text, white);
-    //font-weight: bold;
   }
 }
 </style>
