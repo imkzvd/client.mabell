@@ -58,7 +58,6 @@ export function useAudioPlayer() {
   async function play() {
     if (!currentTrack.value?.file) return;
 
-    console.log('player: ' + audioElement.currentTime);
     await audioElement.play();
     isPausing.value = false;
     isPlaying.value = true;
@@ -77,13 +76,24 @@ export function useAudioPlayer() {
       playAfterAdded: boolean;
     }>,
   ) {
-    playlists.value = filterActiveTracks(items);
+    const filteredActiveTracks = filterActiveTracks(items);
+    const selectedTrack = items[index];
 
-    if (options?.playAfterAdded) {
-      if (index !== currentTrackIndex.value) {
-        currentTrackIndex.value = index;
-        audioElement.addEventListener('canplaythrough', () => play(), { once: true });
-      } else {
+    if (!selectedTrack) return;
+
+    const isNewTrack = selectedTrack.id !== currentTrack.value?.id;
+
+    playlists.value = filteredActiveTracks;
+
+    if (!options?.playAfterAdded) return;
+
+    if (isNewTrack) {
+      currentTrackIndex.value = index;
+      audioElement.addEventListener('canplaythrough', () => play(), { once: true });
+    } else {
+      prevTrack();
+
+      if (!isPlaying.value) {
         play();
       }
     }
@@ -118,8 +128,6 @@ export function useAudioPlayer() {
   function setCurrentTrackTime(value: number) {
     currentTrackTime.value = value;
     audioElement.currentTime = value;
-
-    console.log('HM!!!');
   }
 
   function disableCurrentTimeUpdating() {
