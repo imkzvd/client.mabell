@@ -3,11 +3,14 @@
     <div class="mobile-track-list-item__column">
       <div class="mobile-track-list-item__cover-container">
         <UIImg
+          v-if="showCover"
           :path="item.album.cover"
           :alt="item.name"
           class="mobile-track-list-item__cover"
-          :class="{ 'mobile-track-list-item__cover_has-overl2ay': isCurrent || isPlaying }"
         />
+        <div v-else class="mobile-track-list-item__index">
+          {{ index + 1 }}
+        </div>
 
         <IconEqualizer
           role="presentation"
@@ -83,19 +86,23 @@ const rootCSSClasses = computed(() => ({
 .mobile-track-list-item {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(28px, auto) 1fr auto;
   align-items: center;
-  gap: 8px;
+  column-gap: 8px;
+  padding-block: 4px;
   line-height: 1.2;
-  padding-block: 2px;
 
   @include respond-to(xs) {
-    padding-block: 4px;
+    padding-block: 8px;
   }
 
   &_is-current & {
     &__cover {
       filter: brightness(30%);
+    }
+
+    &__index {
+      opacity: 0;
     }
 
     &__equalizer-icon {
@@ -110,6 +117,11 @@ const rootCSSClasses = computed(() => ({
   &__cover {
     --width: var(--track-image-width, 40px);
     --height: var(--track-image-width, 40px);
+  }
+
+  &__index {
+    text-align: center;
+    color: var(--secondary-text);
   }
 
   &__equalizer-icon {
