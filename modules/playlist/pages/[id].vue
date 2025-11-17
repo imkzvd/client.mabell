@@ -1,52 +1,66 @@
 <template>
   <div class="playlist-page">
-    <template v-if="fetchedData?.playlist">
-      <MobilePlaylistHeader v-if="isMobile" :playlist="fetchedData.playlist" />
-      <PlaylistHeader v-else :playlist="fetchedData.playlist" />
+    <template v-if="fetchedPlaylist">
+      <MobilePlaylistHeader v-if="isMobile" :playlist="fetchedPlaylist" />
+      <PlaylistHeader v-else :playlist="fetchedPlaylist" />
 
-      <section class="section">
-        <div class="container">
-          <MobileTrackList
-            v-if="isMobileOrTablet"
-            :items="fetchedData?.tracks.items.map(({ track }) => track)"
-            @play-item="onItemPlay"
-            @pause-item="onItemPause"
-          />
-          <PlaylistTrackList
-            v-else
-            :items="fetchedData.tracks.items"
-            :is-playing="player?.isPlaying"
-            :current-item-id="player?.currentTrack?.id"
-            @play-item="onItemPlay"
-            @pause-item="onItemPause"
-            @add-item="onItemAdd"
-          />
-        </div>
-      </section>
+      <UISection content-container>
+        <MobileTrackList
+          v-if="isMobileOrTablet"
+          :items="fetchedPlaylistTracks.map(({ track }) => track)"
+          :is-playing="$audioPlayer?.isPlaying.value"
+          :current-item-id="$audioPlayer?.currentTrackId.value"
+          show-cover
+          @play-item="onItemPlay"
+          @pause-item="onItemPause"
+        />
+        <PlaylistTrackList
+          v-else
+          :items="fetchedPlaylistTracks"
+          :is-playing="$audioPlayer?.isPlaying.value"
+          :current-item-id="$audioPlayer?.currentTrackId.value"
+          @play-item="onItemPlay"
+          @pause-item="onItemPause"
+          @add-item="onItemAdd"
+        />
+      </UISection>
     </template>
+
+    <UISection heading="More To Hear" heading-container :content-container="!isMobileOrTablet">
+      <PlaylistCardLinksSlider
+        v-if="isMobileOrTablet"
+        :items="fetchedSimilarPlaylists"
+        class="playlist-page__slider"
+      />
+      <PlaylistCardLinksList v-else :items="fetchedSimilarPlaylists" max-rows="1" />
+    </UISection>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from '#app';
 import { playlistApiService } from '~/modules/playlist/services/playlist.api.service';
-import { PlayerInjectKey } from '~/modules/player/constants';
-import type { PlaylistTrackRO } from '~/api/api.module';
+import type { PlaylistRO, PlaylistTrackRO } from '~/api/api.module';
+import { albumApiService } from '~/modules/album/services/album.api.service';
+import { popularApiService } from '~/modules/popular/services/popular.api.service';
+import type { ApiError } from '~/modules/shared/errors/api-error';
 
-const player = inject(PlayerInjectKey);
 const route = useRoute();
+const { $audioPlayer } = useNuxtApp();
 const { isMobile, isMobileOrTablet } = useDevice();
+const [isFetching, toggleFetching] = useToggle(true);
 
-const routePlaylistId = route.params.id as string;
+const playlistIdRouteParam = route.params.id as string;
 
-const { data: fetchedData, error } = await useAsyncData(`playlist:${routePlaylistId}`, async () => {
-  const [playlist, tracks] = await Promise.all([
-    playlistApiService.getPlaylistById(routePlaylistId),
-    playlistApiService.getPlaylistTracksById(routePlaylistId),
-  ]);
+const fetchedPlaylistTracks = ref<PlaylistTrackRO[]>([]);
+const fetchedSimilarPlaylists = ref<PlaylistRO[]>([]);
 
-  return { playlist, tracks };
-});
+const { data: fetchedPlaylist, error } = await useAsyncData(
+  `playlist:${playlistIdRouteParam}`,
+  () => {
+    return playlistApiService.getPlaylistById(playlistIdRouteParam);
+  },
+);
 
 if (error.value) {
   showError({
@@ -55,28 +69,59 @@ if (error.value) {
   });
 }
 
-useHead({
-  title: fetchedData.value?.playlist.name || 'Playlist',
-  meta: [
-    {
-      name: 'theme-color',
-      content: fetchedData.value?.playlist.color || '#121212',
-    },
-  ],
+if (fetchedPlaylist.value) {
+  useHead({
+    title: fetchedPlaylist.value.name || 'Mabell',
+    meta: [{ name: 'theme-color', content: fetchedPlaylist.value.color }],
+  });
+}
+
+onMounted(async () => {
+  if (fetchedPlaylist.value) {
+    await fetchPlaylistData(playlistIdRouteParam, fetchedPlaylist.value.genres);
+  }
+
+  toggleFetching(false);
 });
 
+async function fetchPlaylistData(id: string, genres: PlaylistRO['genres']) {
+  try {
+    const preparedGenreValues = genres.map(({ value }) => value);
+    const [playlistTracks, similarPlaylists] = await Promise.all([
+      playlistApiService.getPlaylistTracksById(id),
+      popularApiService.getPlaylists(preparedGenreValues),
+    ]);
+
+    fetchedPlaylistTracks.value = playlistTracks.items;
+    fetchedSimilarPlaylists.value = similarPlaylists.items;
+  } catch (e) {
+    const { message } = e as ApiError;
+
+    console.error(message);
+  }
+}
+
 function onItemPlay(item: PlaylistTrackRO, index: number) {
-  player.value?.addTracks(fetchedData.value?.tracks.items.map((i) => i.track) || [], index);
-  player.value?.play();
+  $audioPlayer?.addTracks(fetchedPlaylistTracks.value.map(({ track }) => track) || [], index, {
+    playAfterAdded: true,
+  });
 }
 
 function onItemPause(item: PlaylistTrackRO, index: number) {
-  player.value?.pause();
+  $audioPlayer?.pause();
 }
 
 function onItemAdd(item: PlaylistTrackRO, index: number) {
-  alert(`Trac ${item.track.name} - added`);
+  console.log('track menu open');
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@use '~/assets/scss/container';
+
+.playlist-page {
+  &__slider {
+    @extend .container;
+  }
+}
+</style>
