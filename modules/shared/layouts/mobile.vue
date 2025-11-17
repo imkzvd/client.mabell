@@ -1,7 +1,5 @@
 <template>
   <div class="mobile-layout">
-    <StickyMobileTopBar v-if="false" />
-
     <main class="mobile-layout__main">
       <slot name="default" />
     </main>

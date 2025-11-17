@@ -1,5 +1,9 @@
 <template>
   <div class="home-page">
+    <StickyMobileTopBar v-if="!$pwa?.isPWAInstalled && route.name === 'home'">
+      <InstallPWABanner />
+    </StickyMobileTopBar>
+
     <template v-if="isFetching">
       <SkeletonSectionLoader
         v-for="(_, index) of skeletonSectionsTotal"
@@ -68,6 +72,7 @@ import {
 import type { AlbumRO, ArtistRO, PlaylistRO } from '~/api/api.module';
 
 const skeletonSectionsTotal = 3;
+const route = useRoute();
 const { isMobileOrTablet } = useDevice();
 const [isFetching, toggleFetching] = useToggle(true);
 
@@ -99,7 +104,11 @@ onMounted(async () => {
 .home-page {
   display: flex;
   flex-direction: column;
-  padding-block: 32px;
+  padding-block: 16px;
+
+  @include respond-to(lg) {
+    padding-bottom: 32px;
+  }
 
   &__slider {
     @extend .container;
