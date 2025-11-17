@@ -1,5 +1,5 @@
 <template>
-  <div ref="slider" class="ui-slider" :style="rootCssStyles" @mousedown="onMouseDown">
+  <div ref="slider" class="ui-slider" :style="rootCssStyles" @mousedown="onMouseDown" @focus="test">
     <div class="ui-slider__runway">
       <div class="ui-slider__bar">
         <button type="button" class="ui-slider__thumb" />
@@ -41,6 +41,7 @@ const watcher = watch(
 );
 
 function onMouseDown() {
+  emit('mousedown');
   document.addEventListener('mouseup', onMouseUp, { once: true });
   document.addEventListener('mousemove', onMouseMove);
 
@@ -54,6 +55,7 @@ function calcSliderValue(e: MouseEvent) {
 }
 
 function onMouseUp(e: MouseEvent) {
+  emit('mouseup');
   document.removeEventListener('mousemove', onMouseMove);
 
   const sliderValue = calcSliderValue(e);
@@ -106,6 +108,7 @@ function onMouseMove(e: MouseEvent) {
     height: 100%;
     width: var(--dynamic-bar-width);
     background-color: var(--ui-slider-bar-bg, white);
+    border-radius: 8px;
   }
 }
 </style>

@@ -6,4 +6,6 @@ export type UISliderProps = {
 export type UISliderEmits = {
   (e: 'update:modelValue', value: number): void;
   (e: 'change', value: number): void;
+  (e: 'mouseup'): void;
+  (e: 'mousedown'): void;
 };
