@@ -2,7 +2,6 @@
   <NuxtLayout :name="currentLayoutName" @contextmenu.prevent>
     <NuxtPwaManifest />
 
-    <NuxtLoadingIndicator />
     <NuxtRouteAnnouncer />
     <NuxtPage />
   </NuxtLayout>
