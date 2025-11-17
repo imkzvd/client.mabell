@@ -79,6 +79,7 @@ const isPlaying = computed<boolean>(() => props.item.id === props.currentItemId 
 const rootCSSClasses = computed(() => ({
   [`${rootCSSClass}_is-playing`]: isPlaying.value,
   [`${rootCSSClass}_is-current`]: isCurrent.value,
+  [`${rootCSSClass}_is-disabled`]: !props.item.isActive,
 }));
 </script>
 
@@ -108,6 +109,10 @@ const rootCSSClasses = computed(() => ({
     &__equalizer-icon {
       opacity: 1;
     }
+  }
+
+  &_is-disabled {
+    opacity: 0.5;
   }
 
   &__cover-container {
