@@ -1,5 +1,5 @@
 <template>
-  <div ref="slider" class="ui-slider" :style="rootCssStyles" @mousedown="onMouseDown" @focus="test">
+  <div ref="slider" class="ui-slider" :style="rootCSSVars" @mousedown="onMouseDown">
     <div class="ui-slider__runway">
       <div class="ui-slider__bar">
         <button type="button" class="ui-slider__thumb" />
@@ -13,87 +13,66 @@ import type { UISliderEmits, UISliderProps } from '~/modules/shared/components/U
 
 const props = withDefaults(defineProps<UISliderProps>(), {
   max: 100,
+  width: '100%',
 });
 const emit = defineEmits<UISliderEmits>();
 
-const slider = useTemplateRef<HTMLDivElement>('slider');
-
-let sliderLeftOffset: number = 0;
+const sliderEl = useTemplateRef<HTMLDivElement>('slider');
+const sliderLeftOffset = ref<number>(0);
 const runwayWidth = ref<number>(0);
-const localState = ref<number>(props.modelValue);
+
+const model = defineModel<number>({
+  default: 0,
+});
 
 const runwayPixelsPerUnit = computed<number>(() => runwayWidth.value / props.max);
-const barWidth = computed<number>(() => localState.value * runwayPixelsPerUnit.value);
-const rootCssStyles = computed(() => ({
+const barWidth = computed<number>(() => model.value * runwayPixelsPerUnit.value);
+const rootCSSVars = computed<Record<string, string>>(() => ({
   '--dynamic-bar-width': `${barWidth.value}px`,
 }));
 
 onMounted(() => {
-  runwayWidth.value = slider.value?.clientWidth || 0;
-  sliderLeftOffset = slider.value?.getBoundingClientRect().left || 0;
+  runwayWidth.value = sliderEl.value?.clientWidth || 0;
+  sliderLeftOffset.value = sliderEl.value?.getBoundingClientRect().left || 0;
 });
 
-const watcher = watch(
-  () => props.modelValue,
-  (value: number) => {
-    localState.value = value;
-  },
-);
-
-function onMouseDown() {
-  emit('mousedown');
+function onMouseDown(e: MouseEvent) {
+  emit('mousedown', e);
   document.addEventListener('mouseup', onMouseUp, { once: true });
   document.addEventListener('mousemove', onMouseMove);
-
-  watcher.pause();
-}
-
-function calcSliderValue(e: MouseEvent) {
-  const barWidth = e.pageX - sliderLeftOffset;
-
-  return Math.max(0, Math.min(barWidth / runwayPixelsPerUnit.value, props.max));
 }
 
 function onMouseUp(e: MouseEvent) {
-  emit('mouseup');
   document.removeEventListener('mousemove', onMouseMove);
 
-  const sliderValue = calcSliderValue(e);
-
-  emit('update:modelValue', sliderValue);
-  emit('change', sliderValue);
-  watcher.resume();
+  emit('mouseup', e);
+  model.value = calcModelValue(e);
+  emit('change', model.value);
 }
 
 function onMouseMove(e: MouseEvent) {
-  const sliderValue = calcSliderValue(e);
+  model.value = calcModelValue(e);
+}
 
-  localState.value = sliderValue;
-  emit('update:modelValue', sliderValue);
+function calcModelValue(e: MouseEvent) {
+  const barWidth = e.pageX - sliderLeftOffset.value;
+  const prepValue = barWidth / runwayPixelsPerUnit.value;
+
+  return Math.max(0, Math.min(prepValue, props.max));
 }
 </script>
 
 <style lang="scss" scoped>
 .ui-slider {
+  width: v-bind(width);
   padding-block: 8px;
-  cursor: pointer;
   user-select: none;
+  cursor: pointer;
 
-  &__thumb {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    height: 12px;
-    width: 12px;
-    border-radius: 100%;
-    transform: translate(50%, -50%);
-    background-color: var(--ui-slider-thumb-color, white);
-    opacity: 0;
-    cursor: pointer;
-  }
-
-  &:hover &__thumb {
-    opacity: 1;
+  &:hover & {
+    &__thumb {
+      opacity: 1;
+    }
   }
 
   &__runway {
@@ -109,6 +88,20 @@ function onMouseMove(e: MouseEvent) {
     width: var(--dynamic-bar-width);
     background-color: var(--ui-slider-bar-bg, white);
     border-radius: 8px;
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    transform: translate(50%, -50%);
+    background-color: var(--ui-slider-thumb-color, white);
+    outline: 1px solid var(--ui-slider-runway-bg, gray);
+    opacity: 0;
+    cursor: pointer;
   }
 }
 </style>
