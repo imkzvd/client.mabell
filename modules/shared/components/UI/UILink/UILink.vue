@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="to" :class="cssClasses">
+  <NuxtLink :to="to" class="ui-link" :class="rootCSSClasses">
     <slot name="default" />
   </NuxtLink>
 </template>
@@ -8,16 +8,14 @@
 import { type UILinkProps } from '~/modules/shared/components/UI/UILink/types';
 
 const props = withDefaults(defineProps<UILinkProps>(), {
-  hoverUnderline: true,
-  lineClamp: null,
+  isHoverUnderlined: true,
 });
 
-const baseClass: string = 'ui-link';
-const cssClasses = computed(() => ({
-  [baseClass]: true,
-  [`${baseClass}_underline`]: props.underline,
-  [`${baseClass}_hover-underline`]: props.hoverUnderline,
-  [`${baseClass}_ellipsis`]: !!props.lineClamp,
+const rootCSSClass: string = 'ui-link';
+const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+  [`${rootCSSClass}_is-underlined`]: props.isUnderlined,
+  [`${rootCSSClass}_is-hover-underlined`]: props.isHoverUnderlined,
+  [`${rootCSSClass}_is-truncated`]: !!props.maxRows,
 }));
 </script>
 
@@ -32,23 +30,19 @@ const cssClasses = computed(() => ({
       color: var(--hover-color, var(--ui-link-hover-color));
     }
 
-    &_hover-underline {
+    &_is-hover-underlined {
       &:hover {
         text-decoration: underline;
       }
     }
   }
 
-  &_underline {
+  &_is-underlined {
     text-decoration: underline;
   }
 
-  &_ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    -webkit-line-clamp: var(--line-clamp, v-bind(lineClamp));
+  &_is-truncated {
+    @include text-ellipsis(var(--max-rows, v-bind(maxRows)));
   }
 }
 </style>
