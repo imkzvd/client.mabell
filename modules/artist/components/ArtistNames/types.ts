@@ -10,6 +10,6 @@ export type ArtistNamesSeparator = keyof typeof ArtistNamesSeparators;
 
 export type ArtistNamesProps = {
   items: (ArtistRO | SimplifiedArtistRO)[];
-  lineClamp?: UITextProps['lineClamp'];
+  maxRows?: UITextProps['maxRows'];
   separator?: ArtistNamesSeparator;
 };

@@ -16,7 +16,7 @@
           />
         </div>
 
-        <UIText :line-clamp="2" appearance="secondary" class="artist-header__biography">
+        <UIText max-rows="2" appearance="secondary" class="artist-header__biography">
           {{ artist.biography }}
         </UIText>
       </div>

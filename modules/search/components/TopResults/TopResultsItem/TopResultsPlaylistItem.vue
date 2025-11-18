@@ -10,7 +10,7 @@
     </template>
 
     <template #middle-line>
-      <UIText :line-clamp="1">{{ item.name }}</UIText>
+      <UIText max-rows="1">{{ item.name }}</UIText>
     </template>
   </TopResultsItem>
 </template>

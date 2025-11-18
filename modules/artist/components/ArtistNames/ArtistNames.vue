@@ -1,5 +1,5 @@
 <template>
-  <UIText class="artist-names" appearance="secondary" :line-clamp="lineClamp">
+  <UIText class="artist-names" appearance="secondary" :max-rows="maxRows">
     {{ preparedString }}
   </UIText>
 </template>

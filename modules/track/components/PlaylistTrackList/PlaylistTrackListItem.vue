@@ -34,7 +34,7 @@
 
       <div class="playlist-track-list-item__details">
         <div class="playlist-track-list-item__details-top-line">
-          <UIText line-clamp="1" class="playlist-track-list-item__name">
+          <UIText max-rows="1" class="playlist-track-list-item__name">
             {{ item.track.name }}
           </UIText>
 

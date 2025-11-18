@@ -2,7 +2,7 @@
   <NuxtLink :to="{ name: 'artist-id', params: { id: item.id } }" class="similar-artist-slider-item">
     <UIImg :url="item.avatar" :alt="item.name" class="similar-artist-slider-item__avatar" />
 
-    <UIText :line-clamp="2" class="similar-artist-slider-item__name">
+    <UIText max-rows="2" class="similar-artist-slider-item__name">
       {{ item.name }}
     </UIText>
   </NuxtLink>

@@ -14,7 +14,7 @@
     </template>
 
     <template #bottom-line>
-      <ArtistNames :items="item.artists" :line-clamp="1" />
+      <ArtistNames :items="item.artists" max-rows="1" />
     </template>
   </TopResultsItem>
 </template>

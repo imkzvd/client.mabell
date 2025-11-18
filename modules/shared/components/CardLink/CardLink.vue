@@ -3,14 +3,14 @@
     <UIImg :path="imgPath" :alt="imgAlt" :is-rounded="imgRounded" class="card-link__img" />
 
     <div class="card-link__details">
-      <UIText :line-clamp="1" :align="textAlign" class="card-link__title">
+      <UIText max-rows="1" :align="textAlign" class="card-link__title">
         <slot name="title" />
       </UIText>
 
       <UIText
         v-if="$slots.subtitle"
         appearance="secondary"
-        :line-clamp="1"
+        max-rows="1"
         :align="textAlign"
         class="card-link__subtitle"
       >

@@ -8,7 +8,7 @@
 
     <div class="desktop-audio-player-track-details__lines">
       <div class="desktop-audio-player-track-details__top-line">
-        <UIText :line-clamp="1" size="14px" class="desktop-audio-player-track-details__name">
+        <UIText max-rows="1" size="14px" class="desktop-audio-player-track-details__name">
           {{ track.name }}
         </UIText>
 
