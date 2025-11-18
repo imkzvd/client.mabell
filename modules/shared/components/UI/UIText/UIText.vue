@@ -17,10 +17,10 @@ const props = withDefaults(defineProps<UITextProps>(), {
 });
 
 const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
-  [`ui-text_appearance_${props.appearance}`]: true,
-  [`ui-text_ellipsis`]: !!props.lineClamp,
+  [`ui-text_appearance_${props.appearance}`]: !!props.appearance,
+  [`ui-text_align_${props.align}`]: !!props.align,
+  [`ui-text_is-truncated`]: !!props.maxRows,
   [`ui-text_is-bold`]: props.isBold,
-  [`ui-text_align_${props.align}`]: props.align,
 }));
 </script>
 
@@ -29,40 +29,19 @@ const computedRootCssClasses = computed<Record<string, boolean>>(() => ({
   font-size: var(--font-size, v-bind(size));
 
   &_appearance {
-    &_primary {
-      color: var(--color, var(--ui-text-default-text));
-    }
-
-    &_secondary {
-      color: var(--color, var(--ui-text-secondary-text));
-    }
+    @include text-appearance();
   }
 
-  &_ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    -webkit-line-clamp: var(--line-clamp, v-bind(lineClamp));
-    word-break: break-word;
+  &_align {
+    @include text-align();
+  }
+
+  &_is-truncated {
+    @include text-ellipsis(var(--max-rows, v-bind(maxRows)));
   }
 
   &_is-bold {
     font-family: var(--bold-font, sans-serif);
-  }
-
-  &_align {
-    &_left {
-      text-align: left;
-    }
-
-    &_center {
-      text-align: center;
-    }
-
-    &_right {
-      text-align: right;
-    }
   }
 }
 </style>

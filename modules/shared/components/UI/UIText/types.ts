@@ -1,7 +1,7 @@
 import type { UIAlignment, UIAppearance } from '~/modules/shared/components/UI/types';
 
 export type UITextProps = {
-  lineClamp?: number | null;
+  maxRows?: number | string;
   tag?: string;
   appearance?: UIAppearance;
   isBold?: boolean;
