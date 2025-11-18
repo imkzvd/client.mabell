@@ -8,9 +8,7 @@
       @click="isMuting ? onUnmuteButtonClick() : onMuteButtonClick()"
     />
 
-    <div class="desktop-audio-player-volume-controls__slider-wrapper">
-      <UISlider v-model="model" />
-    </div>
+    <UISlider v-model="model" width="120px" />
   </div>
 </template>
 
@@ -42,9 +40,5 @@ function onUnmuteButtonClick() {
   display: flex;
   align-items: center;
   column-gap: 4px;
-
-  &__slider-wrapper {
-    width: 120px;
-  }
 }
 </style>
