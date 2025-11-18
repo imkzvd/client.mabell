@@ -1,14 +1,10 @@
 <template>
-  <section class="ui-section" :class="rootCSSClasses">
-    <template v-if="$slots.heading || heading">
-      <div :class="headingContainer ? 'container' : 'container-fluid'">
-        <slot name="heading">
-          <UIHeading level="2" class="ui-section__heading">
-            {{ heading }}
-          </UIHeading>
-        </slot>
-      </div>
-    </template>
+  <section :aria-labelledby="headingId" class="ui-section" :class="rootCSSClasses">
+    <div v-show="!hiddenHeading" :class="headingContainer ? 'container' : 'container-fluid'">
+      <UIHeading :id="headingId" level="2" class="ui-section__heading">
+        {{ heading }}
+      </UIHeading>
+    </div>
 
     <div :class="contentContainer ? 'container' : 'container-fluid'">
       <slot name="default" />
@@ -24,7 +20,10 @@ const props = withDefaults(defineProps<UISectionProps>(), {
   contentContainer: false,
 });
 
+const uid = useId();
+
 const rootCSSClass = 'ui-section';
+const headingId = computed<string>(() => `section-${uid}-heading`);
 const rootCSSClasses = computed<Record<string, boolean>>(() => ({
   [`${rootCSSClass}_no-padding`]: props.noPadding,
 }));
