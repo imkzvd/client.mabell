@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { render } from '@testing-library/vue';
-import TEST_TOKENS from '~/__tests__/TEST_TOKENS';
+import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
 import UISpinner from '~/modules/shared/components/UI/UISpinner/UISpinner.vue';
 import type { UISpinnerProps } from '~/modules/shared/components/UI/UISpinner/types';
 
@@ -19,11 +19,11 @@ describe('UISpinner', () => {
 
       getByTestId<HTMLDivElement>(TEST_TOKENS.UI_SPINNER);
     });
-  });
 
-  test('snapshot', () => {
-    const { container } = renderComponent();
+    test('snapshot', () => {
+      const { container } = renderComponent();
 
-    expect(container).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
+    });
   });
 });
