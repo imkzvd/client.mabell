@@ -2,7 +2,7 @@ import type { RouteLocationRaw } from 'vue-router';
 
 export interface UILinkProps {
   to: RouteLocationRaw;
-  underline?: boolean;
-  hoverUnderline?: boolean;
-  lineClamp?: number | null;
+  isUnderlined?: boolean;
+  isHoverUnderlined?: boolean;
+  maxRows?: number | string;
 }
