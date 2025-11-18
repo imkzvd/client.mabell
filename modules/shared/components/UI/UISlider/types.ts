@@ -2,6 +2,7 @@ export type UISliderProps = {
   modelValue: number;
   max?: number;
   width?: string;
+  ariaLabel?: string;
 };
 
 export type UISliderEmits = {

@@ -1,5 +1,17 @@
 <template>
-  <div ref="slider" class="ui-slider" :style="rootCSSVars" @mousedown="onMouseDown">
+  <div
+    ref="slider"
+    role="slider"
+    aria-valuemin="0"
+    :aria-valuemax="max"
+    :aria-valuenow="model"
+    :aria-label="ariaLabel"
+    aria-orientation="horizontal"
+    tabindex="0"
+    class="ui-slider"
+    :style="rootCSSVars"
+    @mousedown="onMouseDown"
+  >
     <div class="ui-slider__runway">
       <div class="ui-slider__bar">
         <button type="button" class="ui-slider__thumb" />
