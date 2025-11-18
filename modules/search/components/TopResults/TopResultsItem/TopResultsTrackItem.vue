@@ -10,11 +10,11 @@
     </template>
 
     <template #middle-line>
-      <UIText :line-clamp="1">{{ item.name }}</UIText>
+      <UIText max-rows="1">{{ item.name }}</UIText>
     </template>
 
     <template #bottom-line>
-      <ArtistNames :items="item.artists" :line-clamp="1" />
+      <ArtistNames :items="item.artists" max-rows="1" />
     </template>
 
     <UIImg :path="item.cover" :alt="item.name" class="top-results-track-item__cover" />

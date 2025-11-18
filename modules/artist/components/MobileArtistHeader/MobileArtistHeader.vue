@@ -6,7 +6,7 @@
           {{ artist.name }}
         </UIHeading>
 
-        <UIText appearance="secondary" size="14px" :line-clamp="2">{{ artist.biography }}</UIText>
+        <UIText appearance="secondary" size="14px" max-rows="2">{{ artist.biography }}</UIText>
 
         <UIIconButton
           v-if="false"

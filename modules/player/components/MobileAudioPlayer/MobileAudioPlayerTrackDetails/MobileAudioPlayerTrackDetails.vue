@@ -10,13 +10,13 @@
 
     <div class="mobile-audio-player-track-details__lines">
       <div class="mobile-audio-player-track-details__top-line">
-        <UIText :line-clamp="1">
+        <UIText max-rows="1">
           {{ track.name }}
         </UIText>
       </div>
 
       <div class="mobile-audio-player-track-details__bottom-line">
-        <ArtistNames :items="allTrackArtists" :line-clamp="1" />
+        <ArtistNames :items="allTrackArtists" max-rows="1" />
       </div>
     </div>
   </div>

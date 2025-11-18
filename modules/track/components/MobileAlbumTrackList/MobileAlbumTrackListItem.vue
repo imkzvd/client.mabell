@@ -23,7 +23,7 @@
     <div class="mobile-album-track-list-item__column">
       <div class="mobile-album-track-list-item__details">
         <div class="mobile-album-track-list-item__details-top-line">
-          <UIText :line-clamp="1" class="mobile-album-track-list-item__name">
+          <UIText max-rows="1" class="mobile-album-track-list-item__name">
             {{ item.name }}
           </UIText>
 
