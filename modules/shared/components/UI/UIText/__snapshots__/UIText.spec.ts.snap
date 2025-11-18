@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UIText > Default: > snapshot 1`] = `
+<div>
+  <p
+    class="ui-text ui-text_appearance_primary ui-text_align_left"
+    data-v-6b588e1e=""
+  >
+    
+    Some text
+    
+  </p>
+</div>
+`;
