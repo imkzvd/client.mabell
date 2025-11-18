@@ -1,6 +1,6 @@
 export type UISpinnerProps = {
-  size?: number;
-  width?: number;
+  size?: string;
+  borderWidth?: string;
   isContrasted?: boolean;
   isCentered?: boolean;
 };

@@ -1,2 +1,2 @@
-export const defaultSizeProp: number = 14;
-export const defaultWidthProp: number = 2;
+export const defaultSizeProp: string = '14px';
+export const defaultBorderWidthProp: string = '2px';

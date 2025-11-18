@@ -1,10 +1,5 @@
 <template>
-  <div
-    :style="cssVars"
-    :class="cssClasses"
-    :data-testid="TEST_TOKENS.UI_SPINNER"
-    class="ui-spinner"
-  >
+  <div :class="rootCSSClasses" :data-testid="TEST_TOKENS.UI_SPINNER" class="ui-spinner">
     <div class="ui-spinner__item" />
   </div>
 </template>
@@ -12,40 +7,30 @@
 <script setup lang="ts">
 import {
   defaultSizeProp,
-  defaultWidthProp,
+  defaultBorderWidthProp,
 } from '~/modules/shared/components/UI/UISpinner/constants';
 import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
 import type { UISpinnerProps } from '~/modules/shared/components/UI/UISpinner/types';
 
 const props = withDefaults(defineProps<UISpinnerProps>(), {
   size: defaultSizeProp,
-  width: defaultWidthProp,
+  borderWidth: defaultBorderWidthProp,
 });
 
-const baseClass: string = 'ui-spinner';
-
-const cssVars = computed(() => ({
-  '--width': `${props.size}px`,
-  '--height': `${props.size}px`,
-  '--border-width': `${props.width}px`,
-}));
-const cssClasses = computed(() => ({
-  [`${baseClass}_is-contrasted`]: props.isContrasted,
-  [`${baseClass}_is-centered`]: props.isCentered,
+const rootCSSClass: string = 'ui-spinner';
+const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+  [`${rootCSSClass}_is-contrasted`]: props.isContrasted,
+  [`${rootCSSClass}_is-centered`]: props.isCentered,
 }));
 </script>
 
 <style lang="scss" scoped>
-@keyframes double-rotate {
-  to {
-    transform: rotate(720deg);
-  }
-}
+@use '@/assets/scss/keyframes';
 
 .ui-spinner {
   &_is-contrasted & {
     &__item {
-      border-color: var(--ui-spinner-contrast-color, #ffffff);
+      border-color: var(--ui-spinner-contrast-color, black);
       border-bottom-color: transparent;
     }
   }
@@ -58,10 +43,10 @@ const cssClasses = computed(() => ({
   }
 
   &__item {
-    width: var(--width, 14px);
-    height: var(--height, 14px);
-    border-width: var(--border-width, 2px);
-    border-color: var(--ui-spinner-color, #000000);
+    width: var(--width, v-bind('props.size'));
+    height: var(--height, v-bind('props.size'));
+    border-width: var(--border-width, v-bind('props.borderWidth'));
+    border-color: var(--ui-spinner-color, currentColor);
     border-style: solid;
     border-radius: 100%;
     border-bottom-color: transparent;
