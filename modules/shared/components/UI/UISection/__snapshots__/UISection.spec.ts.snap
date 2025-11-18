@@ -1,0 +1,35 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UISection > Default: > snapshot 1`] = `
+<div>
+  <section
+    aria-labelledby="section-v-0-heading"
+    class="ui-section"
+    data-v-6e9d07ad=""
+  >
+    <div
+      class="container-fluid"
+      data-v-6e9d07ad=""
+    >
+      <h2
+        class="ui-heading ui-heading_level_2 ui-heading_align_left ui-section__heading"
+        data-v-35c36948=""
+        data-v-6e9d07ad=""
+        id="section-v-0-heading"
+      >
+        
+        Heading
+        
+      </h2>
+    </div>
+    <div
+      class="container-fluid"
+      data-v-6e9d07ad=""
+    >
+      
+      Some text
+      
+    </div>
+  </section>
+</div>
+`;
