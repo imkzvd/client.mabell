@@ -1,11 +1,11 @@
 <template>
-  <div :class="`${baseClass}-item`">
-    <div :class="`${baseClass}-item__content`">
+  <div class="ui-form-item">
+    <div class="ui-form-item__content">
       <slot name="default" />
     </div>
 
     <transition v-if="validRules" name="slide-fade">
-      <div v-show="isInvalid" :class="`${baseClass}-item__error-message`">
+      <div v-show="isInvalid" class="ui-form-item__error-message">
         {{ errorMessage }}
       </div>
     </transition>
@@ -16,7 +16,6 @@
 import AsyncValidator from 'async-validator';
 import type { ValidateError, Rule } from 'async-validator';
 import {
-  baseClass,
   UIFormContextKey,
   UIFormItemContextKey,
 } from '~/modules/shared/components/UI/UIForm/constants';
@@ -81,7 +80,6 @@ function clearValidate(): void {
 <style scoped lang="scss">
 .ui-form-item {
   position: relative;
-  margin-bottom: 32px;
 
   &:not(:last-child) {
     margin-bottom: 32px;
