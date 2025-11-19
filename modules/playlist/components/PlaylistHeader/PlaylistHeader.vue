@@ -23,7 +23,7 @@
             {{ playlist.description }}
           </UIText>
 
-          <UILink to="#" hover-underline class="playlist-header__user-link">
+          <UILink to="#" class="playlist-header__user-link">
             {{ playlist.user.name }}
           </UILink>
         </div>

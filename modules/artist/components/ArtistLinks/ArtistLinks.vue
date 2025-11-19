@@ -4,8 +4,7 @@
       v-for="(item, index) of items"
       :key="item.id"
       :to="{ name: 'artist-id', params: { id: item.id } }"
-      appearance="secondary"
-      :hover-underline="hoverUnderline"
+      :is-hover-underlined="hoverUnderline"
       class="artist-links__link"
       :class="linkCSSClasses"
       @click.stop

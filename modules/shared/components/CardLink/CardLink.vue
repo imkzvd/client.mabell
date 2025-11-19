@@ -1,5 +1,5 @@
 <template>
-  <UILink :to="to" :hover-underline="false" class="card-link">
+  <UILink :to="to" :is-hover-underlined="false" class="card-link">
     <UIImg :path="imgPath" :alt="imgAlt" :is-rounded="imgRounded" class="card-link__img" />
 
     <div class="card-link__details">

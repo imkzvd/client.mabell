@@ -5,7 +5,7 @@
         v-for="(link, index) of linkList"
         :key="index"
         :to="link.name ? { name: link.name } : '#'"
-        :hover-underline="false"
+        :is-hover-underlined="false"
         class="nav-menu__link"
         :class="{ 'nav-menu__link_active': link.name === route.name }"
       >

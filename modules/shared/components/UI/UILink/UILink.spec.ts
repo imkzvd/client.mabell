@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { render, screen } from '@testing-library/vue';
+import { render } from '@testing-library/vue';
 import UILink from '~/modules/shared/components/UI/UILink/UILink.vue';
 import type { UILinkProps } from '~/modules/shared/components/UI/UILink/types';
 
-const fakeSlot: string = 'Google.com';
+const fakeDefaultSlotValue: string = 'Google.com';
 const fakeProps: UILinkProps = {
   to: 'https://www.google.ru/',
 };
@@ -15,7 +15,7 @@ function renderComponent(props?: Partial<UILinkProps>) {
       ...props,
     },
     slots: {
-      default: fakeSlot,
+      default: fakeDefaultSlotValue,
     },
   });
 }
@@ -25,7 +25,7 @@ describe('UILink', () => {
     test('it will render link', () => {
       const { getByRole } = renderComponent();
 
-      getByRole<HTMLAnchorElement>('link');
+      getByRole<HTMLAnchorElement>('link', { name: fakeDefaultSlotValue });
     });
 
     test('it will render link with correct "href"', () => {
@@ -35,16 +35,10 @@ describe('UILink', () => {
       expect(linkEl.href).toBe(fakeProps.to);
     });
 
-    test('it will render link text', () => {
-      const { getByText } = renderComponent();
+    test('snapshot', () => {
+      const { container } = renderComponent();
 
-      getByText<HTMLAnchorElement>(fakeSlot);
+      expect(container).toMatchSnapshot();
     });
-  });
-
-  test('snapshot', () => {
-    const { container } = renderComponent();
-
-    expect(container).toMatchSnapshot();
   });
 });
