@@ -1,3 +1,27 @@
+@mixin text-appearance {
+  &_primary {
+    color: var(--color, var(--ui-text-default-text));
+  }
+
+  &_secondary {
+    color: var(--color, var(--ui-text-secondary-text));
+  }
+}
+
+@mixin text-align {
+  &_left {
+    text-align: left;
+  }
+
+  &_center {
+    text-align: center;
+  }
+
+  &_right {
+    text-align: right;
+  }
+}
+
 @mixin text-ellipsis(
   $number-of-lines: 1
 ) {
