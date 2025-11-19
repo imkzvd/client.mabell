@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <StickyMobileTopBar v-if="!$pwa?.isPWAInstalled && route.name === 'home'">
+    <StickyMobileTopBar v-if="showInstallPWABanner">
       <InstallPWABanner />
     </StickyMobileTopBar>
 
@@ -72,6 +72,7 @@ import {
 import type { AlbumRO, ArtistRO, PlaylistRO } from '~/api/api.module';
 
 const skeletonSectionsTotal = 3;
+const { $pwa } = useNuxtApp();
 const route = useRoute();
 const { isMobileOrTablet } = useDevice();
 const [isFetching, toggleFetching] = useToggle(true);
@@ -80,6 +81,10 @@ const fetchedTrendingAlbums = ref<AlbumRO[]>([]);
 const fetchedTopAlbums = ref<AlbumRO[]>([]);
 const fetchedHotPlaylists = ref<PlaylistRO[]>([]);
 const fetchedPopularArtists = ref<ArtistRO[]>([]);
+
+const showInstallPWABanner = computed<boolean>(() => {
+  return isMobileOrTablet && !$pwa?.isPWAInstalled && route.name === 'home';
+});
 
 onMounted(async () => {
   const [trendingAlbums, topAlbums, hotPlaylists, popularArtists] = await Promise.all([
@@ -99,7 +104,7 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="scss">
-@use '~/assets/scss/container';
+@use '@/assets/scss/container';
 
 .home-page {
   display: flex;
