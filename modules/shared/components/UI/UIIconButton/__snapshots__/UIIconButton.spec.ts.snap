@@ -1,20 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`UIIconButton > snapshot 1`] = `
+exports[`UIIconButton > Default: > snapshot 1`] = `
 <div>
   <button
     class="ui-icon-button ui-icon-button_appearance_primary"
-    data-v-36b0ea7c=""
+    data-v-3c46cf85=""
     type="button"
   >
     <svg
       aria-hidden="true"
-      class=""
+      class="ui-icon-button__icon"
       data-testid="some-icon-name"
-      data-v-36b0ea7c=""
+      data-v-3c46cf85=""
       height="1em"
       role="img"
-      style="font-size: 24px;"
+      style="font-size: 16px;"
       viewBox="0 0 16 16"
       width="1em"
       xmlns="http://www.w3.org/2000/svg"

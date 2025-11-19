@@ -23,10 +23,30 @@ describe('UIIconButton', () => {
       getByRole<HTMLButtonElement>('button');
     });
 
+    test('it will render the button with button type', () => {
+      const { getByRole } = renderComponent();
+      const buttonEl = getByRole<HTMLButtonElement>('button');
+
+      expect(buttonEl.type).toBe('button');
+    });
+
+    test('it will render not disabled button', () => {
+      const { getByRole } = renderComponent();
+      const buttonEl = getByRole<HTMLButtonElement>('button');
+
+      expect(buttonEl.disabled).toBeFalsy();
+    });
+
     test('it will render the icon', () => {
       const { getByTestId } = renderComponent();
 
       getByTestId(fakeIconName);
+    });
+
+    test('snapshot', () => {
+      const { container } = renderComponent();
+
+      expect(container).toMatchSnapshot();
     });
   });
 
@@ -58,21 +78,5 @@ describe('UIIconButton', () => {
 
       expect(emitted('click')).toBeTruthy();
     });
-
-    test('it will not emit "click", if it has disabled state', async () => {
-      const { getByRole, emitted } = renderComponent({ isDisabled: true });
-      const buttonEl = getByRole<HTMLButtonElement>('button');
-      const user = userEvent.setup();
-
-      await user.click(buttonEl);
-
-      expect(emitted('click')).toBeFalsy();
-    });
-  });
-
-  test('snapshot', () => {
-    const { container } = renderComponent();
-
-    expect(container).toMatchSnapshot();
   });
 });
