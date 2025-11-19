@@ -8,6 +8,7 @@
       ref="nuxtImgInstance"
       :src="path"
       :alt="alt"
+      class="ui-img__img"
       @load="onLoad"
       @error="onError"
     />
@@ -74,7 +75,7 @@ function onError() {
   width: var(--width, initial);
   height: var(--height, initial);
   overflow: hidden;
-  background-color: #323232;
+  background-color: #323232; // TODO: added in global css vars
   border-radius: var(--border-rounded, 4px);
   box-shadow: inset 0 0 0 1px hsla(0, 0%, 50%, 0.1);
 
@@ -90,6 +91,12 @@ function onError() {
     width: calc(var(--width, 100%) / 2.5);
     height: calc(var(--height, 100%) / 2.5);
     color: rgba(235, 235, 245, 0.16);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 </style>
