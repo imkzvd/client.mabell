@@ -1,6 +1,6 @@
 export type UIImgProps = {
   path: string | null;
-  alt?: string;
+  alt: string;
   isRounded?: boolean;
   fallbackIcon?: string;
 };
