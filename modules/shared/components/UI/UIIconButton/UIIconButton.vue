@@ -1,6 +1,20 @@
 <template>
-  <button type="button" :aria-label="ariaLabel" :disabled="isDisabled" :class="rootCssClasses">
-    <NuxtIcon mode="svg" role="img" :name="icon" :size="iconSize" class="ui-icon-button__icon" />
+  <button
+    type="button"
+    :aria-label="ariaLabel"
+    :disabled="isDisabled"
+    class="ui-icon-button"
+    :class="rootCSSClasses"
+  >
+    <NuxtIcon
+      mode="svg"
+      role="img"
+      :name="icon"
+      :size="iconSize"
+      aria-hidden="true"
+      :data-testid="icon"
+      class="ui-icon-button__icon"
+    />
   </button>
 </template>
 
@@ -16,11 +30,10 @@ const props = withDefaults(defineProps<UIIconButtonProps>(), {
   iconSize: defaultIconSizeProp,
 });
 
-const baseClass = 'ui-icon-button';
-const rootCssClasses = computed(() => ({
-  [baseClass]: true,
-  [`${baseClass}_appearance_${props.appearance}`]: props.appearance,
-  [`${baseClass}_is-disabled`]: props.isDisabled,
+const rootCSSClass = 'ui-icon-button';
+const rootCSSClasses = computed(() => ({
+  [`${rootCSSClass}_appearance_${props.appearance}`]: props.appearance,
+  [`${rootCSSClass}_is-disabled`]: props.isDisabled,
 }));
 </script>
 
@@ -39,34 +52,34 @@ const rootCssClasses = computed(() => ({
 
   &_appearance {
     &_primary {
-      color: var(--ui-icon-button-color, #ffffff);
+      color: var(--ui-icon-button-color, white);
 
       @include respond-to(xl) {
         &:hover {
-          color: var(--ui-icon-button-hover-color, #cccccc);
+          color: var(--ui-icon-button-hover-color, gray);
         }
       }
     }
 
     &_secondary {
-      color: var(--ui-icon-button-secondary-color, #757575);
+      color: var(--ui-icon-button-secondary-color, gray);
 
       @include respond-to(xl) {
         &:hover {
-          color: var(--ui-icon-button-secondary-hover-color, #bcbcbc);
+          color: var(--ui-icon-button-secondary-hover-color, white);
         }
       }
     }
   }
 
   &_is-disabled {
-    color: var(--ui-icon-button-disabled-color, #cccccc);
+    color: var(--ui-icon-button-disabled-color, gray);
     pointer-events: none;
   }
 
   &__icon {
-    width: var(--size, v-bind(iconSize));
-    height: var(--size, v-bind(iconSize));
+    width: var(--width, v-bind(iconSize));
+    height: var(--width, v-bind(iconSize));
   }
 }
 </style>
