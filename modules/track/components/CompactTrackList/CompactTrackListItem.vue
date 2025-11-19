@@ -22,7 +22,7 @@
         <div class="compact-track-list-item__details-top-line">
           <UILink
             :to="{ name: 'album-id', params: { id: item.album.id } }"
-            :line-clamp="1"
+            max-rows="1"
             class="compact-track-list-item__name"
           >
             {{ item.name }}

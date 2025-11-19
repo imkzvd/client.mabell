@@ -56,7 +56,7 @@
     <div class="playlist-track-list-item__column">
       <UILink
         :to="{ name: 'album-id', params: { id: item.track.album.id } }"
-        :line-clamp="1"
+        max-rows="1"
         @click.stop
       >
         <span v-if="item.track.album.type.value === 'ALBUM'">

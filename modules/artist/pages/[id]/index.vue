@@ -30,7 +30,6 @@
 
             <UILink
               v-if="!isFetching && fetchedArtist"
-              hover-underline
               :to="{ name: 'artist-id', params: { id: fetchedArtist.id } }"
               class="artist-page__see-more-tracks-link"
             >
