@@ -10,4 +10,8 @@ import type { HomeLogoLinkProps } from '@/modules/shared/components/HomeLogoLink
 defineProps<HomeLogoLinkProps>();
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.home-logo-link {
+  display: inline-flex;
+}
+</style>
