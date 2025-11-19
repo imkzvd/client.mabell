@@ -32,7 +32,7 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
       font-size: 24px;
 
       @include respond-to(xs) {
-        font-size: 24px;
+        font-size: 28px;
       }
 
       @include respond-to(md) {
@@ -41,10 +41,14 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
     }
 
     &_2 {
-      font-size: 20px;
+      font-size: 18px;
 
-      @include respond-to(xl) {
-        font-size: 24px;
+      @include respond-to(xs) {
+        font-size: 20px;
+      }
+
+      @include respond-to(md) {
+        font-size: 22px;
       }
     }
   }

@@ -4,7 +4,7 @@
       <UIImg :path="playlist.cover" :alt="playlist.name" class="mobile-playlist-header__cover" />
 
       <div class="mobile-playlist-header__details">
-        <UIHeading align="center" :line-clamp="2" class="mobile-playlist-header__name">
+        <UIHeading align="center" :line-clamp="2" leading-none class="mobile-playlist-header__name">
           {{ playlist.name }}
         </UIHeading>
 
@@ -68,15 +68,6 @@ const playlistCreatedDate = computed<string>(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  &__name {
-    font-size: 20px;
-    line-height: 1.2;
-
-    @include respond-to(xs) {
-      font-size: 28px;
-    }
   }
 
   &__meta-data {

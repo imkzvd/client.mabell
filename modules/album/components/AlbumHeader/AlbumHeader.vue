@@ -5,7 +5,7 @@
         <UIImg :path="album.cover" :alt="album.name" class="album-header__cover" />
 
         <div class="album-header__details">
-          <UIHeading :line-clamp="2" class="album-header__name">
+          <UIHeading max-rows="2" leading-none class="album-header__name">
             {{ album.name }}
           </UIHeading>
 
@@ -17,7 +17,7 @@
 
           <UIText
             appearance="secondary"
-            :line-clamp="2"
+            max-rows="3"
             :title="album.description"
             class="album-header__description"
           >
@@ -25,9 +25,9 @@
           </UIText>
 
           <ArtistLinks
-            hover-underline
-            separator="dot"
             :items="album.artists"
+            is-hover-underlined
+            separator="dot"
             class="album-header__artist-links"
           />
         </div>
@@ -83,13 +83,7 @@ const releaseAlbumYear = computed<number | null>(() => {
   }
 
   &__name {
-    line-height: normal;
-    font-size: 32px;
-    margin-bottom: 4px;
-
-    @include respond-to(xl) {
-      font-size: 40px;
-    }
+    font-size: 48px;
   }
 
   &__meta-data {

@@ -4,7 +4,7 @@
       <UIImg :path="album.cover" :alt="album.name" class="mobile-album-header__cover" />
 
       <div class="mobile-album-header__details">
-        <UIHeading align="center" :line-clamp="2" class="mobile-album-header__name">
+        <UIHeading align="center" :line-clamp="2" leading-none class="mobile-album-header__name">
           {{ album.name }}
         </UIHeading>
 
@@ -60,15 +60,6 @@ const releaseAlbumDate = computed<string | null>(() => {
       --width: 280px;
       --height: 280px;
       margin-bottom: 20px;
-    }
-  }
-
-  &__name {
-    font-size: 20px;
-    line-height: 1.2;
-
-    @include respond-to(xs) {
-      font-size: 28px;
     }
   }
 

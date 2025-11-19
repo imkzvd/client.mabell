@@ -1,12 +1,14 @@
 <template>
   <div class="search-page">
     <div class="container">
-      <UIHeading class="search-page__heading">Search</UIHeading>
+      <UIHeading leading-none class="search-page__heading">Search</UIHeading>
     </div>
 
-    <UISection>
-      <GlobalSearch @search-start="onGlobalSearchStart" @search-end="onGlobalSearchEnd" />
-    </UISection>
+    <GlobalSearch
+      class="search-page__global-search"
+      @search-start="onGlobalSearchStart"
+      @search-end="onGlobalSearchEnd"
+    />
 
     <div v-show="!isGlobalSearching">
       <UISection heading="New Releases" heading-container :content-container="!isMobileOrTablet">
@@ -115,11 +117,18 @@ function onGlobalSearchEnd() {
 @use '~/assets/scss/container';
 
 .search-page {
-  padding-block: 32px;
+  padding-block: 16px;
+
+  @include respond-to(md) {
+    padding-block: 32px;
+  }
 
   &__heading {
-    margin-bottom: 16px;
-    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  &__global-search {
+    margin-bottom: 8px;
   }
 
   &__slider {

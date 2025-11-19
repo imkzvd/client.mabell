@@ -5,7 +5,9 @@
         <UIImg :path="playlist.cover" :alt="playlist.name" class="playlist-header__cover" />
 
         <div class="playlist-header__details">
-          <UIHeading :line-clamp="3" class="playlist-header__name">{{ playlist.name }}</UIHeading>
+          <UIHeading max-rows="3" leading-none class="playlist-header__name">
+            {{ playlist.name }}
+          </UIHeading>
 
           <UIText appearance="secondary" class="playlist-header__meta-info">
             <span class="playlist-header__meta-info-item">Playlist</span>
@@ -16,7 +18,8 @@
           </UIText>
 
           <UIText
-            :line-clamp="2"
+            appearance="secondary"
+            max-rows="2"
             :title="playlist.description"
             class="playlist-header__description"
           >
@@ -83,9 +86,7 @@ const playlistCreatedDate = computed<string>(() =>
   }
 
   &__name {
-    line-height: normal;
-    font-size: 40px;
-    margin-bottom: 4px;
+    font-size: 48px;
   }
 
   &__meta-info {

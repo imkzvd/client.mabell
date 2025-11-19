@@ -1,15 +1,15 @@
 <template>
   <div class="global-search">
-    <UISection content-container>
+    <div class="container">
       <UIInput
         v-model="modelValue"
-        :size="isDesktop ? 'lg' : 'md'"
+        size="lg"
         placeholder="What do you want to listen to?"
         is-clearable
         @blur="onBlur"
         @update:model-value="onModelValueUpdate"
       />
-    </UISection>
+    </div>
 
     <template v-if="isSearchFetching">
       <SkeletonSectionLoader heading-container content-container>

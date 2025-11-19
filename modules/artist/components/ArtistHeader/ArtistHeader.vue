@@ -75,7 +75,7 @@ function onOptionsButtonClick() {
   }
 
   &__heading {
-    font-size: 52px;
+    font-size: 48px;
     font-family: var(--title-font);
     line-height: 1.2;
   }
