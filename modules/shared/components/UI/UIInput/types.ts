@@ -1,3 +1,5 @@
+import type { UISize } from '~/modules/shared/components/UI/types';
+
 export enum UIInputTypes {
   email = 'email',
   number = 'number',
@@ -8,20 +10,12 @@ export enum UIInputTypes {
 
 export type UIInputType = keyof typeof UIInputTypes;
 
-export enum UIInputSizes {
-  sm = 'sm',
-  md = 'md',
-  lg = 'lg',
-}
-
-export type UIInputSize = keyof typeof UIInputSizes;
-
 export type UIInputProps = {
-  modelValue: string;
+  modelValue?: string;
   id?: string;
   name?: string;
   type?: UIInputType;
-  size?: UIInputSize;
+  size?: UISize;
   placeholder?: string;
   label?: string;
   minLength?: number;
