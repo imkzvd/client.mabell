@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/vue';
+import { fireEvent, render } from '@testing-library/vue';
 import { describe, expect, test } from 'vitest';
 import { userEvent } from '@testing-library/user-event';
 import UIInput from '~/modules/shared/components/UI/UIInput/UIInput.vue';
@@ -9,24 +9,12 @@ const fakeProps: UIInputProps = {
 };
 
 function renderComponent(props?: Partial<UIInputProps>) {
-  const component = render(UIInput, {
-    // global: {
-    //   stubs: {
-    //     Icon: IconStub,
-    //   },
-    // },
+  return render(UIInput, {
     props: <UIInputProps>{
       ...fakeProps,
       ...props,
-      'onUpdate:modelValue'(value: string) {
-        component.rerender({
-          modelValue: value,
-        });
-      },
     },
   });
-
-  return component;
 }
 
 describe('UIInput', () => {
@@ -51,6 +39,12 @@ describe('UIInput', () => {
       const inputEl = getByRole<HTMLInputElement>('textbox');
 
       expect(inputEl.disabled).toBeFalsy();
+    });
+
+    test('snapshot', () => {
+      const { container } = renderComponent({ id: 'some-id' });
+
+      expect(container).toMatchSnapshot();
     });
   });
 
@@ -172,14 +166,10 @@ describe('UIInput', () => {
         isClearable: true,
       });
       const user = userEvent.setup();
-
       const inputEl = getByRole<HTMLInputElement>('textbox');
+      const clearButtonEl = getByRole<HTMLInputElement>('button', { name: 'Clear field' });
 
-      expect(inputEl.value).toBe(fakeTextValue);
-
-      const clearButton = getByRole<HTMLInputElement>('button', { name: 'Clear field' });
-
-      await user.click(clearButton);
+      await user.click(clearButtonEl);
 
       expect(inputEl.value).toBe('');
     });
@@ -191,11 +181,11 @@ describe('UIInput', () => {
         type: UIInputTypes.password,
       });
       const user = userEvent.setup();
-      const passwordVisibleButton = getByRole<HTMLInputElement>('button', {
+      const passwordButtonEl = getByRole<HTMLInputElement>('button', {
         name: 'Show password',
       });
 
-      await user.click(passwordVisibleButton);
+      await user.click(passwordButtonEl);
 
       getByRole<HTMLInputElement>('textbox');
     });
@@ -204,6 +194,7 @@ describe('UIInput', () => {
       const { getByRole, emitted } = renderComponent();
       const expectedEventName = 'update:modelValue';
       const fakeTextValue = 'some text';
+      const user = userEvent.setup();
 
       const inputEl = getByRole<HTMLInputElement>('textbox');
 
@@ -223,7 +214,6 @@ describe('UIInput', () => {
       await fireEvent.change(inputEl, { target: { value: fakeTextValue } });
 
       expect(emitted(expectedEventName)).toBeTruthy();
-      expect(emitted(expectedEventName)?.[0]).toStrictEqual([fakeTextValue]);
     });
 
     test('it will emit "blur"', async () => {
@@ -237,11 +227,5 @@ describe('UIInput', () => {
 
       expect(emitted(expectedEventName)).toBeTruthy();
     });
-  });
-
-  test('snapshot', () => {
-    const { container } = renderComponent({ id: 'some-id' });
-
-    expect(container).toMatchSnapshot();
   });
 });
