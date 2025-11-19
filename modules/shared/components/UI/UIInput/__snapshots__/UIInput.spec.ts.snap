@@ -1,19 +1,18 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`UIInput > snapshot 1`] = `
+exports[`UIInput > Default: > snapshot 1`] = `
 <div>
   <div
     class="ui-input"
-    data-v-e823b4c1=""
+    data-v-9ef0b8ee=""
   >
     <!--v-if-->
     <input
       autocomplete="off"
       class="ui-input__input ui-input__input_size_md ui-input__input_type_text"
-      data-v-e823b4c1=""
+      data-v-9ef0b8ee=""
       id="some-id"
       type="text"
-      value=""
     />
     <!--v-if-->
     <!--v-if-->
