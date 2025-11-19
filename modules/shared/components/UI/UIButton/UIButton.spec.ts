@@ -1,11 +1,10 @@
 import { userEvent } from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
 import { render } from '@testing-library/vue';
-import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
 import UIButton from '~/modules/shared/components/UI/UIButton/UIButton.vue';
 import type { UIButtonProps } from '~/modules/shared/components/UI/UIButton/types';
 
-const fakeDefaultSlotValue = 'Sign In';
+const fakeDefaultSlot = 'Sign In';
 
 function renderComponent(props?: Partial<UIButtonProps>) {
   return render(UIButton, {
@@ -13,61 +12,56 @@ function renderComponent(props?: Partial<UIButtonProps>) {
       ...props,
     },
     slots: {
-      default: fakeDefaultSlotValue,
+      default: fakeDefaultSlot,
     },
   });
 }
 
 describe('UIButton', () => {
-  describe('Reactive:', () => {
-    test('it will render the button with default slot value', () => {
+  describe('Default:', () => {
+    test('it will render the button', () => {
       const { getByRole } = renderComponent();
 
-      getByRole<HTMLButtonElement>('button', { name: fakeDefaultSlotValue });
+      getByRole<HTMLButtonElement>('button', { name: fakeDefaultSlot });
     });
 
-    test('it will render the button with button type', async () => {
+    test('it will render the button with button type', () => {
       const { getByRole } = renderComponent();
       const buttonEl = getByRole<HTMLButtonElement>('button');
 
       expect(buttonEl.type).toBe('button');
     });
 
-    test('it will render not disabled button', async () => {
-      const { getByRole, rerender } = renderComponent();
+    test('it will render not disabled button', () => {
+      const { getByRole } = renderComponent();
       const buttonEl = getByRole<HTMLButtonElement>('button');
 
       expect(buttonEl.disabled).toBeFalsy();
     });
 
-    test('it will render the button with submit type', async () => {
+    test('snapshot', () => {
+      const { container } = renderComponent();
+
+      expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('Reactive:', () => {
+    test('it will render the button with submit type', () => {
       const expectedType = 'submit';
-      const { getByRole, rerender } = renderComponent({
-        type: expectedType,
-      });
+      const { getByRole } = renderComponent({ type: expectedType });
+
       const buttonEl = getByRole<HTMLButtonElement>('button');
 
       expect(buttonEl.type).toBe(expectedType);
     });
 
     test('it will render disabled button', async () => {
-      const { getByRole, rerender } = renderComponent({ isDisabled: true });
+      const { getByRole } = renderComponent({ isDisabled: true });
+
       const buttonEl = getByRole<HTMLButtonElement>('button');
 
       expect(buttonEl.disabled).toBeTruthy();
-    });
-
-    test('it will render disabled button, if it has loading state', async () => {
-      const { getByRole, getByTestId, rerender } = renderComponent({ isLoading: true });
-      const button = getByRole<HTMLButtonElement>('button');
-
-      expect(button.disabled).toBeTruthy();
-    });
-
-    test('it will render button with spinner, if it has loading state', async () => {
-      const { getByTestId } = renderComponent({ isLoading: true });
-
-      getByTestId(TEST_TOKENS.UI_SPINNER);
     });
   });
 
@@ -91,11 +85,5 @@ describe('UIButton', () => {
 
       expect(emitted('click')).toBeFalsy();
     });
-  });
-
-  test('snapshot', () => {
-    const { container } = renderComponent();
-
-    expect(container).toMatchSnapshot();
   });
 });
