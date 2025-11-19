@@ -1,9 +1,7 @@
 <template>
   <div class="default-layout">
     <aside class="default-layout__panel default-layout__panel_aside">
-      <div>
-        <HomeLogoLink />
-      </div>
+      <HomeLogoLink height="36px" />
 
       <div>
         <NavMenu />
