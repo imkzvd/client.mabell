@@ -1,15 +1,15 @@
 <template>
   <div class="ui-input">
     <transition v-if="label" name="slide-fade">
-      <label v-show="showLabel" :for="id" :class="cssLabelClasses" aria-hidden="true">
+      <label v-show="showLabel" :for="id || uid" :class="labelCSSClasses" aria-hidden="true">
         {{ label }}
       </label>
     </transition>
 
     <input
-      :id="id"
-      :value="modelValue"
+      :id="id || uid"
       :type="isPasswordVisible ? 'text' : type"
+      v-model="model"
       :name="name"
       :placeholder="placeholder"
       :disabled="isDisabled"
@@ -19,11 +19,11 @@
       autocomplete="off"
       :required="isRequired"
       :aria-label="label || name"
-      :class="cssInputClasses"
+      :class="inputCSSClasses"
       @input="onInput"
       @change="onChange"
-      @focus="emit('focus', modelValue)"
-      @blur="emit('blur', modelValue)"
+      @focus="emit('focus', model)"
+      @blur="emit('blur', model)"
     />
 
     <UIIconButton
@@ -54,27 +54,30 @@ import {
   UIFormContextKey,
   UIFormItemContextKey,
 } from '~/modules/shared/components/UI/UIForm/constants';
+import { UISizes } from '~/modules/shared/components/UI/types';
 import {
   type UIInputProps,
   type UIInputEmits,
   UIInputTypes,
-  UIInputSizes,
 } from '~/modules/shared/components/UI/UIInput/types';
 
-const UIFormContext = inject(UIFormContextKey);
-const UIFormItemContext = inject(UIFormItemContextKey);
+const UIFormContext = inject(UIFormContextKey, undefined);
+const UIFormItemContext = inject(UIFormItemContextKey, undefined);
 
 const props = withDefaults(defineProps<UIInputProps>(), {
   type: UIInputTypes.text,
-  size: UIInputSizes.md,
+  size: UISizes.md,
 });
 const emit = defineEmits<UIInputEmits>();
+const model = defineModel<string>({ default: '' });
 
-const baseClass: string = 'ui-input';
+const uid = useId();
+const rootCSSClass: string = 'ui-input';
 const showLabel = computed<boolean>(() => !!props.label && !!props.modelValue);
 const isPasswordVisible = ref<boolean>(false);
-const cssInputClasses = computed(() => {
-  const inputClass = `${baseClass}__input`;
+
+const inputCSSClasses = computed(() => {
+  const inputClass = `${rootCSSClass}__input`;
 
   return {
     [inputClass]: true,
@@ -85,8 +88,8 @@ const cssInputClasses = computed(() => {
     [`${inputClass}_is-not-valid`]: UIFormItemContext?.isInvalid,
   };
 });
-const cssLabelClasses = computed(() => {
-  const inputClass = `${baseClass}__label`;
+const labelCSSClasses = computed(() => {
+  const inputClass = `${rootCSSClass}__label`;
 
   return {
     [inputClass]: true,
@@ -94,23 +97,18 @@ const cssLabelClasses = computed(() => {
   };
 });
 
-function onInput(e: Event) {
+function onInput() {
   if (UIFormItemContext?.isInvalid) {
     UIFormItemContext?.clearValidate();
   }
 
-  const { value } = e.currentTarget as HTMLInputElement;
-
-  emit('update:modelValue', value);
-  emit('input', value);
+  emit('input', model.value);
 }
 
-function onChange(e: Event) {
+function onChange() {
   UIFormItemContext?.validate();
 
-  const { value } = e.currentTarget as HTMLInputElement;
-
-  emit('change', value);
+  emit('change', model.value);
 }
 
 function onVisiblePasswordButtonClick() {
@@ -118,9 +116,9 @@ function onVisiblePasswordButtonClick() {
 }
 
 function onClearableButtonClick() {
-  emit('update:modelValue', '');
-  emit('input', '');
-  emit('change', '');
+  model.value = '';
+  emit('input', model.value);
+  emit('change', model.value);
 }
 </script>
 
