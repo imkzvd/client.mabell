@@ -1,24 +1,39 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`UIForm > snapshot 1`] = `
+exports[`UIForm > Default: > snapshot 1`] = `
 <div>
   <form
     class="ui-form"
     role="form"
   >
     
+    <div
+      class="ui-input"
+      data-v-9ef0b8ee=""
+    >
+      <!--v-if-->
+      <input
+        autocomplete="off"
+        class="ui-input__input ui-input__input_size_md ui-input__input_type_text"
+        data-v-9ef0b8ee=""
+        id="v-0"
+        type="text"
+      />
+      <!--v-if-->
+      <!--v-if-->
+    </div>
     <button
       class="ui-button ui-button_appearance_primary ui-button_size_md"
-      data-v-ccbf2dd3=""
+      data-v-cdd4008e=""
       type="submit"
     >
       <!--v-if-->
       <span
-        class="ui-button__content"
-        data-v-ccbf2dd3=""
+        class="ui-button__text"
+        data-v-cdd4008e=""
       >
         
-        Submit
+        Button
         
       </span>
     </button>
