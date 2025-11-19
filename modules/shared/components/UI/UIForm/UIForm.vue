@@ -1,11 +1,11 @@
 <template>
-  <form role="form" :class="`${baseClass}`" @submit.prevent="onSubmit">
+  <form role="form" class="ui-form" @submit.prevent="onSubmit">
     <slot name="default" />
   </form>
 </template>
 
 <script setup lang="ts">
-import { baseClass, UIFormContextKey } from '~/modules/shared/components/UI/UIForm/constants';
+import { UIFormContextKey } from '~/modules/shared/components/UI/UIForm/constants';
 import type {
   UIFormProps,
   UIFormEmits,
@@ -18,7 +18,8 @@ const emit = defineEmits<UIFormEmits>();
 
 const formItems = ref<UIFormItemContext[]>([]);
 const validFormItems = ref<UIFormItemContext[]>([]);
-const isInvalid = computed(() => {
+
+const isInvalid = computed<boolean>(() => {
   return validFormItems.value.some(({ isInvalid }) => isInvalid);
 });
 
