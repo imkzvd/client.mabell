@@ -4,7 +4,7 @@
       <UIHeading class="pwa-page__heading">Installing Mabell Application</UIHeading>
     </div>
 
-    <UISection content-container>
+    <UISection heading="Installation instructions" hidden-heading content-container>
       <dl class="pwa-page__instruction-list">
         <dt class="pwa-page__instruction-list-term">1. Tap the Share Icon</dt>
 
@@ -15,7 +15,7 @@
             of the screen (the square with an upward arrow).
           </UIText>
 
-          <NuxtImg class="pwa-page__image" src="/pwa/install/install-pwa-step-1.png" />
+          <UIImg path="/pwa/install/install-pwa-step-1.png" alt="step-1" class="pwa-page__image" />
         </dd>
 
         <dt class="pwa-page__instruction-list-term">2. Add to Home Screen</dt>
@@ -25,7 +25,7 @@
             In the Share menu, scroll through the options and tap on Add to Home Screen.
           </UIText>
 
-          <NuxtImg class="pwa-page__image" src="/pwa/install/install-pwa-step-2.png" />
+          <UIImg path="/pwa/install/install-pwa-step-2.png" alt="step=2" class="pwa-page__image" />
         </dd>
 
         <dt class="pwa-page__instruction-list-term">3. Launch the Mabell App</dt>
@@ -36,7 +36,7 @@
             the Mabell App.
           </UIText>
 
-          <NuxtImg class="pwa-page__image" src="/pwa/install/install-pwa-step-3.png" />
+          <UIImg path="/pwa/install/install-pwa-step-3.png" alt="step-3" class="pwa-page__image" />
         </dd>
       </dl>
     </UISection>
@@ -58,7 +58,7 @@ useHead({
   }
 
   &__instruction-list-term {
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
 
   &__instruction-list-definition {
@@ -73,6 +73,7 @@ useHead({
 
   &__image {
     max-width: 400px;
+    aspect-ratio: 2 / 1;
   }
 }
 </style>
