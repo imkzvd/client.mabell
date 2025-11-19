@@ -9,7 +9,9 @@
         <NavMenu />
       </div>
 
-      <div>#User</div>
+      <div>
+        <UIButton v-show="false">Sign In</UIButton>
+      </div>
     </aside>
 
     <div class="default-layout__panel default-layout__panel_main">
