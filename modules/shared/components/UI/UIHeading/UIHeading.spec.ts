@@ -3,7 +3,7 @@ import { render } from '@testing-library/vue';
 import UIHeading from '~/modules/shared/components/UI/UIHeading/UIHeading.vue';
 import type { UIHeadingProps } from '~/modules/shared/components/UI/UIHeading/types';
 
-const fakeSlot: string = 'Test';
+const fakeDefaultSlot: string = 'Some Heading';
 
 function renderComponent(props?: Partial<UIHeadingProps>) {
   return render(UIHeading, {
@@ -11,7 +11,7 @@ function renderComponent(props?: Partial<UIHeadingProps>) {
       ...props,
     },
     slots: {
-      default: fakeSlot,
+      default: fakeDefaultSlot,
     },
   });
 }
@@ -21,21 +21,21 @@ describe('UIHeading', () => {
     test('it will render the heading of first level', () => {
       const { getByRole } = renderComponent();
 
-      getByRole<HTMLHeadingElement>('heading', { name: fakeSlot, level: 1 });
+      getByRole<HTMLHeadingElement>('heading', { name: fakeDefaultSlot, level: 1 });
+    });
+
+    test('snapshot', () => {
+      const { container } = renderComponent();
+
+      expect(container).toMatchSnapshot();
     });
   });
 
-  describe('Props:', () => {
+  describe('Reactive:', () => {
     test('it will render the heading of second level', () => {
       const { getByRole } = renderComponent({ level: 2 });
 
-      getByRole<HTMLHeadingElement>('heading', { name: fakeSlot, level: 2 });
+      getByRole<HTMLHeadingElement>('heading', { name: fakeDefaultSlot, level: 2 });
     });
-  });
-
-  test('snapshot', () => {
-    const { container } = renderComponent();
-
-    expect(container).toMatchSnapshot();
   });
 });
