@@ -107,14 +107,6 @@ onMounted(async () => {
 @use '@/assets/scss/container';
 
 .home-page {
-  display: flex;
-  flex-direction: column;
-  padding-block: 16px;
-
-  @include respond-to(lg) {
-    padding-bottom: 32px;
-  }
-
   &__slider {
     @extend .container;
   }
