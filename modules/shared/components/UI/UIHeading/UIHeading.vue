@@ -17,7 +17,7 @@ const rootCSSClass = 'ui-heading';
 const rootCSSClasses = computed<Record<string, boolean>>(() => ({
   [`${rootCSSClass}_level_${props.level}`]: true,
   [`${rootCSSClass}_leading_none`]: props.leadingNone,
-  [`${rootCSSClass}_ellipsis`]: !!props.lineClamp,
+  [`${rootCSSClass}_is-truncated`]: !!props.maxRows,
   [`${rootCSSClass}_align_${props.align}`]: !!props.align,
 }));
 </script>
@@ -50,29 +50,15 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
   }
 
   &_leading_none {
-    line-height: 1;
+    line-height: 1.2;
   }
 
-  &_ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    -webkit-line-clamp: var(--line-clamp, v-bind(lineClamp));
+  &_is-truncated {
+    @include text-ellipsis(var(--max-rows, v-bind(maxRows)));
   }
 
   &_align {
-    &_left {
-      text-align: left;
-    }
-
-    &_center {
-      text-align: center;
-    }
-
-    &_right {
-      text-align: right;
-    }
+    @include text-align();
   }
 }
 </style>
