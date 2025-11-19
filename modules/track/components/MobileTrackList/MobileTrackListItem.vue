@@ -93,7 +93,7 @@ const rootCSSClasses = computed(() => ({
   padding-block: 4px;
   line-height: 1.2;
 
-  @include respond-to(xs) {
+  @include respond-to(md) {
     padding-block: 8px;
   }
 

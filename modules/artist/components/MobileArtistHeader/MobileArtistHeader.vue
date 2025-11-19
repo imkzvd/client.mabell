@@ -49,7 +49,6 @@ function onOptionsButtonClick() {
   background-position: center;
   background-repeat: no-repeat;
   filter: saturate(var(--img-saturate));
-  padding-block: var(--section-bottom-margin, 24px);
 
   &::after {
     position: absolute;

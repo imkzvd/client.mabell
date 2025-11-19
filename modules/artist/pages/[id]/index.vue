@@ -4,7 +4,7 @@
       <MobileArtistHeader v-if="isMobile" :artist="fetchedArtist" />
       <ArtistHeader v-else :artist="fetchedArtist" />
 
-      <UISection content-container>
+      <UISection heading="Featured content" hidden-heading content-container>
         <div class="artist-page__featured-content">
           <UISection heading="Top Tracks" no-padding class="artist-page__top-tracks">
             <SkeletonTrackListLoader v-if="isFetching" />
