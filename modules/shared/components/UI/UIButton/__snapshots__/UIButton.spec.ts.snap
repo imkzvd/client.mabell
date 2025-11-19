@@ -1,16 +1,16 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`UIButton > snapshot 1`] = `
+exports[`UIButton > Default: > snapshot 1`] = `
 <div>
   <button
     class="ui-button ui-button_appearance_primary ui-button_size_md"
-    data-v-ccbf2dd3=""
+    data-v-cdd4008e=""
     type="button"
   >
     <!--v-if-->
     <span
-      class="ui-button__content"
-      data-v-ccbf2dd3=""
+      class="ui-button__text"
+      data-v-cdd4008e=""
     >
       
       Sign In
