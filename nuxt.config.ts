@@ -339,6 +339,7 @@ export default defineNuxtConfig({
     'dayjs-nuxt',
     '@nuxt/image',
     '@vite-pwa/nuxt',
+    '@nuxt/scripts',
   ],
 
   icon: {
