@@ -273,6 +273,16 @@ export default defineNuxtConfig({
     },
   },
 
+  $production: {
+    scripts: {
+      registry: {
+        googleTagManager: {
+          id: 'GTM-WP9QGD6J',
+        },
+      },
+    },
+  },
+
   imports: {
     autoImport: true,
   },
