@@ -30,4 +30,4 @@ This repository contains the source code for the frontend, leveraging the power 
 
 ## License
 
-This code is provided for **demonstration purposes** only. It is not intended for production use or redistribution. All rights reserved. The code is shared for educational and personal review purposes.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
