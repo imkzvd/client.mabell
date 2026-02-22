@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { UIAlignments } from '~/modules/shared/components/UI/types';
+import { UIAlignments } from '~/layers/shared/components/UI/types';
 import type { SkeletonCardLinkListLoaderProps } from '~/modules/shared/components/Skeletons/SkeletonCardLinkListLoader/types';
 
 const cardsTotal: number = 10;

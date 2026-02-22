@@ -1,4 +1,4 @@
-import type { UIAlignment } from '~/modules/shared/components/UI/types';
+import type { UIAlignment } from '~/layers/shared/components/UI/types';
 
 export type SkeletonCardLinkListLoaderProps = {
   mode?: 'list' | 'slider';
