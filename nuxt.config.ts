@@ -55,18 +55,6 @@ export default defineNuxtConfig({
     host: '0.0.0.0',
   },
 
-  css: ['~/assets/scss/main.scss'],
-
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: '@use "~/assets/scss/_mixins.scss" as *;',
-        },
-      },
-    },
-  },
-
   fonts: {
     provider: 'google',
     families: [
