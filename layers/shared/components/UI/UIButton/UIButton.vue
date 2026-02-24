@@ -6,7 +6,7 @@
     :class="rootCSSClasses"
   >
     <span v-if="isLoading" class="ui-button__spinner-wrapper">
-      <UISpinner :is-contrasted="appearance === UIAppearances.primary" />
+      <UISpinner :is-contrasted="color === 'primary'" />
     </span>
 
     <span class="ui-button__text">
@@ -16,22 +16,22 @@
 </template>
 
 <script setup lang="ts">
-import { type UIButtonProps, UIButtonTypes } from '~/layers/shared/components/UI/UIButton/types';
-import { UIAppearances, UISizes } from '~/layers/shared/components/UI/types';
+import UISpinner from '../UISpinner/UISpinner.vue';
+import type { UIButtonProps } from './types';
 
 const props = withDefaults(defineProps<UIButtonProps>(), {
-  type: UIButtonTypes.button,
-  appearance: UIAppearances.primary,
-  size: UISizes.md,
+  type: 'button',
+  color: 'primary',
+  size: 'md',
   isFull: false,
   isDisabled: false,
   isLoading: false,
 });
 
 const rootCSSClass = 'ui-button';
-const rootCSSClasses = computed<Record<string, boolean>>(() => ({
-  [`${rootCSSClass}_appearance_${props.appearance}`]: !!props.appearance,
-  [`${rootCSSClass}_size_${props.size}`]: !!props.size,
+const rootCSSClasses = computed(() => ({
+  [`${rootCSSClass}_color_${props.color}`]: props.color,
+  [`${rootCSSClass}_size_${props.size}`]: props.size,
   [`${rootCSSClass}_is-full`]: props.isFull,
   [`${rootCSSClass}_is-disabled`]: props.isDisabled,
   [`${rootCSSClass}_is-loading`]: props.isLoading,
@@ -50,15 +50,15 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
     fill: currentColor;
   }
 
-  &_appearance {
+  &_color {
     &_primary {
-      background-color: var(--ui-button-bg-color, white);
-      color: var(--ui-button-text-color, black);
+      background-color: var(--ui-button-primary-bg-color, white);
+      color: var(--ui-button-primary-text-color, black);
 
       @include respond-to(xl) {
         &:not(.ui-button_loading, :disabled) {
           &:hover {
-            background-color: var(--ui-button-hover-bg-color, gray);
+            background-color: var(--ui-button-primary-hover-bg-color, gray);
           }
         }
       }

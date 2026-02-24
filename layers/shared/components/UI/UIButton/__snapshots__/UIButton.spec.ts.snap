@@ -3,14 +3,14 @@
 exports[`UIButton > Default: > snapshot 1`] = `
 <div>
   <button
-    class="ui-button ui-button_appearance_primary ui-button_size_md"
-    data-v-cdd4008e=""
+    class="ui-button ui-button_color_primary ui-button_size_md"
+    data-v-c24db404=""
     type="button"
   >
     <!--v-if-->
     <span
       class="ui-button__text"
-      data-v-cdd4008e=""
+      data-v-c24db404=""
     >
       
       Sign In

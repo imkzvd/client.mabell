@@ -1,8 +1,8 @@
 import { userEvent } from '@testing-library/user-event';
 import { describe, expect, test } from 'vitest';
 import { render } from '@testing-library/vue';
-import UIButton from '~/layers/shared/components/UI/UIButton/UIButton.vue';
-import type { UIButtonProps } from '~/layers/shared/components/UI/UIButton/types';
+import UIButton from './UIButton.vue';
+import type { UIButtonProps } from './types';
 
 const fakeDefaultSlot = 'Sign In';
 
@@ -25,7 +25,7 @@ describe('UIButton', () => {
       getByRole<HTMLButtonElement>('button', { name: fakeDefaultSlot });
     });
 
-    test('it will render the button with button type', () => {
+    test('it will render the button with "button" type', () => {
       const { getByRole } = renderComponent();
       const buttonEl = getByRole<HTMLButtonElement>('button');
 
@@ -56,7 +56,7 @@ describe('UIButton', () => {
       expect(buttonEl.type).toBe(expectedType);
     });
 
-    test('it will render disabled button', async () => {
+    test('it will render disabled button', () => {
       const { getByRole } = renderComponent({ isDisabled: true });
 
       const buttonEl = getByRole<HTMLButtonElement>('button');
@@ -66,7 +66,7 @@ describe('UIButton', () => {
   });
 
   describe('Actions:', () => {
-    test("it will emit 'click'", async () => {
+    test('it will emit "click"', async () => {
       const { getByRole, emitted } = renderComponent();
       const user = userEvent.setup();
       const buttonEl = getByRole<HTMLButtonElement>('button');

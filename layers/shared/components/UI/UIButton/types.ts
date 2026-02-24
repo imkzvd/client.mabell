@@ -1,16 +1,13 @@
-import type { UIAppearance, UISize } from '~/layers/shared/components/UI/types';
+export type UIButtonType = 'button' | 'submit';
 
-export enum UIButtonTypes {
-  button = 'button',
-  submit = 'submit',
-}
+export type UIButtonSize = 'sm' | 'md' | 'lg';
 
-export type UIButtonType = keyof typeof UIButtonTypes;
+export type UIButtonColor = 'primary' | 'secondary';
 
 export type UIButtonProps = {
   type?: UIButtonType;
-  size?: UISize;
-  appearance?: UIAppearance;
+  size?: UIButtonSize;
+  color?: UIButtonColor;
   isFull?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
