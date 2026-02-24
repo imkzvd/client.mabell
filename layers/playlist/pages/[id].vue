@@ -43,7 +43,7 @@ import { playlistApiService } from '~/modules/playlist/services/playlist.api.ser
 import type { PlaylistRO, PlaylistTrackRO } from '~/api/api.module';
 import { albumApiService } from '~/modules/album/services/album.api.service';
 import { popularApiService } from '~/modules/popular/services/popular.api.service';
-import type { ApiError } from '~/modules/shared/errors/api-error';
+import type { ApiError } from '~/layers/shared/errors/api-error';
 
 const route = useRoute();
 const { $audioPlayer } = useNuxtApp();
