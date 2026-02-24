@@ -1,0 +1,60 @@
+@mixin p($v) {
+  padding: $v * 4px;
+}
+
+@mixin pt($v) {
+  padding-top: $v * 4px;
+}
+
+@mixin pr($v) {
+  padding-right: $v * 4px;
+}
+
+@mixin pb($v) {
+  padding-bottom: $v * 4px;
+}
+
+@mixin pl($v) {
+  padding-left: $v * 4px;
+}
+
+@mixin px($v) {
+  padding-left: $v * 4px;
+  padding-right: $v * 4px;
+}
+
+@mixin py($v) {
+  padding-top: $v * 4px;
+  padding-bottom: $v * 4px;
+}
+
+@mixin m($v) {
+  margin: $v * 4px;
+}
+
+@mixin mt($v) {
+  margin-top: $v * 4px;
+}
+
+@mixin mr($v) {
+  margin-right: $v * 4px;
+}
+
+@mixin mb($v) {
+  margin-bottom: $v * 4px;
+}
+
+@mixin ml($v) {
+  margin-left: $v * 4px;
+}
+
+@mixin mx($v) {
+  margin-left: $v * 4px;
+  margin-right: $v * 4px;
+}
+
+@mixin my($v) {
+  margin-top: $v * 4px;
+  margin-bottom: $v * 4px;
+}
+
