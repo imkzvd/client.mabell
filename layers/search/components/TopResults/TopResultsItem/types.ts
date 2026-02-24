@@ -1,5 +1,5 @@
 import type { RouteLocationRaw } from '#vue-router';
-import type { UIImgProps } from '~/modules/shared/components/UI/UIImg/types';
+import type { UIImgProps } from '~/layers/shared/components/UI/UIImg/types';
 import type {
   IndexedAlbumRO,
   IndexedArtistRO,

@@ -69,7 +69,7 @@ import { hotArtistIds, newReleasesIds, popularPlaylistIds } from '~/modules/sear
 import { artistApiService } from '~/modules/artist/services/artist.api.service';
 import { playlistApiService } from '~/modules/playlist/services/playlist.api.service';
 import type { AlbumRO, ArtistRO, PlaylistRO } from '~/api/api.module';
-import type { ApiError } from '~/modules/shared/errors/api-error';
+import type { ApiError } from '~/layers/shared/errors/api-error';
 
 const { isMobileOrTablet } = useDevice();
 const [isDataFetching, toggleDataFetching] = useToggle(true);

@@ -1,5 +1,5 @@
-import { apiService } from '~/modules/shared/services/api.service';
-import { ApiError } from '~/modules/shared/errors/api-error';
+import { apiService } from '~/layers/shared/services/api.service';
+import { ApiError } from '~/layers/shared/errors/api-error';
 import type { SearchResultRO } from '@/api/api.module.ts';
 
 export class SearchApiService {
