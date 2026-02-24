@@ -93,7 +93,7 @@
 <script setup lang="ts">
 import { artistApiService } from '~/modules/artist/services/artist.api.service';
 import type { SimplifiedAlbumRO, SimplifiedArtistRO, TrackRO } from '~/api/api.module';
-import type { ApiError } from '~/modules/shared/errors/api-error';
+import type { ApiError } from '~/layers/shared/errors/api-error';
 
 const { $audioPlayer } = useNuxtApp();
 const route = useRoute();

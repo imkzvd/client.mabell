@@ -1,5 +1,5 @@
-import { apiService } from '~/modules/shared/services/api.service';
-import { ApiError } from '~/modules/shared/errors/api-error';
+import { apiService } from '~/layers/shared/services/api.service';
+import { ApiError } from '~/layers/shared/errors/api-error';
 import type { AlbumRO, ArtistRO, SimplifiedAlbumsRO, TracksRO } from '~/api/api.module';
 
 export class ArtistApiService {
