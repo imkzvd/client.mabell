@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { convertSecondsToMinute } from '~/modules/shared/utils/convert-seconds-to-minute.util';
+import { convertSecondsToMinute } from '~/layers/shared/utils/convert-seconds-to-minute.util';
 import type {
   AlbumTrackListItemProps,
   AlbumTrackListItemEmits,

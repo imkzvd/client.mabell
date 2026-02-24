@@ -100,7 +100,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import { convertSecondsToMinute } from '~/modules/shared/utils/convert-seconds-to-minute.util';
+import { convertSecondsToMinute } from '~/layers/shared/utils/convert-seconds-to-minute.util';
 import type {
   PlaylistTrackListListItemEmits,
   PlaylistTrackListListItemProps,
