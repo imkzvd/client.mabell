@@ -3,9 +3,9 @@
     <div class="container">
       <div class="artist-header__details">
         <div class="artist-header__heading-container">
-          <UIHeading class="artist-header__heading">
+          <h1 class="artist-header__heading">
             {{ artist.name }}
-          </UIHeading>
+          </h1>
 
           <UIIconButton
             appearance="secondary"
@@ -16,16 +16,17 @@
           />
         </div>
 
-        <UIText max-rows="2" appearance="secondary" class="artist-header__biography">
+        <p class="artist-header__biography">
           {{ artist.biography }}
-        </UIText>
+        </p>
       </div>
     </div>
   </header>
 </template>
 
 <script setup lang="ts">
-import type { ArtistHeaderProps } from '~/modules/artist/components/ArtistHeader/types';
+import UIIconButton from '../../../shared/components/UI/UIIconButton/UIIconButton.vue';
+import type { ArtistHeaderProps } from './types';
 
 const props = defineProps<ArtistHeaderProps>();
 
@@ -40,9 +41,9 @@ function onOptionsButtonClick() {
 
 <style scoped lang="scss">
 .artist-header {
+  @include flex(flex-end);
+
   position: relative;
-  display: flex;
-  align-items: flex-end;
   height: 50vh;
   background-image: v-bind(ccsArtistCoverUrl);
   background-size: cover;
@@ -56,8 +57,7 @@ function onOptionsButtonClick() {
   }
 
   &::before {
-    position: absolute;
-    inset: 0;
+    @include abs(0, 0, 0, 0);
     z-index: -10;
     content: '';
     background: linear-gradient(0deg, var(--base-bg) 0%, transparent 100%);
@@ -68,16 +68,12 @@ function onOptionsButtonClick() {
   }
 
   &__heading-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex(center, space-between);
     column-gap: 16px;
   }
 
   &__heading {
-    font-size: 48px;
-    font-family: var(--title-font);
-    line-height: 1.2;
+    @include text-5xl;
   }
 
   &__artist-menu-button {
@@ -87,6 +83,8 @@ function onOptionsButtonClick() {
   }
 
   &__biography {
+    @include line-clamp(2);
+
     @include respond-to(xl) {
       max-width: 800px;
     }

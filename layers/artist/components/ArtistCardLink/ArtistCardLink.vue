@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistCardLinkProps } from '~/modules/artist/components/ArtistCardLink/types';
+import CardLink from '../../../shared/components/CardLink/CardLink.vue';
+import type { ArtistCardLinkProps } from './types';
 
 defineProps<ArtistCardLinkProps>();
 </script>

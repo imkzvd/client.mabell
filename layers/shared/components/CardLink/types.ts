@@ -1,6 +1,6 @@
-import type { RouteLocationRaw } from '#vue-router';
-import type { UIImgProps } from '~/layers/shared/components/UI/UIImg/types';
-import type { UITextProps } from '~/layers/shared/components/UI/UIText/types';
+import type { RouteLocationRaw } from 'vue-router';
+import type { UIImgProps } from '../UI/UIImg/types';
+import type { UITextProps } from '../UI/UIText/types';
 
 export type CardLinkProps = {
   to: RouteLocationRaw;

@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout :name="currentLayoutName" @contextmenu.prevent>
-    <NuxtPwaManifest />
+<!--    <NuxtPwaManifest />-->
 
     <NuxtRouteAnnouncer />
     <NuxtPage />

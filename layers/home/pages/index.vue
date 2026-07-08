@@ -83,7 +83,7 @@ const fetchedHotPlaylists = ref<PlaylistRO[]>([]);
 const fetchedPopularArtists = ref<ArtistRO[]>([]);
 
 const showInstallPWABanner = computed<boolean>(() => {
-  return isMobileOrTablet && !$pwa?.isPWAInstalled && route.name === 'home';
+  return isMobileOrTablet && !$pwa?.isPWAInstalled && route.name === 'index';
 });
 
 onMounted(async () => {

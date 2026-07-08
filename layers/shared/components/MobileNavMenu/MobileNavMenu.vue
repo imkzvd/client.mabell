@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { linkList } from '~/modules/shared/components/MobileNavMenu/constants';
+import { linkList } from '~/layers/shared/components/MobileNavMenu/constants';
 
 const route = useRoute();
 </script>

@@ -21,14 +21,19 @@
     </div>
 
     <div class="default-layout__panel default-layout__panel_player">
-      <ClientOnly>
-        <DesktopAudioPlayer />
-      </ClientOnly>
+<!--      <ClientOnly>-->
+<!--        <DesktopAudioPlayer />-->
+<!--      </ClientOnly>-->
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import HomeLogoLink from '../components/HomeLogoLink/HomeLogoLink.vue';
+import NavMenu from '../components/NavMenu/NavMenu.vue';
+import UIButton from '../components/UI/UIButton/UIButton.vue';
+import AppFooter from '../components/AppFooter/AppFooter.vue';
+
 useHead({
   meta: [{ name: 'theme-color', content: '#000000' }],
 });

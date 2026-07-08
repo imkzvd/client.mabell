@@ -1,12 +1,7 @@
-import type { ArtistRO, SimplifiedArtistRO } from '~/api/api.module';
-import type { UILinkProps } from '~/layers/shared/components/UI/UILink/types';
+import type { ArtistRO, SimplifiedArtistRO } from '../../../../api/api.module';
+import type { UILinkProps } from '../../../shared/components/UI/UILink/types';
 
-export enum ArtistLinksSeparators {
-  comma = 'comma',
-  dot = 'dot',
-}
-
-export type ArtistLinksSeparator = keyof typeof ArtistLinksSeparators;
+export type ArtistLinksSeparator = 'comma' | 'dot';
 
 export type ArtistLinksProps = {
   items: (ArtistRO | SimplifiedArtistRO)[];

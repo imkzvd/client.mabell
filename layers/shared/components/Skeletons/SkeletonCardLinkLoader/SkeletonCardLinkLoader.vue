@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SkeletonCardLinkLoaderProps } from '~/modules/shared/components/Skeletons/SkeletonCardLinkLoader/types';
+import type { SkeletonCardLinkLoaderProps } from '~/layers/shared/components/Skeletons/SkeletonCardLinkLoader/types';
 import { UIAlignments } from '~/layers/shared/components/UI/types';
 
 withDefaults(defineProps<SkeletonCardLinkLoaderProps>(), {

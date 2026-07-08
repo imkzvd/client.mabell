@@ -1,4 +1,4 @@
-import type { UIAlignment } from '~/layers/shared/components/UI/types';
+export type UIAlignment = 'left' | 'center' | 'right';
 
 export type UIHeadingProps = {
   level?: string | number;

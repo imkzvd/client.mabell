@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SkeletonTextLoaderProps } from '~/modules/shared/components/Skeletons/SkeletonTextLoader/types';
+import type { SkeletonTextLoaderProps } from '~/layers/shared/components/Skeletons/SkeletonTextLoader/types';
 
 withDefaults(defineProps<SkeletonTextLoaderProps>(), {
   width: '70%',

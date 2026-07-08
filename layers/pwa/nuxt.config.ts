@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   components: false,
+  modules: ['@vite-pwa/nuxt'],
   app: {
     head: {
       link: [

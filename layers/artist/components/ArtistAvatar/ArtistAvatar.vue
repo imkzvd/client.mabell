@@ -1,6 +1,6 @@
 <template>
-  <div class="artist-avatar" :class="rootCssClasses">
-    <img v-if="url" :src="url" :alt="alt" />
+  <div :class="rootCSSClasses">
+    <NuxtImg v-if="url" :src="url" :alt="alt" />
     <NuxtIcon
       v-else
       role="presentation"
@@ -12,13 +12,14 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistAvatarProps } from '~/modules/artist/components/ArtistAvatar/types';
+import type { ArtistAvatarProps } from './types';
 
 const props = defineProps<ArtistAvatarProps>();
 
-const baseClass = 'artist-avatar';
-const rootCssClasses = computed<Record<string, boolean>>(() => ({
-  [`${baseClass}_no-cover`]: !props.url,
+const rootCSSClass = 'artist-avatar';
+const rootCSSClasses = computed(() => ({
+  [rootCSSClass]: true,
+  [`${rootCSSClass}_no-cover`]: !props.url,
 }));
 </script>
 
@@ -30,12 +31,9 @@ const rootCssClasses = computed<Record<string, boolean>>(() => ({
   border-radius: 100%;
 
   &_no-cover {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-width: 2px;
-    border-style: solid;
-    border-color: var(--border-color, gray);
+    border: 2px solid var(--border-color, gray);
+
+    @include flex(center, center);
   }
 
   &__icon {

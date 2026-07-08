@@ -5,16 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { UIAlignments } from '~/layers/shared/components/UI/types';
-import type { UIHeadingProps } from '~/layers/shared/components/UI/UIHeading/types.ts';
+import type { UIHeadingProps } from './types.ts';
 
 const props = withDefaults(defineProps<UIHeadingProps>(), {
   level: 1,
-  align: UIAlignments.left,
+  align: 'left',
 });
 
 const rootCSSClass = 'ui-heading';
-const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+const rootCSSClasses = computed(() => ({
   [`${rootCSSClass}_level_${props.level}`]: true,
   [`${rootCSSClass}_leading_none`]: props.leadingNone,
   [`${rootCSSClass}_is-truncated`]: !!props.maxRows,
@@ -24,7 +23,7 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
 
 <style scoped lang="scss">
 .ui-heading {
-  color: var(--ui-heading-color, white);
+  color: var(--ui-heading-color, i);
   font-family: var(--bold-font, sans-serif);
 
   &_level {

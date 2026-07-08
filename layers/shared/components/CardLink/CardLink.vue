@@ -3,9 +3,9 @@
     <UIImg :path="imgPath" :alt="imgAlt" :is-rounded="imgRounded" class="card-link__img" />
 
     <div class="card-link__details">
-      <UIText max-rows="1" :align="textAlign" class="card-link__title">
+      <p class="card-link__title">
         <slot name="title" />
-      </UIText>
+      </p>
 
       <UIText
         v-if="$slots.subtitle"
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CardLinkProps } from '~/modules/shared/components/CardLink/types';
+import type { CardLinkProps } from './types';
 
 defineProps<CardLinkProps>();
 </script>
@@ -31,31 +31,33 @@ defineProps<CardLinkProps>();
   &__img {
     --width: var(--card-link-image-width, 80px);
     aspect-ratio: 1;
-    margin-bottom: 8px;
+
+    @include mb(2);
 
     @include respond-to(lg) {
-      margin-bottom: 12px;
+      @include mb(3);
     }
   }
 
   &__title {
-    font-size: 14px;
+    @include text-sm;
 
     @include respond-to(md) {
-      font-size: 16px;
+      @include text-base;
     }
   }
 
   &__subtitle {
-    font-size: 12px;
+    @include text-xs;
 
     @include respond-to(md) {
-      font-size: 14px;
+      @include text-sm;
     }
 
     & > *:not(:last-child)::after {
       content: '•';
-      margin-inline: 4px;
+
+      @include mx(1);
     }
   }
 }

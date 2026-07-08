@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SkeletonSectionLoaderProps } from '~/modules/shared/components/Skeletons/SkeletonSectionLoader/types';
+import type { SkeletonSectionLoaderProps } from '~/layers/shared/components/Skeletons/SkeletonSectionLoader/types';
 
 defineProps<SkeletonSectionLoaderProps>();
 </script>

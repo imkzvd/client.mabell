@@ -105,15 +105,15 @@
   --ui-spinner-contrast-color: #000000;
 
   // UIButton
-  --ui-button-bg-color: #fff;
-  --ui-button-hover-bg-color: #cccccc;
-  --ui-button-text-color: #000;
-  --ui-button-rounded: 4px;
+  --ui-button-primary-bg-color: #fff;
+  --ui-button-primary-hover-bg-color: #cccccc;
+  --ui-button-primary-text-color: #000;
   --ui-button-secondary-bg-color: rgb(47 24 251 / 100%);
   --ui-button-secondary-hover-bg-color: rgb(47 24 251 / 90%);
   --ui-button-secondary-text-color: #fff;
   --ui-button-disabled-bg-color: #eeeded;
   --ui-button-disabled-text-color: #8c8c8c;
+  --ui-button-rounded: 4px;
 
   // UIText
   --ui-text-default-text: var(--main-text);

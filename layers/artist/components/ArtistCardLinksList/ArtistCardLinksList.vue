@@ -5,7 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import type { ArtistCardLinksListProps } from '~/modules/artist/components/ArtistCardLinksList/types';
+import CardLinksList from '../../../shared/components/CardLinksList/CardLinksList.vue';
+import ArtistCardLink from '../ArtistCardLink/ArtistCardLink.vue';
+import type { ArtistCardLinksListProps } from './types';
 
 defineProps<ArtistCardLinksListProps>();
 </script>

@@ -5,12 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import {
-  defaultSizeProp,
-  defaultBorderWidthProp,
-} from '~/layers/shared/components/UI/UISpinner/constants';
-import { TEST_TOKENS } from '~/__tests__/TEST_TOKENS';
-import type { UISpinnerProps } from '~/layers/shared/components/UI/UISpinner/types';
+import { TEST_TOKENS } from '../../../../../__tests__/TEST_TOKENS';
+import { defaultBorderWidthProp, defaultSizeProp } from './constants';
+import type { UISpinnerProps } from './types';
 
 const props = withDefaults(defineProps<UISpinnerProps>(), {
   size: defaultSizeProp,
@@ -25,7 +22,7 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
 </script>
 
 <style lang="scss" scoped>
-@use 'keyframes';
+@use '~~/layers/shared/assets/scss/_keyframes.scss';
 
 .ui-spinner {
   &_is-contrasted & {

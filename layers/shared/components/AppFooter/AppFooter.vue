@@ -12,7 +12,9 @@
   </footer>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import UIText from '../UI/UIText/UIText.vue';
+</script>
 
 <style scoped lang="scss">
 .app-footer {

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CardLinksListProps } from '~/modules/shared/components/CardLinksList/types';
+import type { CardLinksListProps } from '~/layers/shared/components/CardLinksList/types';
 
 const props = defineProps<CardLinksListProps>();
 

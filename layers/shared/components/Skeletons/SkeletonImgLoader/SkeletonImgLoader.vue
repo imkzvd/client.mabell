@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SkeletonImgLoaderProps } from '~/modules/shared/components/Skeletons/SkeletonImgLoader/types';
+import type { SkeletonImgLoaderProps } from '~/layers/shared/components/Skeletons/SkeletonImgLoader/types';
 
 const props = defineProps<SkeletonImgLoaderProps>();
 

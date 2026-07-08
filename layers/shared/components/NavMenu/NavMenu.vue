@@ -23,7 +23,8 @@
 </template>
 
 <script setup lang="ts">
-import { linkList } from '~/modules/shared/components/NavMenu/constants';
+import UILink from '../UI/UILink/UILink.vue';
+import { linkList } from './constants';
 
 const route = useRoute();
 </script>

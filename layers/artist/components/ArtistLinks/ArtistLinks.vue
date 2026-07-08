@@ -1,7 +1,7 @@
 <template>
-  <div class="artist-links" :class="rootCSSClasses">
+  <div :class="rootCSSClasses">
     <UILink
-      v-for="(item, index) of items"
+      v-for="item of items"
       :key="item.id"
       :to="{ name: 'artist-id', params: { id: item.id } }"
       :is-hover-underlined="hoverUnderline"
@@ -15,18 +15,17 @@
 </template>
 
 <script setup lang="ts">
-import {
-  type ArtistLinksProps,
-  ArtistLinksSeparators,
-} from '~/modules/artist/components/ArtistLinks/types';
+import UILink from '../../../shared/components/UI/UILink/UILink.vue';
+import type { ArtistLinksProps } from './types';
 
 const props = withDefaults(defineProps<ArtistLinksProps>(), {
-  separator: ArtistLinksSeparators.comma,
+  separator: 'comma',
 });
 
 const rootCSSClass = 'artist-links';
-const rootCSSClasses = computed<Record<string, boolean>>(() => ({
-  [`${rootCSSClass}_is-truncated`]: !!props.isTruncated,
+const rootCSSClasses = computed(() => ({
+  [rootCSSClass]: true,
+  [`${rootCSSClass}_is-truncated`]: props.isTruncated,
 }));
 const linkCSSClasses = computed<Record<string, boolean>>(() => ({
   [`${rootCSSClass}__link_separator_${props.separator}`]: !!props.separator,

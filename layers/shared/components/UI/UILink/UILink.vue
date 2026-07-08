@@ -5,17 +5,18 @@
 </template>
 
 <script setup lang="ts">
-import { type UILinkProps } from '~/layers/shared/components/UI/UILink/types';
+import type { UILinkProps } from './types';
 
 const props = withDefaults(defineProps<UILinkProps>(), {
   isHoverUnderlined: true,
 });
 
 const rootCSSClass: string = 'ui-link';
-const rootCSSClasses = computed<Record<string, boolean>>(() => ({
+const rootCSSClasses = computed(() => ({
+  [rootCSSClass]: true,
   [`${rootCSSClass}_is-underlined`]: props.isUnderlined,
   [`${rootCSSClass}_is-hover-underlined`]: props.isHoverUnderlined,
-  [`${rootCSSClass}_is-truncated`]: !!props.maxRows,
+  [`${rootCSSClass}_is-truncated`]: props.maxRows,
 }));
 </script>
 
@@ -23,17 +24,14 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
 .ui-link {
   color: var(--color, var(--ui-link-color));
 
-  @include respond-to(xl) {
+  @include hover {
+    color: var(--hover-color, var(--ui-link-hover-color));
     transition: color 0.25s;
+  }
 
-    &:hover {
-      color: var(--hover-color, var(--ui-link-hover-color));
-    }
-
-    &_is-hover-underlined {
-      &:hover {
-        text-decoration: underline;
-      }
+  &_is-hover-underlined {
+    @include hover {
+      text-decoration: underline;
     }
   }
 
@@ -42,7 +40,7 @@ const rootCSSClasses = computed<Record<string, boolean>>(() => ({
   }
 
   &_is-truncated {
-    @include text-ellipsis(var(--max-rows, v-bind(maxRows)));
+    @include line-clamp(var(--max-rows, v-bind(maxRows)));
   }
 }
 </style>

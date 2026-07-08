@@ -8,8 +8,8 @@
 
     <input
       :id="id || uid"
-      :type="isPasswordVisible ? 'text' : type"
       v-model="model"
+      :type="isPasswordVisible ? 'text' : type"
       :name="name"
       :placeholder="placeholder"
       :disabled="isDisabled"
